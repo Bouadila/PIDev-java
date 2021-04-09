@@ -3,49 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev_java;
+package PIDev_java;
 
+import utils.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
- * @author Bou3dila
+ * @author User
  */
 public class PIDev_java extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        Scene scene = new Scene(root);
         
-        Scene scene = new Scene(root, 300, 250);
+        stage.setScene(scene);
+        stage.show();
         
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        
+        Connection cnx;
+        cnx = DataSource.getInstance().getCnx();
+        String req =  "select * from demande";
+        
+        Statement ste;
+        ResultSet res;
+        
+        try {
+            ste = cnx.createStatement();
+            res = ste.executeQuery(req);
+            while (res.next())
+            {
+                System.out.println("nom"+res.getString("titre_demande"));
+                        }
+            //launch(args);
+        } catch (SQLException ex) {
+            Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
