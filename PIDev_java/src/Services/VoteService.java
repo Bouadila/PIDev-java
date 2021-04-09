@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.User;
 import Entity.formation;
 import utils.DataSource;
 import java.sql.Connection;
@@ -20,7 +21,7 @@ import java.util.List;
  * @author User
  */
 
-
+/*
 
 public class VoteService {
 
@@ -144,7 +145,7 @@ public class VoteService {
             rs = ste.executeQuery(req);
             while (rs.next()) {
                 l.add(new formation(rs.getInt("id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
-                        new User(rs.getInt("user.id"),
+                       new User(rs.getInt("user.id"),
                                 rs.getString("username"),
                                 rs.getString("email"),
                                 rs.getString("password"),
@@ -156,7 +157,7 @@ public class VoteService {
                                 rs.getString("bio"),
                                 rs.getString("roles"),
                                 rs.getDate("birthday"),
-                                rs.getString("profile_pic"))));
+                                rs.getString("profile_pic")))); 
             }
 
         } catch (SQLException e) {
@@ -167,3 +168,4 @@ public class VoteService {
     }
     
 }
+*/

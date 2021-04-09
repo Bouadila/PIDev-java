@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.User;
 import Entity.formation;
 import utils.DataSource;
 import java.sql.Connection;
@@ -22,6 +23,8 @@ import java.util.logging.Logger;
  * @author User
  */
 
+
+/*
 public class FormationService {
 
     private Connection cnx;
@@ -134,3 +137,5 @@ public class FormationService {
 
     }
 }
+
+*/
