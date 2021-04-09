@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.ModifierFormationController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="UI.UI_formation.ModifierFormationController">
     <stylesheets>
-        <URL value="@modifierformation.css"/>
+        <URL value="@modifierformation.css" />
     </stylesheets>
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="656.0" prefWidth="267.0" style="-fx-background-color: #5eaaa8;" />
+      <VBox layoutX="400.0" layoutY="226.0" prefHeight="226.0" prefWidth="100.0" spacing="30.0">
+         <children>
+            <Label text="URL">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Titre">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Domaine">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label text="Description">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="520.0" layoutY="226.0" prefHeight="249.0" prefWidth="186.0" spacing="30.0">
+         <children>
+            <TextField fx:id="tfUrlMod" />
+            <TextField fx:id="tfTitreMod" />
+            <TextField fx:id="tfDomaineMod" />
+            <TextArea fx:id="tfDescriptionMod" prefHeight="85.0" prefWidth="186.0" />
+         </children>
+      </VBox>
+      <Label layoutX="400.0" layoutY="93.0" text="Modifier votre formation">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_gotoAfficherFormation" layoutX="638.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_gotoAfficherFormaModif" text="Consulter" />
+      <Button layoutX="520.0" layoutY="494.0" mnemonicParsing="false" text="Enregistrer" />
+   </children>
 </AnchorPane>

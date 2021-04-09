@@ -92,8 +92,7 @@ public class AjouterFormationController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
         Stage Window = (Stage) btn_gotoAfficherForma.getScene().getWindow();
         Window.setScene(new Scene(root));
-
-      
+ 
     }
     
     

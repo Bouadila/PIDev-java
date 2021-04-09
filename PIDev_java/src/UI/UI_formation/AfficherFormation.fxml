@@ -16,7 +16,7 @@
          <children>
             <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
                <children>
-                  <Button fx:id="btn_gotoAjoutForm" mnemonicParsing="false" prefHeight="66.0" prefWidth="266.0" style="-fx-background-color: #a3d2ca;" text="Ajout" textFill="#e40e0e">
+                  <Button fx:id="btn_gotoAjoutForm" mnemonicParsing="false" onAction="#btn_gotoAjouterForma" prefHeight="66.0" prefWidth="266.0" style="-fx-background-color: #a3d2ca;" text="Ajout" textFill="#e40e0e">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -26,7 +26,7 @@
                         <Font size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e">
+                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" onAction="#btn_gotoModifierForma" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e">
                      <font>
                         <Font size="35.0" />
                      </font>

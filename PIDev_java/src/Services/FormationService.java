@@ -140,11 +140,11 @@ public class FormationService implements iService_formation<Formation>{
         } catch (SQLException e) {
         }
     }
-     
-     
-     
-     
 
+     
+     
+     
+     
     @Override
     public void modifierVideo(int id, String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -159,6 +159,12 @@ public class FormationService implements iService_formation<Formation>{
     public ArrayList<Formation> afficherVideo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     
+     
+     
+     
+
+    
      
      
      
