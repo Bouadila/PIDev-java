@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
     <stylesheets>
         <URL value="@afficherformation.css" />
     </stylesheets>
@@ -36,4 +36,4 @@
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
    </children>
-</fx:root>
+</AnchorPane>

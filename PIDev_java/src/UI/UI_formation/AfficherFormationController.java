@@ -5,9 +5,13 @@
  */
 package UI.UI_formation;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+
 
 /**
  * FXML Controller class
@@ -16,6 +20,16 @@ import javafx.fxml.Initializable;
  */
 public class AfficherFormationController implements Initializable {
 
+    
+     @FXML
+    private Button btn_gotoAjoutForm;
+
+    @FXML
+    private Button btn_deleteFormation;
+
+    @FXML
+    private Button btn_gotoModifForm;
+    
     /**
      * Initializes the controller class.
      */
