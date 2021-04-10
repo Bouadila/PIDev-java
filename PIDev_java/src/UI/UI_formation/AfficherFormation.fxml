@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,7 +34,10 @@
                   </Button>
                </children>
             </VBox>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="86.0" fitWidth="266.0" layoutX="4.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/recruitini_logo.png" />
+               </image></ImageView>
          </children></AnchorPane>
    </children>
 </AnchorPane>

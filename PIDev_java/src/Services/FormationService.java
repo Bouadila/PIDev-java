@@ -144,6 +144,25 @@ public class FormationService implements iService_formation<Formation>{
      
      
      
+     public List<Formation> getAll() {
+        String req = "select * from video";
+        List<Formation> list = new ArrayList<>();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                list.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+     
+     
+     
+     
+     
      
     @Override
     public void modifierVideo(int id, String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
@@ -156,9 +175,11 @@ public class FormationService implements iService_formation<Formation>{
     }
 
     @Override
-    public ArrayList<Formation> afficherVideo() {
+    public List<Formation> GetAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
      
      
      

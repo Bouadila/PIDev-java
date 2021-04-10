@@ -25,7 +25,7 @@ public interface iService_formation <v> {
     public void supprimerVideo(Formation v);
    /* public ObservableList<formation v> getFormation();*/
     public String getVideoById();
-    public ArrayList<v> afficherVideo();
+    public List<v> GetAll();
 
     
 }

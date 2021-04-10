@@ -43,6 +43,14 @@ public class Formation {
         this.owner = owner;
     }
 
+    public Formation(String url, String title, Timestamp publish_date, String description, String domaine) {
+        this.url = url;
+        this.title = title;
+        this.publish_date = publish_date;
+        this.description = description;
+        this.domaine = domaine;
+    }
+
     
     public int getId() {
         return id;
