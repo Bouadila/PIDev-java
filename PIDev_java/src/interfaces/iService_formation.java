@@ -6,11 +6,10 @@
 package interfaces;
 
 import Entity.User;
-import java.util.List;
 import Entity.Formation;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import javafx.collections.ObservableList;
+
 
 /**
  *
@@ -25,7 +24,7 @@ public interface iService_formation <v> {
     public void supprimerVideo(Formation v);
    /* public ObservableList<formation v> getFormation();*/
     public String getVideoById();
-    public List<v> GetAll();
+    public ArrayList<v> GetAll();
 
     
 }

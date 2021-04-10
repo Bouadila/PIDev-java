@@ -144,9 +144,9 @@ public class FormationService implements iService_formation<Formation>{
      
      
      
-     public List<Formation> getAll() {
+     public ArrayList<Formation> getAll() {
         String req = "select * from video";
-        List<Formation> list = new ArrayList<>();
+        ArrayList<Formation> list = new ArrayList<>();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
@@ -175,7 +175,7 @@ public class FormationService implements iService_formation<Formation>{
     }
 
     @Override
-    public List<Formation> GetAll() {
+    public ArrayList<Formation> GetAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

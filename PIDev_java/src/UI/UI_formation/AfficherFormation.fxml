@@ -39,5 +39,6 @@
                   <Image url="@../../../../../../../Downloads/recruitini_logo.png" />
                </image></ImageView>
          </children></AnchorPane>
+      <VBox fx:id="VBox_formations" layoutX="297.0" layoutY="108.0" prefHeight="504.0" prefWidth="570.0" />
    </children>
 </AnchorPane>

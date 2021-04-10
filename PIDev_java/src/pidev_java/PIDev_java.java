@@ -34,7 +34,7 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
         
         Scene scene = new Scene(root);
         
