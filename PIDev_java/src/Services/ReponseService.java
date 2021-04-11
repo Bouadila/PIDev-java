@@ -5,7 +5,7 @@
  */
 package Services;
 
-import Entity.Quiz;
+import Entity.Reponse;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,18 +18,18 @@ import utils.DataSource;
  *
  * @author Bou3dila
  */
-public class QuizService {
+public class ReponseService {
     
-    Connection conn;
+      Connection conn;
     
-    public QuizService(){
+    public ReponseService(){
         conn = DataSource.getInstance().getCnx();
     }
     
     
-    public void addQuiz(Quiz quiz){
+    public void addReponse(Reponse reponse){
         
-        String sql="INSERT INTO quiz (nom_quiz, nomb_question) VALUES ('"+quiz.getNom_quiz()+"',"+quiz.getNomb_question()+")";
+        String sql="INSERT INTO reponse (nom_reponse, nomb_question) VALUES ('"+reponse.getNom_reponse()+"',"+reponse.getNomb_question()+")";
             
         Statement st;
             try
@@ -45,8 +45,8 @@ public class QuizService {
             }
     }
     
-    public void updateQuiz ( Quiz quiz ){
-        String sql="UPDATE quiz SET  nom_quiz='"+quiz.getNom_quiz()+"', nomb_question ="+quiz.getNomb_question()+" WHERE id="+quiz.getId();
+    public void updateReponse ( Reponse reponse ){
+        String sql="UPDATE reponse SET  nom_reponse='"+reponse.getNom_reponse()+"', nomb_question ="+reponse.getNomb_question()+" WHERE id="+reponse.getId();
 
         Statement st;
             try {
@@ -59,8 +59,8 @@ public class QuizService {
             }
     }
     
-    public void deleteQuiz (Quiz quiz){
-        String sql = "DELETE FROM quiz WHERE id ='"+quiz.getId()+"'";
+    public void deleteReponse (Reponse reponse){
+        String sql = "DELETE FROM reponse WHERE id ='"+reponse.getId()+"'";
         Statement st ;
             try{
                 st=conn.createStatement();
@@ -75,35 +75,35 @@ public class QuizService {
     
     
     
-    public Quiz getQuiz( int id ) throws SQLException{
-        String sql="SELECT * FROM quiz where id ="+id;
+    public Reponse getReponse( int id ) throws SQLException{
+        String sql="SELECT * FROM reponse where id ="+id;
         Statement st=conn.createStatement();
         ResultSet res= st.executeQuery(sql);
-        Quiz quiz = null;
+        Reponse reponse = null;
         if (res.next())
         {
-            String nom_quiz = res.getString("nom_quiz");
+            String nom_reponse = res.getString("nom_reponse");
             int nomb_question = res.getInt("nomb_question");
-            quiz = new Quiz (id,nom_quiz, nomb_question);
+            reponse = new Reponse (id,nom_reponse, nomb_question);
         }
-            return quiz;
+            return reponse;
     }
     
     
-    public List<Quiz> getAllQuiz() throws SQLException{
+    public List<Reponse> getAllReponse() throws SQLException{
         
-        List<Quiz> listQuiz = new ArrayList();
-        String sql="SELECT * FROM quiz";
+        List<Reponse> listReponse = new ArrayList();
+        String sql="SELECT * FROM reponse";
         Statement st=conn.createStatement();
         ResultSet res= st.executeQuery(sql);
         while (res.next())
         {
             int id = res.getInt("id");
-            String nom_quiz = res.getString("nom_quiz");
+            String nom_reponse = res.getString("nom_reponse");
             int nomb_question = res.getInt("nomb_question");
-            Quiz quiz = new Quiz (id,nom_quiz, nomb_question);
-            listQuiz.add(quiz);
+            Reponse reponse = new Reponse (id,nom_reponse, nomb_question);
+            listReponse.add(reponse);
         }
-            return listQuiz;
+            return listReponse;
     }
 }

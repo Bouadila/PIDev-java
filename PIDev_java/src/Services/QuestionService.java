@@ -50,9 +50,9 @@ public class QuestionService {
         String sql="UPDATE question SET  "
                 + "rep_just_id="+question.getRep_just_id()+", "
                 + "quiz_id_id ="+question.getQuiz_id_id()+", "
-                + "contenu_ques ='"+question.getContenu_ques()+"' "
-                + "nomb_rep ="+question.getNomb_rep()+" "
-                + "duree ='"+question.getDuree()+"' "
+                + "contenu_ques ='"+question.getContenu_ques()+"', "
+                + "nomb_rep ="+question.getNomb_rep()+", "
+                + "duree = "+question.getDuree()+" "
                 + "WHERE id="+question.getId();
 
         Statement st;
@@ -61,7 +61,7 @@ public class QuestionService {
                 st.executeUpdate(sql);
                 System.out.println("Edition reussite");
             } catch (SQLException ex) {
-                System.out.println("Probleme d'edition");
+                System.out.println(ex.getMessage());
                 ex.getMessage();
             }
     }
@@ -74,7 +74,7 @@ public class QuestionService {
                 st.executeUpdate(sql);
                 System.out.println("Suppression reussite");
             }catch (SQLException ex){
-                System.out.println("Probleme de suppression !!!");
+                System.out.println(ex.getMessage());
                 }
     }
     

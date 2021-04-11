@@ -44,10 +44,10 @@ public class PIDev_java extends Application {
      */
     public static void main(String[] args) throws SQLException {
         
-       Question q = new Question(12,5,"question5",2,2);
-       QuestionService service = new QuestionService();
-        System.out.println(service.getAllQuestion());
-//        service.addQuestion(q);
+       Quiz q = new Quiz(7,"question5",2);
+       QuizService service = new QuizService();
+//        System.out.println(service.());
+        service.updateQuiz(q);
     }
     
 }
