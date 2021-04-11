@@ -5,6 +5,10 @@
  */
 package PIDev_java;
 
+import Entity.Question;
+import Entity.Quiz;
+import Services.QuestionService;
+import Services.QuizService;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -38,26 +42,12 @@ public class PIDev_java extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         
-        Connection cnx;
-        cnx = DataSource.getInstance().getCnx();
-        String req =  "select * from demande";
-        
-        Statement ste;
-        ResultSet res;
-        
-        try {
-            ste = cnx.createStatement();
-            res = ste.executeQuery(req);
-            while (res.next())
-            {
-                System.out.println("nom"+res.getString("titre_demande"));
-                        }
-            //launch(args);
-        } catch (SQLException ex) {
-            Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       Question q = new Question(12,5,"question5",2,2);
+       QuestionService service = new QuestionService();
+        System.out.println(service.getAllQuestion());
+//        service.addQuestion(q);
     }
     
 }
