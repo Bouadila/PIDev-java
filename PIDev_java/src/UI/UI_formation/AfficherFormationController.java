@@ -41,7 +41,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
@@ -64,11 +63,7 @@ import javafx.util.Callback;
 public class AfficherFormationController implements Initializable {
 
     
-     @FXML
-    private Button btn_gotoAjoutForm;
 
-    @FXML
-    private Button btn_deleteFormation;
 
     @FXML
     private Button btn_gotoModifForm;
@@ -89,21 +84,25 @@ public class AfficherFormationController implements Initializable {
     @FXML
     private TableColumn<Formation, String> tab_domaine_id;
 
-
     @FXML
-    private TableColumn<Formation, String> tab_delete_id;
+    private TableColumn<Formation, String> tab_gestion_id;
 
-    @FXML
-    private TableColumn<Formation, String> tab_modif_id;
+    
+     @FXML
+    private Button btn_gotoFormations;
     
     ObservableList<Formation>  FormationList = FXCollections.observableArrayList();
 
-    
     String query = null;
-    Connection connection = null ;
+    Connection cnx = null;
+    Connection connection = cnx ;
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
     Formation formation = null ;
+   
+        
+    
+    
     
     /**
      * Initializes the controller class.
@@ -114,100 +113,25 @@ public class AfficherFormationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         loadDate();
+       
         
-        
-        
-        
-     /*   ArrayList<Formation> formations= new FormationService().getAll();
-        
-        //System.out.println(formations);
-        
-        for(int i = 0; i<formations.size();i++) {
-        
-             
-            
-            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-            
-            
-            Label url1= new Label();
-            Label description1= new Label();
-            Label titre1= new Label();
-            Label domaine1= new Label();
-            Label publish_date1= new Label();
-            
-            
-            
-            
-            
-            Button btn1=new Button("Like");
-            
-            
-            
-            description1.setText(formations.get(i).getDescription());
-            titre1.setText(formations.get(i).getTitle());
-            url1.setText(formations.get(i).getUrl());
-            domaine1.setText(formations.get(i).getDomaine());
-            publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
-            
-          
-            
-           
-           
-            
-            
-            VBox forma1=new VBox();
-            forma1.getChildren().addAll(titre1,url1,description1,publish_date1,domaine1,btn1);
-            
-            
-            HBox formhor=new HBox();
-            
-            formhor.getChildren().addAll(forma1);
-            
-            VBox_formations.getChildren().add(formhor);
-            
-            
-            
-            
-            
          
-             btn1.setOnAction((ActionEvent e) -> {
-                 Formation v = new Formation();
-                 new FormationService().supprimerVideo(v);
-                 
-                 
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("Formation");
-                 alert.setHeaderText("Formation supprimé !");
-                 alert.setContentText("Go Back To The Homepage");
-                 
-                 alert.showAndWait();
-            });
-             
-             
-             
-            
-        
-             
-             
-             
-             
-     }*/
-            
-            
-           
-            
-            
-            
         }
         
-        
+     
+    
+    
+    
+    
+    
+    
     
     @FXML
         void btn_Refresh_Forma() {
-        
+
         
          try {
-            //FormationList.clear();
+           // FormationList.clean();
             
             query = "SELECT * FROM video";
             preparedStatement = connection.prepareStatement(query);
@@ -233,54 +157,27 @@ public class AfficherFormationController implements Initializable {
 
         
         
-   /* void btn_X_close(MouseEvent event) {
+   
+    
+    
 
-
-        
-    }*/
-    
-    
-    
- void btn_gotoAjouterForma(MouseEvent event) throws IOException {
-     
-    /* Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-        Stage Window = (Stage) btn_gotoAjoutForm.getScene().getWindow();
-        Window.setScene(new Scene(root));*/
-        
-        
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AfficherFormationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }
     
  
- 
-    
-      
-    
-
-    
-   /* @FXML
-    void btn_gotoAjouterForma(ActionEvent event) throws IOException {
+ @FXML
+    void  btn_gotoFormations(ActionEvent event) throws IOException {
        
       
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-        Stage Window = (Stage) btn_gotoAjoutForm.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/Formations.fxml"));
+        Stage Window = (Stage) btn_gotoFormations.getScene().getWindow();
         Window.setScene(new Scene(root));
 
       
-    }*/
-    
-    
+    }
+ 
+ 
+ 
+ 
+ 
     @FXML
     void btn_gotoModifierForma(ActionEvent event) throws IOException {
        
@@ -295,6 +192,9 @@ public class AfficherFormationController implements Initializable {
     private void loadDate() {
         
 
+        
+        
+        
         ObservableList<Formation> listForm = FXCollections.observableArrayList();
         Tab_titre_id.setCellValueFactory(new PropertyValueFactory<>("Title"));
         tab_url_id.setCellValueFactory(new PropertyValueFactory<>("Url"));
@@ -304,27 +204,132 @@ public class AfficherFormationController implements Initializable {
         List old = fc.getAll();
         listForm.addAll(old);
          TableFormation.setItems(listForm);
-        
          
          
+         //add cell of button edit 
+         Callback<TableColumn<Formation, String>, TableCell<Formation, String>> cellFoctory = (TableColumn<Formation, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Formation, String> cell = new TableCell<Formation, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+
+                        deleteIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
+                        );
+                        editIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+                        
+                        
+                        deleteIcon.setOnMouseClicked(e -> {
+                            
+                            Formation v = TableFormation.getSelectionModel().getSelectedItem();
+                            TableFormation.getItems().removeAll(TableFormation.getSelectionModel().getSelectedItem());
+                            FormationService sp = new FormationService();
+                            System.out.println(v);
+                            sp.supprimerVideo(v);
+                            System.out.println("deleted");
+                            
+                           
+
+                            
+                        });
+                        
+                        
+                        
+                        
+                        
+                        editIcon.setOnMouseClicked(e -> {
+                            
+                            formation = TableFormation.getSelectionModel().getSelectedItem();
+                            FXMLLoader loader = new FXMLLoader ();
+                            loader.setLocation(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
+                            try {
+                                loader.load();
+                            } catch (IOException ex) {
+                                Logger.getLogger(AfficherFormationController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                            AjouterFormationController AjouterFormationController = loader.getController();
+                            AjouterFormationController.setUpdate(true);
+                            AjouterFormationController.setTextField(formation.getTitle(), 
+                                    formation.getUrl(),formation.getDescription(), formation.getDomaine());
+                            Parent parent = loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(parent));
+                            stage.initStyle(StageStyle.UTILITY);
+                            stage.show();
+                            
+
+                           
+
+                        });
+
+                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        managebtn.setStyle("-fx-alignment:center");
+                        setGraphic(managebtn);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+         tab_gestion_id.setCellFactory(cellFoctory);
+         TableFormation.setItems(listForm);
          
-        
-        
+         
     }
 
+   
+         
+    
     @FXML
     private void btn_gotoAjouterForma(javafx.scene.input.MouseEvent event) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-        Stage Window = (Stage) btn_gotoAjoutForm.getScene().getWindow();
-        Window.setScene(new Scene(root));
+         try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherFormationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
+    
+    
+    
     @FXML
     private void btn_print_formation(javafx.scene.input.MouseEvent event) {
     }
 
+    
+    
+    
+    
+    
+    
     @FXML
     private void btn_X_close(javafx.scene.input.MouseEvent event) {
         
@@ -335,7 +340,7 @@ public class AfficherFormationController implements Initializable {
 
     
     
-    
+
     
     
     

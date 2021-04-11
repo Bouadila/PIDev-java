@@ -23,7 +23,7 @@
          <children>
             <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
                <children>
-                  <Button fx:id="btn_deleteFormation" mnemonicParsing="false" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #a3d2ca;" text="Supprimer" textFill="#e40e0e">
+                  <Button fx:id="btn_gotoFormations" mnemonicParsing="false" onAction="#btn_gotoFormations" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #a3d2ca;" text="Nos Formationq" textFill="#e40e0e">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -46,8 +46,7 @@
           <TableColumn fx:id="tab_url_id" prefWidth="88.0" style="-fx-alignment: center;" text="URL" />
             <TableColumn fx:id="tab_desc_id" prefWidth="124.7999267578125" style="-fx-alignment: center;" text="Description" />
             <TableColumn fx:id="tab_domaine_id" prefWidth="78.4000244140625" style="-fx-alignment: center;" text="Domaine" />
-            <TableColumn fx:id="tab_delete_id" prefWidth="77.59991455078125" style="-fx-alignment: center;" text="Supprimer" />
-            <TableColumn fx:id="tab_modif_id" prefWidth="71.199951171875" style="-fx-alignment: center;" text="Modifier" />
+            <TableColumn fx:id="tab_gestion_id" prefWidth="77.59991455078125" style="-fx-alignment: center;" text="Gestion" />
         </columns>
       </TableView>
       <Label layoutX="473.0" layoutY="20.0" prefHeight="47.0" prefWidth="217.0" text="Les formations">

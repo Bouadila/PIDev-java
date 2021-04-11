@@ -171,14 +171,45 @@ public class FormationService implements iService_formation<Formation>{
      
      
      
+     public ArrayList<Formation> getAllList() {
+        String req = "select * from video";
+        ArrayList<Formation> FormationList = new ArrayList<>();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+          
+                FormationList.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return FormationList;
+    }
+     
+     
+     
      
      
      
     @Override
-    public void modifierVideo(int id, String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void modifierVideo(Formation v) {
+        
+         
+         String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
+        try {
+            pst=cnx.prepareStatement(req);
+            pst.setString(1,v.getTitle());
+            pst.setString(2,v.getUrl());
+            pst.setString(3,v.getDescription());
+            pst.setString(4,v.getDomaine());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+   
     @Override
     public String getVideoById() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

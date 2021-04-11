@@ -37,6 +37,7 @@ import javafx.stage.Stage;
  */
 public class AjouterFormationController implements Initializable {
 
+    private boolean update;
     
     @FXML
     private TextField tfUrl;
@@ -116,5 +117,22 @@ public class AjouterFormationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
+    
+    
+   
+
+    void setUpdate(boolean b) {
+        this.update = b;
+
+    }
+
+    void setTextField(String title, String url, String description, String domaine) {
+
+
+    }
+    
+    
     
 }

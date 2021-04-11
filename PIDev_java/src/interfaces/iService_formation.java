@@ -20,11 +20,12 @@ public interface iService_formation <v> {
     
     
     public boolean ajouterVideo(Formation v);  
-    public void modifierVideo(int id, String url, String title, Timestamp publish_date, String description, String domaine , User owner);
+    public void modifierVideo(Formation v);
     public void supprimerVideo(Formation v);
    /* public ObservableList<formation v> getFormation();*/
     public String getVideoById();
     public ArrayList<v> GetAll();
+    public ArrayList<v> getAllList();
 
     
 }
