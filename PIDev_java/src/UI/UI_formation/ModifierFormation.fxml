@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="UI.UI_formation.ModifierFormationController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.ModifierFormationController">
     <stylesheets>
         <URL value="@modifierformation.css" />
     </stylesheets>
@@ -53,6 +53,6 @@
          </font>
       </Label>
       <Button fx:id="btn_gotoAfficherFormation" layoutX="638.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_gotoAfficherFormaModif" text="Consulter" />
-      <Button layoutX="520.0" layoutY="494.0" mnemonicParsing="false" text="Enregistrer" />
+      <Button fx:id="btn_enregis_modif" layoutX="520.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_enregistrer_modif" text="Enregistrer" />
    </children>
 </AnchorPane>

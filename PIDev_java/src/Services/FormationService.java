@@ -199,10 +199,10 @@ public class FormationService implements iService_formation<Formation>{
          String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
         try {
             pst=cnx.prepareStatement(req);
-            pst.setString(1,v.getTitle());
-            pst.setString(2,v.getUrl());
-            pst.setString(3,v.getDescription());
-            pst.setString(4,v.getDomaine());
+            pst.setString(1,v.getUrl());
+            pst.setString(2,v.getTitle());
+            pst.setString(3,v.getDomaine());
+            pst.setString(4,v.getDescription());
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

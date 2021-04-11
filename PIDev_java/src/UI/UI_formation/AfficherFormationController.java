@@ -255,7 +255,35 @@ public class AfficherFormationController implements Initializable {
                         
                         editIcon.setOnMouseClicked(e -> {
                             
-                            formation = TableFormation.getSelectionModel().getSelectedItem();
+                            
+                            
+                             Formation v = TableFormation.getSelectionModel().getSelectedItem();
+
+                            try {
+                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_formation/ModifierFormation.fxml"));
+                        Parent root = loader.load();
+                        ModifierFormationController mF = loader.getController();
+
+
+                        mF.settfUrlMod(v.getUrl());
+                        mF.settfTitreMod(v.getTitle());
+                        mF.settfDescriptionMod(v.getDomaine());
+                        mF.settfDomaineMod(v.getDescription());
+                        
+
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier évenement");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                        } catch (IOException ex) {
+                         System.out.println(ex.getMessage());
+                        }
+                            
+                            
+                            
+                            
+                         /*   formation = TableFormation.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader ();
                             loader.setLocation(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
                             try {
@@ -272,7 +300,7 @@ public class AfficherFormationController implements Initializable {
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));
                             stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
+                            stage.show();*/
                             
 
                            
