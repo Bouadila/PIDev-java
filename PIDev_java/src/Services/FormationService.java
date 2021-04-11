@@ -146,17 +146,27 @@ public class FormationService implements iService_formation<Formation>{
      
      public ArrayList<Formation> getAll() {
         String req = "select * from video";
-        ArrayList<Formation> list = new ArrayList<>();
+        ArrayList<Formation> FormationList = new ArrayList<>();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
-                list.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
+                Formation v = new Formation();
+                
+                v.setTitle(rs.getString(3));
+                v.setUrl(rs.getString(2));
+                v.setDescription(rs.getString(6));
+                v.setDomaine(rs.getString(8));
+                //v.setPublish_date(rs.getTimestamp(5));
+
+                FormationList.add(v);
+               
+                //list.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return FormationList;
     }
      
      

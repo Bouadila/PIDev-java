@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.net.URL?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
     <stylesheets>
         <URL value="@afficherformation.css" />
     </stylesheets>
@@ -17,11 +23,6 @@
          <children>
             <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
                <children>
-                  <Button fx:id="btn_gotoAjoutForm" mnemonicParsing="false" onAction="#btn_gotoAjouterForma" prefHeight="66.0" prefWidth="266.0" style="-fx-background-color: #a3d2ca;" text="Ajout" textFill="#e40e0e">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="btn_deleteFormation" mnemonicParsing="false" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #a3d2ca;" text="Supprimer" textFill="#e40e0e">
                      <font>
                         <Font size="35.0" />
@@ -39,6 +40,33 @@
                   <Image url="@../../../../../../../Downloads/recruitini_logo.png" />
                </image></ImageView>
          </children></AnchorPane>
-      <VBox fx:id="VBox_formations" layoutX="297.0" layoutY="108.0" prefHeight="504.0" prefWidth="570.0" />
+      <TableView fx:id="TableFormation" layoutX="315.0" layoutY="173.0" prefHeight="448.0" prefWidth="557.0">
+        <columns>
+          <TableColumn fx:id="Tab_titre_id" prefWidth="62.4000244140625" style="-fx-alignment: center;" text="Titre" />
+          <TableColumn fx:id="tab_url_id" prefWidth="88.0" style="-fx-alignment: center;" text="URL" />
+            <TableColumn fx:id="tab_desc_id" prefWidth="124.7999267578125" style="-fx-alignment: center;" text="Description" />
+            <TableColumn fx:id="tab_domaine_id" prefWidth="78.4000244140625" style="-fx-alignment: center;" text="Domaine" />
+            <TableColumn fx:id="tab_delete_id" prefWidth="77.59991455078125" style="-fx-alignment: center;" text="Supprimer" />
+            <TableColumn fx:id="tab_modif_id" prefWidth="71.199951171875" style="-fx-alignment: center;" text="Modifier" />
+        </columns>
+      </TableView>
+      <Label layoutX="473.0" layoutY="20.0" prefHeight="47.0" prefWidth="217.0" text="Les formations">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="859.0" layoutY="36.599998474121094">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="315.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+         <children>
+            <FontAwesomeIconView fill="#2196f3" glyphName="PLUS_SQUARE" onMouseClicked="#btn_gotoAjouterForma" size="45" text="" />
+            <FontAwesomeIconView fill="#00f676" glyphName="REFRESH" layoutX="10.0" layoutY="76.0" onMouseClicked="#btn_Refresh_Forma" size="45" wrappingWidth="11.911458015441895" />
+            <FontAwesomeIconView fill="#455a64" glyphName="PRINT" onMouseClicked="#btn_print_formation" size="45" />
+         </children>
+      </HBox>
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="20" />
    </children>
 </AnchorPane>
