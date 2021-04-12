@@ -183,7 +183,7 @@ public class ModifierFormationController implements Initializable {
         JOptionPane.showMessageDialog(null, "even modifié avec succès !");
           
         Stage stage = (Stage) btn_enregis_modif.getScene().getWindow();
-       // }
+       
 
     }
     

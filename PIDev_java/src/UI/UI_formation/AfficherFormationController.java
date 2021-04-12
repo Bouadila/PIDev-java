@@ -42,8 +42,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.List;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
@@ -87,9 +90,11 @@ public class AfficherFormationController implements Initializable {
     @FXML
     private TableColumn<Formation, String> tab_gestion_id;
 
-    
-     @FXML
+    @FXML
     private Button btn_gotoFormations;
+    
+    @FXML
+    private TextField tfSearchForma;
     
     ObservableList<Formation>  FormationList = FXCollections.observableArrayList();
 
@@ -195,15 +200,23 @@ public class AfficherFormationController implements Initializable {
         
         
         
-        ObservableList<Formation> listForm = FXCollections.observableArrayList();
+        ObservableList<Formation> listForm = new FormationService().getAll();
         Tab_titre_id.setCellValueFactory(new PropertyValueFactory<>("Title"));
         tab_url_id.setCellValueFactory(new PropertyValueFactory<>("Url"));
         tab_desc_id.setCellValueFactory(new PropertyValueFactory<>("Description"));
         tab_domaine_id.setCellValueFactory(new PropertyValueFactory<>("Domaine"));
-        FormationService fc = new FormationService();
+       
+        /*FormationService fc = new FormationService();
         List old = fc.getAll();
-        listForm.addAll(old);
+        listForm.addAll(old);*/
          TableFormation.setItems(listForm);
+         
+         
+
+        
+         
+         
+         
          
          
          //add cell of button edit 
@@ -238,14 +251,16 @@ public class AfficherFormationController implements Initializable {
                         deleteIcon.setOnMouseClicked(e -> {
                             
                             Formation v = TableFormation.getSelectionModel().getSelectedItem();
-                            TableFormation.getItems().removeAll(TableFormation.getSelectionModel().getSelectedItem());
+                             
+                           // TableFormation.getItems().remove(TableFormation.getSelectionModel().getSelectedItem());
+
                             FormationService sp = new FormationService();
-                            System.out.println(v);
+                            System.out.println(v.getId());
                             sp.supprimerVideo(v);
                             System.out.println("deleted");
                             
-                           
-
+                            
+                          
                             
                         });
                         
@@ -270,7 +285,7 @@ public class AfficherFormationController implements Initializable {
                         mF.settfDescriptionMod(v.getDomaine());
                         mF.settfDomaineMod(v.getDescription());
                         
-
+                       
 
                         Stage stage = new Stage();
                         stage.setTitle("Modifier évenement");
@@ -322,6 +337,49 @@ public class AfficherFormationController implements Initializable {
         };
          tab_gestion_id.setCellFactory(cellFoctory);
          TableFormation.setItems(listForm);
+         
+         
+         
+         
+         
+         
+         FilteredList<Formation> filteredData = new FilteredList<>(listForm, b->true);
+         tfSearchForma.textProperty().addListener((observable, oldValue, newValue) -> {
+             filteredData.setPredicate(formation -> {
+         if(newValue == null || newValue.isEmpty() )
+                 {
+                       return true;
+                 }
+         
+         String lowerCaseFilter = newValue.toLowerCase();
+         
+         if(formation.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                 {
+                     return true;
+                 } 
+         else if(formation.getDomaine().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                 {
+                     return true;
+                 }
+         else return false;
+         
+         });
+         
+          });           
+
+         SortedList<Formation> sortedData = new SortedList<>(filteredData);
+         sortedData.comparatorProperty().bind(TableFormation.comparatorProperty());
+         TableFormation.setItems(sortedData);
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
          
          
     }

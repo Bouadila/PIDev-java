@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -67,5 +68,6 @@
          </children>
       </HBox>
       <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="20" />
+      <TextField fx:id="tfSearchForma" layoutX="636.0" layoutY="123.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche" />
    </children>
 </AnchorPane>

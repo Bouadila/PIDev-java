@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import interfaces.iService_formation;
 import java.sql.Timestamp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -129,34 +131,40 @@ public class FormationService implements iService_formation<Formation>{
     
     
     
-    @Override
      public void supprimerVideo(Formation v){
-        String req="delete from video where id=?";
+
+     
+            String req="delete from video where id=?";
         try {
             pst=cnx.prepareStatement(req);
             pst.setInt(1,v.getId());
-
             pst.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }
+     }
+     
+
+
+      
+    
 
      
      
      
-     public ArrayList<Formation> getAll() {
+     public ObservableList<Formation> getAll() {
         String req = "select * from video";
-        ArrayList<Formation> FormationList = new ArrayList<>();
+        ObservableList<Formation> FormationList = FXCollections.observableArrayList();
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(req);
             while (rs.next()) {
                 Formation v = new Formation();
-                
-                v.setTitle(rs.getString(3));
-                v.setUrl(rs.getString(2));
-                v.setDescription(rs.getString(6));
-                v.setDomaine(rs.getString(8));
+                v.setId(rs.getInt("id"));
+                v.setTitle(rs.getString("title"));
+                v.setUrl(rs.getString("url"));
+                v.setDescription(rs.getString("description"));
+                v.setDomaine(rs.getString("domaine"));
                 //v.setPublish_date(rs.getTimestamp(5));
 
                 FormationList.add(v);
@@ -195,8 +203,31 @@ public class FormationService implements iService_formation<Formation>{
     @Override
     public void modifierVideo(Formation v) {
         
-         
-         String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
+        
+        
+         try {
+            String requete = "update video set url='" + v.getUrl() + "', title='" + v.getTitle()+
+                    "',publish_date='" + v.getPublish_date()+ "',description='" + v.getDescription()+ "',domaine='" 
+                    + v.getDomaine() +"' where id="+v.getId();
+            Statement st = DataSource.getInstance().getCnx().createStatement();
+            st.executeUpdate(requete);
+            System.out.println("Activité modifiée");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    /*     String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
         try {
             pst=cnx.prepareStatement(req);
             pst.setString(1,v.getUrl());
@@ -206,9 +237,11 @@ public class FormationService implements iService_formation<Formation>{
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
+    
+    
    
     @Override
     public String getVideoById() {
@@ -216,7 +249,7 @@ public class FormationService implements iService_formation<Formation>{
     }
 
     @Override
-    public ArrayList<Formation> GetAll() {
+    public ObservableList<Formation> GetAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
