@@ -96,6 +96,8 @@ public class AfficherFormationController implements Initializable {
     @FXML
     private TextField tfSearchForma;
     
+    
+    
     ObservableList<Formation>  FormationList = FXCollections.observableArrayList();
 
     String query = null;
@@ -203,8 +205,9 @@ public class AfficherFormationController implements Initializable {
         ObservableList<Formation> listForm = new FormationService().getAll();
         Tab_titre_id.setCellValueFactory(new PropertyValueFactory<>("Title"));
         tab_url_id.setCellValueFactory(new PropertyValueFactory<>("Url"));
-        tab_desc_id.setCellValueFactory(new PropertyValueFactory<>("Description"));
         tab_domaine_id.setCellValueFactory(new PropertyValueFactory<>("Domaine"));
+        tab_desc_id.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        
        
         /*FormationService fc = new FormationService();
         List old = fc.getAll();
@@ -279,11 +282,11 @@ public class AfficherFormationController implements Initializable {
                         Parent root = loader.load();
                         ModifierFormationController mF = loader.getController();
 
-
+                        mF.settf_ID_forma(Integer.toString(v.getId())); //A3mel TextField hidden ( fi properties visibility)
                         mF.settfUrlMod(v.getUrl());
                         mF.settfTitreMod(v.getTitle());
-                        mF.settfDescriptionMod(v.getDomaine());
-                        mF.settfDomaineMod(v.getDescription());
+                        mF.settfDescriptionMod(v.getDescription());
+                        mF.settfDomaineMod(v.getDomaine());
                         
                        
 

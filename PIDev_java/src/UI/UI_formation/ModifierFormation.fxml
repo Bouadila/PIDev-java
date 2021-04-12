@@ -54,5 +54,6 @@
       </Label>
       <Button fx:id="btn_gotoAfficherFormation" layoutX="638.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_gotoAfficherFormaModif" text="Consulter" />
       <Button fx:id="btn_enregis_modif" layoutX="520.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_enregistrer_modif" text="Enregistrer" />
+      <TextField fx:id="tf_ID_forma" layoutX="519.0" layoutY="175.0" visible="false" />
    </children>
 </AnchorPane>

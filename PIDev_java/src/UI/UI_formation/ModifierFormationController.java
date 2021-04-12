@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -50,6 +51,9 @@ public class ModifierFormationController implements Initializable {
     private Button btn_enregis_modif;
     
     public int form;
+    
+    @FXML
+    private TextField tf_ID_forma;
 
     
     
@@ -82,6 +86,9 @@ public class ModifierFormationController implements Initializable {
     
     
     
+    
+    
+    
      public int getForm() {
         return form;
     }
@@ -90,6 +97,15 @@ public class ModifierFormationController implements Initializable {
         this.form = form;
     }
 
+    
+    
+     public TextField gettf_ID_forma() {
+        return tf_ID_forma;
+    } 
+    
+    void settf_ID_forma(String tf_ID_forma) {
+        this.tf_ID_forma.setText(tf_ID_forma);
+    }
     
     
     public TextField gettfUrlMod() {
@@ -158,11 +174,8 @@ public class ModifierFormationController implements Initializable {
     void btn_enregistrer_modif(ActionEvent event) {
         
         
-        //TrayNotification tray = null;
-
-        //if (verifchamps() == true) {
-
-
+        btn_enregis_modif.setOnAction(e->{
+            
         String url = "https://www.youtube.com/embed/";
         String code = tfUrlMod.getText().substring(tfUrlMod.getText().length() - 11);
         url = url + code;
@@ -170,6 +183,9 @@ public class ModifierFormationController implements Initializable {
         
         Formation v = new Formation();
         
+        
+        
+        v.setId(Integer.parseInt(tf_ID_forma.getText()));
         v.setUrl(url);
         v.setTitle(tfTitreMod.getText());
         Timestamp time= new Timestamp(System.currentTimeMillis());
@@ -179,10 +195,18 @@ public class ModifierFormationController implements Initializable {
         v.setDescription(tfDescriptionMod.getText());
         
         new FormationService().modifierVideo(v);
-        v.setId(this.getForm());
-        JOptionPane.showMessageDialog(null, "even modifié avec succès !");
+        
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Formation");
+            alert.setHeaderText("Formation Modifier !");
+            alert.setContentText("Go Back To The Homepage");
+
+            alert.showAndWait(); 
+            Stage stage = (Stage) btn_gotoAfficherFormation.getScene().getWindow();
+            //stage.close();
+        });
           
-        Stage stage = (Stage) btn_enregis_modif.getScene().getWindow();
+        
        
 
     }

@@ -202,16 +202,23 @@ public class FormationService implements iService_formation<Formation>{
      
     @Override
     public void modifierVideo(Formation v) {
+           
         
         
-        
-         try {
+        try {
             String requete = "update video set url='" + v.getUrl() + "', title='" + v.getTitle()+
                     "',publish_date='" + v.getPublish_date()+ "',description='" + v.getDescription()+ "',domaine='" 
                     + v.getDomaine() +"' where id="+v.getId();
-            Statement st = DataSource.getInstance().getCnx().createStatement();
-            st.executeUpdate(requete);
-            System.out.println("Activité modifiée");
+     
+     
+           /* Statement st = DataSource.getInstance().getCnx().createStatement();
+            st.executeUpdate(requete);*/
+            
+           ste = cnx.createStatement();
+            ste.executeUpdate(requete);
+            
+            System.out.println(v.getId());
+            System.out.println("Formation modifiée");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -219,22 +226,20 @@ public class FormationService implements iService_formation<Formation>{
         
         
         
+           
         
         
-        
-        
-        
-        
-        
-        
-    /*     String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
+     /*    String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
         try {
             pst=cnx.prepareStatement(req);
+           
             pst.setString(1,v.getUrl());
             pst.setString(2,v.getTitle());
             pst.setString(3,v.getDomaine());
             pst.setString(4,v.getDescription());
             pst.executeUpdate();
+            System.out.println(v.getId());
+            System.out.println("Formation modifiée");
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
