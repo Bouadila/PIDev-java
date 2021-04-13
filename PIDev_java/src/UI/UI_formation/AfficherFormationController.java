@@ -10,23 +10,19 @@ import Entity.Formation;
 import Services.FormationService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import java.awt.Insets;
-import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,6 +45,14 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+
 
 
 
@@ -288,7 +292,11 @@ public class AfficherFormationController implements Initializable {
                         mF.settfDescriptionMod(v.getDescription());
                         mF.settfDomaineMod(v.getDomaine());
                         
-                       
+                          
+                     
+                      Stage Window = (Stage) editIcon.getScene().getWindow();
+                      Window.setScene(new Scene(root));
+                        
 
                         Stage stage = new Stage();
                         stage.setTitle("Modifier évenement");
@@ -394,12 +402,13 @@ public class AfficherFormationController implements Initializable {
     private void btn_gotoAjouterForma(javafx.scene.input.MouseEvent event) throws IOException {
         
          try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
+ 
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
+        Stage Window = (Stage) btn_gotoModifForm.getScene().getWindow();
+        Window.setScene(new Scene(root));
+        
+
         } catch (IOException ex) {
             Logger.getLogger(AfficherFormationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -411,7 +420,83 @@ public class AfficherFormationController implements Initializable {
     
     @FXML
     private void btn_print_formation(javafx.scene.input.MouseEvent event) {
-    }
+        
+        try {
+            
+            String file_name="C:\\Users\\User\\Desktop\\PIDEV\\Formations.pdf";
+            Document document = new Document();
+            
+            //Simple paragraph
+            PdfWriter.getInstance(document, new FileOutputStream(file_name));
+            document.open();
+            
+         /*  DBConnection obJDBConnection = new DBConnection();
+            Connection connection = obJDBConnection.getConnection();
+            
+            
+            String query="select * from video";*/
+            
+            
+            Paragraph para = new Paragraph("Liste des Formations");
+            
+            document.add(para);
+            
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("  "));
+            
+            //add table formation
+            PdfPTable table = new PdfPTable(5);
+            
+            PdfPCell c1 = new PdfPCell(new Phrase("title"));
+            table.addCell(c1);
+            
+            PdfPCell c2 = new PdfPCell(new Phrase("url"));
+            table.addCell(c2);
+            
+            PdfPCell c3 = new PdfPCell(new Phrase("publish_date"));
+            table.addCell(c3);
+            
+            PdfPCell c4 = new PdfPCell(new Phrase("domaine"));
+            table.addCell(c4);
+            
+            PdfPCell c5 = new PdfPCell(new Phrase("description"));
+            table.addCell(c5);
+            
+            table.addCell("0.1");
+            table.addCell("1.1");
+            table.addCell("1.2");
+            table.addCell("2.1");
+            table.addCell("2.2");
+            table.addCell("2.3");
+            table.addCell("3.3");
+            table.addCell("3.4");
+            table.addCell("4.4");
+            table.addCell("4.5");
+            
+            document.add(table);
+            
+            
+            //add image in pdf
+            
+            document.add(Image.getInstance("C:\\Users\\User\\Desktop\\PIDEV\\recruitini_logo.png"));
+            
+            document.close();
+            
+            System.out.println("finished");
+            
+            
+        }catch(Exception e){
+        
+         System.err.println(e);
+        }
+            
+        }
+        
+        
+    
 
     
     
