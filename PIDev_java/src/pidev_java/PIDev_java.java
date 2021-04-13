@@ -5,6 +5,8 @@
  */
 package PIDev_java;
 
+import Entity.Contrat;
+import Services.OffreDao.ContratService;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,7 +41,7 @@ public class PIDev_java extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        /*
         Connection cnx;
         cnx = DataSource.getInstance().getCnx();
         String req =  "select * from demande";
@@ -58,6 +60,14 @@ public class PIDev_java extends Application {
         } catch (SQLException ex) {
             Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
+        Contrat c = new Contrat(3,"111111","fgvfjfufjkgv");
+        ContratService cs = new ContratService() ;
+        //cs.add(c);
+        //cs.edite(c);
+        System.out.println(cs.getAll());
+        cs.delete(c);
+        
     }
     
 }
