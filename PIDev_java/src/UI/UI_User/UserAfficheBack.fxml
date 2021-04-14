@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAfficheBackController">
+   <children>
+      <Pane fx:id="pnlOverview" layoutX="4.0" layoutY="4.0" prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="208.0" layoutY="35.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css" text="Liste Des Comptes">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox fx:id="pnIcompte" layoutX="203.0" layoutY="85.0" prefHeight="300.0" prefWidth="485.0" spacing="5.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <ScrollPane prefHeight="282.0" prefWidth="500.0" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css">
+                     <content>
+                        <TableView fx:id="tableview" accessibleRole="IMAGE_VIEW" fixedCellSize="0.0" prefHeight="281.0" prefWidth="473.0">
+                           <columns>
+                              <TableColumn fx:id="nom" prefWidth="54.0" text="Nom " />
+                              <TableColumn fx:id="prenom" minWidth="0.0" prefWidth="61.0" text="Prénom" />
+                              <TableColumn fx:id="mail" prefWidth="97.0" text="E-mail" />
+                              <TableColumn fx:id="special" prefWidth="71.0" text="Spécialité" />
+                              <TableColumn fx:id="gover" prefWidth="69.0" text="Governorat" />
+                              <TableColumn fx:id="etat" prefWidth="67.0" text="Etat" />
+                              <TableColumn fx:id="role" prefWidth="53.0" text="Role" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <Label layoutX="374.0" layoutY="501.0" onMouseClicked="#GoToAllContact" />
+            <Label layoutX="588.0" layoutY="501.0" onMouseClicked="#GoToAllComment" prefHeight="19.0" prefWidth="183.0" />
+            <VBox fx:id="vbox" alignment="CENTER" layoutX="-6.0" layoutY="-56.0" prefHeight="473.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
+               <children>
+                  <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="50.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label style="-fx-background-color: #5a727e;" text="Admin" textFill="#2c2929">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="239.0" mnemonicParsing="false" onAction="#acceuilClicks" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: #5a727e;" text="Accueil" underline="true">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_home_24px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="comptes" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CompteClicks" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Gestion des comptes" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_male_user_26px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="logout" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: #5a727e;" text="Se deconnecter" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_sign_out_26px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+            <Label layoutX="503.0" layoutY="35.0" onDragDetected="#labelcompte" prefHeight="50.0" prefWidth="162.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

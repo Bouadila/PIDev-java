@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAddController">
+   <children>
+      <TextField fx:id="tfNom" layoutX="176.0" layoutY="77.0" promptText="Nom" />
+      <Label layoutX="177.0" layoutY="60.0" text="Nom" />
+      <Label layoutX="175.0" layoutY="117.0" text="Prenom" />
+      <TextField fx:id="tfPrenom" layoutX="177.0" layoutY="136.0" promptText="Prénom" />
+      <Label layoutX="176.0" layoutY="176.0" text="Email :" />
+      <TextField fx:id="tfEmail" layoutX="174.0" layoutY="196.0" promptText="Email" />
+      <Label layoutX="177.0" layoutY="235.0" prefHeight="17.0" prefWidth="88.0" text="Mot de passe :" />
+      <PasswordField fx:id="tfPassword" layoutX="175.0" layoutY="255.0" promptText="Mot de passe" />
+      <Label layoutX="177.0" layoutY="296.0" text="Image :" />
+      <TextField fx:id="tfImg" layoutX="177.0" layoutY="318.0" promptText="Img" />
+      <Label layoutX="451.0" layoutY="205.0" prefHeight="17.0" prefWidth="35.0" text="Role :" />
+      <Label fx:id="login" alignment="CENTER" layoutX="395.0" layoutY="326.0" onMouseClicked="#goToLogin2" prefHeight="17.0" prefWidth="275.0" style="-fx-background-color: #0000;" text="Vous avez déja un compte? Connectez-vous?" textFill="#792424" />
+      <RadioButton fx:id="roleCandidat" layoutX="460.0" layoutY="227.0" mnemonicParsing="false" text="Candidat">
+         <toggleGroup>
+            <ToggleGroup fx:id="Roles" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="roleEmployeur" layoutX="539.0" layoutY="228.0" mnemonicParsing="false" text="Employeur" toggleGroup="$Roles" />
+      <Button alignment="CENTER" layoutX="446.0" layoutY="278.0" mnemonicParsing="false" onAction="#inscrireUser" onMouseClicked="#register" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #9b2938;" text="S'inscrire" textFill="#f8f3f3" />
+      <Text layoutX="446.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Governorat :" />
+      <Pane layoutY="-1.0" prefHeight="417.0" prefWidth="110.0" style="-fx-background-color: #9b2938;">
+         <children>
+            <Text fill="WHITE" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recrutini  " textAlignment="RIGHT" wrappingWidth="67.5911425203085" />
+            <Circle fill="#265e94" layoutX="55.0" layoutY="48.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
+      <Label layoutX="292.0" layoutY="-1.0" prefHeight="74.0" prefWidth="263.0" text="S'inscrire">
+         <font>
+            <Font name="System Bold" size="51.0" />
+         </font>
+      </Label>
+      <Text layoutX="446.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialité :" />
+      <Group layoutX="10.0" layoutY="136.0">
+         <children>
+            <Hyperlink fx:id="Accueil" onAction="#goToAcceuil" prefHeight="26.0" prefWidth="88.0" text="Accueil" textFill="WHITE" />
+            <Hyperlink fx:id="profil" layoutY="35.0" onAction="#goToProfil" prefHeight="26.0" prefWidth="88.0" text="Compte" textFill="WHITE" />
+            <Hyperlink fx:id="offre" layoutX="1.0" layoutY="66.0" onAction="#goTooffre" prefHeight="26.0" prefWidth="88.0" text="Offre" textFill="WHITE" />
+            <Hyperlink fx:id="demande" layoutX="2.0" layoutY="100.0" onAction="#goTodemande" prefHeight="26.0" prefWidth="88.0" text="Demande" textFill="WHITE" />
+            <Hyperlink fx:id="annonce" layoutX="3.0" layoutY="132.0" onAction="#goToannoce" prefHeight="26.0" prefWidth="88.0" text="Annonce" textFill="WHITE" />
+            <Hyperlink fx:id="login1" layoutX="5.0" layoutY="201.0" onAction="#goToLogin" prefHeight="26.0" prefWidth="88.0" text="Login" textFill="WHITE" />
+            <Hyperlink fx:id="quiz" layoutX="5.0" layoutY="166.0" onAction="#quiz" prefHeight="26.0" prefWidth="88.0" text="Quiz" textFill="WHITE" />
+         </children>
+      </Group>
+      <ComboBox fx:id="tfGover" layoutX="436.0" layoutY="105.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Governorat" />
+      <ComboBox fx:id="tfSpecial" layoutX="437.0" layoutY="164.0" onMouseClicked="#tfSpecial" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Specialité" />
+   </children>
+</AnchorPane>
