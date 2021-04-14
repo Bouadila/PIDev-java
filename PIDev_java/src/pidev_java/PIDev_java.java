@@ -6,12 +6,17 @@
 package PIDev_java;
 
 import Entity.Contrat;
+import Entity.Offre;
 import Services.OffreDao.ContratService;
+import Services.OffreDao.OffreService;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -40,34 +45,36 @@ public class PIDev_java extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        /*
-        Connection cnx;
-        cnx = DataSource.getInstance().getCnx();
-        String req =  "select * from demande";
-        
-        Statement ste;
-        ResultSet res;
-        
-        try {
-            ste = cnx.createStatement();
-            res = ste.executeQuery(req);
-            while (res.next())
-            {
-                System.out.println("nom"+res.getString("titre_demande"));
-                        }
-            //launch(args);
-        } catch (SQLException ex) {
-            Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        Contrat c = new Contrat(3,"111111","fgvfjfufjkgv");
-        ContratService cs = new ContratService() ;
+    public static void main(String[] args) throws SQLException {
+        Contrat c = new Contrat(4,"111111","fgvfjfufjkgv");
+        //ContratService cs = new ContratService() ;
         //cs.add(c);
         //cs.edite(c);
-        System.out.println(cs.getAll());
-        cs.delete(c);
+        //System.out.println(cs.getAll());
+        //cs.delete(c);
+        /*
+        LocalDate localDate = LocalDate.now();
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+        System.out.println(date);
+        */
+        Date d1 = new Date();
+        Offre o = new Offre("livreur","gllgllg","glkkgkhh","dfggghgh","gggg",700,2,d1,1,2);
+        OffreService os = new OffreService();
+        //os.add(o, c);
+        System.out.println(os.getAll());
+        System.out.println("*************************");
+        System.out.println(os.getOne(1));
+       /*
+         ResultSet rs = os.getAll();
+         while(rs.next())
+            {
+                System.out.println(rs.getString("contrat.description"));
+            }
+        */
         
+        //LocalDate localDate = LocalDate.now();
+        //o.setDateDepot(java.sql.Date.valueOf(localDate));
     }
     
 }
