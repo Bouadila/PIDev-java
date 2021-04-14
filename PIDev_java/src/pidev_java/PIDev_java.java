@@ -5,22 +5,16 @@
  */
 package PIDev_java;
 
-import Entity.Question;
+
 import Entity.Quiz;
-import Services.QuestionService;
 import Services.QuizService;
-import utils.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -28,26 +22,37 @@ import javafx.stage.Stage;
  */
 public class PIDev_java extends Application {
     
+    
+
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+
+        stage.setTitle("Recruitini");
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/Quiz.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
         
     }
-
-    /**
+    
+    
+         /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
         
-       Quiz q = new Quiz(7,"question5",2);
-       QuizService service = new QuizService();
-//        System.out.println(service.());
-        service.updateQuiz(q);
-    }
+//             Application.launch(args);
+    QuizService service = new QuizService();
+    Quiz quiz = new Quiz("quiz test", 2);
+        System.out.println(service.addQuizAndGetItsId(quiz));
+
+}
     
+   
 }

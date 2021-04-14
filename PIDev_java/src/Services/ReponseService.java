@@ -29,7 +29,7 @@ public class ReponseService {
     
     public void addReponse(Reponse reponse){
         
-        String sql="INSERT INTO reponse (nom_reponse, nomb_question) VALUES ('"+reponse.getNom_reponse()+"',"+reponse.getNomb_question()+")";
+        String sql="INSERT INTO reponse (id_ques_id, contenu_rep) VALUES ("+reponse.getId_ques_id()+",'"+reponse.getContenu_rep()+"')";
             
         Statement st;
             try
@@ -46,7 +46,7 @@ public class ReponseService {
     }
     
     public void updateReponse ( Reponse reponse ){
-        String sql="UPDATE reponse SET  nom_reponse='"+reponse.getNom_reponse()+"', nomb_question ="+reponse.getNomb_question()+" WHERE id="+reponse.getId();
+        String sql="UPDATE reponse SET  contenu_rep='"+reponse.getContenu_rep()+"', nomb_question ="+reponse.getId_ques_id()+" WHERE id="+reponse.getId();
 
         Statement st;
             try {
@@ -82,9 +82,9 @@ public class ReponseService {
         Reponse reponse = null;
         if (res.next())
         {
-            String nom_reponse = res.getString("nom_reponse");
-            int nomb_question = res.getInt("nomb_question");
-            reponse = new Reponse (id,nom_reponse, nomb_question);
+            String contenu_rep = res.getString("contenu_rep");
+            int id_ques_id  = res.getInt("id_ques_id ");
+            reponse = new Reponse (id,id_ques_id , contenu_rep);
         }
             return reponse;
     }
@@ -99,9 +99,9 @@ public class ReponseService {
         while (res.next())
         {
             int id = res.getInt("id");
-            String nom_reponse = res.getString("nom_reponse");
-            int nomb_question = res.getInt("nomb_question");
-            Reponse reponse = new Reponse (id,nom_reponse, nomb_question);
+            String contenu_rep = res.getString("contenu_rep");
+            int id_ques_id  = res.getInt("id_ques_id ");
+            Reponse reponse = new Reponse (id,id_ques_id , contenu_rep);
             listReponse.add(reponse);
         }
             return listReponse;
