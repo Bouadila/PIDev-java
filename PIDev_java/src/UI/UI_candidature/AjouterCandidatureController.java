@@ -87,20 +87,22 @@ public class AjouterCandidatureController implements Initializable {
     @FXML
     void ajouterCandidature(ActionEvent event) {
         
-        btn_ajouter.setOnAction((ActionEvent e)->{
+        btn_ajouter.setOnAction(e->{
         Candidature c = new Candidature();
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         c.setDate_candidature(date);
-        c.setCandidat(1);
+        System.out.println(date);
+        //c.setCandidat(1);
         c.setNom(txtfield_nom.getText());
         c.setPrenom(txtfield_prenom.getText());
         c.setSexe(choice_sexe.getValue());
         c.setEmail(txtfield_email.getText());
-        //c.setDate_naiss(date_date_naiss.getValue());
-        //c.setNum(txtfield_num.getInt());
-        //c.setStatus(choice_status.getText());
-        //c.setDiplome(choice_diplome.getText());
+        c.setDate_naiss(date);
+        c.setNum(Integer.parseInt(txtfield_num.getText()));
+        
+        c.setStatus(choice_status.getValue());
+        c.setDiplome(choice_diplome.getValue());
         //c.setCv();
         new CandidatureService().ajouterCandidature(c);
         
@@ -111,7 +113,7 @@ public class AjouterCandidatureController implements Initializable {
 
             alert.showAndWait(); 
             Stage stage = (Stage) btn_retour.getScene().getWindow();
-            stage.close();
+            //stage.close();
         });
 
     }

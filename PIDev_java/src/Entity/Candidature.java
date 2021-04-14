@@ -6,7 +6,6 @@
 package Entity;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  *
@@ -46,6 +45,21 @@ private int candidat;
 
     public Candidature() {
     }
+
+    public Candidature(String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.email = email;
+        this.date_naiss = date_naiss;
+        this.num = num;
+        this.status = status;
+        this.diplome = diplome;
+        this.cv = cv;
+        this.date_candidature = date_candidature;
+    }
+    
+    
 
     public int getId() {
         return id;

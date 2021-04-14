@@ -7,6 +7,8 @@ package UI.UI_candidature;
 
 import Entity.Candidature;
 import Services.CandidatureService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -82,6 +84,8 @@ public class AfficherCandidatureController implements Initializable {
     @FXML
     private TableColumn<Candidature, String> tab_cv;
     @FXML
+    private TableColumn<Candidature, String> tab_edit;
+    @FXML
     private TableColumn<Candidature, String> tab_date_candidature;
     @FXML
     private Button btn_AjouterCandidature;
@@ -96,6 +100,8 @@ public class AfficherCandidatureController implements Initializable {
     ObservableList<Candidature>  CandidatureList = FXCollections.observableArrayList();
     @FXML
     private Button btn_refreshCandidature;
+    @FXML
+    private TableColumn<Candidature, String> tab_id;
 
     /**
      * Initializes the controller class.
@@ -106,8 +112,13 @@ public class AfficherCandidatureController implements Initializable {
         loadDate();
     }    
         
-         private void loadDate() {
-        ObservableList<Candidature> listForm = new CandidatureService().getAll();
+         private void loadDate() 
+         {
+
+             
+             
+        ObservableList<Candidature> listCand = new CandidatureService().getAll();
+        tab_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tab_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         tab_prenom.setCellValueFactory(new PropertyValueFactory<>("preom"));
         tab_sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
@@ -117,7 +128,136 @@ public class AfficherCandidatureController implements Initializable {
         tab_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         tab_diplome.setCellValueFactory(new PropertyValueFactory<>("diplome"));
         tab_cv.setCellValueFactory(new PropertyValueFactory<>("cv"));
-        tab_date_candidature.setCellValueFactory(new PropertyValueFactory<>("date_candidature"));
+       // tab_date_candidature.setCellValueFactory(new PropertyValueFactory<>("date_candidature"));
+        
+       
+        /*FormationService fc = new FormationService();
+        List old = fc.getAll();
+        listForm.addAll(old);*/
+         TableCandidature.setItems(listCand);
+         
+         
+
+        
+         
+         
+         
+         
+         
+         //add cell of button edit 
+         Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> cellFoctory = (TableColumn<Candidature, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+
+                        deleteIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#ff1744;"
+                        );
+                        editIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+                        
+                        
+                        deleteIcon.setOnMouseClicked(e -> {
+                            
+                            Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+                             
+                           // TableFormation.getItems().remove(TableFormation.getSelectionModel().getSelectedItem());
+
+                            CandidatureService sp = new CandidatureService();
+                            System.out.println(c.getId());
+                            sp.supprimerCandidature(c);
+                            System.out.println("deleted");
+                            
+                            
+                          
+                            
+                        });
+                        
+                        
+                        
+                        
+                        
+                        editIcon.setOnMouseClicked(e -> {
+                            
+                            
+                            
+                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+
+                            try {
+                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
+                        Parent rooter = loader.load();
+                        ModifierCandidatureController mC = loader.getController();
+
+                        mC.settxtfield_idedit(Integer.toString(c.getId())); //A3mel TextField hidden ( fi properties visibility)
+                        mC.settxtfield_nomedit(c.getNom());
+                        mC.settxtfield_prenomedit(c.getPrenom());
+                        mC.setchoice_sexeedit(c.getSexe());
+                        mC.settxtfield_emailedit(c.getEmail());
+                        mC.settxtfield_numedit(Integer.toString(c.getNum()));   
+                        mC.setchoice_statusedit(c.getStatus()); 
+                        mC.setchoice_diplomeedit(c.getDiplome());
+                        
+                        System.out.println(c.getId());
+
+                        
+                        
+                          
+                     
+                      
+                        
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier évenement");
+                        stage.setScene(new Scene(rooter));
+                        stage.show();
+                        } catch (IOException ex) {
+                         System.out.println(ex.getMessage());
+                        }
+                            
+                            
+                            
+                            
+                        
+                            
+
+                           
+
+                        });
+
+                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        managebtn.setStyle("-fx-alignment:center");
+                        setGraphic(managebtn);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+         tab_edit.setCellFactory(cellFoctory);
+         TableCandidature.setItems(listCand);
+             
+             
+             
         
          }
 
@@ -130,7 +270,6 @@ public class AfficherCandidatureController implements Initializable {
         
     }
 
-    @FXML
     void btn_refreshCandidature() {
         try {
            //CandidatureList.clear();
@@ -141,7 +280,6 @@ public class AfficherCandidatureController implements Initializable {
             
             while (resultSet.next()){
                 CandidatureList.add(new Candidature(
-                        resultSet.getInt("id"),
                         resultSet.getString("nom"),
                         resultSet.getString("prenom"),
                         resultSet.getString("sexe"),
@@ -151,9 +289,7 @@ public class AfficherCandidatureController implements Initializable {
                         resultSet.getString("status"),
                         resultSet.getString("diplome"),                       
                         resultSet.getString("cv"),
-                        resultSet.getDate("date_candidature"),
-                        resultSet.getInt("candidat"),
-                        resultSet.getInt("offre")
+                        resultSet.getDate("date_candidature")
                 ));
                 TableCandidature.setItems(CandidatureList);
                 

@@ -63,11 +63,6 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label text="Upload CV">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
          </children>
       </VBox>
       <Button fx:id="btn_ajouter" layoutX="811.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajouterCandidature" prefHeight="44.0" prefWidth="109.0" text="Ajouter">
@@ -85,12 +80,7 @@
             <TextField fx:id="txtfield_num" />
             <ChoiceBox fx:id="choice_status" prefHeight="25.0" prefWidth="292.0" />
             <ChoiceBox fx:id="choice_diplome" prefHeight="25.0" prefWidth="293.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="txtfield_filename" editable="false" prefHeight="25.0" prefWidth="238.0" />
-                  <Button fx:id="btn_upload" mnemonicParsing="false" text="Upload" />
-               </children>
-            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
          </children>
       </VBox>
       <Button fx:id="btn_retour" layoutX="694.0" layoutY="524.0" mnemonicParsing="false" onAction="#gotoAfficherCandidature" prefHeight="44.0" prefWidth="109.0" text="Retour">

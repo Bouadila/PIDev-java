@@ -67,7 +67,7 @@ public class CandidatureService implements iService_candidature<Candidature>{
 //            System.out.println("Formation exitst !");
 //            return false;
 //        } else {
-            String sql = "insert into candidature(nom,prenom,sexe,email,date_naiss,num,status,diplome,cv,date_candidature,candidat) values('" + c.getNom() + "','" + c.getPrenom() + "','"+ c.getSexe() + "','" + c.getEmail() + "','" + c.getDate_naiss() + "','" + c.getStatus() + "','" + c.getDiplome() + "','" + c.getCv() + "','" + c.getDate_candidature() + "','" + c.getCandidat() + "')";
+            String sql = "insert into candidature(nom,prenom,sexe,email,date_naiss,num,status,diplome,date_candidature) values('" + c.getNom() + "','" + c.getPrenom() + "','"+ c.getSexe() + "','" + c.getEmail() + "','" + c.getDate_naiss() + "','"+c.getNum()+"','" + c.getStatus() + "','" + c.getDiplome() +"','"+c.getDate_candidature()+"')";
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
@@ -113,6 +113,56 @@ public class CandidatureService implements iService_candidature<Candidature>{
         }
         return CandidatureList;
     }
+
+    
+      public void supprimerCandidature(Candidature c){
+
+     
+            String req="delete from candidature where id=?";
+        try {
+            pst=cnx.prepareStatement(req);
+            pst.setInt(1,c.getId());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+     }
+    
+    
+
+    public void modifierCandidature(Candidature c) {
+           
+       
+        try {
+            String requete = "update candidature set nom='" + c.getNom() + "', prenom='" + c.getPrenom()+
+                    "',sexe='" + c.getSexe()+ "',email='" + c.getSexe()+ "',date_naiss='" 
+                    + c.getDate_naiss() +"',num='"+c.getNum()+"',status='"+c.getStatus()+"',diplome='"+c.getDiplome()+"' where id="+c.getId();
+     
+            
+           ste = cnx.createStatement();
+            ste.executeUpdate(requete);
+            
+            System.out.println(c.getId());
+            System.out.println("Candidature modifiée");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+      
+      
+    
+    @Override
+    public ObservableList<Candidature> GetAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modifierCandidature(int id, String nom, String prenom, String sexe, String email, Timestamp date_naiss, int num, String status, String diplome, String cv, Timestamp date_candidature, int offre, int candidat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
      
      
      
