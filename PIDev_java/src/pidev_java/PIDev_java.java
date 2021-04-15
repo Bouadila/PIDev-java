@@ -6,9 +6,6 @@
 package PIDev_java;
 
 
-import Entity.Quiz;
-import Services.QuizService;
-import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +27,7 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/Quiz.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/TakeQuiz.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -45,12 +42,9 @@ public class PIDev_java extends Application {
          /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         
-//             Application.launch(args);
-    QuizService service = new QuizService();
-    Quiz quiz = new Quiz("quiz test", 2);
-        System.out.println(service.addQuizAndGetItsId(quiz));
+             Application.launch(args);
 
 }
     

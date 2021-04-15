@@ -5,8 +5,15 @@
  */
 package gui;
 
+import Entity.Question;
+import Entity.Quiz;
+import Entity.Reponse;
+import Services.QuestionService;
+import Services.QuizService;
+import Services.ReponseService;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -49,7 +56,7 @@ public class QuizController implements Initializable {
     
     @FXML
     private TextField tf_reponse;
-    
+    int nbQuestion = 0;
     
     private ArrayList<TextField> tfList = new ArrayList();    
     private ArrayList<Button> buttonList = new ArrayList();
@@ -73,19 +80,35 @@ public class QuizController implements Initializable {
     }    
     
     @FXML
-    private void addQuiz(ActionEvent event){
-        System.out.println(tf_quiz.getText());
+    private void addQuiz(ActionEvent event) throws SQLException{
+//        System.out.println(tf_quiz.getText());
+        Quiz quiz = new Quiz( tf_quiz.getText(), nbQuestion);
+        QuizService service = new QuizService();
+        int idQuiz = service.addQuizAndGetItsId(quiz);
         int x;
+        
         for(Node node: vbox.getChildren()){
             x=0;
+            Question question ;
+            QuestionService serviceQuestion = new QuestionService();
+            int idQuestion =0;
             for(Node n : ((GridPane)node).getChildren()){
+                question = new Question();
+                
                 if(n instanceof TextField){
                     if(x == 0){
-                        System.out.println("question::"+((TextField) n).getText() );
+//                        System.out.println("question::"+((TextField) n).getText() );
+                        question.setDuree(2);
+                        question.setQuiz_id_id(idQuiz);
+                        question.setContenu_ques(((TextField) n).getText());
+                        question.setNomb_rep(0);
+                        idQuestion = serviceQuestion.addQuestionAndGetItsId(question);
                     }
                     else{
-                    System.out.println("reponse: "+((TextField) n).getText());
-                       
+//                    System.out.println("reponse: "+((TextField) n).getText());
+                       Reponse reponse = new Reponse(idQuestion,((TextField) n).getText() );
+                       ReponseService rs = new ReponseService();
+                       rs.addReponse(reponse);
                     }
                     x=1;
                 }
@@ -102,6 +125,7 @@ public class QuizController implements Initializable {
         Button btn = new Button("-");
         btn.setOnAction((e)->{
             grid.getChildren().removeAll(tf,lb,btn);
+            
         });
         tfList.add(tf);
         grid.addRow(getRowCount(grid), lb ,tf , btn);
@@ -110,6 +134,7 @@ public class QuizController implements Initializable {
     
     @FXML
     private void addQuestion(){
+        nbQuestion++;
         GridPane grid1 = new GridPane();
         gridList.add(grid1);
         Button btn1 = new Button("+");

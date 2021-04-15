@@ -5,6 +5,9 @@
  */
 package Entity;
 
+
+
+
 /**
  *
  * @author Bou3dila
@@ -21,7 +24,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(int id, int rep_just_id, int quiz_id_id, String contenu_ques, int nomb_rep, int duree) {
+    public Question(int id,int rep_just_id, int quiz_id_id, String contenu_ques, int nomb_rep, int duree) {
         this.id = id;
         this.rep_just_id = rep_just_id;
         this.quiz_id_id = quiz_id_id;
@@ -30,7 +33,7 @@ public class Question {
         this.duree = duree;
     }
 
-    public Question(int rep_just_id, int quiz_id_id, String contenu_ques, int nomb_rep, int duree) {
+    public Question( int rep_just_id, int quiz_id_id, String contenu_ques, int nomb_rep, int duree) {
         this.rep_just_id = rep_just_id;
         this.quiz_id_id = quiz_id_id;
         this.contenu_ques = contenu_ques;

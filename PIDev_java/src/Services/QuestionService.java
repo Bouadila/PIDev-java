@@ -29,16 +29,16 @@ public class QuestionService {
     
        public int addQuestionAndGetItsId(Question question) throws SQLException{
         
-        String sql="INSERT INTO question (rep_just_id, quiz_id_id, contenu_ques, nomb_rep, duree) "
-                + "VALUES (?, ?, ?,?, ?)";
+        String sql="INSERT INTO question ( quiz_id_id, contenu_ques, nomb_rep, duree) "
+                + "VALUES ( ?, ?,?, ?)";
             
         String generatedColumns[] = { "ID" };
         PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
-        statement.setString(3, question.getContenu_ques());
-        statement.setInt(1, question.getRep_just_id());
-        statement.setInt(2, question.getQuiz_id_id());
-        statement.setInt(4, question.getNomb_rep());
-        statement.setInt(5, question.getDuree());
+        statement.setString(2, question.getContenu_ques());
+//        statement.setInt(1, question.getRep_just_id());
+        statement.setInt(1, question.getQuiz_id_id());
+        statement.setInt(3, question.getNomb_rep());
+        statement.setInt(4, question.getDuree());
         statement.executeUpdate();
          try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
             if (generatedKeys.next()) {
@@ -90,7 +90,7 @@ public class QuestionService {
     }
     
     public void deleteQuestion (Question question){
-        String sql = "DELETE FROM question WHERE id ='"+question.getId()+"'";
+        String sql = "DELETE FROM question WHERE id ="+question.getId();
         Statement st ;
             try{
                 st=conn.createStatement();
@@ -122,6 +122,25 @@ public class QuestionService {
             return question;
     }
     
+    public List<Question> getQuestionByQuiz(Quiz quiz) throws SQLException{
+        
+        List<Question> listQuestion = new ArrayList();
+        String sql="SELECT * FROM question where quiz_id_id = "+quiz.getId();
+        Statement st=conn.createStatement();
+        ResultSet res= st.executeQuery(sql);
+        while (res.next())
+        {
+            String contenu_ques = res.getString("contenu_ques");
+            int id = res.getInt("id");
+            int rep_just_id = res.getInt("rep_just_id");
+            int quiz_id_id = res.getInt("quiz_id_id");
+            int nomb_rep = res.getInt("nomb_rep");
+            int duree = res.getInt("duree");
+            Question question = new Question (id,rep_just_id, quiz_id_id, contenu_ques, nomb_rep, duree);
+            listQuestion.add(question);
+        }
+            return listQuestion;
+    }
     
     public List<Question> getAllQuestion() throws SQLException{
         

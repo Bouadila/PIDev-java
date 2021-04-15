@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.Question;
 import Entity.Reponse;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,7 +41,7 @@ public class ReponseService {
             }
             catch (SQLException ex)
             {
-                System.out.println("Erreur d'insertion !");
+                System.out.println(ex.getMessage());
                 ex.getMessage();
             }
     }
@@ -60,7 +61,7 @@ public class ReponseService {
     }
     
     public void deleteReponse (Reponse reponse){
-        String sql = "DELETE FROM reponse WHERE id ='"+reponse.getId()+"'";
+        String sql = "DELETE FROM reponse WHERE id ="+reponse.getId();
         Statement st ;
             try{
                 st=conn.createStatement();
@@ -89,6 +90,22 @@ public class ReponseService {
             return reponse;
     }
     
+    public List<Reponse> getReponseByQuestion(Question question) throws SQLException{
+        
+        List<Reponse> listReponse = new ArrayList();
+        String sql="SELECT * FROM reponse where id_ques_id="+question.getId();
+        Statement st=conn.createStatement();
+        ResultSet res= st.executeQuery(sql);
+        while (res.next())
+        {
+            int id = res.getInt("id");
+            String contenu_rep = res.getString("contenu_rep");
+            int id_ques_id  = res.getInt("id_ques_id");
+            Reponse reponse = new Reponse (id,id_ques_id , contenu_rep);
+            listReponse.add(reponse);
+        }
+            return listReponse;
+    }
     
     public List<Reponse> getAllReponse() throws SQLException{
         
