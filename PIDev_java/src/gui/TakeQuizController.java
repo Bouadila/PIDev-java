@@ -31,6 +31,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -55,7 +56,7 @@ public class TakeQuizController implements Initializable {
     private TextField tf_nbQuestion;
 
     @FXML
-    private VBox vbox;
+    private GridPane grid;
     Quiz quiz;
     List<Question> questions = new ArrayList();
     private int listId;
@@ -89,30 +90,9 @@ public class TakeQuizController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        lb_question.setText(questions.get(0).getContenu_ques());
-
-        reponses = new ArrayList();
-
-        try {
-            reponses = reponseService.getReponseByQuestion(questions.get(0));
-        } catch (SQLException ex) {
-            Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println(reponses.size());
-        for (int i = 0; i < reponses.size(); i++) {
-            RadioButton chk = new RadioButton(reponses.get(i).getContenu_rep());
-            chk.setOnAction(event -> {
-                for (Node node : vbox.getChildren()) {
-                    if (node instanceof RadioButton) {
-                        ((RadioButton) node).setSelected(false);
-                    }
-                }
-                ((RadioButton) event.getTarget()).setSelected(true);
-            });
-            vbox.getChildren().add(chk);
-        }
+        
+        fillGrid();
+        
 
     }
 
@@ -122,10 +102,10 @@ public class TakeQuizController implements Initializable {
         Reponse_condidat rc = new Reponse_condidat();
         rc.setList_reponses_condidat_id(listId);
         rc.setQuestion_id(questions.get(Integer.parseInt(tf_nbQuestion.getText())).getId());
-        for (int i = 0; i < vbox.getChildren().size(); i++) {
-            if (vbox.getChildren().get(i) instanceof RadioButton) {
-                if (((RadioButton) vbox.getChildren().get(i)).isSelected()) {
-                    rc.setReponse_id(reponses.get(i).getId());
+        for (Node node : grid.getChildren()) {
+            if (node instanceof RadioButton) {
+                if (((RadioButton) node).isSelected()) {
+                    rc.setReponse_id(reponses.get(grid.getRowIndex(node)).getId());
                     break;
                 }
             }
@@ -136,34 +116,46 @@ public class TakeQuizController implements Initializable {
             if (questions.size() == (Integer.parseInt(tf_nbQuestion.getText()) + 2)) {
                 ((Button) event.getTarget()).setText("Finish");
             }
-            vbox.getChildren().clear();
+            grid.getChildren().clear();
 
             tf_nbQuestion.setText(String.valueOf((Integer.parseInt(tf_nbQuestion.getText())) + 1));
-            lb_question.setText(questions.get(Integer.parseInt(tf_nbQuestion.getText())).getContenu_ques());
-            List<Reponse> reponses = new ArrayList();
-            try {
-                reponses = reponseService.getReponseByQuestion(questions.get(Integer.parseInt(tf_nbQuestion.getText())));
-            } catch (SQLException ex) {
-                Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            for (int i = 0; i < reponses.size(); i++) {
-                RadioButton chk = new RadioButton(reponses.get(i).getContenu_rep());
-                chk.setOnAction(e -> {
-                    for (Node node : vbox.getChildren()) {
-                        if (node instanceof RadioButton) {
-                            ((RadioButton) node).setSelected(false);
-                        }
-                    }
-                    ((RadioButton) e.getTarget()).setSelected(true);
-                });
-                vbox.getChildren().add(chk);
-
-            }
+            fillGrid();
+           
 
         } else {
             System.exit(0);
         }
 
+    }
+    
+    public void fillGrid(){
+        lb_question.setText(questions.get(Integer.parseInt(tf_nbQuestion.getText())).getContenu_ques());
+
+        reponses = new ArrayList();
+
+        try {
+            reponses = reponseService.getReponseByQuestion(questions.get(Integer.parseInt(tf_nbQuestion.getText())));
+        } catch (SQLException ex) {
+            Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < reponses.size(); i++) {
+            RadioButton chk = new RadioButton(reponses.get(i).getContenu_rep());
+            chk.setOnAction(event -> {
+                for (Node node : grid.getChildren()) {
+                    if (node instanceof RadioButton) {
+                        ((RadioButton) node).setSelected(false);
+                    }
+                }
+                ((RadioButton) event.getTarget()).setSelected(true);
+            });
+            Label lb_id_reponse = new Label(String.valueOf(reponses.get(i).getId()));
+            grid.addRow( i, chk, lb_id_reponse);
+        }
+        alignGrid();
+    }
+    
+    public void alignGrid(){
+        grid.setHgap(5);
     }
 }
