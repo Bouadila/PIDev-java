@@ -71,6 +71,12 @@ public class QuizController implements Initializable {
     private int nb_reponse;
 
     private int id_quiz;
+    
+    Quiz quiz;
+    
+    private QuizService quizService = new QuizService();
+    private QuestionService questionService = new QuestionService();
+    private ReponseService reponseService = new ReponseService();
 
     /**
      * Initializes the controller class.
@@ -89,17 +95,15 @@ public class QuizController implements Initializable {
     @FXML
     public void nextQuestion(ActionEvent event) throws SQLException {
 
-        if (((Button) event.getTarget()).getText().equals("Terminer")) {
-            System.exit(0);
-        }
+
 
         
-        //check if the finish button exist
-        //if not, it will be added next to the next button
-        //also it means that we haven't added quiz yet
+        
         if (nb_question == 0) {
             if (tf_text.getText().length() > 4) {
 
+                quiz= new Quiz(tf_text.getText(), 0);
+                id_quiz = quizService.addQuizAndGetItsId(quiz);
                 Button finish = new Button("Terminer");
                 finish.setOnAction(e -> {
                     try {
@@ -121,16 +125,25 @@ public class QuizController implements Initializable {
             }
         } else if(testInput()){
 
-            Question question = new Question();
-            System.out.println(((TextField)((VBox)getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(0)).getText());
+            Question question = new Question(0, id_quiz, ((TextField)((VBox)getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(0)).getText(), nb_reponse -1, 2);
+            int id_ques = questionService.addQuestionAndGetItsId(question);
+            question.setId(id_ques);
             for (Node node : grid.getChildren()) {
             if (grid.getColumnIndex(node) == 1 && grid.getRowIndex(node) != 0 ) {
-                System.out.println(((TextField)((VBox)node).getChildren().get(0)).getText());
+                Reponse reponse = new Reponse(id_ques, ((TextField)((VBox)node).getChildren().get(0)).getText());
+                int id_reponse = reponseService.addReponseAndGetItsId(reponse);
                 if(((RadioButton)getNodeByRowColumnIndex(grid.getRowIndex(node), 0, grid)).isSelected()){
-                    System.out.println("true");
+                    question.setRep_just_id(id_reponse);
+                    questionService.updateQuestion(question);
                 }
             }
         }
+            if (((Button) event.getTarget()).getText().equals("Terminer")) {
+                quiz.setId(id_quiz);
+                quiz.setNomb_question(nb_question);
+                quizService.updateQuiz(quiz);
+                System.exit(0);
+            }
             fillGrid();
 
         }
