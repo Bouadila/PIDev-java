@@ -8,6 +8,7 @@ package Services;
 import Entity.Question;
 import Entity.Reponse;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,6 +26,27 @@ public class ReponseService {
     
     public ReponseService(){
         conn = DataSource.getInstance().getCnx();
+    }
+    
+     public int addReponseAndGetItsId(Reponse reponse) throws SQLException{
+        
+        String sql="INSERT INTO reponse (id_ques_id, contenu_rep) "
+                + "VALUES ( ?, ?)";
+            
+        String generatedColumns[] = { "ID" };
+        PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
+        statement.setString(2,reponse.getContenu_rep() );
+        statement.setInt(1, reponse.getId_ques_id());
+ 
+        statement.executeUpdate();
+         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Creating quiz failed, no ID obtained.");
+            }
+        }
     }
     
     
