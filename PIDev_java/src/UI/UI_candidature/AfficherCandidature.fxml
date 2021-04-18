@@ -22,7 +22,7 @@
             <TableColumn fx:id="tab_status" prefWidth="75.0" text="Status" />
             <TableColumn fx:id="tab_diplome" prefWidth="75.0" text="Diplome" />
             <TableColumn fx:id="tab_cv" prefWidth="75.0" text="CV" />
-            <TableColumn fx:id="tab_date_candidature" prefWidth="75.0" text="Date de postulation" />
+            <TableColumn fx:id="tab_date_candidature" prefWidth="75.0" text="Date de postulation" visible="false" />
             <TableColumn fx:id="tab_edit" prefWidth="75.0" text="Action" />
         </columns>
       </TableView>

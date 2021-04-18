@@ -120,7 +120,7 @@ public class AfficherCandidatureController implements Initializable {
         ObservableList<Candidature> listCand = new CandidatureService().getAll();
         tab_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tab_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        tab_prenom.setCellValueFactory(new PropertyValueFactory<>("preom"));
+        tab_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         tab_sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         tab_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         tab_date_naiss.setCellValueFactory(new PropertyValueFactory<>("date_naiss"));
@@ -272,7 +272,7 @@ public class AfficherCandidatureController implements Initializable {
 
     void btn_refreshCandidature() {
         try {
-           //CandidatureList.clear();
+           CandidatureList.clear();
             
             query = "SELECT * FROM candidature";
             preparedStatement = connection.prepareStatement(query);
