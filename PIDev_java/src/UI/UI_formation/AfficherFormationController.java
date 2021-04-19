@@ -211,11 +211,6 @@ public class AfficherFormationController implements Initializable {
         tab_url_id.setCellValueFactory(new PropertyValueFactory<>("Url"));
         tab_domaine_id.setCellValueFactory(new PropertyValueFactory<>("Domaine"));
         tab_desc_id.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        
-       
-        /*FormationService fc = new FormationService();
-        List old = fc.getAll();
-        listForm.addAll(old);*/
          TableFormation.setItems(listForm);
          
          
@@ -259,7 +254,7 @@ public class AfficherFormationController implements Initializable {
                             
                             Formation v = TableFormation.getSelectionModel().getSelectedItem();
                              
-                           // TableFormation.getItems().remove(TableFormation.getSelectionModel().getSelectedItem());
+                      
 
                             FormationService sp = new FormationService();
                             System.out.println(v.getId());
@@ -298,10 +293,8 @@ public class AfficherFormationController implements Initializable {
                       Window.setScene(new Scene(root));
                         
 
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier évenement");
-                        stage.setScene(new Scene(root));
-                        stage.show();
+                  
+                      
                         } catch (IOException ex) {
                          System.out.println(ex.getMessage());
                         }
@@ -309,25 +302,7 @@ public class AfficherFormationController implements Initializable {
                             
                             
                             
-                         /*   formation = TableFormation.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                Logger.getLogger(AfficherFormationController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                            AjouterFormationController AjouterFormationController = loader.getController();
-                            AjouterFormationController.setUpdate(true);
-                            AjouterFormationController.setTextField(formation.getTitle(), 
-                                    formation.getUrl(),formation.getDescription(), formation.getDomaine());
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();*/
-                            
+                        
 
                            
 

@@ -22,6 +22,9 @@ import interfaces.iService_formation;
 import java.sql.Timestamp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  *
@@ -94,6 +97,23 @@ public class FormationService implements iService_formation<Formation>{
     
     @Override
     public boolean ajouterVideo(Formation v) {
+        
+        Notifications notificationConfirm = Notifications.create()
+        .title("Ajout Complete")
+        .text("Ajouter dans la base de donnée")
+        .graphic(null)
+        .hideAfter(Duration.seconds(5))
+        .position(Pos.TOP_RIGHT);
+        
+         
+        Notifications notificationError = Notifications.create()
+        .title("Url existant")
+        .text("Cet Url existe déja")
+        .graphic(null)
+        .hideAfter(Duration.seconds(5))
+        .position(Pos.TOP_RIGHT);
+         
+         
         String url = "";
         String find = "select url from video where url = '" + v.getUrl() + "'";
 
@@ -108,14 +128,16 @@ public class FormationService implements iService_formation<Formation>{
         }
 
         if (v.getUrl().equals(url)) {
-            System.out.println("Formation exitst !");
+            notificationError.darkStyle();
+            notificationError.showError();
             return false;
         } else {
             String sql = "insert into video(url,title,publish_date,description,domaine) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getDescription() + "','" + v.getDomaine() + "')";
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
-
+                notificationConfirm.darkStyle();
+                notificationConfirm.showConfirm();
                 return true;
             } catch (SQLException ex) {
                 Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,12 +155,19 @@ public class FormationService implements iService_formation<Formation>{
     
      public void supprimerVideo(Formation v){
 
-     
+      Notifications notificationDelete = Notifications.create()
+        .title("Formation supprimer")
+        .text("Votre formation est supprimer avec succée")
+        .graphic(null)
+        .hideAfter(Duration.seconds(5))
+        .position(Pos.TOP_RIGHT);
             String req="delete from video where id=?";
         try {
             pst=cnx.prepareStatement(req);
             pst.setInt(1,v.getId());
             pst.executeUpdate();
+            notificationDelete.darkStyle();
+            notificationDelete.showConfirm();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -179,21 +208,7 @@ public class FormationService implements iService_formation<Formation>{
      
      
      
-     public ArrayList<Formation> getAllList() {
-        String req = "select * from video";
-        ArrayList<Formation> FormationList = new ArrayList<>();
-        try {
-            ste = cnx.createStatement();
-            rs = ste.executeQuery(req);
-            while (rs.next()) {
-          
-                FormationList.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return FormationList;
-    }
+    
      
      
      
@@ -210,10 +225,7 @@ public class FormationService implements iService_formation<Formation>{
                     "',publish_date='" + v.getPublish_date()+ "',description='" + v.getDescription()+ "',domaine='" 
                     + v.getDomaine() +"' where id="+v.getId();
      
-     
-           /* Statement st = DataSource.getInstance().getCnx().createStatement();
-            st.executeUpdate(requete);*/
-            
+                
            ste = cnx.createStatement();
             ste.executeUpdate(requete);
             
@@ -223,26 +235,8 @@ public class FormationService implements iService_formation<Formation>{
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
-        
-           
-        
-        
-     /*    String req="update video set url=?,title=?,dscription=?,domaine=? where id=?"; 
-        try {
-            pst=cnx.prepareStatement(req);
-           
-            pst.setString(1,v.getUrl());
-            pst.setString(2,v.getTitle());
-            pst.setString(3,v.getDomaine());
-            pst.setString(4,v.getDescription());
-            pst.executeUpdate();
-            System.out.println(v.getId());
-            System.out.println("Formation modifiée");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+            
+   
     }
 
     
@@ -255,6 +249,11 @@ public class FormationService implements iService_formation<Formation>{
 
     @Override
     public ObservableList<Formation> GetAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Formation> getAllList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

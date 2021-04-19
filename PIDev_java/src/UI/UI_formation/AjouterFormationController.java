@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,6 +25,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 
 
@@ -37,7 +40,7 @@ import javafx.stage.Stage;
  */
 public class AjouterFormationController implements Initializable {
 
-    private boolean update;
+
     
     @FXML
     private TextField tfUrl;
@@ -63,6 +66,11 @@ public class AjouterFormationController implements Initializable {
     void btn_Ajout_Formation(ActionEvent event) {
         
          
+       
+                
+                
+        
+        
         btnAjoutForma.setOnAction(e->{
             
         String url = "https://www.youtube.com/embed/";
@@ -81,16 +89,12 @@ public class AjouterFormationController implements Initializable {
         v.setDescription(tfDescription.getText());
         
         new FormationService().ajouterVideo(v);
+                
         
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Formation");
-            alert.setHeaderText("Formation ajouté !");
-            alert.setContentText("Go Back To The Homepage");
-
-            alert.showAndWait(); 
-            Stage stage = (Stage) btn_gotoAfficherForma.getScene().getWindow();
+        Stage stage = (Stage) btn_gotoAfficherForma.getScene().getWindow();
             //stage.close();
         });
+        
 
     }
   
@@ -123,10 +127,6 @@ public class AjouterFormationController implements Initializable {
     
    
 
-    void setUpdate(boolean b) {
-        this.update = b;
-
-    }
 
     void setTextField(String title, String url, String description, String domaine) {
 
