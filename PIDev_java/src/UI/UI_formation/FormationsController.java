@@ -21,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -69,7 +70,7 @@ public class FormationsController implements Initializable {
         
         for(int i = 0; i<formations.size();i++) {
         
-
+            v = formations.get(i);
             
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
             
@@ -90,10 +91,10 @@ public class FormationsController implements Initializable {
             Button btn1=new Button("Like");
             
 
-            id.setText(Integer.toString(formations.get(i).getId()));
-            description1.setText(formations.get(i).getDescription());
-            titre1.setText(formations.get(i).getTitle());
-            url1.setText(formations.get(i).getUrl());
+            id.setText(Integer.toString(v.getId()));
+            description1.setText(v.getDescription());
+            titre1.setText(v.getTitle());
+            url1.setText(v.getUrl());
             //url1.getEngine().load(formations.get(i).getUrl());
             
            
@@ -106,12 +107,49 @@ public class FormationsController implements Initializable {
            // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
             
           
+             btn1.setOnAction( e -> {
+                 
+
+                            FormationService sp = new FormationService();
+                            System.out.println(v.getId());
+                            sp.supprimerVideo(v);
+                            System.out.println("deleted");
+              
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 alert.setTitle("Formation");
+                 alert.setHeaderText("Formation supprimé !");
+                 alert.setContentText("Go Back To The Homepage");
+                 
+                 alert.showAndWait();
+            });
             
+             
+           
+            url1.setOnAction( e -> {
+                                    
+                //Parent root = loader.load();
+                System.out.println(((Hyperlink) e.getTarget()).getText());
+                
+                Node node = (Node) e.getSource();
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_formation/video_detail.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Video_detailController video_detailController = loader.getController();
+                video_detailController.initData(((Hyperlink) e.getTarget()).getText());
+                stage.setScene(scene);
+                
+                
+            });
             
            
            
-            
-            
+           
+           
             VBox forma1=new VBox();
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
             forma1.getChildren().addAll(id,titre1,url1,description1,domaine1,btn1);
@@ -128,70 +166,13 @@ public class FormationsController implements Initializable {
             
             
             
-             url1.setOnAction( e -> {
-                                    
-                /*try {
-                        FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_formation/ModifierFormation.fxml"));
-                        Parent root = loader.load();
-                        ModifierFormationController mF = loader.getController();
-
-                        mF.settf_ID_forma(Integer.toString(v.getId())); //A3mel TextField hidden ( fi properties visibility)
-                        mF.settfUrlMod(v.getUrl());
-                        mF.settfTitreMod(v.getTitle());
-                        mF.settfDescriptionMod(v.getDescription());
-                        mF.settfDomaineMod(v.getDomaine());*/
-                        
-                
-                        System.out.println("test clicked");
-                        System.out.println(v.getId());
-                        String content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/9bZkp7q19f0\" frameborder=\"0\" allowfullscreen></iframe>";
-
-                        
-                        WebView webView = new WebView();
-                        WebEngine webEngine = webView.getEngine();
-                        webEngine.loadContent(content_Url);
-
-                       
-                        StackPane root = new StackPane();
-                        root.getChildren().add(webView);
-
-                        Scene scene = new Scene(root, 300, 250);
-
-                       
-                      
-                          
-                     
-                      Stage Window = (Stage) url1.getScene().getWindow();
-                      Window.setScene(new Scene(root));
-                        
-
-                  
-                      
-                    /*    } catch (IOException ex) {
-                         System.out.println(ex.getMessage());
-                        }*/
-            });
-       
+//           
             
             
             
             
          
-             btn1.setOnAction( e -> {
-                 
-
-                            FormationService sp = new FormationService();
-                            System.out.println(v.getId());
-                            sp.supprimerVideo(v);
-                            System.out.println("deleted");
-              
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("Formation");
-                 alert.setHeaderText("Formation supprimé !");
-                 alert.setContentText("Go Back To The Homepage");
-                 
-                 alert.showAndWait();
-            });
+            
              
              
               
