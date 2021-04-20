@@ -16,6 +16,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,14 +38,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.VBox;                    
 
 /**
  * FXML Controller class
  *
  * @author Bou3dila
  */
-public class QuizController implements Initializable {
+public class AddQuizController implements Initializable {
+    
+    private int nb = 5;
 
     @FXML
     private TextField tf_text;
@@ -70,13 +73,15 @@ public class QuizController implements Initializable {
     private int nb_question = 0;
     private int nb_reponse;
 
-    private int id_quiz;
-    
-    Quiz quiz;
-    
+    private int id_quiz = 0;
+
+    Quiz quiz = null;
+
     private QuizService quizService = new QuizService();
     private QuestionService questionService = new QuestionService();
     private ReponseService reponseService = new ReponseService();
+    
+    private List<Question> listQuestion = new ArrayList();
 
     /**
      * Initializes the controller class.
@@ -92,24 +97,26 @@ public class QuizController implements Initializable {
         grid.setAlignment(Pos.TOP_CENTER);
     }
 
+    public void initData(Quiz quiz) throws SQLException {
+        this.quiz = quiz;
+        tf_text.setText(quiz.getNom_quiz());
+        listQuestion = questionService.getQuestionByQuiz(quiz);
+    }
+
     @FXML
     public void nextQuestion(ActionEvent event) throws SQLException {
 
-
-
-        
-        
         if (nb_question == 0) {
             if (tf_text.getText().length() > 4) {
+                    quiz = new Quiz(tf_text.getText(), 0);
+                    id_quiz = quizService.addQuizAndGetItsId(quiz);
 
-                quiz= new Quiz(tf_text.getText(), 0);
-                id_quiz = quizService.addQuizAndGetItsId(quiz);
                 Button finish = new Button("Terminer");
                 finish.setOnAction(e -> {
                     try {
                         nextQuestion(e);
                     } catch (SQLException ex) {
-                        Logger.getLogger(QuizController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(AddQuizController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
                 hb_btns.getChildren().add(finish);
@@ -123,21 +130,21 @@ public class QuizController implements Initializable {
                 lb_error.setVisible(true);
 
             }
-        } else if(testInput()){
-
-            Question question = new Question(0, id_quiz, ((TextField)((VBox)getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(0)).getText(), nb_reponse -1, 2);
+        } else if (testInput()) {
+            
+            Question question = new Question(0, id_quiz, ((TextField) ((VBox) getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(0)).getText(), nb_reponse - 1, 2);
             int id_ques = questionService.addQuestionAndGetItsId(question);
             question.setId(id_ques);
             for (Node node : grid.getChildren()) {
-            if (grid.getColumnIndex(node) == 1 && grid.getRowIndex(node) != 0 ) {
-                Reponse reponse = new Reponse(id_ques, ((TextField)((VBox)node).getChildren().get(0)).getText());
-                int id_reponse = reponseService.addReponseAndGetItsId(reponse);
-                if(((RadioButton)getNodeByRowColumnIndex(grid.getRowIndex(node), 0, grid)).isSelected()){
-                    question.setRep_just_id(id_reponse);
-                    questionService.updateQuestion(question);
+                if (grid.getColumnIndex(node) == 1 && grid.getRowIndex(node) != 0) {
+                    Reponse reponse = new Reponse(id_ques, ((TextField) ((VBox) node).getChildren().get(0)).getText());
+                    int id_reponse = reponseService.addReponseAndGetItsId(reponse);
+                    if (((RadioButton) getNodeByRowColumnIndex(grid.getRowIndex(node), 0, grid)).isSelected()) {
+                        question.setRep_just_id(id_reponse);
+                        questionService.updateQuestion(question);
+                    }
                 }
             }
-        }
             if (((Button) event.getTarget()).getText().equals("Terminer")) {
                 quiz.setId(id_quiz);
                 quiz.setNomb_question(nb_question);
@@ -149,25 +156,24 @@ public class QuizController implements Initializable {
         }
     }
 
-    public void fillGrid() {
+    public void fillGrid() throws SQLException {
 
         nb_reponse = 2;
         grid.getChildren().clear();
         Button btn_add = new Button("+");
         btn_add.setOnAction(ev -> {
-            Label lb_reponse = new Label("Reponse ");
             TextField tf_reponse = new TextField();
             VBox vb = new VBox();
             vb.getChildren().addAll(tf_reponse, new Label());
             Button btn_remove = new Button("-");
             RadioButton radio = new RadioButton();
             radio.setOnAction(e -> selectReponse(radio));
-            grid.addRow(nb_reponse, radio, vb, btn_remove);
+            grid.addRow(nb++, radio, vb, btn_remove);
             btn_remove.setAlignment(Pos.TOP_CENTER);
-            
+
             btn_remove.setOnAction(e -> {
 
-                grid.getChildren().removeAll( radio, vb, btn_remove);
+                grid.getChildren().removeAll(radio, vb, btn_remove);
                 nb_reponse--;
             });
             nb_reponse++;
@@ -177,14 +183,16 @@ public class QuizController implements Initializable {
         RadioButton radio = new RadioButton();
         radio.setOnAction(e -> selectReponse(radio));
         VBox vb = new VBox();
-        vb.getChildren().addAll(new TextField(), new Label());
+        TextField tf_question = new TextField();
+        vb.getChildren().addAll(tf_question, new Label());
         grid.addRow(0, new Label("Question"), vb, btn_add);
         vb = new VBox();
         vb.getChildren().addAll(new TextField(), new Label());
         grid.addRow(1, radio, vb, new Label());
+        
         nb_question++;
         alignGrid();
-        
+
     }
 
     public Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane) {
@@ -200,47 +208,43 @@ public class QuizController implements Initializable {
 
         return result;
     }
-    
-    
-    public boolean testInput(){
-        
+
+    public boolean testInput() {
+
         boolean test = true;
         for (Node node : grid.getChildren()) {
             if (grid.getRowIndex(node) == 0 && grid.getColumnIndex(node) == 1) {
-                if(((TextField)((VBox)node).getChildren().get(0)).getText().length() < 8){
-                    ((Label)((VBox)node).getChildren().get(1)).setText("le question doit etre > 8 char");
+                if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 8) {
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("le question doit etre > 8 char");
                     test = false;
+                } else {
+                    ((Label) ((VBox) node).getChildren().get(1)).setVisible(false);
                 }
-                else {
-                    ((Label)((VBox)node).getChildren().get(1)).setVisible(false);
-                }
-            }
-            else if( grid.getColumnIndex(node) == 1){
-                if(((TextField)((VBox)node).getChildren().get(0)).getText().length() < 1){
-                    ((Label)((VBox)node).getChildren().get(1)).setText("le reponse doit etre > 1 char");
+            } else if (grid.getColumnIndex(node) == 1) {
+                if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 1) {
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("le reponse doit etre > 1 char");
                     test = false;
-                }else{
-                    ((Label)((VBox)node).getChildren().get(1)).setVisible(false);
+                } else {
+                    ((Label) ((VBox) node).getChildren().get(1)).setVisible(false);
                 }
             }
         }
         return test;
     }
-    
-    public void alignGrid(){
-        for(Node node: grid.getChildren()){
-            if(node instanceof RadioButton){
+
+    public void alignGrid() {
+        for (Node node : grid.getChildren()) {
+            if (node instanceof RadioButton) {
                 grid.setHalignment(node, HPos.CENTER);
             }
             grid.setValignment(node, VPos.TOP);
         }
     }
 
-    
-    public void selectReponse(RadioButton radio){
-        for (Node node : grid.getChildren()){
-            if(node instanceof RadioButton){
-                ((RadioButton)node).setSelected(false);
+    public void selectReponse(RadioButton radio) {
+        for (Node node : grid.getChildren()) {
+            if (node instanceof RadioButton) {
+                ((RadioButton) node).setSelected(false);
             }
         }
         radio.setSelected(true);

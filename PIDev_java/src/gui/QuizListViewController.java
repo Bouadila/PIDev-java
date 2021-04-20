@@ -19,11 +19,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -31,10 +33,11 @@ import javafx.stage.Stage;
  *
  * @author Bou3dila
  */
-public class QuizListController implements Initializable {
+public class QuizListViewController implements Initializable {
 
     @FXML
-    private GridPane grid;
+    private ListView<VBox> listView;
+
     
     private QuizService serviceQuiz = new QuizService();
 
@@ -59,32 +62,32 @@ public class QuizListController implements Initializable {
         
         for(int i = 0; i < listQuiz.size(); i++){
             Label lb_quiz = new Label(listQuiz.get(i).getNom_quiz());
-            Quiz quiz = listQuiz.get(i);
-            int h = i;
+            String x = listQuiz.get(i).getNom_quiz();
             lb_quiz.setOnMouseClicked(e->{
                 try {
                      Node node = (Node) e.getSource();
-                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuiz.fxml"));
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Quiz.fxml"));
                     Stage stage = (Stage) node.getScene().getWindow();
-                    
-                    Scene scene = new Scene(loader.load());  
-                    ShowQuizController quizController = loader.getController();
-                    quizController.initData(quiz);
+                    AddQuizController quizController = loader.getController();
+//                    quizController.initData(quiz);
+                    Scene scene = new Scene(loader.load());      
                     stage.setScene(scene);
                 } catch (IOException ex) {
-                    Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
                     Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
         
        
             });
-            grid.addRow(i,lb_quiz);
-             grid.getRowConstraints().add(new RowConstraints(50));
+            VBox hb = new VBox();
+            hb.getChildren().add(lb_quiz);
+            hb.getChildren().add(new Label("sadf"));
+
+            listView.getItems().add(hb);
+//             grid.getRowConstraints().add(new RowConstraints(50));
             
         }
         
         
-    }
+    }  
     
 }

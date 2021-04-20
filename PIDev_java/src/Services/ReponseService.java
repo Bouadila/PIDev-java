@@ -69,7 +69,7 @@ public class ReponseService {
     }
     
     public void updateReponse ( Reponse reponse ){
-        String sql="UPDATE reponse SET  contenu_rep='"+reponse.getContenu_rep()+"', nomb_question ="+reponse.getId_ques_id()+" WHERE id="+reponse.getId();
+        String sql="UPDATE reponse SET  contenu_rep='"+reponse.getContenu_rep()+"', id_ques_id ="+reponse.getId_ques_id()+" WHERE id="+reponse.getId();
 
         Statement st;
             try {
