@@ -6,7 +6,11 @@
 package UI.UI_formation;
 
 import Entity.Formation;
+import Entity.Votes;
 import Services.FormationService;
+import Services.VoteService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -28,8 +32,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
@@ -49,9 +55,10 @@ public class FormationsController implements Initializable {
     
     
      private  Formation v;
+     private Votes vo;
      
 
-     //String content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/9bZkp7q19f0\" frameborder=\"0\" allowfullscreen></iframe>";
+    
 
     /**
      * Initializes the controller class.
@@ -73,41 +80,79 @@ public class FormationsController implements Initializable {
             v = formations.get(i);
             
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-            
-            
+
 
             
             Hyperlink url1= new Hyperlink();
+            url1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            
+            
             TextField id= new TextField();
+            
             Label description1= new Label();
+            description1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            
             Label titre1= new Label();
+            titre1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            
             Label domaine1= new Label();
-            Label publish_date1= new Label();
+            domaine1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            
+            
+            Label votes= new Label();
+            //Label publish_date1= new Label();
             
             id.setVisible(false);
             
             
             
-            Button btn1=new Button("Like");
+            FontAwesomeIconView btnLiked=new FontAwesomeIconView(FontAwesomeIcon.THUMBS_UP);
+            btnLiked.setStyle(" -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"); 
             
+            
+            FontAwesomeIconView btnUnliked=new FontAwesomeIconView(FontAwesomeIcon.THUMBS_ALT_UP);
+            btnUnliked.setStyle(" -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"); 
 
+            
+            
+//              UserSession s = UserSession.instance;
+//            if (s.getU().getUsername().equals(v.getOwner().getUsername())) {
+//
+//                details.add(Delete, 2, 3);
+//            }
+//            if (vo.find(v, s.getU())) {
+//                btnUnliked.setVisible(true);
+//                btnUnliked.setVisible(false);
+//            } else {
+//                btnUnliked.setVisible(false);
+//                btnUnliked.setVisible(true);
+//            }
+            
+            
+            
+            
+            
             id.setText(Integer.toString(v.getId()));
             description1.setText(v.getDescription());
             titre1.setText(v.getTitle());
             url1.setText(v.getUrl());
-            //url1.getEngine().load(formations.get(i).getUrl());
+            url1.setPrefSize(700,800);
+            domaine1.setText(formations.get(i).getDomaine());
+            // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
+            
+           // hedhy ata nchoufha maa firas :  votes.setText(Integer.toString(vo.getVideo_id()));
+
+           
+
             
            
             
-            url1.setPrefSize(100,150);
-            
-            
-
-            domaine1.setText(formations.get(i).getDomaine());
-           // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
-            
           
-             btn1.setOnAction( e -> {
+             btnUnliked.setOnMouseClicked( e -> {
                  
 
                             FormationService sp = new FormationService();
@@ -124,10 +169,36 @@ public class FormationsController implements Initializable {
             });
             
              
+             
+             
+//              btnLiked.setOnMouseClicked(e -> {
+//
+//                    vo.Add(u.getU(), v);
+//                    btnUnliked.setVisible(true);
+//                    btnLiked.setVisible(false);
+//                    getVideo_id.setText(Integer.toString(Integer.parseInt(getVideo_id.getText()) + 1));
+//                   // updateRanks();
+//
+//                
+//            });
+//              
+//            btnUnliked.setOnMouseClicked(e-> {
+//
+//                    vo.delete(v, u.getU());
+//                    btnUnliked.setVisible(false);
+//                    btnLiked.setVisible(true);
+//                    getVideo_id.setText(Integer.toString(Integer.parseInt(getVideo_id.getText()) - 1));
+//                   // updateRanks();
+//                
+//            });
+             
+             
            
+            
+            
             url1.setOnAction( e -> {
                                     
-                //Parent root = loader.load();
+
                 System.out.println(((Hyperlink) e.getTarget()).getText());
                 
                 Node node = (Node) e.getSource();
@@ -151,22 +222,27 @@ public class FormationsController implements Initializable {
            
            
             VBox forma1=new VBox();
+            final ScrollPane sp = new ScrollPane();
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
-            forma1.getChildren().addAll(id,titre1,url1,description1,domaine1,btn1);
+            forma1.getChildren().addAll(sp,id,titre1,url1,description1,domaine1,btnUnliked,votes);
+            VBox.setVgrow(sp, Priority.ALWAYS);
             
+            
+
+       
             
             
             
             HBox formhor=new HBox();
             
             formhor.getChildren().addAll(forma1);
-            
+
             VBox_formations.getChildren().add(formhor);
             
             
             
             
-//           
+         
             
             
             

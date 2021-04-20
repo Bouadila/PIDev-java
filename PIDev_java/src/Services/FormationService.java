@@ -153,6 +153,7 @@ public class FormationService implements iService_formation<Formation>{
     
     
     
+    @Override
      public void supprimerVideo(Formation v){
 
       Notifications notificationDelete = Notifications.create()
@@ -239,6 +240,49 @@ public class FormationService implements iService_formation<Formation>{
    
     }
 
+    
+    
+    
+   
+   
+   
+    
+    public ObservableList<Formation> getAllById() {
+        String req="select * from video inner join user on(video.owner=user.id) where video.id in(select * from video)";
+        ObservableList<Formation> FormationList = FXCollections.observableArrayList();
+        try {
+            ste = cnx.createStatement();
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                Formation v = new Formation();
+                v.setId(rs.getInt("id"));
+                v.setTitle(rs.getString("title"));
+                v.setUrl(rs.getString("url"));
+                v.setDescription(rs.getString("description"));
+                v.setDomaine(rs.getString("domaine"));
+                //v.setPublish_date(rs.getTimestamp(5));
+
+                FormationList.add(v);
+               
+                //list.add(new Formation(rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"), rs.getString("description"), rs.getString("domaine")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return FormationList;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    
     
     
    

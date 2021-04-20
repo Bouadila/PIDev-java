@@ -44,24 +44,7 @@ public class Video_detailController implements Initializable {
                        
 
                        
-//                        StackPane root = new StackPane();
-//                        root.getChildren().add(webView_Forma);
-//
-//                        Scene scene = new Scene(root, 300, 250);
-//
-//                       
-//                      
-//                          
-//                     
-//                      Stage Window = (Stage) url1.getScene().getWindow();
-//                      Window.setScene(new Scene(root));
-                        
 
-                  
-                      
-                    /*    } catch (IOException ex) {
-                         System.out.println(ex.getMessage());
-                        }*/
         
         
     }    
