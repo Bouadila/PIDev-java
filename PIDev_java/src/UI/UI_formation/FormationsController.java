@@ -222,10 +222,10 @@ public class FormationsController implements Initializable {
            
            
             VBox forma1=new VBox();
-            final ScrollPane sp = new ScrollPane();
+           // final ScrollPane sp = new ScrollPane();
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
-            forma1.getChildren().addAll(sp,id,titre1,url1,description1,domaine1,btnUnliked,votes);
-            VBox.setVgrow(sp, Priority.ALWAYS);
+            forma1.getChildren().addAll(id,titre1,url1,description1,domaine1,btnUnliked,votes);
+            //VBox.setVgrow(sp, Priority.ALWAYS);
             
             
 
