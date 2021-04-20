@@ -27,7 +27,7 @@ public class PIDev_java extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //\UI\OffreUI
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/AjouterOffreFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -1,85 +1,253 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="455.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.AjouterOffreFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.AjouterOffreFXMLController">
    <children>
-      <TableView fx:id="offreTable" layoutX="14.0" layoutY="236.0" prefHeight="192.0" prefWidth="586.0">
-        <columns>
-          <TableColumn fx:id="postCol" minWidth="70.0" prefWidth="70.0" text="Post" />
-          <TableColumn fx:id="descriptionCol" minWidth="70.0" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="salaireCol" minWidth="70.0" prefWidth="70.0" text="Salaire" />
-            <TableColumn fx:id="expirationCol" minWidth="100.0" prefWidth="121.0" text="Date Expiration" />
-            <TableColumn fx:id="nbPlaceCol" minWidth="74.0" prefWidth="119.0" text="Nombre Place" />
-            <TableColumn fx:id="experienceCol" minWidth="0.0" prefWidth="129.0" text="Experience" />
-        </columns>
-      </TableView>
-      <HBox layoutX="21.0" layoutY="27.0" prefHeight="39.0" prefWidth="331.0">
+      <VBox layoutY="3.0" prefHeight="456.0" prefWidth="192.0" style="-fx-background-color: #ad0505;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Post" />
-            <TextField fx:id="tfPost" />
+            <Pane prefHeight="94.0" prefWidth="181.0">
+               <children>
+                  <Label layoutX="75.0" prefHeight="70.0" prefWidth="140.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Home" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Formation" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Annonce" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Connexion" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TASKS" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="41.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Inscreption" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="192.0" layoutY="57.0" opacity="0.89" prefHeight="49.0" prefWidth="595.0" style="-fx-background-color: #ad0505;" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox layoutX="25.0" layoutY="15.0" prefHeight="41.0" prefWidth="513.0">
+               <children>
+                  <TextField alignment="BASELINE_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="200.0" promptText="Recherche" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="53.0" style="-fx-background-color: #ad0505;">
+                     <graphic>
+                        <FontAwesomeIconView fill="#fffefe" glyphName="SEARCH" wrappingWidth="24.6328125" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <VBox layoutX="192.0" layoutY="127.0" prefHeight="276.0" prefWidth="296.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="127.0">
+         <children>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Post" />
+                  <TextField fx:id="tfPost" prefHeight="26.0" prefWidth="229.0">
+                     <HBox.margin>
+                        <Insets left="30.0" right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Objectif" />
+                  <TextField fx:id="tfObjectif" prefHeight="26.0" prefWidth="229.0">
+                     <HBox.margin>
+                        <Insets left="30.0" right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="302.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Competence" />
+                  <TextField fx:id="tfCompetence" prefHeight="26.0" prefWidth="229.0">
+                     <HBox.margin>
+                        <Insets left="30.0" right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Domaine" />
+                  <ComboBox fx:id="cbDomaine" prefHeight="28.0" prefWidth="229.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="78.0" prefWidth="296.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                  <TextArea fx:id="tfDescription" prefHeight="68.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="491.0" layoutY="127.0" prefHeight="276.0" prefWidth="296.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
+         <children>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type Contrat" />
+                  <ComboBox fx:id="cbContrat" prefHeight="28.0" prefWidth="189.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire" />
+                  <Spinner fx:id="tfSalaire">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="50.0" />
+                     </HBox.margin>
+                  </Spinner>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Expiration" />
+                  <DatePicker fx:id="datePickerExpiration">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </HBox.margin>
+                  </DatePicker>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Place" />
+                  <Spinner fx:id="tfPlace">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="50.0" />
+                     </HBox.margin>
+                  </Spinner>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Experience Minimale" />
+                  <Spinner fx:id="tfMinVal" prefHeight="26.0" prefWidth="127.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="40.0" />
+                     </HBox.margin>
+                  </Spinner>
+               </children>
+            </HBox>
+            <HBox prefHeight="47.0" prefWidth="321.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Experience Maximale" />
+                  <Spinner fx:id="tfMaxVal" prefHeight="26.0" prefWidth="139.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </HBox.margin>
+                  </Spinner>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="191.0" layoutY="412.0" prefHeight="47.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="388.0">
+         <children>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#newOffre" prefHeight="32.0" prefWidth="199.0" style="-fx-background-color: #ad0505;" text="Ajouter" />
          </children>
       </HBox>
-      <HBox layoutX="21.0" layoutY="54.0" prefHeight="39.0" prefWidth="356.0">
-         <children>
-            <Label text="Description" />
-            <TextArea fx:id="tfDesc" prefHeight="39.0" prefWidth="260.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="21.0" layoutY="99.0" prefHeight="45.0" prefWidth="322.0">
-         <children>
-            <Label text="Objectif" />
-            <TextField fx:id="tfObj" />
-         </children>
-      </HBox>
-      <HBox layoutX="21.0" layoutY="132.0" prefHeight="39.0" prefWidth="356.0">
-         <children>
-            <Label text="Competence" />
-            <TextField fx:id="tfCompetence" />
-         </children>
-      </HBox>
-      <HBox layoutX="357.0" layoutY="141.0" prefHeight="39.0" prefWidth="269.0">
-         <children>
-            <Label prefHeight="0.0" prefWidth="75.0" text="Nombre Place" />
-            <TextField />
-         </children>
-      </HBox>
-      <HBox layoutX="21.0" layoutY="191.0" prefHeight="39.0" prefWidth="274.0">
-         <children>
-            <Label text="Experience Min" />
-            <TextField fx:id="tfMin" />
-         </children>
-      </HBox>
-      <HBox layoutX="21.0" layoutY="160.0" prefHeight="39.0" prefWidth="232.0">
-         <children>
-            <Label text="salaire" />
-            <TextField fx:id="tfSalaire" />
-         </children>
-      </HBox>
-      <HBox layoutX="354.0" layoutY="99.0" prefHeight="45.0" prefWidth="269.0">
-         <children>
-            <Label text="Type Contrat" />
-            <TextField fx:id="tfContrat" />
-         </children>
-      </HBox>
-      <HBox layoutX="343.0" layoutY="62.0" prefHeight="25.0" prefWidth="297.0">
-         <children>
-            <Label text="Experience Max" />
-            <TextField fx:id="tfMax" />
-         </children>
-      </HBox>
-      <Button layoutX="357.0" layoutY="187.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="25.0" prefWidth="232.0" text="Ajouter" />
-      <DatePicker layoutX="478.0" layoutY="34.0" />
-      <Text layoutX="377.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Expiration" />
    </children>
 </AnchorPane>
