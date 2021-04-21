@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
+    <stylesheets>
+        <URL value="@afficherformation.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #5eaaa8;">
+         <children>
+            <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
+               <children>
+                  <Button fx:id="btn_gotoAjoutForm" mnemonicParsing="false" onAction="#btn_gotoAjouterForma" prefHeight="66.0" prefWidth="266.0" style="-fx-background-color: #a3d2ca;" text="Ajout" textFill="#e40e0e">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_deleteFormation" mnemonicParsing="false" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #a3d2ca;" text="Supprimer" textFill="#e40e0e">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" onAction="#btn_gotoModifierForma" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

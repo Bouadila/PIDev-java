@@ -5,8 +5,9 @@
  */
 package Services;
 
+
 import Entity.User;
-import Entity.formation;
+import Entity.Formation;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import interfaces.iService_formation;
+import java.sql.Timestamp;
 
 /**
  *
@@ -24,8 +27,8 @@ import java.util.logging.Logger;
  */
 
 
-/*
-public class FormationService {
+
+public class FormationService implements iService_formation<Formation>{
 
     private Connection cnx;
     private Statement ste;
@@ -33,37 +36,23 @@ public class FormationService {
     private ResultSet rs;
 
     public FormationService() {
-        cnx = DataSource.getInstance().getCnx();
-    }
-
-    public List<formation> getAll() {
-        String req = "select * from video inner join user on(video.owner=user.id) ";
-        List<formation> list = new ArrayList<>();
+        
+   
         try {
+            cnx = DataSource.getInstance().getCnx();
             ste = cnx.createStatement();
-            rs = ste.executeQuery(req);
-            while (rs.next()) {
-                list.add(new formation(rs.getInt("id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
-                        new User(rs.getInt("id"),
-                                rs.getString("username"),
-                                rs.getString("email"),
-                                rs.getString("password"),
-                                rs.getString("sexe"),
-                                rs.getString("adresse"),
-                                rs.getString("name"),
-                                rs.getString("first_name"),
-                                rs.getString("telephone_number"),
-                                rs.getString("bio"),
-                                rs.getString("roles"),
-                                rs.getDate("birthday"),
-                                rs.getString("profile_pic"))));
-            }
+           
         } catch (SQLException ex) {
             Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+
     }
 
+    
+    
+    
+    
+    /* hedhy ba3ed login 7aseb user connecter
     public List<formation> getVideos(int owner) {
         String req = "select * from video inner join user on(video.owner=user.id) where owner=" + owner;
         List<formation> list = new ArrayList<>();
@@ -72,7 +61,7 @@ public class FormationService {
             rs = ste.executeQuery(req);
 
             while (rs.next()) {
-                list.add(new formation(rs.getInt("id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
+                list.add(new Formation(rs.getInt("id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
                         new User(rs.getInt("id"),
                                 rs.getString("username"),
                                 rs.getString("email"),
@@ -92,8 +81,17 @@ public class FormationService {
         }
         return list;
     }
-
-    public boolean AddVideo(formation v) {
+*/
+    
+    
+    
+    
+    
+    
+    
+    
+    @Override
+    public boolean ajouterVideo(Formation v) {
         String url = "";
         String find = "select url from video where url = '" + v.getUrl() + "'";
 
@@ -111,7 +109,7 @@ public class FormationService {
             System.out.println("Formation exitst !");
             return false;
         } else {
-            String sql = "insert into video(url,title,publish_date,description,domaine,owner) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getOwner().getId() + "')";
+            String sql = "insert into video(url,title,publish_date,description,domaine) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getDescription() + "','" + v.getDomaine() + "')";
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
@@ -124,7 +122,15 @@ public class FormationService {
 
         return false;
     }
-     public void delete(formation v){
+    
+    
+    
+    
+    
+    
+    
+    @Override
+     public void supprimerVideo(Formation v){
         String req="delete from video where id=?";
         try {
             pst=cnx.prepareStatement(req);
@@ -132,10 +138,36 @@ public class FormationService {
 
             pst.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
         }
-
     }
+
+     
+     
+     
+     
+    @Override
+    public void modifierVideo(int id, String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getVideoById() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Formation> afficherVideo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
+     
+     
+     
+
+    
+     
+     
+     
+  
 }
 
-*/

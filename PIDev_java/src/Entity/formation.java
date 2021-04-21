@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  *
  * @author User
  */
-public class formation {
+public class Formation {
     private int id;
     private String url;
     private String title;
@@ -20,7 +20,7 @@ public class formation {
     private String domaine;
     private User owner;
 
-    public formation(int id, String url, String title, Timestamp publish_date, String description, String domaine , User owner) {
+    public Formation(int id, String url, String title, Timestamp publish_date, String description, String domaine , User owner) {
         this.id = id;
         this.url = url;
         this.title = title;
@@ -29,8 +29,12 @@ public class formation {
         this.domaine = domaine;
         this.owner = owner;
     }
+    
+    public Formation(){
+    
+    }
 
-    public formation(String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
+    public Formation(String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
         this.url = url;
         this.title = title;
         this.publish_date = publish_date;
