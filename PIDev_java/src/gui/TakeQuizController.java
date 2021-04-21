@@ -87,11 +87,11 @@ public class TakeQuizController implements Initializable {
         btn_next.setPrefSize(89, 31);
 
         List_reponses_condidat list = new List_reponses_condidat(25, 5, 0);
-//        try {
-//            listId = listService.addListAndGetItsId(list);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            listId = listService.addListAndGetItsId(list);
+        } catch (SQLException ex) {
+            Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         tf_nbQuestion.setText("0");
         quiz = new Quiz();

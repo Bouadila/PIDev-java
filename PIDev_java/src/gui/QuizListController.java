@@ -7,6 +7,7 @@ package gui;
 
 import Entity.Quiz;
 import Services.QuizService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,7 +22,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
@@ -36,6 +41,9 @@ public class QuizListController implements Initializable {
     @FXML
     private GridPane grid;
     
+    @FXML
+    private ScrollPane scroll;
+
     private QuizService serviceQuiz = new QuizService();
 
     /**
@@ -43,31 +51,32 @@ public class QuizListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        grid.setStyle("-fx-background-color: white;");
         try {
             // TODO
             fillGrid();
         } catch (SQLException ex) {
             Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-    
-    
-    public void fillGrid() throws SQLException{
+    }
+
+    public void fillGrid() throws SQLException {
         List<Quiz> listQuiz = new ArrayList();
-        
+
         listQuiz = serviceQuiz.getAllQuiz();
-        
-        for(int i = 0; i < listQuiz.size(); i++){
+
+        for (int i = 0; i < listQuiz.size(); i++) {
             Label lb_quiz = new Label(listQuiz.get(i).getNom_quiz());
             Quiz quiz = listQuiz.get(i);
             int h = i;
-            lb_quiz.setOnMouseClicked(e->{
+            lb_quiz.setOnMouseClicked(e -> {
                 try {
-                     Node node = (Node) e.getSource();
-                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuiz.fxml"));
+                    Node node = (Node) e.getSource();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuiz.fxml"));
                     Stage stage = (Stage) node.getScene().getWindow();
-                    
-                    Scene scene = new Scene(loader.load());  
+
+                    Scene scene = new Scene(loader.load());
                     ShowQuizController quizController = loader.getController();
                     quizController.initData(quiz);
                     stage.setScene(scene);
@@ -76,15 +85,32 @@ public class QuizListController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        
-       
+
             });
-            grid.addRow(i,lb_quiz);
-             grid.getRowConstraints().add(new RowConstraints(50));
-            
+            FontAwesomeIcon btn_remove = new FontAwesomeIcon();
+            btn_remove.setGlyphName("TRASH");
+            btn_remove.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 20.0; -fx-fill: #b45959;");
+            btn_remove.setOnMouseClicked(event -> {
+                Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer  " + quiz.getNom_quiz() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                    //do stuff
+                    serviceQuiz.deleteQuiz(quiz);
+                    try {
+                        grid.getChildren().clear();
+                        fillGrid();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            });
+            grid.addRow(i, lb_quiz, btn_remove);
+            grid.getRowConstraints().add(new RowConstraints(50));
+
         }
-        
-        
+
     }
-    
+
 }
