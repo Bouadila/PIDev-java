@@ -27,6 +27,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
@@ -42,7 +43,7 @@ public class QuizListController implements Initializable {
     private GridPane grid;
     
     @FXML
-    private ScrollPane scroll;
+    private AnchorPane main_pane;
 
     private QuizService serviceQuiz = new QuizService();
 
@@ -52,9 +53,11 @@ public class QuizListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        main_pane.setStyle("-fx-background-color: white;");
         grid.setStyle("-fx-background-color: white;");
         try {
             // TODO
+            
             fillGrid();
         } catch (SQLException ex) {
             Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);

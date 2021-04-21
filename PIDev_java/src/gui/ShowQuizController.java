@@ -11,6 +11,7 @@ import Entity.Reponse;
 import Services.QuestionService;
 import Services.QuizService;
 import Services.ReponseService;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,14 +24,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -40,14 +47,26 @@ import javafx.stage.Stage;
  */
 public class ShowQuizController implements Initializable {
 
-    @FXML
-    private GridPane grid;
+//    @FXML
+//    private GridPane grid;
 
     @FXML
     private Button btn_terminer;
 
     private Quiz quiz;
+    
+    @FXML
     TextField tf_quiz;
+    
+    @FXML
+    Label lb_quiz;
+    
+    @FXML
+    private ListView list;
+    
+    @FXML
+    private HBox hbox;
+
 
     private QuestionService questionService = new QuestionService();
     private QuizService quizService = new QuizService();
@@ -59,55 +78,96 @@ public class ShowQuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        btn_terminer.setText("Enregistrer");
+        btn_terminer.setStyle("-fx-background-color: #ad0505; -fx-text-fill: white;");
+        btn_terminer.setPrefSize(89, 31);
+        tf_quiz.setPrefWidth(200);
+        tf_quiz.setStyle("-fx-background-color: #a9a9a9 , white , white; -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;");
     }
 
     public void initData(Quiz quiz) throws SQLException {
+        
+//        grid.setStyle("-fx-background-color: #0000;");
         this.quiz = quiz;
-        Label lb_quiz = new Label("Titre de quiz");
-        Button btn_add = new Button("+");
-        btn_add.setOnAction(e ->{
-             Node node = (Node) e.getSource();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuestion.fxml"));
-                Stage stage = (Stage) node.getScene().getWindow();
+        lb_quiz.setText("Titre de quiz");
+        tf_quiz.setText(quiz.getNom_quiz());
+        FontAwesomeIcon btn_add = new FontAwesomeIcon();
+        btn_add.setGlyphName("PLUS_SQUARE");
+        btn_add.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 25.0; -fx-fill: #00af00;");
+        btn_add.setOnMouseClicked(e -> {
+            Node node = (Node) e.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuestion.fxml"));
+            Stage stage = (Stage) node.getScene().getWindow();
 
-                Scene scene = null;
-                try {
-                    scene = new Scene(loader.load());
-                } catch (IOException ex) {
-                    Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                ShowQuestionController quizController = loader.getController();
-                try {
-                    quizController.initData(new Question(0, quiz.getId(), "", 0, 2));
-                } catch (SQLException ex) {
-                    Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-                stage.setScene(scene);
+            Scene scene = null;
+            try {
+                scene = new Scene(loader.load());
+            } catch (IOException ex) {
+                Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ShowQuestionController quizController = loader.getController();
+            try {
+                quizController.initData(new Question(0, quiz.getId(), "", 0, 2));
+            } catch (SQLException ex) {
+                Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            stage.setScene(scene);
 
         });
-        tf_quiz = new TextField(quiz.getNom_quiz());
-        grid.addRow(0, lb_quiz, tf_quiz, btn_add);
+        hbox.getChildren().add( btn_add);
         List<Question> list_question = questionService.getQuestionByQuiz(quiz);
 
         for (int i = 0; i < list_question.size(); i++) {
 
+            
             Label lb_question = new Label(list_question.get(i).getContenu_ques());
             VBox vb = new VBox();
             List<Reponse> reponseList = reponseService.getReponseByQuestion(list_question.get(i));
             for (Reponse reponse : reponseList) {
                 Label lb_reponse = new Label(reponse.getContenu_rep());
+                if(reponse.getId() == list_question.get(i).getRep_just_id())
+                    lb_reponse.setTextFill(Color.web("green", 0.8));
                 vb.getChildren().add(lb_reponse);
             }
 
-            grid.addRow(i + 1, lb_question, vb);
-            grid.setValignment(grid.getChildren().get(i + 1), VPos.TOP);
+            FontAwesomeIcon btn_remove = new FontAwesomeIcon();
+            btn_remove.setGlyphName("TRASH");
+            btn_remove.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 20.0; -fx-fill: #b45959;");
             Question question = list_question.get(i);
-            lb_question.setOnMouseClicked(e -> {
+            btn_remove.setOnMouseClicked(event -> {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Supprimer  " + question.getContenu_ques() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                    //do stuff
+                    questionService.deleteQuestion(question);
+                    try {
+//                        grid.getChildren().clear();
+                        initData(quiz);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            });
+            vb.setPadding(new Insets(10, 10, 10, 10));
+//            grid.setPadding(new Insets(20, 20, 20, 20));
+            HBox hb = new HBox();
+            lb_question.setMinWidth(100);
+            vb.setMinWidth(200);
+            hb.getChildren().addAll(lb_question, vb, btn_remove);
+            list.getItems().add(hb);
+//            grid.addRow(i, lb_question, vb, btn_remove);
+            
+//            grid.setValignment(grid.getChildren().get(i), VPos.TOP);
+
+        }
+                    list.setOnMouseClicked(e -> {
                 Node node = (Node) e.getSource();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuestion.fxml"));
                 Stage stage = (Stage) node.getScene().getWindow();
-
                 Scene scene = null;
                 try {
                     scene = new Scene(loader.load());
@@ -116,13 +176,13 @@ public class ShowQuizController implements Initializable {
                 }
                 ShowQuestionController quizController = loader.getController();
                 try {
-                    quizController.initData(question);
+                    quizController.initData(list_question.get(list.getSelectionModel().getSelectedIndex()));
                 } catch (SQLException ex) {
                     Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 stage.setScene(scene);
             });
-        }
+        
     }
 
     @FXML
