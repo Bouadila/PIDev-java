@@ -11,11 +11,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="main_pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddQuizController">
    <children>
-      <Label fx:id="lb_text" layoutX="165.0" layoutY="149.0" text="Label" />
+      <Label fx:id="lb_text" layoutX="107.0" layoutY="149.0" text="Label" />
       <TextField fx:id="tf_text" layoutX="271.0" layoutY="145.0" />
-      <HBox id="hb_btns" fx:id="hb_btns" layoutX="368.0" layoutY="333.0" prefHeight="34.0" prefWidth="200.0">
+      <HBox id="hb_btns" fx:id="hb_btns" layoutX="368.0" layoutY="298.0" prefHeight="34.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btn_next" mnemonicParsing="false" onAction="#nextQuestion" text="Suivant" />
+            <Button fx:id="btn_next" mnemonicParsing="false" onAction="#nextQuestion"  text="Suivant" />
          </children>
       </HBox>
       <Label fx:id="lb_error" layoutX="271.0" layoutY="200.0" text="Label" visible="false" />

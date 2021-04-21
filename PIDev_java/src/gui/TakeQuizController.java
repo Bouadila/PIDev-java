@@ -69,7 +69,7 @@ public class TakeQuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        List_reponses_condidat list = new List_reponses_condidat(7, 5, 0);
+        List_reponses_condidat list = new List_reponses_condidat(25, 5, 0);
         try {
             listId = listService.addListAndGetItsId(list);
         } catch (SQLException ex) {

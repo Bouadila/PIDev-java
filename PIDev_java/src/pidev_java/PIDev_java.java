@@ -27,7 +27,7 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/QuizList.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/AddQuiz.fxml"));
         
         Scene scene = new Scene(root);
         
