@@ -115,7 +115,8 @@ public class ShowQuizController implements Initializable {
             stage.setScene(scene);
 
         });
-        hbox.getChildren().add( btn_add);
+        if(hbox.getChildren().size() <3)
+            hbox.getChildren().add( btn_add);
         List<Question> list_question = questionService.getQuestionByQuiz(quiz);
 
         for (int i = 0; i < list_question.size(); i++) {
@@ -133,7 +134,7 @@ public class ShowQuizController implements Initializable {
 
             FontAwesomeIcon btn_remove = new FontAwesomeIcon();
             btn_remove.setGlyphName("TRASH");
-            btn_remove.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 20.0; -fx-fill: #b45959;");
+            btn_remove.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 40.0; -fx-fill: #b45959; -fx-padding: 20 20 20 20;");
             Question question = list_question.get(i);
             btn_remove.setOnMouseClicked(event -> {
 
@@ -144,7 +145,7 @@ public class ShowQuizController implements Initializable {
                     //do stuff
                     questionService.deleteQuestion(question);
                     try {
-//                        grid.getChildren().clear();
+                        list.getItems().clear();;
                         initData(quiz);
                     } catch (SQLException ex) {
                         Logger.getLogger(QuizListController.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,7 +154,7 @@ public class ShowQuizController implements Initializable {
 
             });
             vb.setPadding(new Insets(10, 10, 10, 10));
-//            grid.setPadding(new Insets(20, 20, 20, 20));
+            lb_question.setPadding(new Insets(10, 10, 10, 10));
             HBox hb = new HBox();
             lb_question.setMinWidth(100);
             vb.setMinWidth(200);
@@ -176,9 +177,10 @@ public class ShowQuizController implements Initializable {
                 }
                 ShowQuestionController quizController = loader.getController();
                 try {
+                    
                     quizController.initData(list_question.get(list.getSelectionModel().getSelectedIndex()));
-                } catch (SQLException ex) {
-                    Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    
                 }
                 stage.setScene(scene);
             });
