@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AjouterFormationController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AjouterFormationController">
     <stylesheets>
         <URL value="@ajouterformation.fxml.css" />
     </stylesheets>
@@ -54,5 +55,6 @@
             <Font size="31.0" />
          </font>
       </Label>
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="752.0" layoutY="40.0" onMouseClicked="#btn_close" size="30" />
    </children>
 </AnchorPane>

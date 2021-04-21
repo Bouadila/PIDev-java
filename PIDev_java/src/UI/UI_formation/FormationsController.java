@@ -34,6 +34,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -264,8 +265,14 @@ public class FormationsController implements Initializable {
         
     
     }
+
     
-   
+   @FXML
+    private void  btn_close(javafx.scene.input.MouseEvent event) {
+        
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
     
    
     }

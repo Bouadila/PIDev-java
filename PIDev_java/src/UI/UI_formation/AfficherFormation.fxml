@@ -60,14 +60,14 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="315.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+      <HBox alignment="CENTER" layoutX="315.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
          <children>
             <FontAwesomeIconView fill="#2196f3" glyphName="PLUS_SQUARE" onMouseClicked="#btn_gotoAjouterForma" size="45" text="" />
             <FontAwesomeIconView fill="#00f676" glyphName="REFRESH" layoutX="10.0" layoutY="76.0" onMouseClicked="#btn_Refresh_Forma" size="45" wrappingWidth="11.911458015441895" />
             <FontAwesomeIconView fill="#455a64" glyphName="PRINT" onMouseClicked="#btn_print_formation" size="45" />
          </children>
       </HBox>
-      <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="20" />
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="30" />
       <TextField fx:id="tfSearchForma" layoutX="636.0" layoutY="123.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche" />
    </children>
 </AnchorPane>
