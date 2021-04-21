@@ -36,6 +36,10 @@ public class User {
         this.roles = roles;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
     
     private Date date_naiss;
 

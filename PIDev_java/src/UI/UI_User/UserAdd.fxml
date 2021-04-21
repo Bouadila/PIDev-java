@@ -62,5 +62,6 @@
       </Group>
       <ComboBox fx:id="tfGover" layoutX="436.0" layoutY="105.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Governorat" />
       <ComboBox fx:id="tfSpecial" layoutX="437.0" layoutY="164.0" onMouseClicked="#tfSpecial" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Specialité" />
+      <Button fx:id="txtimgchose" layoutX="273.0" layoutY="363.0" mnemonicParsing="false" onAction="#imgchose" text="Image" />
    </children>
 </AnchorPane>

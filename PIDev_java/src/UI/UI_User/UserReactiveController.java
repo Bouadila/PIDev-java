@@ -104,7 +104,7 @@ public class UserReactiveController implements Initializable {
     private void OUI(MouseEvent event) throws SQLException, IOException {
          int etatDes= '0';
 
-         String req2 ="UPDATE `users` SET `etat` = '"+'0'+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String req2 ="UPDATE `user` SET `etat` = '"+'0'+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
        
        ps2.executeUpdate();

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import utils.DataSource;
 
 /**
@@ -132,7 +134,7 @@ if(nvEmail.getText().equals("")){
 
         
 else{
-        String req2 ="UPDATE `users` SET `email` = '"+nvEmail.getText()+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+        String req2 ="UPDATE `user` SET `email` = '"+nvEmail.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkemail.setTextFill(Color.GREEN);
@@ -142,42 +144,47 @@ else{
     @FXML
     private void changePW(MouseEvent event) throws SQLException      
  {
-         String oldpassword="";
-       
-        String request0 ="SELECT * from `users` WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+        String oldpassword="";
+        String pp = "";      
+        String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
-
+           
         if (rs0.next()) {
             oldpassword = rs0.getString("password");
         }
         
-        if(oldpw.getText().equals(oldpassword)){
+              pp =rs0.getString("password");    
+              pp = pp.replaceFirst("2y", "2a");            
+              byte[] decryptpassword = Base64.getMimeDecoder().decode(pp);                                      
+              if (BCrypt.checkpw(oldpw.getText(),pp))
+             {   
             if(nvpw.getText().equals("")){
             checkpw.setTextFill(Color.RED);
             checkpw.setText("Nouveau mdp est vide!\n ");}
             else{
-            String req ="UPDATE `users` SET `password` = '"+nvpw.getText()+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
- 
-     PreparedStatement ps = con.prepareStatement(req);
-      ps.executeUpdate();     
-      checkpw.setTextFill(Color.GREEN);
-            checkpw.setText("Password changed successfully !");
-      
-        //    System.out.println("PW CHNGED");
+                 String passwordnew = BCrypt.hashpw(nvpw.getText(),BCrypt.gensalt(13));
+                 passwordnew = passwordnew.replaceFirst("2a", "2y") ;
+            String req ="UPDATE `user` SET `password` = '"+passwordnew+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+            PreparedStatement ps = con.prepareStatement(req);
+            ps.executeUpdate();     
+            checkpw.setTextFill(Color.GREEN);
+            checkpw.setText("Password changed successfully !");    
             }
         }
         else {
            checkpw.setTextFill(Color.TOMATO);
             checkpw.setText("Wrong password !");
-        }    }
+        } 
+ 
+ }
   @FXML
     private void changeSpecial(MouseEvent event) throws SQLException {
          if(nvSpecial.getValue().equals("Choisir Votre Spécialiter")){
             checkSpecial.setTextFill(Color.RED);
             checkSpecial.setText("Specialité est vide!\n ");}
         else{
-           String req2 ="UPDATE `users` SET `special` = '"+nvSpecial.getValue()+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+           String req2 ="UPDATE `user` SET `special` = '"+nvSpecial.getValue()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkSpecial.setTextFill(Color.GREEN);
@@ -190,7 +197,7 @@ else{
             checkGover.setTextFill(Color.RED);
             checkGover.setText("Governorat est vide!\n ");}
         else{
-          String req2 ="UPDATE `users` SET `gover` = '"+tfnvGover.getValue()+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+          String req2 ="UPDATE `user` SET `gover` = '"+tfnvGover.getValue()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkGover.setTextFill(Color.GREEN);
@@ -203,7 +210,7 @@ else{
             checkimg.setTextFill(Color.RED);
             checkimg.setText("Image est vide!\n ");}
         else{
-          String req2 ="UPDATE `users` SET `img` = '"+nvImg.getText()+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+          String req2 ="UPDATE `user` SET `img` = '"+nvImg.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkimg.setTextFill(Color.GREEN);
@@ -216,7 +223,7 @@ else{
             checknom.setTextFill(Color.RED);
             checknom.setText("Nom est vide!\n ");}
         else{
-         String req2 ="UPDATE `users` SET `name` = '"+nvNom.getText()+"' WHERE `users`.`id` = "+UserSession.getIdSession()
+         String req2 ="UPDATE `user` SET `name` = '"+nvNom.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()
                         +";";
         java.sql.PreparedStatement ps3 = con.prepareStatement(req2);
         ps3.executeUpdate();
@@ -231,7 +238,7 @@ else{
             checkprenom.setTextFill(Color.RED);
             checkprenom.setText("Prenom est vide!\n ");}
         else{
-          String req2 ="UPDATE `users` SET `prenom` = '"+nvPrenom.getText()+"' WHERE `users`.`id` = "+UserSession.getIdSession()
+          String req2 ="UPDATE `user` SET `prenom` = '"+nvPrenom.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()
                         +";";
         java.sql.PreparedStatement ps3 = con.prepareStatement(req2);
         ps3.executeUpdate();
@@ -242,7 +249,7 @@ else{
     @FXML
     private void goToAcceuil(ActionEvent event) throws IOException, SQLException {
             String role="";
-         String request0 ="SELECT * from `users` WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
         if (rs0.next())
@@ -269,28 +276,28 @@ else{
                     stage.show();
         }
     }
-
+ 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException, SQLException {
          String role="";
-         String request0 ="SELECT * from `users` WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String request0 ="SELECT *,SUBSTR(roles,3,5) as rol from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
         if (rs0.next())
         {
-            role = rs0.getString("roles");
+            role = rs0.getString("rol");
         }
         
-        if (role.equals("Candidat")){
+        if (role.equals("Candi")){
              Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
 
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ProfileChauffeur.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserCandidatAffiche.fxml")));
                     stage.setScene(scene);
                     stage.show();
         }
-        if (role.equals("Employeur")){
+        if (role.equals("Emplo")){
              Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
@@ -354,7 +361,7 @@ else{
     private void goTodesactiv(MouseEvent event) throws SQLException, IOException {
            int etatDes= '1';
 
-         String req2 ="UPDATE `users` SET `etat` = '"+'1'+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String req2 ="UPDATE `user` SET `etat` = '"+'1'+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
        
        ps2.executeUpdate();

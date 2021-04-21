@@ -35,7 +35,7 @@ public class PIDev_java extends Application {
 
         stage.setTitle("Recruitini");
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/Login.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UseChange.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserResetPwd.fxml"));
 
 //                Parent root = FXMLLoader.load(getClass().getResource("/UI/UIUser/UserAddFXML.fxml"));
 

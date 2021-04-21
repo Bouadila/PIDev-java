@@ -16,11 +16,11 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="446.0" prefWidth="710.0" style="-fx-background-color: #0000;">
          <children>
-            <Label fx:id="inscrireUser" alignment="CENTER" layoutX="268.0" layoutY="365.0" onMouseClicked="#Register" prefHeight="26.0" prefWidth="208.0" text="Créer un compte" textFill="#90332b" />
-            <Pane layoutX="191.0" layoutY="115.0" prefHeight="206.0" prefWidth="374.0" style="-fx-background-color: #0000;">
+            <Label fx:id="inscrireUser" alignment="CENTER" layoutX="268.0" layoutY="376.0" onMouseClicked="#Register" prefHeight="26.0" prefWidth="208.0" text="Créer un compte" textFill="#90332b" />
+            <Pane layoutX="191.0" layoutY="115.0" prefHeight="227.0" prefWidth="374.0" style="-fx-background-color: #0000;">
                <children>
-                  <Label fx:id="check" layoutX="114.0" layoutY="183.0" prefHeight="17.0" prefWidth="142.0" />
-                  <Button fx:id="log" layoutX="133.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #9b2938;" text="Se connecter" textFill="WHITE" />
+                  <Label fx:id="check" layoutX="123.0" layoutY="198.0" prefHeight="17.0" prefWidth="142.0" />
+                  <Button fx:id="log" layoutX="133.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #9b2938;" text="Se connecter" textFill="WHITE" />
                   <TextField fx:id="user" layoutX="114.0" layoutY="61.0" />
                   <PasswordField fx:id="pw" layoutX="113.0" layoutY="112.0" />
                   <Label layoutX="15.0" layoutY="-20.0" prefHeight="74.0" prefWidth="356.0" text="Se Connecter">
@@ -30,9 +30,14 @@
                   </Label>
                   <Label layoutX="29.0" layoutY="65.0" prefHeight="17.0" prefWidth="68.0" text="Email :" />
                   <Label layoutX="19.0" layoutY="116.0" prefHeight="17.0" prefWidth="78.0" text="Mot de passe:" />
+                  <Label fx:id="oublierPwd" alignment="CENTER" layoutX="-11.0" layoutY="137.0" onMouseClicked="#forgetPwd" prefHeight="26.0" prefWidth="149.0" text="Mot de passe oublier" textFill="#90332b">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Label layoutX="313.0" layoutY="348.0" text="pas encore memebre ? " />
+            <Label layoutX="313.0" layoutY="359.0" text="pas encore memebre ? " />
             <Pane prefHeight="452.0" prefWidth="117.0" style="-fx-background-color: #9b2938;">
                <children>
                   <Text fill="WHITE" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recrutini  " textAlignment="RIGHT" wrappingWidth="67.5911425203085" />

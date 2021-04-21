@@ -25,7 +25,7 @@ public class DataSource {
     
     private Connection cnx;
     
-    private static DataSource instance;
+    private static DataSource instance; 
     
     private DataSource(){
         try {
@@ -46,4 +46,6 @@ public class DataSource {
     public Connection getCnx(){
         return cnx;
     }
+    
+    
 }

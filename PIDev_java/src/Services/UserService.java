@@ -133,53 +133,10 @@ public class UserService implements IService<User> {
      }
     return arr;
         }
+    
+    
+  
 }
     
-    
-//      try {
-//          String req="INSERT INTO User(email, password , name  ,prenom, gover, img , special )"
-//                  +"VALUES(?,?,?,?,?,?,?)";
-//          PreparedStatement pst =cnx.prepareStatement(req);
-//         pst.setString(1, entity.getEmail());
-//         pst.setString(2, entity.getPassword());
-//         pst.setString(3, entity.getName());
-//         pst.setString(4, entity.getPrenom());
-//         pst.setString(5, entity.getGover());
-//         pst.setString(6, entity.getImg());
-//         pst.setString(7, entity.getSpecial());
-//
-//          pst.executeUpdate();
-//           
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//
-//    @Override
-//    public ArrayList<User> getAllUser() {
-//        ArrayList<User> users=new ArrayList<>();
-//        String req ="SELECT * FROM User";        
-// try {
-//          Statement st =cnx.createStatement();
-//          ResultSet rst =st.executeQuery(req);
-//          while (rst.next())
-//          {
-//              User u=new User();
-//              u.setId(rst.getInt("id"));
-//              u.setName(rst.getString("name"));
-//              u.setPrenom(rst.getString("prenom"));
-//              u.setEmail(rst.getString("email"));
-//              u.setPassword(rst.getString("password"));
-//              u.setGover(rst.getString("gover"));
-//              u.setSpecial(rst.getString("special"));
-//              u.setImg(rst.getString("img"));
-//              users.add(u);
-//          }
-//           
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-//        } 
-// return users;
-//    }
     
 

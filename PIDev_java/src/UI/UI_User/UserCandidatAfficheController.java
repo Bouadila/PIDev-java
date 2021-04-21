@@ -89,7 +89,7 @@ catch (SQLException ex) {
     @FXML
     private void goToAcceuil(ActionEvent event) throws SQLException ,IOException {
         String role="";
-         String request0 ="SELECT * from `users` WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
         if (rs0.next())
@@ -160,7 +160,7 @@ catch (SQLException ex) {
          String gover="";
 
          
-        String request0 ="SELECT * from `users` WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+        String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
 
@@ -196,7 +196,7 @@ catch (SQLException ex) {
     private void goTodesactiv(MouseEvent event) throws SQLException, IOException {
                int etatDes= '1';
 
-         String req2 ="UPDATE `users` SET `etat` = '"+'1'+"' WHERE `users`.`id` = "+UserSession.getIdSession()+";";
+         String req2 ="UPDATE `user` SET `etat` = '"+'1'+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
        
        ps2.executeUpdate();

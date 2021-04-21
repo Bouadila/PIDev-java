@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import Entity.User;
 import java.util.ArrayList;
 
 /**
@@ -15,4 +16,5 @@ public interface IService <T> {
 
     public boolean addUser(T entity);
     public ArrayList<T> getAllUser();
+
 }
