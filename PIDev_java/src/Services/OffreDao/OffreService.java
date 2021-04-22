@@ -56,11 +56,21 @@ public class OffreService {
         }
     }
      public void edite(Offre offre, Contrat contrat) {
+         System.out.println(offre.getId());
         try {
-        PreparedStatement ps = cnx.prepareStatement("UPDATE offre`SET`contrat_id`=?,"
-                + "`description`=?,`salaire`=?,`date_expiration`=?,`nombre_place`=?,"
-                + "`post`=?,`objectif`=?,`competences`=?,`domaine`=?,`experience_min`=?,"
-                + "`experience_max`=? WHERE `id`=?");
+        PreparedStatement ps = cnx.prepareStatement("UPDATE `offre` SET "
+                + "`contrat_id`=?,"
+                + "`description`=?,"
+                + "`salaire`=?,"
+                + "`date_expiration`=?,"
+                + "`nombre_place`=?,"
+                + "`post`=?,"
+                + "`objectif`=?,"
+                + "`competences`=?,"
+                + "`domaine`=?,"
+                + "`experience_min`=?,"
+                + "`experience_max`=? "
+                + "WHERE `id`=?");
             ps.setInt(1, contrat.getId());
             ps.setString(2, offre.getDescription());
             ps.setInt(3,offre.getSalaire());
@@ -74,15 +84,15 @@ public class OffreService {
             ps.setInt(11, offre.getExperienceMax());
             ps.setInt(12, offre.getId());
         int i = ps.executeUpdate();
-        
+            System.out.println(i);
     } catch (SQLException ex) {
-        ex.printStackTrace();
+            System.out.println(ex.getMessage());
     }
     }
      public void delete(Offre offre) {
-         try {
+        try {
         Statement stmt = cnx.createStatement();
-        int i = stmt.executeUpdate("DELETE FROM `offre WHERE id=" + offre.getId());
+        int i = stmt.executeUpdate("DELETE FROM `offre` WHERE id=" + offre.getId());
         } 
          catch (SQLException ex) {
             ex.printStackTrace();

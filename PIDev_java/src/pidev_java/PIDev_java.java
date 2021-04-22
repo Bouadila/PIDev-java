@@ -38,7 +38,19 @@ public class PIDev_java extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-         Application.launch(args);
+//       OffreService o = new OffreService();
+//       Date d1 = new Date();
+//       Offre of = new Offre("livreur","hhhh","hhhhh","hhhhh","hh",7000,2,d1,1,2);
+//        Contrat contrat = new Contrat ();
+//        contrat.setId(1);
+//        of.setId(12);
+       // o.edite(of, contrat);
+        //o.add(of, contrat);
+//        Offre of = new Offre();
+//        of.setId(5);
+//        o.delete(of);
+        
+        Application.launch(args);
 //        Contrat c = new Contrat(4,"111111","fgvfjfufjkgv");
 //        //ContratService cs = new ContratService() ;
 //        //cs.add(c);
@@ -72,5 +84,6 @@ public class PIDev_java extends Application {
 //        RendezVousService rdvs = new RendezVousService();
 //        System.out.println(rdvs.getAll());
     }
+    
     
 }

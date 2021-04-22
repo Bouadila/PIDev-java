@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -25,6 +26,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -80,7 +82,13 @@ public class AjouterOffreFXMLController implements Initializable {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate localDate = LocalDate.now();
         LocalDate expiration = this.datePickerExpiration.getValue();
-        System.out.println(domaine.isEmpty());
+//        System.out.println(post.isEmpty());
+//        System.out.println(objectif.isEmpty());
+//        System.out.println(competence.isEmpty());
+//        System.out.println(description.isEmpty());
+//        System.out.println(domaine.isEmpty());
+//        System.out.println(salaire);
+//        System.out.println(nbPlace == 0);
         if (post.isEmpty() || objectif.isEmpty() || competence.isEmpty() || description.isEmpty() || domaine.isEmpty()|| salaire == 0 || nbPlace == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -104,6 +112,9 @@ public class AjouterOffreFXMLController implements Initializable {
             this.tfMinVal.getValueFactory().setValue(0);
             this.tfMaxVal.getValueFactory().setValue(0);
             this.datePickerExpiration.getEditor().clear();
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.close();
             
         }
 }

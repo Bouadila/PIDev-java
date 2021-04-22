@@ -129,9 +129,14 @@
       </Pane>
       <HBox alignment="CENTER_RIGHT" layoutX="568.0" layoutY="57.0" prefHeight="49.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
          <children>
+            <Button mnemonicParsing="false" onMouseClicked="#refreshData" style="-fx-background-color: #ad0505;">
+               <graphic>
+                  <FontAwesomeIconView fill="#fcf8f8" glyphName="REFRESH" />
+               </graphic>
+            </Button>
             <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #ad0505;" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
                <graphic>
-                  <FontAwesomeIconView fill="#fffefe" glyphName="PLUS" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#addOffre" size="14.0" text=" " textAlignment="JUSTIFY" wrappingWidth="110.91148853302002" />
+                  <FontAwesomeIconView fill="#fffefe" glyphName="PLUS" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#addOffre" size="14.0" text=" " textAlignment="JUSTIFY" wrappingWidth="18.91148853302002" />
                </graphic>
             </Button>
          </children>
