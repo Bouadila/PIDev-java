@@ -31,10 +31,10 @@ public class RendezVousService {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-            ps.setInt(1, entity.getIdCandidature());
+            ps.setInt(1, 2);
             ps.setString(2, entity.getTitre());
-            ps.setDate(3, (Date) entity.getStart());
-            ps.setDate(4, (Date) entity.getEnd());
+            ps.setDate(3, new java.sql.Date(entity.getStart().getTime()));
+            ps.setDate(4, new java.sql.Date(entity.getEnd().getTime()));
             ps.setString(5,entity.getDescription());
             ps.setBoolean(6, entity.isAllDay());
             ps.setString(7, entity.getBackgroundColor());
@@ -44,7 +44,7 @@ public class RendezVousService {
             ps.setString(11, entity.getRoom());
             int i = ps.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
     }
     public void edite(RendezVous entity) {
@@ -67,7 +67,7 @@ public class RendezVousService {
         int i = ps.executeUpdate();
         
     } catch (SQLException ex) {
-        ex.printStackTrace();
+        System.out.println(ex.getMessage());
     }
     }
      public void delete(RendezVous entity) {
@@ -76,7 +76,7 @@ public class RendezVousService {
         int i = stmt.executeUpdate("DELETE FROM `rendezvous` WHERE id=" + entity.getId());
         } 
          catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
           }
     }
      public ArrayList<RendezVous> getAll() {
@@ -105,7 +105,7 @@ public class RendezVousService {
             }
         
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         return (ArrayList<RendezVous>) rdvs;
             }
@@ -133,7 +133,7 @@ public class RendezVousService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
 
     return null;

@@ -28,15 +28,14 @@ public class RendezVous {
     public RendezVous() {
     }
 
-    public RendezVous(int idCandidature, String titre, Date start, Date end, String description, String backgroundColor, String borderColor, String textColor, String room) {
-        this.idCandidature = idCandidature;
+    public RendezVous(String titre, Date start, Date end, String description, String room) {
         this.titre = titre;
         this.start = start;
         this.end = end;
         this.description = description;
-        this.backgroundColor = backgroundColor;
-        this.borderColor = borderColor;
-        this.textColor = textColor;
+        this.backgroundColor = "#008000";
+        this.borderColor = "#000000";
+        this.textColor = "#fcfcfc";
         this.allDay=false;
         this.accepte=false;
         this.room = room;
