@@ -154,9 +154,7 @@ public class ModifierCandidatureController implements Initializable {
         this.btn_lettremotivedit = btn_lettremotivedit;
     }
     
-    
-    
-    
+
     
     @FXML
     private void modifierCandidature(ActionEvent event) {

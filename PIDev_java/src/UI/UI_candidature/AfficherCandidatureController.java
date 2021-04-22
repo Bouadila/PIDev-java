@@ -217,16 +217,8 @@ public class AfficherCandidatureController implements Initializable {
                         //mC.settxtfield_cvedit("Telecharger un CV");
                         //mC.settxtfield_lettremotivdit("Telecharger une lettre");
                         //mC.setdate_dispoedit(c.getDispo());
-                        
-                        
+                             
                         System.out.println(c.getId());
-
-                        
-                        
-                          
-                     
-                      
-                        
 
                         Stage stage = new Stage();
                         stage.setTitle("Modifier évenement");
