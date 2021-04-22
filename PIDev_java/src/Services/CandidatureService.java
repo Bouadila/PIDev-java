@@ -24,10 +24,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
-<<<<<<< HEAD
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-=======
 import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +35,6 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
->>>>>>> main
 
 public class CandidatureService implements iService_candidature<Candidature>{
 
@@ -81,11 +76,7 @@ public class CandidatureService implements iService_candidature<Candidature>{
 //            System.out.println("Formation exitst !");
 //            return false;
 //        } else {
-<<<<<<< HEAD
-            String sql = "insert into candidature(nom,prenom,sexe,email,date_naiss,num,status,diplome,date_candidature) values('" + c.getNom() + "','" + c.getPrenom() + "','"+ c.getSexe() + "','" + c.getEmail() + "','" + c.getDate_naiss() + "','"+c.getNum()+"','" + c.getStatus() + "','" + c.getDiplome() +"','"+c.getDate_candidature()+"')";
-=======
             String sql = "insert into candidature(num,status,diplome,date_candidature) values('" +c.getNum()+"','" + c.getStatus() + "','" + c.getDiplome() +"','"+c.getDate_candidature()+"')";
->>>>>>> main
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
@@ -152,13 +143,8 @@ public class CandidatureService implements iService_candidature<Candidature>{
            
        
         try {
-<<<<<<< HEAD
-            String requete = "update candidature set nom='" + c.getNom() + "', prenom='" + c.getPrenom()+
-                    "',sexe='" + c.getSexe()+ "',email='" + c.getSexe()+ "',date_naiss='" 
-                    + c.getDate_naiss() +"',num='"+c.getNum()+"',status='"+c.getStatus()+"',diplome='"+c.getDiplome()+"' where id="+c.getId();
-=======
+
             String requete = "update candidature set num='"+c.getNum()+"',status='"+c.getStatus()+"',diplome='"+c.getDiplome()+"' where id="+c.getId();
->>>>>>> main
      
             
            ste = cnx.createStatement();
@@ -172,9 +158,6 @@ public class CandidatureService implements iService_candidature<Candidature>{
         }
     }
       
-<<<<<<< HEAD
-      
-=======
 //    public static sendMail(String recepient) {
 //        Properties properties = new Properties();
 //        properties.put("mail.smtp.auth", "true");
@@ -211,7 +194,6 @@ public class CandidatureService implements iService_candidature<Candidature>{
 //        }
 //            
 //    }
->>>>>>> main
     
     @Override
     public ObservableList<Candidature> GetAll() {

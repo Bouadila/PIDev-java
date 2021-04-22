@@ -46,7 +46,7 @@ import javax.mail.internet.*;
  */
 public class AjouterCandidatureController implements Initializable {
 
->>>>>>> main
+
     @FXML
     private TextField txtfield_num;
     @FXML
@@ -60,11 +60,6 @@ public class AjouterCandidatureController implements Initializable {
     @FXML
     private Button btn_retour;
     @FXML
-<<<<<<< HEAD
-    private TextField txtfield_filename;
-    @FXML
-    private Button btn_upload;
-=======
     private DatePicker date_dispo;
     @FXML
     private TextField txtfield_cv;
@@ -79,7 +74,7 @@ public class AjouterCandidatureController implements Initializable {
     private final Desktop desktop = Desktop.getDesktop();
     @FXML
     private Button btn_lettremotiv;
->>>>>>> main
+
 
     /**
      * Initializes the controller class.
@@ -87,13 +82,6 @@ public class AjouterCandidatureController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-<<<<<<< HEAD
-        choice_sexe.setItems(genders);
-        choice_status.setItems(status);
-        choice_diplome.setItems(diplomes);
-        
-    }    
-=======
         choice_status.setItems(status);
         choice_diplome.setItems(diplomes);
         
@@ -155,7 +143,7 @@ public class AjouterCandidatureController implements Initializable {
         
     }   
 
->>>>>>> main
+
     
     @FXML
     void gotoAfficherCandidature(ActionEvent event) throws IOException {
@@ -171,29 +159,11 @@ public class AjouterCandidatureController implements Initializable {
         
         btn_ajouter.setOnAction(e->{
         Candidature c = new Candidature();
-<<<<<<< HEAD
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-=======
         //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
->>>>>>> main
         Date date = new Date(System.currentTimeMillis());
         c.setDate_candidature(date);
         System.out.println(date);
         //c.setCandidat(1);
-<<<<<<< HEAD
-        c.setNom(txtfield_nom.getText());
-        c.setPrenom(txtfield_prenom.getText());
-        c.setSexe(choice_sexe.getValue());
-        c.setEmail(txtfield_email.getText());
-        c.setDate_naiss(date);
-        c.setNum(Integer.parseInt(txtfield_num.getText()));
-
-        
-        c.setStatus(choice_status.getValue());
-        c.setDiplome(choice_diplome.getValue());
-        //c.setCv();
-        new CandidatureService().ajouterCandidature(c);
-=======
         c.setDate_naiss(date);
         c.setNum(Integer.parseInt(txtfield_num.getText()));
         c.setStatus(choice_status.getValue());
@@ -207,7 +177,6 @@ public class AjouterCandidatureController implements Initializable {
             } catch (MessagingException ex) {
                 Logger.getLogger(AjouterCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
             }
->>>>>>> main
         
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Candidature");

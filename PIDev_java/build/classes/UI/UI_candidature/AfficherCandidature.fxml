@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1001.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_candidature.AfficherCandidatureController">
    <children>
       <TableView fx:id="TableCandidature" layoutX="14.0" layoutY="180.0" prefHeight="435.0" prefWidth="967.0">
@@ -29,6 +30,7 @@
         </columns>
       </TableView>
       <Button fx:id="btn_refreshCandidature" layoutX="741.0" layoutY="143.0" mnemonicParsing="false" onAction="#refreshlist" prefHeight="25.0" prefWidth="111.0" text="Refresh" />
+
       <Label layoutX="222.0" layoutY="49.0" prefHeight="58.0" prefWidth="434.0" text="List des candidatures" textAlignment="CENTER">
          <font>
             <Font size="45.0" />
@@ -37,5 +39,6 @@
       <TextField fx:id="searchField" layoutX="14.0" layoutY="143.0" prefHeight="25.0" prefWidth="717.0" />
       <Button fx:id="btn_AjouterCandidature" layoutX="863.0" layoutY="143.0" mnemonicParsing="false" onAction="#gotoAjouterCandidature" prefHeight="25.0" prefWidth="111.0" text="Ajouter" />
       <Button fx:id="front" layoutX="36.0" layoutY="24.0" mnemonicParsing="false" onAction="#gotoFront" prefHeight="25.0" prefWidth="111.0" text="front" />
+
    </children>
 </AnchorPane>

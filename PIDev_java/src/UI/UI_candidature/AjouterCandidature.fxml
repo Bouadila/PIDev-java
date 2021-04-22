@@ -21,81 +21,16 @@
             <Font size="31.0" />
          </font>
       </Label>
-<<<<<<< HEAD
-      <VBox layoutX="188.0" layoutY="72.0" prefHeight="473.0" prefWidth="150.0" spacing="30.0">
-         <children>
-            <Label text="Nom">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Prenom">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Sexe">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Email">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Date de naissance">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Numero">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Status">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Diplome">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-=======
->>>>>>> main
       <Button fx:id="btn_ajouter" layoutX="811.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajouterCandidature" prefHeight="44.0" prefWidth="109.0" text="Ajouter">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-<<<<<<< HEAD
-      <VBox layoutX="364.0" layoutY="72.0" prefHeight="490.0" prefWidth="292.0" spacing="30.0">
-         <children>
-            <TextField fx:id="txtfield_nom" />
-            <TextField fx:id="txtfield_prenom" />
-            <ChoiceBox fx:id="choice_sexe" prefHeight="25.0" prefWidth="293.0" />
-            <TextField fx:id="txtfield_email" />
-            <DatePicker fx:id="date_date_naiss" prefHeight="25.0" prefWidth="293.0" />
-            <TextField fx:id="txtfield_num" />
-            <ChoiceBox fx:id="choice_status" prefHeight="25.0" prefWidth="292.0" />
-            <ChoiceBox fx:id="choice_diplome" prefHeight="25.0" prefWidth="293.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-=======
->>>>>>> main
       <Button fx:id="btn_retour" layoutX="694.0" layoutY="524.0" mnemonicParsing="false" onAction="#gotoAfficherCandidature" prefHeight="44.0" prefWidth="109.0" text="Retour">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-<<<<<<< HEAD
-=======
       <HBox layoutX="238.0" layoutY="80.0" prefHeight="440.0" prefWidth="474.0">
          <children>
             <VBox prefHeight="440.0" prefWidth="181.0" spacing="30.0">
@@ -154,6 +89,5 @@
             </VBox>
          </children>
       </HBox>
->>>>>>> main
    </children>
 </AnchorPane>
