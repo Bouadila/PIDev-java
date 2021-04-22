@@ -215,12 +215,6 @@ public class AfficherCandidatureController implements Initializable {
                         
                         System.out.println(c.getId());
 
-                        
-                        
-                          
-                     
-                      
-                        
 
                         Stage stage = new Stage();
                         stage.setTitle("Modifier évenement");
