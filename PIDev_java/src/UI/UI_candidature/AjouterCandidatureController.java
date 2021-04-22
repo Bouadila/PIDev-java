@@ -135,8 +135,6 @@ public class AjouterCandidatureController implements Initializable {
 
             }
 
-     
-
         });
         
     }   
