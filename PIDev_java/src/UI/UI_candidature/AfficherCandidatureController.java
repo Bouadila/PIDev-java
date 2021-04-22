@@ -137,9 +137,7 @@ public class AfficherCandidatureController implements Initializable {
        // tab_date_candidature.setCellValueFactory(new PropertyValueFactory<>("date_candidature"));
         
        
-        /*FormationService fc = new FormationService();
-        List old = fc.getAll();
-        listForm.addAll(old);*/
+
          TableCandidature.setItems(listCand);
          
          
