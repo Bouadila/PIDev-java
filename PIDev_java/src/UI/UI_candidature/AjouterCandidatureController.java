@@ -10,11 +10,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import Entity.Candidature;
 import Services.CandidatureService;
-<<<<<<< HEAD
-import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-=======
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> main
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,9 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD
 import javafx.stage.Stage;
-=======
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -46,7 +38,6 @@ import javafx.stage.Window;
 
 import javax.mail.*;
 import javax.mail.internet.*;
->>>>>>> main
 
 /**
  * FXML Controller class
@@ -54,21 +45,7 @@ import javax.mail.internet.*;
  * @author A.L.I.C.E
  */
 public class AjouterCandidatureController implements Initializable {
-<<<<<<< HEAD
 
-
-    @FXML
-    private TextField txtfield_nom;
-    @FXML
-    private TextField txtfield_prenom;
-    @FXML
-    private ChoiceBox<String> choice_sexe;
-    ObservableList<String> genders = FXCollections.observableArrayList("Homme","Femme");
-    @FXML
-    private TextField txtfield_email;
-    @FXML
-    private DatePicker date_date_naiss;
-=======
 >>>>>>> main
     @FXML
     private TextField txtfield_num;
@@ -239,18 +216,14 @@ public class AjouterCandidatureController implements Initializable {
 
             alert.showAndWait(); 
             Stage stage = (Stage) btn_retour.getScene().getWindow();
-<<<<<<< HEAD
+
             //stage.close();
-            
-=======
-            stage.close();
->>>>>>> main
+
         });
 
     }
     
-<<<<<<< HEAD
-=======
+
     public void sendMail(String recepient) throws MessagingException {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
@@ -288,5 +261,5 @@ public class AjouterCandidatureController implements Initializable {
         }
           return null;  
     }
->>>>>>> main
+
 }
