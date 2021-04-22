@@ -21,84 +21,17 @@
             <Font size="31.0" />
          </font>
       </Label>
-<<<<<<< HEAD
-      <VBox layoutX="198.0" layoutY="82.0" prefHeight="473.0" prefWidth="150.0" spacing="30.0">
-         <children>
-            <Label text="Nom">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Prenom">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Sexe">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Email">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Date de naissance">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Numero">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Status">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label text="Diplome">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <Button fx:id="btn_modifier" layoutX="821.0" layoutY="534.0" mnemonicParsing="false" onAction="#modifierCandidature" prefHeight="44.0" prefWidth="109.0" text="Modifier">
-=======
       <Button fx:id="btn_modifier" layoutX="786.0" layoutY="478.0" mnemonicParsing="false" onAction="#modifierCandidature" prefHeight="44.0" prefWidth="109.0" text="Modifier">
->>>>>>> main
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-<<<<<<< HEAD
-      <VBox layoutX="374.0" layoutY="82.0" prefHeight="490.0" prefWidth="292.0" spacing="30.0">
-         <children>
-            <TextField fx:id="txtfield_nomedit" />
-            <TextField fx:id="txtfield_prenomedit" />
-            <ChoiceBox fx:id="choice_sexeedit" prefHeight="25.0" prefWidth="293.0" />
-            <TextField fx:id="txtfield_emailedit" />
-            <DatePicker fx:id="date_date_naissedit" prefHeight="25.0" prefWidth="293.0" />
-            <TextField fx:id="txtfield_numedit" />
-            <ChoiceBox fx:id="choice_statusedit" prefHeight="25.0" prefWidth="292.0" />
-            <ChoiceBox fx:id="choice_diplomeedit" prefHeight="25.0" prefWidth="293.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-      <Button fx:id="btn_retour" layoutX="704.0" layoutY="534.0" mnemonicParsing="false" onAction="#gotoAfficherCandidature" prefHeight="44.0" prefWidth="109.0" text="Retour">
-=======
       <Button fx:id="btn_retour" layoutX="669.0" layoutY="478.0" mnemonicParsing="false" onAction="#gotoAfficherCandidature" prefHeight="44.0" prefWidth="109.0" text="Retour">
->>>>>>> main
          <font>
             <Font size="20.0" />
          </font>
       </Button>
       <TextField fx:id="txtfield_idedit" layoutX="21.0" layoutY="27.0" visible="false" />
-<<<<<<< HEAD
-=======
       <HBox layoutX="243.0" layoutY="82.0" prefHeight="440.0" prefWidth="444.0">
          <children>
             <VBox prefHeight="440.0" prefWidth="169.0" spacing="30.0">
@@ -161,6 +94,5 @@
             </VBox>
          </children>
       </HBox>
->>>>>>> main
    </children>
 </AnchorPane>

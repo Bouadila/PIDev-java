@@ -37,6 +37,7 @@ public class ModifierCandidatureController implements Initializable {
     @FXML
     private Button btn_modifier;
     @FXML
+<<<<<<< HEAD
     private TextField txtfield_nomedit;
     @FXML
     private TextField txtfield_prenomedit;
@@ -48,6 +49,8 @@ public class ModifierCandidatureController implements Initializable {
     @FXML
     private DatePicker date_date_naissedit;
     @FXML
+=======
+>>>>>>> main
     private TextField txtfield_numedit;
     @FXML
     private ChoiceBox<String> choice_statusedit;
@@ -61,6 +64,19 @@ public class ModifierCandidatureController implements Initializable {
     public int formCand;
     @FXML
     private TextField txtfield_idedit;
+<<<<<<< HEAD
+=======
+    @FXML
+    private DatePicker date_dispo;
+    @FXML
+    private TextField txtfield_cvedit;
+    @FXML
+    private Button btn_cvedit;
+    @FXML
+    private TextField txtfield_lettremotivedit;
+    @FXML
+    private Button btn_lettremotivedit;
+>>>>>>> main
 
     /**
      * Initializes the controller class.
@@ -68,7 +84,10 @@ public class ModifierCandidatureController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+<<<<<<< HEAD
         choice_sexeedit.setItems(genders);
+=======
+>>>>>>> main
         choice_statusedit.setItems(status);
         choice_diplomeedit.setItems(diplomes);
     }    
@@ -83,6 +102,7 @@ public class ModifierCandidatureController implements Initializable {
         this.formCand = formCand;
     }
 
+<<<<<<< HEAD
     
     
      public TextField gettxtfield_nomedit() {
@@ -126,6 +146,9 @@ public class ModifierCandidatureController implements Initializable {
 
    
     
+=======
+   
+>>>>>>> main
     public TextField gettxtfield_numedit() {
         return txtfield_numedit;
     } 
@@ -157,11 +180,56 @@ public class ModifierCandidatureController implements Initializable {
     void settxtfield_idedit(String txtfield_idedit) {
         this.txtfield_idedit.setText(txtfield_idedit);
     }
+<<<<<<< HEAD
     
     
     
     
     
+=======
+
+    public DatePicker getDate_dispo() {
+        return date_dispo;
+    }
+
+    public void setDate_dispo(DatePicker date_dispo) {
+        this.date_dispo = date_dispo;
+    }
+
+    public TextField getTxtfield_cvedit() {
+        return txtfield_cvedit;
+    }
+
+    public void setTxtfield_cvedit(TextField txtfield_cvedit) {
+        this.txtfield_cvedit = txtfield_cvedit;
+    }
+
+    public Button getBtn_cvedit() {
+        return btn_cvedit;
+    }
+
+    public void setBtn_cvedit(Button btn_cvedit) {
+        this.btn_cvedit = btn_cvedit;
+    }
+
+    public TextField getTxtfield_lettremotivedit() {
+        return txtfield_lettremotivedit;
+    }
+
+    public void setTxtfield_lettremotivedit(TextField txtfield_lettremotivedit) {
+        this.txtfield_lettremotivedit = txtfield_lettremotivedit;
+    }
+
+    public Button getBtn_lettremotivedit() {
+        return btn_lettremotivedit;
+    }
+
+    public void setBtn_lettremotivedit(Button btn_lettremotivedit) {
+        this.btn_lettremotivedit = btn_lettremotivedit;
+    }
+    
+
+>>>>>>> main
     
     @FXML
     private void modifierCandidature(ActionEvent event) {
@@ -173,6 +241,7 @@ public class ModifierCandidatureController implements Initializable {
         System.out.println(date);
         //c.setCandidat(1);
         c.setId(Integer.parseInt(txtfield_idedit.getText()));
+<<<<<<< HEAD
         c.setNom(txtfield_nomedit.getText());
         c.setPrenom(txtfield_prenomedit.getText());
         c.setSexe(choice_sexeedit.getValue());
@@ -183,6 +252,14 @@ public class ModifierCandidatureController implements Initializable {
         c.setStatus(choice_statusedit.getValue());
         c.setDiplome(choice_diplomeedit.getValue());
         //c.setCv();
+=======
+        c.setNum(Integer.parseInt(txtfield_numedit.getText()));
+        c.setStatus(choice_statusedit.getValue());
+        c.setDiplome(choice_diplomeedit.getValue());
+        //c.setDispo(date);
+        //c.setCv(txtfield_cvedit.getText());
+        //c.setLettre_motiv(txtfield_lettremotivedit.getText());
+>>>>>>> main
         new CandidatureService().modifierCandidature(c);
         
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -201,7 +278,10 @@ public class ModifierCandidatureController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_candidature/AfficherCandidature.fxml"));
         Stage Window = (Stage) btn_retour.getScene().getWindow();
         Window.setScene(new Scene(root));
+<<<<<<< HEAD
         
+=======
+>>>>>>> main
     }
     
 }

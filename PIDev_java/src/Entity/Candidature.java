@@ -24,6 +24,8 @@ private String status;
 private String diplome;
 private String cv;
 private Date date_candidature;
+private Date dispo;
+private String lettre_motiv;
 private int offre;
 private int candidat;
 
@@ -43,6 +45,26 @@ private int candidat;
         this.candidat = candidat;
     }
 
+    public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv, int offre, int candidat) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.email = email;
+        this.date_naiss = date_naiss;
+        this.num = num;
+        this.status = status;
+        this.diplome = diplome;
+        this.cv = cv;
+        this.date_candidature = date_candidature;
+        this.dispo = dispo;
+        this.lettre_motiv = lettre_motiv;
+        this.offre = offre;
+        this.candidat = candidat;
+    }
+
+    
+    
     public Candidature() {
     }
 
@@ -57,6 +79,24 @@ private int candidat;
         this.diplome = diplome;
         this.cv = cv;
         this.date_candidature = date_candidature;
+    }
+    
+    
+
+    public Date getDispo() {
+        return dispo;
+    }
+
+    public void setDispo(Date dispo) {
+        this.dispo = dispo;
+    }
+
+    public String getLettre_motiv() {
+        return lettre_motiv;
+    }
+
+    public void setLettre_motiv(String lettre_motiv) {
+        this.lettre_motiv = lettre_motiv;
     }
     
     
