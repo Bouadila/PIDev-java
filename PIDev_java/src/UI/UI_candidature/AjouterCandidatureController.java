@@ -100,6 +100,7 @@ public class AjouterCandidatureController implements Initializable {
         c.setEmail(txtfield_email.getText());
         c.setDate_naiss(date);
         c.setNum(Integer.parseInt(txtfield_num.getText()));
+
         
         c.setStatus(choice_status.getValue());
         c.setDiplome(choice_diplome.getValue());
@@ -114,6 +115,7 @@ public class AjouterCandidatureController implements Initializable {
             alert.showAndWait(); 
             Stage stage = (Stage) btn_retour.getScene().getWindow();
             //stage.close();
+            
         });
 
     }

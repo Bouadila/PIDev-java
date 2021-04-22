@@ -162,6 +162,7 @@ public class ModifierCandidatureController implements Initializable {
     
     
     
+    
     @FXML
     private void modifierCandidature(ActionEvent event) {
         btn_modifier.setOnAction(e->{
@@ -200,6 +201,7 @@ public class ModifierCandidatureController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_candidature/AfficherCandidature.fxml"));
         Stage Window = (Stage) btn_retour.getScene().getWindow();
         Window.setScene(new Scene(root));
+        
     }
     
 }

@@ -223,12 +223,7 @@ public class AfficherCandidatureController implements Initializable {
                         } catch (IOException ex) {
                          System.out.println(ex.getMessage());
                         }
-                            
-                            
-                            
-                            
                         
-                            
 
                            
 
@@ -239,7 +234,6 @@ public class AfficherCandidatureController implements Initializable {
                         setGraphic(managebtn);
 
                         setText(null);
-
                     }
                 }
 
