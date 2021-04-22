@@ -76,13 +76,13 @@
                   <HBox prefHeight="25.0" prefWidth="292.0">
                      <children>
                         <TextField fx:id="txtfield_cv" prefHeight="25.0" prefWidth="238.0" />
-                        <Button fx:id="btn_uploadcv" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Button" />
+                        <Button fx:id="btn_uploadcv" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Telecharger" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="230.0" prefHeight="26.0" prefWidth="292.0">
                      <children>
                         <TextField fx:id="txtfield_lettremotiv" prefHeight="25.0" prefWidth="222.0" />
-                        <Button fx:id="btn_lettremotive" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Button" />
+                        <Button fx:id="btn_lettremotiv" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="Telecharger" />
                      </children>
                   </HBox>
                </children>

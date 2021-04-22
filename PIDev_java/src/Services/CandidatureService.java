@@ -24,8 +24,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
+import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class CandidatureService implements iService_candidature<Candidature>{
 
@@ -148,7 +157,42 @@ public class CandidatureService implements iService_candidature<Candidature>{
         }
     }
       
-      
+//    public static sendMail(String recepient) {
+//        Properties properties = new Properties();
+//        properties.put("mail.smtp.auth", "true");
+//        properties.put("mail.smtp.starttls.enable", "true");
+//        properties.put("mail.smtp.host", "smtp.gmail.com");
+//        properties.put("mail.smtp.port", "587");
+//        
+//        String myAccountEmail = "pidevtestad@gmail.com";
+//        String password ="pidevtestad123456";
+//        
+//        Session session = Session.getInstance(properties, new Authenticator(){
+//            
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(myAccountEmail, password);
+//            }
+//        });
+//       
+//        Message message = prepareMessage(session, myAccountEmail, recepient);
+//        Transport.send(message);
+//    }
+//    
+//    private static prepareMessage(Session session, String myAccountEmail, String recepient){
+//        
+//        Message message = new MimeMessage(session);
+//        try {
+//            message.setFrom(new InternetAddress(myAccountEmail));
+//            message.addRecipient(message.RecipientType.TO, new InternetAddress(recepient));
+//            message.setSubject("Votre candidature a été ajouté");
+//            message.setText("Votre candidature a été ajouté avec success");
+//            
+//        } catch (MessagingException e) {
+//            Logger.getLogger(CandidatureService.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//            
+//    }
     
     @Override
     public ObservableList<Candidature> GetAll() {

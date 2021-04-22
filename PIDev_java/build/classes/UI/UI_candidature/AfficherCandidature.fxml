@@ -34,8 +34,8 @@
             <Font size="45.0" />
          </font>
       </Label>
-      <TextField fx:id="searchField" layoutX="14.0" layoutY="143.0" prefHeight="25.0" prefWidth="592.0" />
-      <Button fx:id="btn_searchCandidature" layoutX="620.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Recherche" />
+      <TextField fx:id="searchField" layoutX="14.0" layoutY="143.0" prefHeight="25.0" prefWidth="717.0" />
       <Button fx:id="btn_AjouterCandidature" layoutX="863.0" layoutY="143.0" mnemonicParsing="false" onAction="#gotoAjouterCandidature" prefHeight="25.0" prefWidth="111.0" text="Ajouter" />
+      <Button fx:id="front" layoutX="36.0" layoutY="24.0" mnemonicParsing="false" onAction="#gotoFront" prefHeight="25.0" prefWidth="111.0" text="front" />
    </children>
 </AnchorPane>

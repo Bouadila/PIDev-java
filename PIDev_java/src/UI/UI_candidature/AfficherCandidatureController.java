@@ -61,8 +61,6 @@ public class AfficherCandidatureController implements Initializable {
 
     
     @FXML
-    private Button btn_searchCandidature;
-    @FXML
     private TableView<Candidature> TableCandidature;
     @FXML
     private TableColumn<Candidature, String> tab_nom;
@@ -107,6 +105,8 @@ public class AfficherCandidatureController implements Initializable {
     private TableColumn<Candidature, String> tab_dispo;
     @FXML
     private TextField searchField;
+    @FXML
+    private Button front;
 
     /**
      * Initializes the controller class.
@@ -115,6 +115,7 @@ public class AfficherCandidatureController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         loadDate();
+        
     }    
         
          private void loadDate() 
@@ -142,7 +143,9 @@ public class AfficherCandidatureController implements Initializable {
          TableCandidature.setItems(listCand);
          
          
-
+         btn_refreshCandidature.setOnAction(e->{
+            refreshTable();
+        });   
         
          
          
@@ -233,16 +236,7 @@ public class AfficherCandidatureController implements Initializable {
                         stage.show();
                         } catch (IOException ex) {
                          System.out.println(ex.getMessage());
-                        }
-                            
-                            
-                            
-                            
-                        
-                            
-
-                           
-
+                        }  
                         });
 
                         HBox managebtn = new HBox(editIcon, deleteIcon);
@@ -258,6 +252,115 @@ public class AfficherCandidatureController implements Initializable {
 
             return cell;
         };
+         
+         Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> celllettremotiv = (TableColumn<Candidature, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView showIcon = new FontAwesomeIconView(FontAwesomeIcon.CLIPBOARD);
+
+                        showIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+
+                        showIcon.setOnMouseClicked(e -> {
+                            
+                            
+                            
+                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+
+                            try {
+                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
+                        Parent rooter = loader.load();
+                        
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier évenement");
+                        stage.setScene(new Scene(rooter));
+                        stage.show();
+                        } catch (IOException ex) {
+                         System.out.println(ex.getMessage());
+                        }  
+                        });
+                        HBox managebtn1 = new HBox(showIcon);
+                        managebtn1.setStyle("-fx-alignment:center");
+                        setGraphic(managebtn1);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+         
+        Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> cellcv = (TableColumn<Candidature, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView showIcon = new FontAwesomeIconView(FontAwesomeIcon.CLOUD_DOWNLOAD);
+
+                        showIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+
+                        showIcon.setOnMouseClicked(e -> {
+                            
+                            
+                            
+                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+
+                            try {
+                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
+                        Parent rooter = loader.load();
+                        
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier évenement");
+                        stage.setScene(new Scene(rooter));
+                        stage.show();
+                        } catch (IOException ex) {
+                         System.out.println(ex.getMessage());
+                        }  
+                        });
+                        HBox managebtn2 = new HBox(showIcon);
+                        managebtn2.setStyle("-fx-alignment:center");
+                        setGraphic(managebtn2);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        }; 
+         
+         tab_cv.setCellFactory(cellcv);
+         tab_lettremotiv.setCellFactory(celllettremotiv);
          tab_edit.setCellFactory(cellFoctory);
          TableCandidature.setItems(listCand);
              
@@ -328,15 +431,20 @@ public class AfficherCandidatureController implements Initializable {
 //    }
 
   
-    void btn_refreshCandidature(){ 
-          try {
-           CandidatureList.clear();
-            
-            query = "SELECT * FROM candidature";
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()){
+
+    @FXML
+    private void refreshlist(ActionEvent event) {
+        
+    }
+    
+    public void refreshTable(){
+        //CandidatureList.clear();
+         try{                
+                query = "select * from Candidature";
+                preparedStatement = connection.prepareStatement(query);
+                resultSet = preparedStatement.executeQuery();
+                
+                while (resultSet.next()){
                 CandidatureList.add(new Candidature(
                         resultSet.getString("nom"),
                         resultSet.getString("prenom"),
@@ -348,21 +456,24 @@ public class AfficherCandidatureController implements Initializable {
                         resultSet.getString("diplome"),                       
                         resultSet.getString("cv"),
                         resultSet.getDate("date_candidature")
-                ));
-                TableCandidature.setItems(CandidatureList);
-                
+                    ));
+                    TableCandidature.setItems(CandidatureList);                    
+                }
+                preparedStatement.close();
+                resultSet.close();
+            }catch(SQLException e2){
+                System.err.println(e2);
             }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(AfficherCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-       
     }
-
+    
     @FXML
-    private void refreshlist(ActionEvent event) {
+    private void gotoFront(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_candidature/CandidatureListView.fxml"));
+        Stage Window = (Stage) front.getScene().getWindow();
+        Window.setScene(new Scene(root));
+    
     }
+    
 }
 
 
