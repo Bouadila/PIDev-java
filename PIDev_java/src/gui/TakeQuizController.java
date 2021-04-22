@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,6 +50,8 @@ public class TakeQuizController implements Initializable {
     ReponseService reponseService = new ReponseService();
     ListReponseService listService = new ListReponseService();
     ReponseCondidatService rcService = new ReponseCondidatService();
+    
+    private int score = 0;
 
     @FXML
     private AnchorPane main_pane;
@@ -72,6 +75,8 @@ public class TakeQuizController implements Initializable {
     Quiz quiz;
     List<Question> questions = new ArrayList();
     private int listId;
+    
+    List_reponses_condidat list;
 
     List<Reponse> reponses;
 
@@ -86,9 +91,11 @@ public class TakeQuizController implements Initializable {
         btn_next.setStyle("-fx-background-color: #ad0505; -fx-text-fill: white;");
         btn_next.setPrefSize(89, 31);
 
-        List_reponses_condidat list = new List_reponses_condidat(25, 5, 0);
+        list = new List_reponses_condidat(25, 5, 0);
         try {
             listId = listService.addListAndGetItsId(list);
+            list.setId(listId);
+            list.setCondidtaure_id(0);
         } catch (SQLException ex) {
             Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,6 +123,12 @@ public class TakeQuizController implements Initializable {
     @FXML
     public void nextQuestion(ActionEvent event) {
 
+        System.out.println(((Label)getNodeByRowColumnIndex(getSelectedIndex(), 1, grid)).getText());
+        int id_reponse = Integer.parseInt(((Label)getNodeByRowColumnIndex(getSelectedIndex(), 1, grid)).getText());
+        if(id_reponse == questions.get(Integer.parseInt(tf_nbQuestion.getText())).getRep_just_id()){
+            score += 1;
+        }
+        
         Reponse_condidat rc = new Reponse_condidat();
         rc.setList_reponses_condidat_id(listId);
         rc.setQuestion_id(questions.get(Integer.parseInt(tf_nbQuestion.getText())).getId());
@@ -139,6 +152,10 @@ public class TakeQuizController implements Initializable {
             fillGrid();
 
         } else {
+            score = score *100 / questions.size();
+            list.setScore(score);
+            listService.updateList_reponses_condidat(list);
+            System.out.println(score);
             System.exit(0);
         }
 
@@ -182,7 +199,31 @@ public class TakeQuizController implements Initializable {
         alignGrid();
     }
 
+    public int getSelectedIndex(){
+        for(Node node : grid.getChildren()){
+            if(node instanceof RadioButton){
+                if(((RadioButton)node).isSelected())
+                    return grid.getRowIndex(node);
+            }
+        }
+        return -1;
+    }
+    
     public void alignGrid() {
         grid.setHgap(5);
+    }
+    
+    public Node getNodeByRowColumnIndex(final int row, final int column, GridPane gridPane) {
+        Node result = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node : childrens) {
+            if (gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == column) {
+                result = node;
+                break;
+            }
+        }
+
+        return result;
     }
 }
