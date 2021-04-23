@@ -6,7 +6,7 @@
 package Services;
 
 import Entity.User;
-import Entity.formation;
+import Entity.Formation;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
