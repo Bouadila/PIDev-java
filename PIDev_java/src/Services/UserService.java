@@ -27,7 +27,8 @@ public class UserService implements IService<User> {
     private Statement ste;
     private PreparedStatement pst;
     private ResultSet rs;
-   
+               Connection con = DataSource.getInstance().getCnx();
+
     public UserService() {
         
    
@@ -53,7 +54,7 @@ public class UserService implements IService<User> {
     public boolean addUser(User u) {
               
           String email = "";
-        String find = "select email from users where email = '" + u.getEmail()+ "'";
+        String find = "select email from user where email = '" + u.getEmail()+ "'";
         try {
             ste = cnx.createStatement();
             rs = ste.executeQuery(find);
@@ -69,7 +70,7 @@ public class UserService implements IService<User> {
             return false;
         } else {
             //////
-            String sql = "insert into users(email, password , name  ,prenom, gover, img , special ) values('" + u.getEmail()+ "','" + u.getPassword()+ "','" 
+            String sql = "insert into user(email, password , name  ,prenom, gover, img , special ) values('" + u.getEmail()+ "','" + u.getPassword()+ "','" 
                     + u.getName()+ "','" + u.getPrenom()+ "','" + u.getGover()+ "','" + u.getImg()+ "','" + u.getSpecial()+ "')";
             try {
                 ste = cnx.createStatement();
@@ -87,7 +88,7 @@ public class UserService implements IService<User> {
     public List<User> readAll()  throws SQLException {
   List<User> arr=new ArrayList<>();
     ste=cnx.createStatement();
-    ResultSet rs=ste.executeQuery("select * from users");
+    ResultSet rs=ste.executeQuery("select * from user");
      while (rs.next()) {     
          int etat =  rs.getInt("etat");
                   if (etat==1)
@@ -134,7 +135,43 @@ public class UserService implements IService<User> {
     return arr;
         }
     
+    public boolean chercher(int id) throws SQLException {
+        String req = "select * from user ";
+        List<Integer> list = new ArrayList<>();
+
+        try {
+            ste = con.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list.contains(id);
+    }
     
+        public User finduser(Integer id) throws SQLException
+      {
+          User u=null;
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from user where id='" + id + "' ");
+     while (rs.next()) {                
+             
+               String nom=rs.getString("name");
+               String prenom=rs.getString("prenom");
+               String email=rs.getString("email");
+               int username=rs.getInt("etat");
+               String role=rs.getString("roles");
+               
+                u=new User(id,username,email,role,nom,prenom);
+    
+     }
+    return u;
+          
+      }
   
 }
     

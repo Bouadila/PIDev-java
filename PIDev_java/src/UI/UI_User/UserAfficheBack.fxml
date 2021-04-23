@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
    <children>
       <Pane fx:id="pnlOverview" layoutX="4.0" layoutY="4.0" prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="208.0" layoutY="35.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css" text="Liste Des Comptes">
+            <Label layoutX="208.0" layoutY="15.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css" text="Liste Des Comptes">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -100,6 +101,7 @@
                </children>
             </VBox>
             <Label layoutX="503.0" layoutY="35.0" onDragDetected="#labelcompte" prefHeight="50.0" prefWidth="162.0" />
+            <TextField fx:id="rechercher" layoutX="486.0" layoutY="47.0" onKeyPressed="#rechercher" prefHeight="27.0" prefWidth="179.0" promptText="search" style="-fx-border-color: black; -fx-background-color: #FFFFFF;" />
          </children>
       </Pane>
    </children>

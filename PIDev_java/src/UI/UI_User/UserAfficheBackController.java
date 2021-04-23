@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +32,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -73,6 +77,8 @@ public class UserAfficheBackController implements Initializable {
     private Button acceuil;
     @FXML
     private Button comptes;
+    @FXML
+    private TextField rechercher;
 
     /**
      * Initializes the controller class.
@@ -142,7 +148,7 @@ public class UserAfficheBackController implements Initializable {
 //         String gover="";
 //
 //         
-//        String request0 ="SELECT * from `users`";
+//        String request0 ="SELECT * from `user`";
 //        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
 //        ResultSet rs0 = ps0.executeQuery();
 //
@@ -181,5 +187,35 @@ public class UserAfficheBackController implements Initializable {
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
+    }
+
+//    @FXML
+//    private void rechercher(ActionEvent event) {
+//        UserService cs = new UserService();
+//        ArrayList listcs = (ArrayList) cs.finduser(Integer.SIZE);
+//        ObservableList OReservation = FXCollections.observableArrayList(listcs);
+//        FilteredList<User> filteredData = new FilteredList<>(OReservation, p -> true);
+//        rechercher.textProperty().addListener((observable, oldValue, newValue) -> {
+//            filteredData.setPredicate(myObject -> {
+//                if (newValue == null || newValue.isEmpty()) {
+//                    return true;
+//                }
+//                String lowerCaseFilter = newValue.toLowerCase();
+//
+//                if (String.valueOf(myObject.getEmail()).toLowerCase().contains(lowerCaseFilter)|| String.valueOf(myObject.getEtat()).toLowerCase().contains(lowerCaseFilter)||String.valueOf(myObject.getName()).toLowerCase().contains(lowerCaseFilter)) {
+//                    return true;
+//
+//                }
+//                return false;
+//            });
+//        });
+//        SortedList<User> sortedData = new SortedList<>(filteredData);
+//        sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+//        tableview.setItems(sortedData);
+//    
+//    }
+
+    @FXML
+    private void rechercher(KeyEvent event) {
     }
 }

@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ public class UserActiveCodeController implements Initializable {
     @FXML
     private Label check;
     @FXML
-    private PasswordField txtcodeActive;
+    private TextField txtcodeActive;
     @FXML
     private Button verif;
     @FXML
@@ -73,7 +74,7 @@ public class UserActiveCodeController implements Initializable {
       String req2 ="UPDATE `user` SET `activation_token` = 'NULL' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
       java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
       ps2.executeUpdate();
-      JOptionPane.showMessageDialog(null, "code correct /n Votre compte est activé");
+      JOptionPane.showMessageDialog(null, "code correct , Votre compte est activé");
       Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
@@ -81,7 +82,7 @@ public class UserActiveCodeController implements Initializable {
                     stage.setScene(scene);
                     stage.show();           
         } else
-        { JOptionPane.showMessageDialog(null, "code incorrect /n Votre compte n'est pas activé");  }             
+        { JOptionPane.showMessageDialog(null, "code incorrect , Votre compte n'est pas activé");  }             
     }
 
     @FXML

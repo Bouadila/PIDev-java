@@ -9,13 +9,14 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAddController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAddController">
    <children>
       <TextField fx:id="tfNom" layoutX="176.0" layoutY="77.0" promptText="Nom" />
       <Label layoutX="177.0" layoutY="60.0" text="Nom" />
@@ -26,7 +27,6 @@
       <Label layoutX="177.0" layoutY="235.0" prefHeight="17.0" prefWidth="88.0" text="Mot de passe :" />
       <PasswordField fx:id="tfPassword" layoutX="175.0" layoutY="255.0" promptText="Mot de passe" />
       <Label layoutX="177.0" layoutY="296.0" text="Image :" />
-      <TextField fx:id="tfImg" layoutX="177.0" layoutY="318.0" promptText="Img" />
       <Label layoutX="451.0" layoutY="205.0" prefHeight="17.0" prefWidth="35.0" text="Role :" />
       <Label fx:id="login" alignment="CENTER" layoutX="395.0" layoutY="326.0" onMouseClicked="#goToLogin2" prefHeight="17.0" prefWidth="275.0" style="-fx-background-color: #0000;" text="Vous avez déja un compte? Connectez-vous?" textFill="#792424" />
       <RadioButton fx:id="roleCandidat" layoutX="460.0" layoutY="227.0" mnemonicParsing="false" text="Candidat">
@@ -62,6 +62,8 @@
       </Group>
       <ComboBox fx:id="tfGover" layoutX="436.0" layoutY="105.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Governorat" />
       <ComboBox fx:id="tfSpecial" layoutX="437.0" layoutY="164.0" onMouseClicked="#tfSpecial" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Specialité" />
-      <Button fx:id="txtimgchose" layoutX="273.0" layoutY="363.0" mnemonicParsing="false" onAction="#imgchose" text="Image" />
+      <Button fx:id="txtimgchose" layoutX="268.0" layoutY="343.0" mnemonicParsing="false" onAction="#imgchose" text="Image" />
+      <ImageView fx:id="imageview" fitHeight="82.0" fitWidth="103.0" layoutX="165.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lb_image" layoutX="350.0" layoutY="355.0" prefHeight="41.0" prefWidth="56.0" />
    </children>
 </AnchorPane>

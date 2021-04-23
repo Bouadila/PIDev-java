@@ -62,7 +62,7 @@ public class UserResetController implements Initializable {
     @FXML
     private TextField txtnvpwd;
     @FXML
-    private PasswordField txtverifpwd;
+    private TextField txtverifpwd;
  
     Connection con = DataSource.getInstance().getCnx();
 

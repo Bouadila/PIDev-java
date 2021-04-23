@@ -57,7 +57,7 @@ public class UserResetPwdController implements Initializable {
     @FXML
     private TextField txtemail;
     @FXML
-    private PasswordField txtcode;
+    private TextField txtcode;
     @FXML
     private Button log1;
     @FXML
@@ -137,13 +137,72 @@ public class UserResetPwdController implements Initializable {
 
             int k = rs.getInt("id");
             setIdSession(k);
-        } 
+                      Random rand =new Random();
+        randomCode=rand.nextInt(999999);
+        String host ="smtp.gmail.com" ;
+        String from ="pidevtestad@gmail.com" ;
+        String password ="pidevtestad123456" ;
+        String to =txtemail.getText();
+        String sub ="Mot de passe oublier " ;
+        String msg ="Ton code est : " +randomCode ;
+
+          Properties props = new Properties();    
+          props.put("mail.smtp.host", "smtp.gmail.com");    
+          props.put("mail.smtp.socketFactory.port", "465");    
+          props.put("mail.smtp.socketFactory.class",    
+                    "javax.net.ssl.SSLSocketFactory");    
+          props.put("mail.smtp.auth", "true");    
+          props.put("mail.smtp.starttls.enable", "true");    
+props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+          props.put("mail.smtp.port", "587");    
+          //get Session   
+          Session session = Session.getDefaultInstance(props,    
+           new javax.mail.Authenticator() {    
+           protected PasswordAuthentication getPasswordAuthentication() {    
+           return new PasswordAuthentication(from,password);  
+           }    
+          });  
+                     System.out.println("message en cour successfully");    
+
+          //compose message    
+          try {    
+           MimeMessage message = new MimeMessage(session);    
+           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+           message.setSubject(sub);    
+           message.setText(msg);    
+           //send message  
+           Transport.send(message);    
+           System.out.println("message sent successfully");
+                 JOptionPane.showMessageDialog(null, "code envoyer a l'email");
+
+          } catch (MessagingException e) {
+                         System.out.println("message didn't sent successfully");    
+                 JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
+
+              throw new RuntimeException(e);}    
+              
+        }     
 }    
         
 
     @FXML
     private void ActVerifier(javafx.scene.input.MouseEvent event) throws IOException {
+        if(txtcode.getText().equals(""+randomCode))
+        {
+            User rs=new User (txtemail.getText());
+          Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
 
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserReset.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+        }
+        
+        else{
+                         JOptionPane.showMessageDialog(null, "code incorrect");}
+      
 
 
     }

@@ -17,6 +17,14 @@ public class User {
     , img , special, nom_entre,  activation_token, reset_token,etatecrit ,
             color ,roles;
 
+    public User(int idc, String username, String email, int role, String nom, String prenom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public User(Integer id, int username, String email, String role, String nom, String prenom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getEtatecrit() {
         return etatecrit;
     }

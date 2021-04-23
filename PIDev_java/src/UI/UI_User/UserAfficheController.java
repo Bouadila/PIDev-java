@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.DataSource;
@@ -45,8 +46,6 @@ public class UserAfficheController implements Initializable {
     @FXML
     private Hyperlink annonce;
     @FXML
-    private Hyperlink login1;
-    @FXML
     private Hyperlink quiz;
     @FXML
     private Label tfNomPrenom;
@@ -61,6 +60,8 @@ public class UserAfficheController implements Initializable {
      * Initializes the controller class.
      */
          Connection con = DataSource.getInstance().getCnx();
+    @FXML
+    private ImageView imgaffiche;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -141,13 +142,6 @@ catch (SQLException ex) {
     private void goToannoce(ActionEvent event) {
     }
 
-    @FXML
-    private void goToLogin(ActionEvent event) {
-    }
-
-    @FXML
-    private void FeedMenu(MouseEvent event) {
-    }
 
     @FXML
     private void quiz(ActionEvent event) {
@@ -172,10 +166,13 @@ catch (SQLException ex) {
             String c = rs0.getString("gover");
             String d = rs0.getString("special");
             String e = rs0.getString("email");
+//            String f = rs0.getString("img");
+
             
                      tfmail.setText("Email : "+e);
                      tfgoverno.setText("Governorat : "+c);
                      tfspecialite.setText("Specialité : "+d);
+//                     imgaffiche.setImage(""+f);
 
         }
                      tfNomPrenom.setText(fullName);  

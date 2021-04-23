@@ -44,8 +44,6 @@ public class UserCandidatAfficheController implements Initializable {
     @FXML
     private Hyperlink annonce;
     @FXML
-    private Hyperlink login1;
-    @FXML
     private Hyperlink quiz;
     @FXML
     private Label tfNomPrenom;
@@ -140,13 +138,6 @@ catch (SQLException ex) {
     private void goToannoce(ActionEvent event) {
     }
 
-    @FXML
-    private void goToLogin(ActionEvent event) {
-    }
-
-    @FXML
-    private void FeedMenu(MouseEvent event) {
-    }
 
     @FXML
     private void quiz(ActionEvent event) {

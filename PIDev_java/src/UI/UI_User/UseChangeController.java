@@ -109,6 +109,8 @@ public class UseChangeController implements Initializable {
                     "Immobiliér",
                     "Marketing",
                     "Médecin");
+    @FXML
+    private PasswordField nvpwverif;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         boolean NRG = tfnvGover.getSelectionModel().isEmpty();
@@ -156,13 +158,12 @@ else{
         
               pp =rs0.getString("password");    
               pp = pp.replaceFirst("2y", "2a");            
-              byte[] decryptpassword = Base64.getMimeDecoder().decode(pp);                                      
               if (BCrypt.checkpw(oldpw.getText(),pp))
              {   
             if(nvpw.getText().equals("")){
             checkpw.setTextFill(Color.RED);
             checkpw.setText("Nouveau mdp est vide!\n ");}
-            else{
+            else if(nvpw.getText().equals(nvpwverif.getText())){
                  String passwordnew = BCrypt.hashpw(nvpw.getText(),BCrypt.gensalt(13));
                  passwordnew = passwordnew.replaceFirst("2a", "2y") ;
             String req ="UPDATE `user` SET `password` = '"+passwordnew+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
@@ -171,7 +172,11 @@ else{
             checkpw.setTextFill(Color.GREEN);
             checkpw.setText("Password changed successfully !");    
             }
-        }
+            else{
+                checkpw.setTextFill(Color.RED);
+            checkpw.setText("verification est incorrect!\n ");}
+            }
+        
         else {
            checkpw.setTextFill(Color.TOMATO);
             checkpw.setText("Wrong password !");

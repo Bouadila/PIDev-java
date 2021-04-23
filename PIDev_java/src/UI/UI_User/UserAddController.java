@@ -9,6 +9,10 @@ import Entity.User;
 import Services.UserService;
 import Services.UserSession;
 import static Services.UserSession.setIdSession;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -20,6 +24,8 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
@@ -44,9 +50,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.mail.Message;
@@ -96,6 +105,15 @@ public class UserAddController implements Initializable {
     @FXML
     private ComboBox<String> tfSpecial;
     static int randomCodee;
+    private FileChooser fileChooser ;
+    private File file ;
+    private Stage stage ;
+    @FXML
+    private AnchorPane anchorPane ;
+    private final Desktop desktop =Desktop.getDesktop();
+    private Image image ;
+    private FileInputStream fis ;
+
 
     /**
      * Initializes the controller class.
@@ -134,9 +152,13 @@ public class UserAddController implements Initializable {
     private ComboBox<String> tfGover;
     @FXML
     private Button txtimgchose;
+    @FXML
+    private ImageView imageview;
     @Override
     public void initialize(URL url, ResourceBundle rb) {       
-        
+        fileChooser =new FileChooser();
+        fileChooser.getExtensionFilters().addAll( new FileChooser.ExtensionFilter("image","*.png","*.jpg","*.gif") 
+        );
                 boolean RG = tfGover.getSelectionModel().isEmpty();
                 boolean RS = tfSpecial.getSelectionModel().isEmpty();
 
@@ -165,18 +187,19 @@ public class UserAddController implements Initializable {
         if(roleEmployeur.isSelected()){
             leRole="Employeur";
         }                 
-          String mail = tfEmail.getText();
+        String mail = tfEmail.getText();
         String user = tfNom.getText();
         String pwd = tfPassword.getText();
-         String gov = tfGover.getValue();
+        String gov = tfGover.getValue();
         String spec = tfSpecial.getValue();
         String pren = tfPrenom.getText();
-        String img = tfImg.getText();
+        fis = new FileInputStream(file) ;
+//        String img = tfImg.getText();
         
         String password8 = BCrypt.hashpw(tfPassword.getText(),BCrypt.gensalt(13));
         password8 = password8.replaceFirst("2a", "2y") ;
              
-        if(mail.equals("") || user.equals("") || pwd.equals("") || leRole.equals("") || gov.equals("Choisir Votre Governorat") || spec.equals("Choisir Votre Spécialiter") || pren.equals("") || img.equals("")){
+        if(mail.equals("") || user.equals("") || pwd.equals("") || leRole.equals("") || gov.equals("Choisir Votre Governorat") || spec.equals("Choisir Votre Spécialiter") || pren.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -203,12 +226,15 @@ public class UserAddController implements Initializable {
         else{
 
       if (leRole=="Employeur")
-      { String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`,`activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Employeur\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+tfImg.getText()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
-   PreparedStatement  ps = con.prepareStatement(req);
-        ps.executeUpdate();
+      {   String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`,`activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Employeur\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+imageview.getImage()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
+      PreparedStatement  ps = con.prepareStatement(req);
+//      ps.setBinaryStream(7, fis, file.length());
+      
+      ps.executeUpdate();
+      
       }   
       else if (leRole=="Candidat") 
-            { String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`, `activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Candidat\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+tfImg.getText()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
+            { String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`, `activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Candidat\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+imageview.getImage()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
  PreparedStatement  ps = con.prepareStatement(req);
         ps.executeUpdate();
       }
@@ -230,31 +256,117 @@ public class UserAddController implements Initializable {
             int k = rs.getInt("id");
             setIdSession(k);
                       Random rand =new Random();
-       
-              
-        }
-             
-            }
-                    if (leRole.equals("Employeur")){
-                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-             String req = "SELECT *  FROM user Where email = '"+tfEmail.getText()+"'";
-       
-       PreparedStatement ps = con.prepareStatement(req);
-        
-       ResultSet rs = ps.executeQuery();
+        randomCodee=rand.nextInt(999999);
+        String host ="smtp.gmail.com" ;
+        String from ="pidevtestad@gmail.com" ;
+        String password ="pidevtestad123456" ;
+        String to =tfEmail.getText();
+        String sub ="Activer compte " ;
+        String msg ="Ton code est : " +randomCodee ;
 
+          Properties props = new Properties();    
+          props.put("mail.smtp.host", "smtp.gmail.com");    
+          props.put("mail.smtp.socketFactory.port", "465");    
+          props.put("mail.smtp.socketFactory.class",    
+                    "javax.net.ssl.SSLSocketFactory");    
+          props.put("mail.smtp.auth", "true");    
+          props.put("mail.smtp.starttls.enable", "true");    
+          props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+          props.put("mail.smtp.port", "587");    
+          //get Session   
+          Session session = Session.getDefaultInstance(props,    
+           new javax.mail.Authenticator() {    
+           protected PasswordAuthentication getPasswordAuthentication() {    
+           return new PasswordAuthentication(from,password);  
+           }    
+          });  
+                     System.out.println("message en cour successfully");    
+
+          //compose message    
+          try {    
+           MimeMessage message = new MimeMessage(session);    
+           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+           message.setSubject(sub);    
+           message.setText(msg);    
+           //send message  
+           Transport.send(message);    
+           System.out.println("message sent successfully");
+                 JOptionPane.showMessageDialog(null, "code envoyer a l'email");
+                   Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserActiveCode.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+          } catch (MessagingException e) {
+                         System.out.println("message didn't sent successfully");    
+                         JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
+                         throw new RuntimeException(e);}                 
+        }
+                
+            }
+         if (leRole.equals("Employeur")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String req = "SELECT *  FROM user Where email = '"+tfEmail.getText()+"'";      
+            PreparedStatement ps = con.prepareStatement(req);       
+            ResultSet rs = ps.executeQuery();
         if (!rs.next()) {
-                 JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
-      
+            JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");      
         } else {           
             int k = rs.getInt("id");
             setIdSession(k);
-                
+            Random rand =new Random();
+            randomCodee=rand.nextInt(999999);
+            String host ="smtp.gmail.com" ;
+            String from ="pidevtestad@gmail.com" ;
+            String password ="pidevtestad123456" ;
+            String to =tfEmail.getText();
+            String sub ="Activer compte " ;
+            String msg ="Ton code est : " +randomCodee ;
+          Properties props = new Properties();    
+          props.put("mail.smtp.host", "smtp.gmail.com");    
+          props.put("mail.smtp.socketFactory.port", "465");    
+          props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");    
+          props.put("mail.smtp.auth", "true");    
+          props.put("mail.smtp.starttls.enable", "true");    
+          props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+          props.put("mail.smtp.port", "587");    
+          //get Session   
+           Session session = Session.getDefaultInstance(props,    
+           new javax.mail.Authenticator() {    
+           protected PasswordAuthentication getPasswordAuthentication() {    
+           return new PasswordAuthentication(from,password);  
+           }    
+          });  
+            System.out.println("message en cour successfully");    
+          //compose message    
+          try {    
+           MimeMessage message = new MimeMessage(session);    
+           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+           message.setSubject(sub);    
+           message.setText(msg);    
+           //send message  
+           Transport.send(message);    
+           System.out.println("message sent successfully");
+                 JOptionPane.showMessageDialog(null, "code envoyer a l'email");
+                   Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserActiveCode.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+          } catch (MessagingException e) {
+                         System.out.println("message didn't sent successfully");    
+                 JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
+
+              throw new RuntimeException(e);}                
         }
-            }
-        }
-                                                   
-    }
+      }
+    }                                                 
+  }
 
 
     @FXML
@@ -333,6 +445,18 @@ public class UserAddController implements Initializable {
 
     @FXML
     private void imgchose(ActionEvent event) {
+  stage = (Stage)anchorPane.getScene().getWindow();
+  file =fileChooser.showOpenDialog(stage);
+  if(file != null){
+    System.out.println(""+file.getAbsolutePath());
+    image =new Image(file.getAbsoluteFile().toURI().toString());    
+
+//    image =new Image(file.getAbsoluteFile().toURI().toString(), imageview.getFitWidth(0x7xa),imageview.getFitHeight(5xa));    
+    imageview.setImage(image);
+    imageview.setPreserveRatio(true);
+    
+  }
+  
     }
 
    
