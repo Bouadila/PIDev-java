@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -18,7 +19,27 @@ import javafx.stage.Stage;
 public class PIDev_java extends Application {
     
     
-     /**
+    
+    
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        stage.setTitle("Recruitini");
+        Parent root = FXMLLoader.load(getClass().getResource("/QuizUI/TakeQuiz.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/gui/AddQuiz.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/gui/ListQuiz.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        
+//        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        
+    }
+    
+    
+         /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -27,23 +48,5 @@ public class PIDev_java extends Application {
 
 }
     
-    
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-
-        stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserResetPwd.fxml"));
-
-//                Parent root = FXMLLoader.load(getClass().getResource("/UI/UIUser/UserAddFXML.fxml"));
-
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        
-    }
-
    
 }

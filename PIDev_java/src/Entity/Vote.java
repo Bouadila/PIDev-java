@@ -9,11 +9,11 @@ package Entity;
  *
  * @author User
  */
-public class Votes {
+public class Vote {
     private User user_id;
     private Formation video_id;
 
-    public Votes(User user_id, Formation video_id) {
+    public Vote(User user_id, Formation video_id) {
         this.user_id = user_id;
         this.video_id = video_id;
     }

@@ -24,9 +24,9 @@ import java.util.logging.Logger;
  */
 
 
-/*
-public class FormationService {
 
+public class FormationService {
+/*
     private Connection cnx;
     private Statement ste;
     private PreparedStatement pst;
@@ -136,6 +136,6 @@ public class FormationService {
         }
 
     }
+*/
 }
 
-*/
