@@ -5,7 +5,6 @@
  */
 package PIDev_java;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,7 +33,7 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserResetPwd.fxml"));
 
 //                Parent root = FXMLLoader.load(getClass().getResource("/UI/UIUser/UserAddFXML.fxml"));
