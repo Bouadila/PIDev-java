@@ -9,11 +9,11 @@ package Entity;
  *
  * @author User
  */
-public class votes {
+public class Vote {
     private User user_id;
-    private formation video_id;
+    private Formation video_id;
 
-    public votes(User user_id, formation video_id) {
+    public Vote(User user_id, Formation video_id) {
         this.user_id = user_id;
         this.video_id = video_id;
     }
@@ -26,11 +26,11 @@ public class votes {
         this.user_id = user_id;
     }
 
-    public formation getVideo_id() {
+    public Formation getVideo_id() {
         return video_id;
     }
 
-    public void setVideo_id(formation video_id) {
+    public void setVideo_id(Formation video_id) {
         this.video_id = video_id;
     }
 }

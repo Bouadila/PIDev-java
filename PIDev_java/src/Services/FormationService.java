@@ -6,7 +6,7 @@
 package Services;
 
 import Entity.User;
-import Entity.formation;
+import Entity.Formation;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,9 +24,9 @@ import java.util.logging.Logger;
  */
 
 
-/*
-public class FormationService {
 
+public class FormationService {
+/*
     private Connection cnx;
     private Statement ste;
     private PreparedStatement pst;
@@ -136,6 +136,6 @@ public class FormationService {
         }
 
     }
+*/
 }
 
-*/
