@@ -77,7 +77,7 @@ public class QuizListController implements Initializable {
             lb_quiz.setOnMouseClicked(e -> {
                 try {
                     Node node = (Node) e.getSource();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuiz.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuiz.fxml"));
                     Stage stage = (Stage) node.getScene().getWindow();
 
                     Scene scene = new Scene(loader.load());
