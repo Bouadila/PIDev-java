@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,7 +16,7 @@
         <URL value="@ajouterformation.fxml.css" />
     </stylesheets>
    <children>
-      <VBox layoutX="383.0" layoutY="185.0" prefHeight="266.0" prefWidth="104.0" spacing="30.0">
+      <VBox layoutX="383.0" layoutY="235.0" prefHeight="266.0" prefWidth="104.0" spacing="30.0">
          <children>
             <Label text="Url">
                <font>
@@ -39,7 +40,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="506.0" layoutY="185.0" prefHeight="266.0" prefWidth="222.0" spacing="30.0">
+      <VBox layoutX="506.0" layoutY="235.0" prefHeight="266.0" prefWidth="222.0" spacing="30.0">
          <children>
             <TextField fx:id="tfUrl" />
             <TextField fx:id="tfTitle" />
@@ -47,14 +48,30 @@
             <TextArea fx:id="tfDescription" prefHeight="116.0" prefWidth="222.0" />
          </children>
       </VBox>
-      <Button fx:id="btnAjoutForma" layoutX="590.0" layoutY="464.0" mnemonicParsing="false" onAction="#btn_Ajout_Formation" text="Submit" />
-      <Button fx:id="btn_gotoAfficherForma" layoutX="660.0" layoutY="464.0" mnemonicParsing="false" onAction="#btn_gotoAfficherForm" text="Consulter" />
-      <AnchorPane layoutX="-1.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #5eaaa8;" />
-      <Label layoutX="376.0" layoutY="54.0" prefHeight="58.0" prefWidth="328.0" text="Ajouter votre formation" textAlignment="RIGHT">
+      <Button fx:id="btnAjoutForma" layoutX="531.0" layoutY="517.0" mnemonicParsing="false" onAction="#btn_Ajout_Formation" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: #ad0505;" text="Submit" textFill="WHITE" />
+      <Button fx:id="btn_gotoAfficherForma" layoutX="630.0" layoutY="518.0" mnemonicParsing="false" onAction="#btn_gotoAfficherForm" style="-fx-background-color: #ad0505;" text="Consulter" textFill="WHITE" />
+      <AnchorPane layoutX="-1.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #ad0505;" />
+      <Pane layoutX="265.0" layoutY="64.0" opacity="0.89" prefHeight="102.0" prefWidth="582.0" style="-fx-background-color: #ad0505;" />
+      <Label layoutX="388.0" layoutY="87.0" prefHeight="58.0" prefWidth="328.0" text="Ajouter votre formation" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <FontAwesomeIconView glyphName="CLOSE" layoutX="752.0" layoutY="40.0" onMouseClicked="#btn_close" size="30" />
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="798.0" layoutY="40.0" onMouseClicked="#btn_close" size="30" />
+      <Pane layoutX="7.0" layoutY="8.0" prefHeight="122.0" prefWidth="251.0">
+         <children>
+            <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

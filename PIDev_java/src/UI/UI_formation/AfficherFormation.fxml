@@ -12,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,20 +21,41 @@
         <URL value="@afficherformation.css" />
     </stylesheets>
    <children>
-      <AnchorPane layoutY="-2.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #5eaaa8;">
+      <Pane layoutX="265.0" layoutY="77.0" prefHeight="93.0" prefWidth="633.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <TextField fx:id="tfSearchForma" layoutX="342.0" layoutY="34.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche" />
+            <FontAwesomeIconView fill="#fffefe" glyphName="SEARCH" layoutX="563.0" layoutY="60.0" wrappingWidth="24.6328125" />
+         </children>
+      </Pane>
+      <AnchorPane layoutY="-2.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #ad0505;">
          <children>
             <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
                <children>
-                  <Button fx:id="btn_gotoFormations" mnemonicParsing="false" onAction="#btn_gotoFormations" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #a3d2ca;" text="Nos Formationq" textFill="#e40e0e">
+                  <Button fx:id="btn_gotoFormations" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_gotoFormations" opacity="0.7" prefHeight="68.0" prefWidth="267.0" style="-fx-background-color: #ad0505;" text="Nos Formatione" textFill="#e40e0e" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font size="35.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" onAction="#btn_gotoModifierForma" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e">
+                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" onAction="#btn_gotoModifierForma" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e" visible="false">
                      <font>
                         <Font size="35.0" />
                      </font>
                   </Button>
+                  <Pane prefHeight="94.0" prefWidth="181.0">
+                     <children>
+                        <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
             <ImageView fitHeight="86.0" fitWidth="266.0" layoutX="4.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +63,7 @@
                   <Image url="@../../../../../../../Downloads/recruitini_logo.png" />
                </image></ImageView>
          </children></AnchorPane>
-      <TableView fx:id="TableFormation" layoutX="315.0" layoutY="173.0" prefHeight="448.0" prefWidth="557.0">
+      <TableView fx:id="TableFormation" layoutX="269.0" layoutY="173.0" prefHeight="474.0" prefWidth="625.0">
         <columns>
           <TableColumn fx:id="Tab_titre_id" prefWidth="62.4000244140625" style="-fx-alignment: center;" text="Titre" />
           <TableColumn fx:id="tab_url_id" prefWidth="88.0" style="-fx-alignment: center;" text="URL" />
@@ -68,6 +90,5 @@
          </children>
       </HBox>
       <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="30" />
-      <TextField fx:id="tfSearchForma" layoutX="636.0" layoutY="123.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche" />
    </children>
 </AnchorPane>

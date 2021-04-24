@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,8 +16,25 @@
         <URL value="@modifierformation.css" />
     </stylesheets>
    <children>
-      <AnchorPane layoutX="-1.0" prefHeight="656.0" prefWidth="267.0" style="-fx-background-color: #5eaaa8;" />
-      <VBox layoutX="400.0" layoutY="226.0" prefHeight="226.0" prefWidth="100.0" spacing="30.0">
+      <AnchorPane layoutX="-1.0" prefHeight="656.0" prefWidth="267.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Pane layoutX="9.0" layoutY="14.0" prefHeight="122.0" prefWidth="251.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+         </children></AnchorPane>
+      <VBox layoutX="400.0" layoutY="267.0" prefHeight="226.0" prefWidth="100.0" spacing="30.0">
          <children>
             <Label text="URL">
                <font>
@@ -40,7 +58,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="520.0" layoutY="226.0" prefHeight="249.0" prefWidth="186.0" spacing="30.0">
+      <VBox layoutX="520.0" layoutY="267.0" prefHeight="249.0" prefWidth="186.0" spacing="30.0">
          <children>
             <TextField fx:id="tfUrlMod" />
             <TextField fx:id="tfTitreMod" />
@@ -48,13 +66,17 @@
             <TextArea fx:id="tfDescriptionMod" prefHeight="85.0" prefWidth="186.0" />
          </children>
       </VBox>
-      <Label layoutX="400.0" layoutY="93.0" text="Modifier votre formation">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_gotoAfficherFormation" layoutX="638.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_gotoAfficherFormaModif" text="Consulter" />
-      <Button fx:id="btn_enregis_modif" layoutX="520.0" layoutY="494.0" mnemonicParsing="false" onAction="#btn_enregistrer_modif" text="Enregistrer" />
+      <Pane layoutX="266.0" layoutY="74.0" opacity="0.89" prefHeight="102.0" prefWidth="591.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Label layoutX="132.0" layoutY="22.0" prefHeight="58.0" prefWidth="349.0" text="Modifier votre formation" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="btn_gotoAfficherFormation" layoutX="638.0" layoutY="535.0" mnemonicParsing="false" onAction="#btn_gotoAfficherFormaModif" style="-fx-background-color: #ad0505;" text="Consulter" />
+      <Button fx:id="btn_enregis_modif" layoutX="520.0" layoutY="534.0" mnemonicParsing="false" onAction="#btn_enregistrer_modif" style="-fx-background-color: #ad0505;" text="Enregistrer" />
       <TextField fx:id="tf_ID_forma" layoutX="519.0" layoutY="175.0" visible="false" />
       <FontAwesomeIconView glyphName="CLOSE" layoutX="759.0" layoutY="39.0" onMouseClicked="#btn_close" size="30" />
    </children>

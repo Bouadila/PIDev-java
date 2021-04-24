@@ -4,22 +4,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="758.0" prefWidth="1208.0" style="-fx-background-color: #f7f3e9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.FormationsController">
+<AnchorPane id="AnchorPane" prefHeight="797.0" prefWidth="1073.0" style="-fx-background-color: #f7f3e9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.FormationsController">
    <children>
-      <AnchorPane layoutX="-3.0" prefHeight="895.0" prefWidth="270.0" style="-fx-background-color: #5eaaa8;" />
-      <ScrollPane layoutX="274.0" layoutY="102.0">
+      <AnchorPane layoutX="-3.0" prefHeight="797.0" prefWidth="283.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Pane layoutX="51.0" layoutY="43.0" prefHeight="94.0" prefWidth="181.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+         </children></AnchorPane>
+      <ScrollPane layoutX="281.0" layoutY="201.0" prefHeight="594.0" prefWidth="791.0">
          <content>
-            <VBox fx:id="VBox_formations" prefHeight="775.0" prefWidth="916.0" style="-fx-background-color: #f7f3e9;" />
+            <VBox fx:id="VBox_formations" prefHeight="596.0" prefWidth="793.0" style="-fx-background-color: #f7f3e9;" />
          </content>
       </ScrollPane>
-      <Label layoutX="569.0" layoutY="31.0" prefHeight="51.0" prefWidth="257.0" text="Nos Formations" textFill="#da0707">
+      <Pane layoutX="280.0" layoutY="76.0" opacity="0.89" prefHeight="126.0" prefWidth="798.0" style="-fx-background-color: #ad0505;" />
+      <Label layoutX="545.0" layoutY="108.0" prefHeight="51.0" prefWidth="257.0" text="Nos Formations" textFill="WHITE">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <FontAwesomeIconView glyphName="CLOSE" layoutX="1156.0" layoutY="42.0" onMouseClicked="#btn_close" size="30" />
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="1028.0" layoutY="40.0" onMouseClicked="#btn_close" size="30" />
    </children>
 </AnchorPane>
