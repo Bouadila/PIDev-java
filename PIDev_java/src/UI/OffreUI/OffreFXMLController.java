@@ -149,7 +149,7 @@ public class OffreFXMLController implements Initializable {
     @FXML
     private void rendezVous(MouseEvent event) {
         Node node = (Node) event.getSource();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/AjouterRendezVousFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
                 Stage stage = (Stage) node.getScene().getWindow();
                 Scene scene = null;  
                 try {

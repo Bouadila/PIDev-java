@@ -31,7 +31,7 @@ public class RendezVousService {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-            ps.setInt(1, 2);
+            ps.setInt(1, 3);
             ps.setString(2, entity.getTitre());
             ps.setDate(3, new java.sql.Date(entity.getStart().getTime()));
             ps.setDate(4, new java.sql.Date(entity.getEnd().getTime()));
