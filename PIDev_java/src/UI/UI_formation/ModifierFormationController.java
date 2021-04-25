@@ -153,12 +153,7 @@ public class ModifierFormationController implements Initializable {
     
     
     
-    private boolean verifchamps()
-            
-    {
-         return false;
- 
-    }
+   
     
     
     

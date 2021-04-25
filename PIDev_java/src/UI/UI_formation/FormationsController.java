@@ -229,6 +229,7 @@ public class FormationsController implements Initializable {
             //VBox.setVgrow(sp, Priority.ALWAYS);
             
             
+            
 
        
             

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="835.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.FormationDetailBackController">
+    <stylesheets>
+        <URL value="@formationdetailback.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-3.0" prefHeight="585.0" prefWidth="248.0" style="-fx-background-color: #5a727e;" />
+      <VBox layoutX="276.0" layoutY="134.0" prefHeight="385.0" prefWidth="171.0" spacing="40.0">
+         <children>
+            <Label text="Url ">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="Titre ">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="Domaine ">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="Description ">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="Owner ">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="447.0" layoutY="134.0" prefHeight="385.0" prefWidth="375.0" spacing="68.0">
+         <children>
+            <Label fx:id="lb_url_back" text="Label" />
+            <Label fx:id="lb_titre_back" text="Label" />
+            <Label fx:id="lb_domaine_back" text="Label" />
+            <Label fx:id="lb_description_back" text="Label" />
+            <Label fx:id="lb_owner_back" text="Label" />
+         </children>
+      </VBox>
+      <Label fx:id="lb_id_back" layoutX="276.0" layoutY="83.0" text="Label" visible="false" />
+      <Label layoutX="276.0" layoutY="21.0" text="Details" textFill="#da1c1c">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
