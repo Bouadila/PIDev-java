@@ -76,5 +76,6 @@
          </image>
       </ImageView>
       <ImageView fx:id="imgaffiche" fitHeight="106.0" fitWidth="169.0" layoutX="113.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profilePic" fitHeight="124.0" fitWidth="169.0" layoutX="440.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

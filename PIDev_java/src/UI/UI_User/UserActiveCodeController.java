@@ -71,7 +71,7 @@ public class UserActiveCodeController implements Initializable {
     private void ActiveVerifier(javafx.scene.input.MouseEvent event) throws SQLException, IOException {
         if(txtcodeActive.getText().equals(""+randomCodee))
         {
-      String req2 ="UPDATE `user` SET `activation_token` = 'NULL' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+      String req2 ="UPDATE `user` SET `activation_token` = NULL WHERE `user`.`id` = "+UserSession.getIdSession()+";";
       java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
       ps2.executeUpdate();
       JOptionPane.showMessageDialog(null, "code correct , Votre compte est activé");

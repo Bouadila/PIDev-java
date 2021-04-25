@@ -21,10 +21,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import utils.DataSource;
 
@@ -62,6 +68,8 @@ public class UserAfficheController implements Initializable {
          Connection con = DataSource.getInstance().getCnx();
     @FXML
     private ImageView imgaffiche;
+    @FXML
+    private ImageView profilePic;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -166,9 +174,26 @@ catch (SQLException ex) {
             String c = rs0.getString("gover");
             String d = rs0.getString("special");
             String e = rs0.getString("email");
-//            String f = rs0.getString("img");
+            String f = rs0.getString("img");
+      Rectangle clip = new Rectangle(
+                profilePic.getFitWidth(), profilePic.getFitHeight()
+        );
+        clip.setArcWidth(300);
+        clip.setArcHeight(300);
+        profilePic.setEffect(new DropShadow(20, Color.BLACK));
+        profilePic.setClip(clip);
 
-            
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = profilePic.snapshot(parameters, null);
+
+        //remove the rounding clip so that our effect can show through.
+        //profilePic.setClip(null);
+        // apply a shadow effect.
+//        System.out.println(user);
+
+           
                      tfmail.setText("Email : "+e);
                      tfgoverno.setText("Governorat : "+c);
                      tfspecialite.setText("Specialité : "+d);
@@ -176,6 +201,7 @@ catch (SQLException ex) {
 
         }
                      tfNomPrenom.setText(fullName);  
+               
     
     
     }

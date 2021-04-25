@@ -34,8 +34,12 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
+//        Email mail = new Email();
+//        mail.destination="yasminehachicha3@gmail.com";
+//        mail.randomCodee1=13008;
+//        mail.start();
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/Login.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserResetPwd.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserAfficheBack.fxml"));
 
 //                Parent root = FXMLLoader.load(getClass().getResource("/UI/UIUser/UserAddFXML.fxml"));
 

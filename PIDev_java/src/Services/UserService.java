@@ -47,8 +47,30 @@ public class UserService implements IService<User> {
 
     @Override
     public ArrayList<User> getAllUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List <User> Users = new ArrayList <User>();
+        try {
+            String sql ="SELECT * FROM user ";
+            PreparedStatement ps;
+            ps = cnx.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next())
+            {
+                User u = new User();
+                u.setName(rs.getString("name"));
+                u.setPrenom(rs.getString("prenom"));
+                u.setEmail(rs.getString("email"));
+                u.setEtat(rs.getInt("etat"));
+                u.setGover(rs.getString("gover"));
+                u.setSpecial(rs.getString("special"));
+                u.setRoles(rs.getString("roles"));
+                Users.add(u);
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return (ArrayList<User>) Users;
+        }    
 
     @Override
     public boolean addUser(User u) {
@@ -172,6 +194,33 @@ public class UserService implements IService<User> {
     return u;
           
       }
+        
+        
+        public User getOne(int id) {
+        try {
+            Statement stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE id=" + id);
+
+            if(rs.next())
+            {
+                User u = new User();
+                u.setName(rs.getString("name"));
+                u.setPrenom(rs.getString("prenom"));
+                u.setEmail(rs.getString("email"));
+                u.setEtat(rs.getInt("etat"));
+                u.setGover(rs.getString("gover"));
+                u.setSpecial(rs.getString("special"));
+                u.setRoles(rs.getString("roles"));
+                return u;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    return null;
+    }
+        
   
 }
     

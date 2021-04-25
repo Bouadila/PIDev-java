@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,18 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAfficheBackController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserDetaiAffichBacklController">
    <children>
-      <Pane fx:id="pnlOverview" layoutX="4.0" layoutY="4.0" prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: white;">
+      <Pane fx:id="pnlOverview" prefHeight="431.0" prefWidth="714.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="208.0" layoutY="15.0" style="-fx-background-color: white;" text="Liste Des Comptes">
+            <Label layoutX="208.0" layoutY="15.0" prefHeight="35.0" prefWidth="288.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css" text="Compte d'un utilisateur">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
             <Label layoutX="374.0" layoutY="501.0" onMouseClicked="#GoToAllContact" />
             <Label layoutX="588.0" layoutY="501.0" onMouseClicked="#GoToAllComment" prefHeight="19.0" prefWidth="183.0" />
-            <VBox fx:id="vbox" alignment="CENTER" layoutX="-6.0" layoutY="-56.0" prefHeight="473.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
+            <VBox fx:id="vbox" alignment="CENTER" layoutX="-6.0" layoutY="-56.0" prefHeight="488.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
                <children>
                   <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -77,8 +75,46 @@
                </children>
             </VBox>
             <Label layoutX="503.0" layoutY="35.0" onDragDetected="#labelcompte" prefHeight="50.0" prefWidth="162.0" />
-            <TextField fx:id="rechercher" layoutX="486.0" layoutY="47.0" onKeyPressed="#rechercher" prefHeight="27.0" prefWidth="179.0" promptText="search" style="-fx-border-color: black; -fx-background-color: #FFFFFF;" />
-            <ListView fx:id="UserList" layoutX="284.0" layoutY="109.0" prefHeight="263.0" prefWidth="300.0" style="-fx-background-color: #5a727e; -fx-border-color: #5a727e;" />
+            <Label fx:id="tfPrenom" layoutX="397.0" layoutY="135.0" prefHeight="27.0" prefWidth="272.0" text="Nom et Prénom :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="146.0" fitWidth="174.0" layoutX="228.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tfSpecial" layoutX="399.0" layoutY="230.0" prefHeight="27.0" prefWidth="260.0" text="special">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfGover" layoutX="399.0" layoutY="195.0" prefHeight="27.0" prefWidth="215.0" text="gover">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfMail" layoutX="399.0" layoutY="167.0" prefHeight="27.0" prefWidth="260.0" text="mail">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfrole" layoutX="399.0" layoutY="266.0" prefHeight="27.0" prefWidth="240.0" text="role">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfetat" layoutX="399.0" layoutY="301.0" prefHeight="27.0" prefWidth="272.0" text="etat du compte">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfNom" layoutX="398.0" layoutY="106.0" prefHeight="27.0" prefWidth="260.0" text="Nom et Prénom :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

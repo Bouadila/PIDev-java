@@ -11,6 +11,7 @@ import static Services.UserSession.setIdSession;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,16 +31,24 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import utils.DataSource;
 
 /**
@@ -52,70 +61,135 @@ public class UserAfficheBackController implements Initializable {
     @FXML
     private Pane pnlOverview;
     @FXML
-    private TableView<User> tableview;
-    @FXML
     private VBox vbox;
     @FXML
     private Button logout;
-    @FXML
-    private VBox pnIcompte;
-    @FXML
-    private TableColumn<?, ?> nom;
-    @FXML
-    private TableColumn<?, ?> prenom;
-    @FXML
-    private TableColumn<?, ?> mail;
-    @FXML
-    private TableColumn<?, ?> special;
-    @FXML
-    private TableColumn<?, ?> gover;
-    @FXML
-    private TableColumn<?, ?> etat;
-    @FXML
-    private TableColumn<?, ?> role;
     @FXML
     private Button acceuil;
     @FXML
     private Button comptes;
     @FXML
     private TextField rechercher;
+    Connection con = DataSource.getInstance().getCnx();
+    @FXML
+    private ListView<HBox> UserList;
+private final ImageView brandIcon = new ImageView(); 
+     private final Label descriptionLabel = new Label(); 
+    User useer = null ;
 
+    private final Rectangle colorRect = new Rectangle(10, 10);
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            nom.setCellValueFactory(new PropertyValueFactory<>("name"));
-         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-         mail.setCellValueFactory(new PropertyValueFactory<>("email"));
-         special.setCellValueFactory(new PropertyValueFactory<>("special"));
-         gover.setCellValueFactory(new PropertyValueFactory<>("gover"));
-         
-         etat.setCellValueFactory(new PropertyValueFactory<>("etatecrit"));
-         
-         role.setCellValueFactory(new PropertyValueFactory<>("roles"));
-
-         UserService cs= new UserService();
-         List<User> arrc=new ArrayList<>();
+//        try {
+//            // TODO
+//            fillGrid();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//            nom.setCellValueFactory(new PropertyValueFactory<>("name"));
+//         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+//         mail.setCellValueFactory(new PropertyValueFactory<>("email"));
+//         special.setCellValueFactory(new PropertyValueFactory<>("special"));
+//         gover.setCellValueFactory(new PropertyValueFactory<>("gover"));
+//         
+//         etat.setCellValueFactory(new PropertyValueFactory<>("etatecrit"));
+//         
+//         role.setCellValueFactory(new PropertyValueFactory<>("roles"));
+//
+//         UserService cs= new UserService();
+//         List<User> arrc=new ArrayList<>();
+//       
+//          try {
+//            arrc=cs.readAll();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserAfficheBackController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//       ObservableList<User> ovbservableList= FXCollections.observableArrayList(arrc);
+//       tableview.setItems(ovbservableList);
+//       
+//       //Updatable
+//        tableview.setEditable(true);
+//    }
+//     public void fillGrid() throws SQLException{
+//        
+//        
        
-          try {
-            arrc=cs.readAll();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserAfficheBackController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       ObservableList<User> ovbservableList= FXCollections.observableArrayList(arrc);
-       tableview.setItems(ovbservableList);
+            for ( int i = 0; i < new UserService().getAllUser().size(); i++){
+            User user = new UserService().getAllUser().get(i);
+            int j=i+1;
+            Label lb_desc = new Label("l'email du compte num "+j+" :"+user.getEmail());
+//            colorRect.setStroke(Color.BLACK); 
+//              descriptionLabel.setStyle("-fx-opacity: 0.75;"); 
+//              descriptionLabel.setGraphic(colorRect);
+lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1em; "); 
+        GridPane.setConstraints(lb_desc, 1, 0); 
+//          ImageView imageVie = new ImageView("\GUI\Icons\icons8_user_50px.png");
+          HBox hb = new HBox();
+   
+            //Label lb_id = new Label(String.valueOf(offre.getId()));
+            hb.getChildren().addAll(  lb_desc ,descriptionLabel);
+          UserList.getItems().add(hb);
+            UserList.getItems().get(i).setOnMouseClicked(e ->{
+                System.out.println(user.getEmail());
+                Node node = (Node) e.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_User/UserDetaiAffichBackl.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(UserAfficheBackController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    UserDetaiAffichBacklController detailController = loader.getController();
+                try {
+                    detailController.initData(user);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserAfficheBackController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    stage.setScene(scene);
+            });
        
-       //Updatable
-        tableview.setEditable(true);
-         
-        //afficher_id.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-    }    
-        // TODO
+            
+            
+            
+            }
+           
+//   ObservableList<User> listUser = (ObservableList<User>) new UserService().getAllUser();
+//
+//    FilteredList<User> filteredData = new FilteredList<>(listUser, b->true);
+//         rechercher.textProperty().addListener((observable, oldValue, newValue) -> {
+//             filteredData.setPredicate(useer -> {
+//         if(newValue == null || newValue.isEmpty() )
+//                 {
+//                       return true;
+//                 }
+//         
+//         String lowerCaseFilter = newValue.toLowerCase();
+//         
+//         if(useer.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                 {
+//                     return true;
+//                 } 
+//         else if(useer.getName().toLowerCase().indexOf(lowerCaseFilter) != -1)
+//                 {
+//                     return true;
+//                 }
+//         else return false;
+//         
+//         });
+//         
+//          });           
+//
+//         SortedList<User> sortedData = new SortedList<>(filteredData);
+////         sortedData.comparatorProperty().bind(UserList.comparatorProperty());
+////         UserList.setItems(sortedData);
+//              
         
-
-            Connection con = DataSource.getInstance().getCnx();
- 
+    }  
+       
 
     @FXML
     private void acceuilClicks(ActionEvent event) {
