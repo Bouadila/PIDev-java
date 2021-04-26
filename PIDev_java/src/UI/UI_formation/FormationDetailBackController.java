@@ -44,6 +44,7 @@ public class FormationDetailBackController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }
 
 
@@ -88,6 +89,9 @@ public class FormationDetailBackController implements Initializable {
 
     
     
+    public void show(){
+        System.out.println("here");
+    }
     
     public Label getlb_domaine_back() {
         return lb_domaine_back;

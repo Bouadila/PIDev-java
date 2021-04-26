@@ -92,27 +92,7 @@ public class ListViewFormBackController implements Initializable {
                 
             });
             
-             url.setOnMouseClicked(e->{
-                try {
-                     Node node = (Node) e.getSource();
-                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_formation/FormationDetailBack.fxml")); 
-                      FormationDetailBackController FormaBackController = loader.getController();
-                    
-                        FormaBackController.setlb_id_back(Integer.toString(v.getId()));
-                        FormaBackController.setlb_url_back(v.getUrl());
-                        FormaBackController.setlb_titre_back(v.getTitle());
-                        FormaBackController.setlb_description_back(v.getDescription());
-                        FormaBackController.setlb_domaine_back(v.getDomaine());
-                        
-                    Stage stage = (Stage) node.getScene().getWindow();
-                   
-                    Scene scene = new Scene(loader.load());      
-                    stage.setScene(scene);
-                } catch (IOException ex) {
-                    Logger.getLogger(ListViewFormBackController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            });
+            
             
             VBox hb = new VBox();
             
@@ -121,10 +101,44 @@ public class ListViewFormBackController implements Initializable {
             hb.getChildren().add(new Label(""));
 
             listViewForm.getItems().add(hb);
-
+             
             
         }
         
+        final List list = listForma;
+        listViewForm.setOnMouseClicked(e->{
+                try {
+                     Node node = (Node) e.getSource();
+                     Formation f = (Formation) list.get(listViewForm.getSelectionModel().getSelectedIndex());
+                     System.out.println(f.getUrl());
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_formation/FormationDetailBack.fxml")); 
+                     Stage stage = (Stage) node.getScene().getWindow();
+                   
+                    Scene scene = new Scene(loader.load());   
+                     
+                     try{
+                     FormationDetailBackController FormaBackController = loader.getController();
+                                           FormaBackController.show();
+                                           FormaBackController.setlb_id_back(Integer.toString(f.getId()));
+                        FormaBackController.setlb_url_back(f.getUrl());
+                        FormaBackController.setlb_titre_back(f.getTitle());
+                        FormaBackController.setlb_description_back(f.getDescription());
+                        FormaBackController.setlb_domaine_back(f.getDomaine());
+
+                     }
+                     catch(Exception ex ){
+                         System.out.println(ex.getMessage());
+                     }
+                    
+                        
+                        
+                      
+                    stage.setScene(scene);
+                } catch (IOException ex) {
+                    Logger.getLogger(ListViewFormBackController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            });
         
     }  
 
