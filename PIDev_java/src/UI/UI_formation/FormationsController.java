@@ -25,6 +25,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,11 +35,14 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -57,6 +61,8 @@ public class FormationsController implements Initializable {
     
      private  Formation v;
      private Votes vo;
+    @FXML
+    private ImageView id_img;
      
 
     
@@ -80,24 +86,33 @@ public class FormationsController implements Initializable {
         
             v = formations.get(i);
             
+
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
 
+           // id_img = new Image("C:\\Users\\User\\Downloads\\background.jpg");
+            
+           
             
             Hyperlink url1= new Hyperlink();
-            url1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            url1.setStyle("-fx-font: normal bold 20px 'serif' ");
+            url1.setAlignment(Pos.CENTER);
+            url1.setTextFill(Color.web("#6e1010"));
             
             
             TextField id= new TextField();
             
             Label description1= new Label();
-            description1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            description1.setStyle("-fx-font: normal 30px 'serif' ");
             
             Label titre1= new Label();
-            titre1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            titre1.setStyle("-fx-font: normal bold 70px 'serif' ");
+            titre1.setTextFill(Color.web("#da0505"));
+            
             
             Label domaine1= new Label();
-            domaine1.setStyle("-fx-font: normal bold 15px 'serif' ");
+            domaine1.setStyle("-fx-font: normal bold 40px 'serif' ");
+            domaine1.setTextFill(Color.web("#ff1818"));
             
             
             Label votes= new Label();
@@ -136,20 +151,21 @@ public class FormationsController implements Initializable {
             
             
             
-            
+           
             id.setText(Integer.toString(v.getId()));
             description1.setText(v.getDescription());
             titre1.setText(v.getTitle());
             url1.setText(v.getUrl());
             url1.setPrefSize(700,800);
+
             domaine1.setText(formations.get(i).getDomaine());
             // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
             
            // hedhy ata nchoufha maa firas :  votes.setText(Integer.toString(vo.getVideo_id()));
 
            
-
-            
+           
+           
            
             
           
@@ -194,7 +210,22 @@ public class FormationsController implements Initializable {
 //            });
              
              
+           url1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+            url1.setScaleX(1.5);
+            url1.setScaleY(1.5);
+            url1.setTextFill(Color.web("#00E676"));
+
+                    }
+                    });
            
+           url1.setOnMouseExited(new EventHandler<MouseEvent>() {
+           @Override public void handle(MouseEvent e) {
+           url1.setScaleX(1);
+           url1.setScaleY(1);
+           url1.setTextFill(Color.web("#6e1010"));
+                    }
+                    });
             
             
             url1.setOnAction( e -> {
@@ -219,25 +250,30 @@ public class FormationsController implements Initializable {
             });
             
            
-           
+          
            
            
             VBox forma1=new VBox();
            // final ScrollPane sp = new ScrollPane();
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
-            forma1.getChildren().addAll(id,titre1,url1,description1,domaine1,btnUnliked,votes);
-            //VBox.setVgrow(sp, Priority.ALWAYS);
+            forma1.getChildren().addAll(id,titre1,url1,domaine1,description1);
+
+            forma1.setAlignment(Pos.CENTER);
             
             
             
 
        
             
-            
+           
             
             HBox formhor=new HBox();
+             HBox actions= new HBox();
+             
+            actions.getChildren().addAll(btnUnliked,votes);
+            actions.setAlignment(Pos.CENTER);
             
-            formhor.getChildren().addAll(forma1);
+            formhor.getChildren().addAll(forma1,actions);
 
             VBox_formations.getChildren().add(formhor);
             
@@ -268,12 +304,22 @@ public class FormationsController implements Initializable {
     }
 
     
+    
    @FXML
     private void  btn_close(javafx.scene.input.MouseEvent event) {
         
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+        
+        
+        
+        
+        
     }
+    
+    
+    
+    
     
    
     }

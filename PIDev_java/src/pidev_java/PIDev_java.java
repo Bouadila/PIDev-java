@@ -35,16 +35,26 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-       // Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/ListViewFormBack.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/ListViewFormBack.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         
-        stage.initStyle(StageStyle.TRANSPARENT);
+       // stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
         
     }
+    
+    
+    
+      
+   
+        
+ 
+    
+    
+        
 
    
 }

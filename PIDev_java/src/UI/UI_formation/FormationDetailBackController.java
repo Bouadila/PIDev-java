@@ -9,7 +9,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -102,6 +105,13 @@ public class FormationDetailBackController implements Initializable {
     
     void setlb_description_back(String lb_description_back) {
         this.lb_description_back.setText(lb_description_back);
+    }
+
+     @FXML
+    private void btn_close(javafx.scene.input.MouseEvent event) {
+        
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
     

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -57,5 +58,6 @@
             <Font size="50.0" />
          </font>
       </Label>
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="786.0" layoutY="41.0" onMouseClicked="#btn_close" size="30" />
    </children>
 </AnchorPane>

@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -126,5 +127,12 @@ public class ListViewFormBackController implements Initializable {
         
         
     }  
+
+     @FXML
+    private void btn_close(javafx.scene.input.MouseEvent event) {
+        
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
     
 }

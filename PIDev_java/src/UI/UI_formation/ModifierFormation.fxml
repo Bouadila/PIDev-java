@@ -60,10 +60,10 @@
       </VBox>
       <VBox layoutX="520.0" layoutY="267.0" prefHeight="249.0" prefWidth="186.0" spacing="30.0">
          <children>
-            <TextField fx:id="tfUrlMod" />
-            <TextField fx:id="tfTitreMod" />
-            <TextField fx:id="tfDomaineMod" />
-            <TextArea fx:id="tfDescriptionMod" prefHeight="85.0" prefWidth="186.0" />
+            <TextField fx:id="tfUrlMod" promptText="Url video" />
+            <TextField fx:id="tfTitreMod" promptText="Titre video" />
+            <TextField fx:id="tfDomaineMod" promptText="Domaine video" />
+            <TextArea fx:id="tfDescriptionMod" prefHeight="85.0" prefWidth="186.0" promptText="Description video" />
          </children>
       </VBox>
       <Pane layoutX="266.0" layoutY="74.0" opacity="0.89" prefHeight="102.0" prefWidth="591.0" style="-fx-background-color: #ad0505;">

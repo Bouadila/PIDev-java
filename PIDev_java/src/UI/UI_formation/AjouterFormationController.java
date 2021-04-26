@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -62,7 +64,7 @@ public class AjouterFormationController implements Initializable {
     @FXML
     private Button btn_gotoAfficherForma;
 
-    
+    DropShadow shadow = new DropShadow();
     
     @FXML
     void btn_Ajout_Formation(ActionEvent event) {
@@ -107,9 +109,12 @@ public class AjouterFormationController implements Initializable {
     void btn_gotoAfficherForm(ActionEvent event) throws IOException {
        
               
+        
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
         Stage Window = (Stage) btn_gotoAfficherForma.getScene().getWindow();
         Window.setScene(new Scene(root));
+        
+        
  
     }
     

@@ -12,9 +12,9 @@
    <children>
       <AnchorPane layoutX="-3.0" prefHeight="797.0" prefWidth="283.0" style="-fx-background-color: #ad0505;">
          <children>
-            <Pane layoutX="51.0" layoutY="43.0" prefHeight="94.0" prefWidth="181.0">
+            <Pane layoutX="34.0" layoutY="27.0" prefHeight="110.0" prefWidth="198.0">
                <children>
-                  <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+                  <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recruitini" textFill="WHITE">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -30,11 +30,10 @@
          </children></AnchorPane>
       <ScrollPane layoutX="281.0" layoutY="201.0" prefHeight="594.0" prefWidth="791.0">
          <content>
-            <VBox fx:id="VBox_formations" prefHeight="596.0" prefWidth="793.0" style="-fx-background-color: #f7f3e9;" />
+            <VBox fx:id="VBox_formations" alignment="CENTER" prefHeight="596.0" prefWidth="793.0" style="-fx-background-color: #f7f3e9;" />
          </content>
       </ScrollPane>
-      <Pane layoutX="280.0" layoutY="76.0" opacity="0.89" prefHeight="126.0" prefWidth="798.0" style="-fx-background-color: #ad0505;" />
-      <Label layoutX="545.0" layoutY="108.0" prefHeight="51.0" prefWidth="257.0" text="Nos Formations" textFill="WHITE">
+      <Label layoutX="545.0" layoutY="108.0" prefHeight="51.0" prefWidth="257.0" text="Nos Formations" textFill="#ff1818">
          <font>
             <Font size="35.0" />
          </font>

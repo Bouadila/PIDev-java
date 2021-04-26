@@ -42,10 +42,10 @@
       </VBox>
       <VBox layoutX="506.0" layoutY="235.0" prefHeight="266.0" prefWidth="222.0" spacing="30.0">
          <children>
-            <TextField fx:id="tfUrl" />
-            <TextField fx:id="tfTitle" />
-            <TextField fx:id="tfDomaine" />
-            <TextArea fx:id="tfDescription" prefHeight="116.0" prefWidth="222.0" />
+            <TextField fx:id="tfUrl" promptText="Url video" />
+            <TextField fx:id="tfTitle" promptText="Titre video" />
+            <TextField fx:id="tfDomaine" promptText="Domaine video" />
+            <TextArea fx:id="tfDescription" prefHeight="116.0" prefWidth="222.0" promptText="Description video" />
          </children>
       </VBox>
       <Button fx:id="btnAjoutForma" layoutX="531.0" layoutY="517.0" mnemonicParsing="false" onAction="#btn_Ajout_Formation" prefHeight="31.0" prefWidth="76.0" style="-fx-background-color: #ad0505;" text="Submit" textFill="WHITE" />
@@ -60,7 +60,7 @@
       <FontAwesomeIconView glyphName="CLOSE" layoutX="798.0" layoutY="40.0" onMouseClicked="#btn_close" size="30" />
       <Pane layoutX="7.0" layoutY="8.0" prefHeight="122.0" prefWidth="251.0">
          <children>
-            <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recrutini" textFill="WHITE">
+            <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recruitini" textFill="WHITE">
                <font>
                   <Font size="26.0" />
                </font>

@@ -52,6 +52,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import javafx.event.EventHandler;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 
 
 
@@ -110,7 +113,7 @@ public class AfficherFormationController implements Initializable {
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
     Formation formation = null ;
-   
+   DropShadow shadow = new DropShadow();
         
     
     
@@ -177,11 +180,12 @@ public class AfficherFormationController implements Initializable {
  @FXML
     void  btn_gotoFormations(ActionEvent event) throws IOException {
        
-      
+  
+        
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/Formations.fxml"));
         Stage Window = (Stage) btn_gotoFormations.getScene().getWindow();
         Window.setScene(new Scene(root));
-
+       
       
     }
  
@@ -196,6 +200,8 @@ public class AfficherFormationController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/ModifierFormation.fxml"));
         Stage Window = (Stage) btn_gotoModifForm.getScene().getWindow();
         Window.setScene(new Scene(root));
+        
+       
 
       
     }
