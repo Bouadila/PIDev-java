@@ -83,24 +83,6 @@ public class ReclamationAffichageController implements Initializable {
                 new PropertyValueFactory<>("status"));
 
         tvRec.setItems(data);
-    }    
-
-    @FXML
-    private void handleButtonInsert(ActionEvent event) {
-                   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
-           LocalDateTime now = LocalDateTime.now();  
-           String date=String.valueOf(now).replace("T", " ");
-        
-        
-        ReclamationService rs = new ReclamationService();
-        Reclamation Rc=new Reclamation(tfTitle.getText(),tfType.getText(),date,tfDesc.getText(),"Non approuvé",rs.getEmail(1));
-        rs.Ajouter(Rc);
-         List<Reclamation> lr = rs.Lister(1);
-        
-          ObservableList<Reclamation> data =
-                 FXCollections.observableArrayList(lr); 
-          tvRec.setItems(data);
-          showReclamation();
     }
 
     @FXML
@@ -114,28 +96,6 @@ public class ReclamationAffichageController implements Initializable {
                  FXCollections.observableArrayList(lr); 
           tvRec.setItems(data);
           showReclamation();
-    }
-    public ObservableList<Reclamation> getReclamationList() {
-        ObservableList<Reclamation> reclamationList = FXCollections.observableArrayList();
-        Connection conn = DataSource.getInstance().getCnx();
-        String query = "SELECT * FROM reclamation";
-        Statement st;
-        ResultSet rs;
-
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery(query);
-            Reclamation reclamation;
-            while (rs.next()) {
-                reclamation = new Reclamation(rs.getString("title"), rs.getString("type"), rs.getString("date_reclamation"), rs.getString("description_reclamation"), "Non approuvé", rs.getString("email"));
-                reclamationList.add(reclamation);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return reclamationList;
     }
 
     public void showReclamation() {

@@ -26,7 +26,7 @@ public class PIDev_java extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/Chat.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/ReclamationAjout.fxml"));
         
         Scene scene = new Scene(root);
         

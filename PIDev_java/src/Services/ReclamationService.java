@@ -110,5 +110,32 @@ public class ReclamationService implements iServiceReclamation<Reclamation>{
         catch (SQLException e) {System.err.println(e.getMessage());}
         return res;
     }    
+    
+     public ArrayList<Reclamation> Lister() {
+        ArrayList<Reclamation> res = new ArrayList<Reclamation>();
+    try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM reclamation ";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String title=rs.getString("title");
+                String type = rs.getString("type");
+                String dateRec = rs.getString("date_reclamation");
+                String descRec = rs.getString("description_reclamation");
+                String status = rs.getString("status");
+                String email=rs.getString("email");
+                
+               
+                
+                Reclamation R = new Reclamation (id,title,type,dateRec,descRec,status,email);
+                res.add(R);
+            }
+            rs.close();
+            } 
+        catch (SQLException e) {System.err.println(e.getMessage());}
+        return res;
+    }    
 
 }
