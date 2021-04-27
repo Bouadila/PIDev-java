@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package UI.UI_Reclamation;
 
 import Services.ClientService;
 import Services.ServerService;
@@ -34,7 +34,7 @@ public class ChatController implements Initializable {
     @FXML
     private Button btnSend;
     
-    private boolean isServer = false;
+    private boolean isServer = true;
     private NetworkConnection connection = isServer ? createServer() : createClient();
 
 
