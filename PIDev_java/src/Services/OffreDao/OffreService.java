@@ -101,7 +101,7 @@ public class OffreService {
      public ArrayList<Offre> getAll() {
         List <Offre> offres = new ArrayList <Offre>();
         try {
-            String sql ="SELECT * FROM offre INNER JOIN contrat ON offre.contrat_id= contrat.id";
+            String sql ="SELECT * FROM offre INNER JOIN contrat ON offre.contrat_id= contrat.id ORDER BY offre.date_depo DESC";
             PreparedStatement ps;
             ps = cnx.prepareStatement(sql);
             ResultSet rs= ps.executeQuery();

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.GridCell?>
 
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.AjouterOffreFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="tfPost" layoutX="187.0" layoutY="87.0" prefHeight="25.0" prefWidth="162.0" promptText="Post" />
       <Label layoutX="187.0" layoutY="70.0" text="Post" />
@@ -25,7 +25,7 @@
       <Label layoutX="187.0" layoutY="245.0" prefHeight="17.0" prefWidth="88.0" text="Domaine" />
       <Label layoutX="187.0" layoutY="306.0" prefHeight="17.0" prefWidth="66.0" text="Description" />
       <Label layoutX="453.0" layoutY="184.0" prefHeight="17.0" prefWidth="88.0" text="Date Expiration" />
-      <Button alignment="CENTER" layoutX="476.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#newOffre" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ad0505; -fx-background-radius: 15px;" text="Ajouter" textFill="#f8f3f3" />
+      <Button alignment="CENTER" layoutX="476.0" layoutY="393.0" mnemonicParsing="false" onAction="#inscrireUser" onMouseClicked="#newOffre" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ad0505;" text="Ajouter" textFill="#f8f3f3" />
       <Text layoutX="450.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Contrat" />
       <Text layoutX="450.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire" />
       <ComboBox fx:id="cbContrat" layoutX="452.0" layoutY="87.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Le Type De Contrat" />

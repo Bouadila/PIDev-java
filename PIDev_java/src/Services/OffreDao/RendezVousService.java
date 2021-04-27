@@ -33,8 +33,8 @@ public class RendezVousService {
             ps = cnx.prepareStatement(req);
             ps.setInt(1, 3);
             ps.setString(2, entity.getTitre());
-            ps.setDate(3, new java.sql.Date(entity.getStart().getTime()));
-            ps.setDate(4, new java.sql.Date(entity.getEnd().getTime()));
+            ps.setTimestamp(3, new java.sql.Timestamp(entity.getStart().getTime()));
+            ps.setTimestamp(4, new java.sql.Timestamp(entity.getEnd().getTime()));
             ps.setString(5,entity.getDescription());
             ps.setBoolean(6, entity.isAllDay());
             ps.setString(7, entity.getBackgroundColor());
