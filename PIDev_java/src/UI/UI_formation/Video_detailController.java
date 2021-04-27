@@ -5,21 +5,26 @@
  */
 package UI.UI_formation;
 
+import Entity.Formation;
+import Services.FormationService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 /**
  * FXML Controller class
@@ -32,6 +37,10 @@ public class Video_detailController implements Initializable {
     private WebView webView_Forma;
     @FXML
     private FontAwesomeIconView id_back;
+    @FXML
+    private Rating id_rating;
+    @FXML
+    private Button id_button_rate;
 
     /**
      * Initializes the controller class.
@@ -80,6 +89,20 @@ public class Video_detailController implements Initializable {
          Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/Formations.fxml"));
         Stage Window = (Stage) id_back.getScene().getWindow();
         Window.setScene(new Scene(root));
+    }
+
+    @FXML
+    private void btn_rate(ActionEvent event) {
+        
+        if(event.getSource()==id_button_rate)
+        {
+            Formation f = new Formation();
+            f.setVotes(Double.toString(id_rating.getRating()));
+            FormationService fv = new FormationService();
+            fv.ajouterRate(f);
+            
+        }
+        
     }
     
 }

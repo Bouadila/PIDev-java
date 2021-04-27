@@ -13,6 +13,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,10 +40,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -77,7 +80,7 @@ public class FormationsController implements Initializable {
         // TODO
            
 
-
+        
         ObservableList<Formation> formations = new FormationService().getAll();
         
          System.out.println(formations);
@@ -86,7 +89,7 @@ public class FormationsController implements Initializable {
         
             v = formations.get(i);
             
-
+             VoteService vs=new VoteService();    
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
 
@@ -116,6 +119,8 @@ public class FormationsController implements Initializable {
             
             
             Label votes= new Label();
+            votes.setTextFill(javafx.scene.paint.Color.BLACK);
+            votes.setFont(Font.font("Cambria", 24));
             //Label publish_date1= new Label();
             
             id.setVisible(false);
@@ -135,18 +140,6 @@ public class FormationsController implements Initializable {
 
             
             
-//              UserSession s = UserSession.instance;
-//            if (s.getU().getUsername().equals(v.getOwner().getUsername())) {
-//
-//                details.add(Delete, 2, 3);
-//            }
-//            if (vo.find(v, s.getU())) {
-//                btnUnliked.setVisible(true);
-//                btnUnliked.setVisible(false);
-//            } else {
-//                btnUnliked.setVisible(false);
-//                btnUnliked.setVisible(true);
-//            }
             
             
             
@@ -157,57 +150,75 @@ public class FormationsController implements Initializable {
             titre1.setText(v.getTitle());
             url1.setText(v.getUrl());
             url1.setPrefSize(700,800);
-
-            domaine1.setText(formations.get(i).getDomaine());
             // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
+            domaine1.setText(formations.get(i).getDomaine());
             
-           // hedhy ata nchoufha maa firas :  votes.setText(Integer.toString(vo.getVideo_id()));
-
+            try {
+                
+                System.out.println(new VoteService().getVotes(v));
+            } catch (SQLException ex) {
+                Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                votes.setText(Integer.toString(new VoteService().getVotes(v)));
+            } catch (SQLException ex) {
+                Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
            
+            
            
            
            
             
           
-             btnUnliked.setOnMouseClicked( e -> {
-                 
-
-                            FormationService sp = new FormationService();
-                            System.out.println(v.getId());
-                            sp.supprimerVideo(v);
-                            System.out.println("deleted");
-              
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("Formation");
-                 alert.setHeaderText("Formation supprimé !");
-                 alert.setContentText("Go Back To The Homepage");
-                 
-                 alert.showAndWait();
-            });
+//             btnUnliked.setOnMouseClicked( e -> {
+//                 
+//
+//                            VoteService vs = new VoteService();
+//                            System.out.println(v.getId());
+//                            
+//                            vs.delete(v);
+//                            System.out.println("deleted");
+//              
+//                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                 alert.setTitle("Formation");
+//                 alert.setHeaderText("Formation supprimé !");
+//                 alert.setContentText("Go Back To The Homepage");
+//                 
+//                 alert.showAndWait();
+//            });
             
              
              
              
-//              btnLiked.setOnMouseClicked(e -> {
-//
-//                    vo.Add(u.getU(), v);
-//                    btnUnliked.setVisible(true);
-//                    btnLiked.setVisible(false);
-//                    getVideo_id.setText(Integer.toString(Integer.parseInt(getVideo_id.getText()) + 1));
-//                   // updateRanks();
-//
-//                
-//            });
-//              
-//            btnUnliked.setOnMouseClicked(e-> {
-//
-//                    vo.delete(v, u.getU());
-//                    btnUnliked.setVisible(false);
-//                    btnLiked.setVisible(true);
-//                    getVideo_id.setText(Integer.toString(Integer.parseInt(getVideo_id.getText()) - 1));
-//                   // updateRanks();
-//                
-//            });
+              btnLiked.setOnMouseClicked(e -> {
+
+                    VoteService vl = new VoteService();
+                    
+                try {
+                    vl.Add(v);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    btnUnliked.setVisible(true);
+                    btnLiked.setVisible(false);
+                    votes.setText(Integer.toString(Integer.parseInt(votes.getText()) + 1));
+                    //votes.setText(Integer.toString(new VoteService().getVotes(v)+1));
+                
+            });
+              
+              
+            btnUnliked.setOnMouseClicked(e-> {
+
+                    VoteService vu = new VoteService();
+                    
+                    vu.delete(v);
+                    btnUnliked.setVisible(false);
+                    btnLiked.setVisible(true);
+                    votes.setText(Integer.toString(Integer.parseInt(votes.getText()) - 1));
+                    //votes.setText(Integer.toString(new VoteService().getVotes(v)-1));
+                
+            });
              
              
            url1.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -254,7 +265,10 @@ public class FormationsController implements Initializable {
            
            
             VBox forma1=new VBox();
-           // final ScrollPane sp = new ScrollPane();
+//              final Pane sp = new Pane();
+//              sp.setStyle(" -fx-cursor: hand ;"
+//                                + "-glyph-size:28px;"
+//                                + "-fx-fill:#00E676;"); 
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
             forma1.getChildren().addAll(id,titre1,url1,domaine1,description1);
 
@@ -268,9 +282,9 @@ public class FormationsController implements Initializable {
            
             
             HBox formhor=new HBox();
-             HBox actions= new HBox();
+            HBox actions= new HBox();
              
-            actions.getChildren().addAll(btnUnliked,votes);
+            actions.getChildren().addAll(btnUnliked,votes,btnLiked);
             actions.setAlignment(Pos.CENTER);
             
             formhor.getChildren().addAll(forma1,actions);

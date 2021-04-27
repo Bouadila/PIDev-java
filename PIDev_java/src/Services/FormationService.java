@@ -133,6 +133,7 @@ public class FormationService implements iService_formation<Formation>{
             return false;
         } else {
             String sql = "insert into video(url,title,publish_date,description,domaine) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getDescription() + "','" + v.getDomaine() + "')";
+            //String req2="insert into video(url,title,publish_date,description,domaine,id_cand_id) values((select id from user where id=?),?,(select id from video where id=?))";
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
@@ -274,18 +275,26 @@ public class FormationService implements iService_formation<Formation>{
     
     
     
+
+    public boolean ajouterRate(Formation v) {
+        
+       
+            String sql1 = "insert into video(votes) values('" + v.getVotes() + "')";
+            //String req2="insert into video(url,title,publish_date,description,domaine,id_cand_id) values((select id from user where id=?),?,(select id from video where id=?))";
+            try {
+                ste = cnx.createStatement();
+                ste.executeUpdate(sql1);
+             
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return false;
+        }
+
     
     
     
-    
-    
-    
-   
-    
-    
-    
-    
-   
     @Override
     public String getVideoById() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -301,6 +310,20 @@ public class FormationService implements iService_formation<Formation>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    }
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+   
+   
+
     
      
      
@@ -312,5 +335,5 @@ public class FormationService implements iService_formation<Formation>{
      
      
   
-}
+
 

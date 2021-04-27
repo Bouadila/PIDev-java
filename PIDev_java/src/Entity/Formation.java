@@ -18,13 +18,15 @@ public class Formation {
     private Timestamp publish_date;
     private String description;
     private String domaine;
+    private String votes;
     private User owner;
 
-    public Formation(int id, String url, String title, Timestamp publish_date, String description, String domaine , User owner) {
+    public Formation(int id, String url, String title, Timestamp publish_date, String votes, String description, String domaine , User owner) {
         this.id = id;
         this.url = url;
         this.title = title;
         this.publish_date = publish_date;
+        this.votes = votes;
         this.description = description;
         this.domaine = domaine;
         this.owner = owner;
@@ -34,7 +36,7 @@ public class Formation {
     
     }
 
-    public Formation(String url, String title, Timestamp publish_date, String description, String domaine, User owner) {
+    public Formation(String url, String title, Timestamp publish_date,  String description, String domaine, User owner) {
         this.url = url;
         this.title = title;
         this.publish_date = publish_date;
@@ -47,6 +49,16 @@ public class Formation {
         this.url = url;
         this.title = title;
         this.publish_date = publish_date;
+        this.description = description;
+        this.domaine = domaine;
+    }
+    
+    
+    public Formation(String url, String title, Timestamp publish_date, String votes, String description, String domaine) {
+        this.url = url;
+        this.title = title;
+        this.publish_date = publish_date;
+        this.votes = votes;
         this.description = description;
         this.domaine = domaine;
     }
@@ -94,6 +106,14 @@ public class Formation {
     }
     
     
+    public String getVotes() {
+        return url;
+    }
+
+    public void setVotes(String votes) {
+        this.votes = votes;
+    }
+    
     public String getDomaine() {
         return domaine;
     }
@@ -118,9 +138,10 @@ public class Formation {
                 ", url='" + url + '\'' +
                 ", title='" + title + '\'' +
                 ", publish_date=" + publish_date +
+                ", votes=" + votes +
                 ", description=" + description +
                 ", domaine=" + domaine +
-                ", owner=" + owner +
+                ", id_cand_id=" + owner +
                 '}';
     }
 

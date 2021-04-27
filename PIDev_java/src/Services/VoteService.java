@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,10 +38,15 @@ public class VoteService implements iService_votes <Votes>{
     
     
     
-    public int getVotes(Formation v) {
+    public int getVotes(Formation v) throws SQLException {
         int i = 0;
-        String req = "select Count(post_id) from post_like where post_id=?";
-       
+        cnx = DataSource.getInstance().getCnx();
+        String req = "select Count(post_id) as x from post_like where post_id="+v.getId();
+        Statement st=cnx.createStatement();
+        rs= st.executeQuery(req);
+        if(rs.next()){
+            return rs.getInt("x");
+        }
         try {
             
             pst=cnx.prepareStatement(req);
@@ -61,35 +68,37 @@ public class VoteService implements iService_votes <Votes>{
     
     
     
-  /*  lezim ba3ed integration tet7al bich ya9ra user 
+  
     
-    public void Add(User u, Formation v) {
+    public void Add(Formation v) throws SQLException {
 
-        String req = "insert into post_like values((select id from video where id=?),(select id from user where id=?))";
+        
+        String req = "insert into post_like (post_id) values((select id from video where id='"+v.getId()+"'))";
+        cnx = DataSource.getInstance().getCnx();
+        //Statement st=cnx.createStatement();
+       // rs= st.executeQuery(req);
         try {
-            System.out.println(v.getId());
-            System.out.println(u.getId());
-            System.out.println(connection);
+
+ 
+            pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
             
-            
-            ste = cnx.createStatement();
-            ste.executeUpdate(req);
            
 
-            pst.setInt(1, v.getId());
-            pst.setInt(2, u.getId());
-            pst.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+       } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
     }
-*/
-    
-    public void delete(Formation v, User u) {
-        String req = "delete from post_like where post_id=? and user_id=?";
 
+    
+     
+            
+    
+    public void delete(Formation v) {
+        String req = "delete from post_like where post_id=?";
+        cnx = DataSource.getInstance().getCnx();
         try {
             pst=cnx.prepareStatement(req);
             pst.setInt(1,v.getId());

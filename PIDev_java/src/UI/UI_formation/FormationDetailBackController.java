@@ -5,11 +5,16 @@
  */
 package UI.UI_formation;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,6 +41,8 @@ public class FormationDetailBackController implements Initializable {
     private Label lb_owner_back;
 
     public int formDet;
+    @FXML
+    private FontAwesomeIconView id_back;
     
     
     /**
@@ -116,6 +123,14 @@ public class FormationDetailBackController implements Initializable {
         
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+     @FXML
+    private void btn_back_list(javafx.scene.input.MouseEvent event) throws IOException {
+        
+         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/ListViewFormBack.fxml"));
+        Stage Window = (Stage) id_back.getScene().getWindow();
+        Window.setScene(new Scene(root));
     }
     
     
