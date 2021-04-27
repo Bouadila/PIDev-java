@@ -26,7 +26,7 @@ public class PIDev_java extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Chat.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -39,25 +39,26 @@ public class PIDev_java extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Application.launch(args);
         
-        Connection cnx;
-        cnx = DataSource.getInstance().getCnx();
-        String req =  "select * from demande";
-        
-        Statement ste;
-        ResultSet res;
-        
-        try {
-            ste = cnx.createStatement();
-            res = ste.executeQuery(req);
-            while (res.next())
-            {
-                System.out.println("nom"+res.getString("titre_demande"));
-                        }
-            //launch(args);
-        } catch (SQLException ex) {
-            Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        Connection cnx;
+//        cnx = DataSource.getInstance().getCnx();
+//        String req =  "select * from demande";
+//        
+//        Statement ste;
+//        ResultSet res;
+//        
+//        try {
+//            ste = cnx.createStatement();
+//            res = ste.executeQuery(req);
+//            while (res.next())
+//            {
+//                System.out.println("nom"+res.getString("titre_demande"));
+//                        }
+//            //launch(args);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PIDev_java.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
 }

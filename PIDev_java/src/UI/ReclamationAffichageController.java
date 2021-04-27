@@ -21,9 +21,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import utils.DataSource;
 
 /**
@@ -56,12 +58,13 @@ public class ReclamationAffichageController implements Initializable {
     @FXML
     private Button btnDelete;
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
-
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         ReclamationService rs = new ReclamationService();
-        List<Reclamation> lr = rs.Lister();
+        List<Reclamation> lr = rs.Lister(1);
         ObservableList<Reclamation> data = FXCollections.observableArrayList();
         data.addAll(lr);
         colTitle.setCellValueFactory(
@@ -80,32 +83,38 @@ public class ReclamationAffichageController implements Initializable {
                 new PropertyValueFactory<>("status"));
 
         tvRec.setItems(data);
-    }
-    
-   // private void handleButtonDelete (MouseEvent event) {
-        //    }
+    }    
+
     @FXML
-    private void handleButtonInsert (ActionEvent event) {
-        
-           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
+    private void handleButtonInsert(ActionEvent event) {
+                   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
            LocalDateTime now = LocalDateTime.now();  
            String date=String.valueOf(now).replace("T", " ");
         
         
         ReclamationService rs = new ReclamationService();
-        Reclamation Rc=new Reclamation(tfTitle.getText(),tfType.getText(),date,tfDesc.getText(),"Non approuvé","pidevtestad@gmail.com");
+        Reclamation Rc=new Reclamation(tfTitle.getText(),tfType.getText(),date,tfDesc.getText(),"Non approuvé",rs.getEmail(1));
         rs.Ajouter(Rc);
-         List<Reclamation> lr = rs.Lister();
+         List<Reclamation> lr = rs.Lister(1);
         
           ObservableList<Reclamation> data =
                  FXCollections.observableArrayList(lr); 
           tvRec.setItems(data);
           showReclamation();
     }
-    
-   
-       
-/*-----------------------------------------------DUNNO-----------------------------------------------*/
+
+    @FXML
+    private void handleButtonDelete(ActionEvent event) {
+        ReclamationService rs = new ReclamationService();
+        Reclamation r = tvRec.getSelectionModel().getSelectedItem();
+        rs.Supprimer(r);
+          List<Reclamation> lr = rs.Lister(1);
+        
+          ObservableList<Reclamation> data =
+                 FXCollections.observableArrayList(lr); 
+          tvRec.setItems(data);
+          showReclamation();
+    }
     public ObservableList<Reclamation> getReclamationList() {
         ObservableList<Reclamation> reclamationList = FXCollections.observableArrayList();
         Connection conn = DataSource.getInstance().getCnx();
@@ -131,7 +140,7 @@ public class ReclamationAffichageController implements Initializable {
 
     public void showReclamation() {
         ReclamationService rs = new ReclamationService();
-        List<Reclamation> lr = rs.Lister();
+        List<Reclamation> lr = rs.Lister(1);
         ObservableList<Reclamation> data = FXCollections.observableArrayList();
         data.addAll(lr);
        
@@ -143,19 +152,4 @@ public class ReclamationAffichageController implements Initializable {
 
         tvRec.setItems(data);
     }
-
-    @FXML
-    private void handleButtonDelete(ActionEvent event) {
-        ReclamationService rs = new ReclamationService();
-        Reclamation r = tvRec.getSelectionModel().getSelectedItem();
-        rs.Supprimer(r);
-          List<Reclamation> lr = rs.Lister();
-        
-          ObservableList<Reclamation> data =
-                 FXCollections.observableArrayList(lr); 
-          tvRec.setItems(data);
-          showReclamation();
-
-    }
-
 }

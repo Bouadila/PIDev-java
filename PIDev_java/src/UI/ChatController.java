@@ -34,7 +34,7 @@ public class ChatController implements Initializable {
     @FXML
     private Button btnSend;
     
-    private boolean isServer = true;
+    private boolean isServer = false;
     private NetworkConnection connection = isServer ? createServer() : createClient();
 
 
