@@ -46,19 +46,9 @@ public class UserResetController implements Initializable {
     @FXML
     private Button log1;
     @FXML
-    private Hyperlink Accueil;
+    private Button profil;
     @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
+    private Button login1;
     @FXML
     private TextField txtnvpwd;
     @FXML
@@ -88,9 +78,6 @@ public class UserResetController implements Initializable {
     }
 
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException, IOException {
@@ -103,17 +90,6 @@ public class UserResetController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin(ActionEvent event) throws IOException {
@@ -126,9 +102,6 @@ public class UserResetController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
 
     @FXML
     private void Actreset(MouseEvent event) throws SQLException, IOException {
@@ -150,5 +123,13 @@ public class UserResetController implements Initializable {
         else{
                   JOptionPane.showMessageDialog(null, "mot de passe  n'est pas changer");
         }       
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
 }

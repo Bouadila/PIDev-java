@@ -64,15 +64,7 @@ public class UseChangeController implements Initializable {
     @FXML
     private Label checkpw;
     @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
+    private Button login1;
     @FXML
     private ComboBox<String> nvSpecial;
     @FXML
@@ -101,9 +93,7 @@ public class UseChangeController implements Initializable {
                Connection con = DataSource.getInstance().getCnx();
 
     @FXML
-    private Hyperlink Accueil;
-    @FXML
-    private Hyperlink profil;
+    private Button profil;
     @FXML
     private ComboBox<String> tfnvGover;
 
@@ -276,7 +266,6 @@ else{
             checkprenom.setText("Changement de prenom avec succès !");}
     }
     
-    @FXML
     private void goToAcceuil(ActionEvent event) throws IOException, SQLException {
             String role="";
          String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
@@ -338,17 +327,6 @@ else{
         }
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin(ActionEvent event) throws IOException {
@@ -362,9 +340,6 @@ else{
     }
 
 
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
 
     @FXML
     private void goTochange(MouseEvent event) throws IOException {
@@ -422,6 +397,14 @@ else{
             imguriUri = file.toURI();
             lb_image.setText(imgp);
         }
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
 
     

@@ -61,19 +61,9 @@ public class UserResetPwdController implements Initializable {
     @FXML
     private Button log1;
     @FXML
-    private Hyperlink Accueil;
+    private Button profil;
     @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
+    private Button login1;
     Connection con = DataSource.getInstance().getCnx();
 
     int randomCode;
@@ -98,9 +88,6 @@ public class UserResetPwdController implements Initializable {
     }
 
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException{
@@ -113,26 +100,11 @@ public class UserResetPwdController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin(ActionEvent event) {
     }
 
-    @FXML
-    private void quiz(ActionEvent event) {
-        
-    }
 
 
     @FXML
@@ -375,6 +347,14 @@ props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
       
 
 
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
     
     

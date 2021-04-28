@@ -43,20 +43,6 @@ public class UserActiveCodeController implements Initializable {
     private TextField txtcodeActive;
     @FXML
     private Button verif;
-    @FXML
-    private Hyperlink Accueil;
-    @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
            Connection con = DataSource.getInstance().getCnx();
 
     /**
@@ -85,11 +71,7 @@ public class UserActiveCodeController implements Initializable {
         { JOptionPane.showMessageDialog(null, "code incorrect , Votre compte n'est pas activé");  }             
     }
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
-    @FXML
     private void goToProfil(ActionEvent event) throws IOException {
          Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -100,19 +82,7 @@ public class UserActiveCodeController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
 
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
-
-    @FXML
     private void goToLogin(ActionEvent event) throws IOException {
           Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -123,8 +93,5 @@ public class UserActiveCodeController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
     
 }
