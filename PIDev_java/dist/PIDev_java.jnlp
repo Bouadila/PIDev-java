@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="PIDev_java.jnlp">
+  <information>
+    <title>PIDev_java</title>
+    <vendor>User</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="PIDev_java.jar" size="14885528" download="eager" />
+    <jar href="lib\GMapsFX-8.0.0.jar" size="3893601" download="eager" />
+    <jar href="lib\activation.jar" size="124332" download="eager" />
+    <jar href="lib\calendarfx-recurrence-8.4.1.jar" size="159323" download="eager" />
+    <jar href="lib\calendarfx-view-8.4.1.jar" size="746767" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\fontawesomefx-commons-8.13.jar" size="20607" download="eager" />
+    <jar href="lib\fontawesomefx-fontawesome-4.7.0-1.jar" size="135304" download="eager" />
+    <jar href="lib\java-json-schema.jar" size="303651" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib\license4j-1.4.0.jar" size="13936" download="eager" />
+    <jar href="lib\mail.jar" size="666983" download="eager" />
+    <jar href="lib\mapjfx-1.9.0.jar" size="369327" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\spring-security-crypto-4.1.0.RELEASE.jar" size="54721" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="PIDev_java" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="PIDev_java.PIDev_java"  name="PIDev_java" />
+  <update check="always"/>
+</jnlp>
