@@ -132,7 +132,7 @@ public class FormationService implements iService_formation<Formation>{
             notificationError.showError();
             return false;
         } else {
-            String sql = "insert into video(url,title,publish_date,description,domaine) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getDescription() + "','" + v.getDomaine() + "')";
+            String sql = "insert into video(url,title,publish_date,description,domaine,votes) values('" + v.getUrl() + "','" + v.getTitle() + "','" + v.getPublish_date() + "','" + v.getDescription() + "','" + v.getDomaine() + "','" + v.getVotes()+"')";
             //String req2="insert into video(url,title,publish_date,description,domaine,id_cand_id) values((select id from user where id=?),?,(select id from video where id=?))";
             try {
                 ste = cnx.createStatement();

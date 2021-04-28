@@ -83,6 +83,7 @@ public class AjouterFormationController implements Initializable {
         
         
         Formation v = new Formation();
+        v.setVotes("0");
         
         v.setUrl(url);
         v.setTitle(tfTitle.getText());
