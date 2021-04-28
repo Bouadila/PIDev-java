@@ -90,7 +90,6 @@ public class DetailOffreController implements Initializable {
         System.out.println(o.toString());
     }
 
-    @FXML
     private void updateOffre(MouseEvent event) {
 
             FXMLLoader loader = new FXMLLoader ();
@@ -109,7 +108,6 @@ public class DetailOffreController implements Initializable {
             stage.show();
     }
 
-    @FXML
     private void deleteOffre(MouseEvent event) {
           Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer  " + o.getPost() + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
                 alert.showAndWait();
@@ -132,7 +130,6 @@ public class DetailOffreController implements Initializable {
                 }
     }
 
-    @FXML
     private void backToListe(MouseEvent event) {
         Node node = (Node) event.getSource();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
@@ -173,5 +170,9 @@ public class DetailOffreController implements Initializable {
                     Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                  stage.setScene(scene);
+    }
+
+    @FXML
+    private void Postuler(MouseEvent event) {
     }
 }

@@ -6,6 +6,7 @@
 package UI.UI_User;
 
 import static Services.UserSession.setIdSession;
+import UI.OffreUI.OffreFXMLController;
 import java.io.IOException;
 import java.net.URL;
 import static java.nio.channels.spi.AsynchronousChannelProvider.provider;
@@ -16,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -210,6 +213,16 @@ public class LoginController implements Initializable {
 
     @FXML
     private void offre(MouseEvent event) {
+         Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreCandidatFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
     }
 
     @FXML

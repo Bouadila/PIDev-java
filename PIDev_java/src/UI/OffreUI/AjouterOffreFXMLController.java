@@ -7,18 +7,29 @@ package UI.OffreUI;
 
 import Entity.Contrat;
 import Entity.Offre;
+import QuizUI.AddQuizController;
+import QuizUI.QuizListController;
+import QuizUI.ShowQuizController;
 import Services.OffreDao.ContratService;
 import Services.OffreDao.OffreService;
+import Services.UserSession;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
@@ -67,7 +78,7 @@ public class AjouterOffreFXMLController implements Initializable {
         }    
 
     @FXML
-    private void newOffre(MouseEvent event) {
+    private void newOffre(MouseEvent event) throws SQLException {
         String post = this.tfPost.getText();
         String objectif = this.tfObjectif.getText();
         String competence = this.tfCompetence.getText();
@@ -99,7 +110,8 @@ public class AjouterOffreFXMLController implements Initializable {
             Date date = Date.from(expiration.atStartOfDay(defaultZoneId).toInstant());
             Offre offre = new Offre(post,objectif,competence,description,domaine,salaire,nbPlace,date,minVal,maxVal);
             OffreService os = new OffreService();
-            os.add(offre, c);
+            int id = os.addOffreAndGetItsId(offre, c,UserSession.getIdSession());
+            offre.setId(id);
             System.out.println("offre ajouter");
             this.tfPost.setText(null);
             this.tfObjectif.setText(null);
@@ -112,16 +124,42 @@ public class AjouterOffreFXMLController implements Initializable {
             this.tfMinVal.getValueFactory().setValue(0);
             this.tfMaxVal.getValueFactory().setValue(0);
             this.datePickerExpiration.getEditor().clear();
+            
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez vous ajouter un quizz ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                try {
+                    //do stuff
+                    Node node = (Node) event.getSource();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/AddQuiz.fxml"));
+                    Stage stage = (Stage) node.getScene().getWindow();
+
+                    Scene scene = new Scene(loader.load());
+                    AddQuizController addQuiz = loader.getController();
+                    addQuiz.initData(offre);
+                    
+                    
+                    stage.setScene(scene);
+                } catch (IOException ex) {
+                    Logger.getLogger(AjouterOffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    
+                    
+                }
+                else{
+            
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             stage.close();
+                }
             
         }
 }
 
     private void loadDate() {
 
-        String elements [] = {"","Aéronautique Et Espace",
+        String elements [] = {"Aéronautique Et Espace",
                     "Agriculture - Agroalimentaire",
                     "Artisanat",
                     "Audiovisuel, Cinéma",

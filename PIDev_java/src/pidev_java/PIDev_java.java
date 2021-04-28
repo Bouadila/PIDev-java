@@ -34,7 +34,7 @@ public class PIDev_java extends Application {
 //                Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserStat.fxml"));
 
 
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+  //      Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

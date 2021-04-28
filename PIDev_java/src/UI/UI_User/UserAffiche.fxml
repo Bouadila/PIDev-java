@@ -126,7 +126,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" text="" />
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#offre" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
                </graphic>

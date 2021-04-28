@@ -5,9 +5,11 @@
  */
 package QuizUI;
 
+import Entity.Offre;
 import Entity.Question;
 import Entity.Quiz;
 import Entity.Reponse;
+import Services.OffreDao.OffreService;
 import Services.QuestionService;
 import Services.QuizService;
 import Services.ReponseService;
@@ -84,7 +86,9 @@ public class AddQuizController implements Initializable {
     private int id_quiz = 0;
 
     Quiz quiz = null;
-
+    
+    private Offre o = new Offre();
+    OffreService os = new OffreService();
     private QuizService quizService = new QuizService();
     private QuestionService questionService = new QuestionService();
     private ReponseService reponseService = new ReponseService();
@@ -111,10 +115,8 @@ public class AddQuizController implements Initializable {
         tf_text.setStyle("-fx-background-color: #a9a9a9 , white , white; -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;");
     }
 
-    public void initData(Quiz quiz) throws SQLException {
-        this.quiz = quiz;
-        tf_text.setText(quiz.getNom_quiz());
-        listQuestion = questionService.getQuestionByQuiz(quiz);
+    public void initData(Offre offre) throws SQLException {
+        o = offre;
 
     }
 
@@ -125,7 +127,8 @@ public class AddQuizController implements Initializable {
             if (tf_text.getText().length() > 4) {
                 quiz = new Quiz(tf_text.getText(), 0);
                     id_quiz = quizService.addQuizAndGetItsId(quiz);
-
+                    o.setQuiz(id_quiz);
+                    os.addQuizzToOffre(id_quiz, o.getId());
                 Button finish = new Button("Terminer");
                 finish.setOnAction(e -> {
                     try {

@@ -28,6 +28,7 @@ public class Offre {
  private int experienceMax;
  private boolean flagSupprimer;
  private boolean flagExpirer;
+ private int Quiz;
  LocalDate localDate = LocalDate.now();
 
     public Offre() {
@@ -167,6 +168,14 @@ public class Offre {
 
     public void setFlagExpirer(boolean flagExpirer) {
         this.flagExpirer = flagExpirer;
+    }
+
+    public int getQuiz() {
+        return Quiz;
+    }
+
+    public void setQuiz(int Quiz) {
+        this.Quiz = Quiz;
     }
 
     @Override

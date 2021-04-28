@@ -26,6 +26,45 @@ import utils.DataSource;
  */
 public class OffreService {
     Connection cnx = DataSource.getInstance().getCnx();
+    
+    
+     public int addOffreAndGetItsId(Offre offre, Contrat contrat , int idUser) throws SQLException{
+        
+        String sql="INSERT INTO `offre`( `contrat_id`, `entreprise_id`, `description`, "
+                + "`salaire`, `date_depo`, `date_expiration`, `nombre_place`, `post`, `objectif`, `competences`, "
+                + "`domaine`, `experience_min`, `experience_max`, `flag_supprimer`, `flag_expirer`) VALUES "
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String generatedColumns[] = { "ID" };
+        PreparedStatement ps = cnx.prepareStatement(sql, generatedColumns);
+         ps.setInt(1, contrat.getId());
+            ps.setInt(2, idUser);
+            ps.setString(3, offre.getDescription());
+            ps.setInt(4,offre.getSalaire());
+            // new java.sql.Date(affiliate.getDate().getTime())
+            ps.setDate(5, new java.sql.Date(offre.getDateDepot().getTime()));
+            ps.setDate(6, new java.sql.Date( offre.getDateExpiration().getTime()));
+            ps.setInt(7, offre.getNombrePlace());
+            ps.setString(8, offre.getPost());
+            ps.setString(9, offre.getObjectif());
+            ps.setString(10, offre.getCompetences());
+            ps.setString(11, offre.getDomaine());
+            ps.setInt(12, offre.getExperienceMin());
+            ps.setInt(13, offre.getExperienceMax());
+            ps.setBoolean(14, offre.isFlagSupprimer());
+            ps.setBoolean(15, offre.isFlagExpirer());
+            int i = ps.executeUpdate();
+         try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Creating quiz failed, no ID obtained.");
+            }
+        }
+    }
+    
+    
+    
      public void add(Offre offre, Contrat contrat) {
         String req ="INSERT INTO `offre`( `contrat_id`, `entreprise_id`, `description`, "
                 + "`salaire`, `date_depo`, `date_expiration`, `nombre_place`, `post`, `objectif`, `competences`, "
@@ -171,5 +210,18 @@ public class OffreService {
 
     return null;
     }
+     public void addQuizzToOffre(int idQuiz,int id){
+         try {
+        PreparedStatement ps = cnx.prepareStatement("UPDATE `offre` SET "
+                + "`quiz_id`=? "
+                + "WHERE `id`=?");
+            ps.setInt(1,idQuiz );
+            ps.setInt(2, id);
+        int i = ps.executeUpdate();
+            System.out.println(i);
+    } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+    }
+     }
 
 }

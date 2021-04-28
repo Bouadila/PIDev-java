@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="846.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.DetailOffreCandidatController">
+   <children>
+      <VBox layoutY="-4.0" prefHeight="481.0" prefWidth="192.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Pane prefHeight="94.0" prefWidth="181.0">
+               <children>
+                  <Label layoutX="75.0" prefHeight="70.0" prefWidth="140.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Home" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="RendezVous" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Annonce" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Connexion" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TASKS" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="41.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Inscreption" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="47.0" prefWidth="321.0" />
+      <Pane layoutX="200.0" layoutY="28.0" prefHeight="431.0" prefWidth="633.0" style="-fx-background-color: #fcf2f2; -fx-background-radius: 40px;">
+         <effect>
+            <DropShadow color="#a31515ab" />
+         </effect>
+         <children>
+            <Label fx:id="lb_Post" alignment="CENTER" layoutX="255.0" layoutY="39.0" prefHeight="28.0" prefWidth="355.0" text="Text" textFill="#830707">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+            </Label>
+            <Text fx:id="lb_domaine" layoutX="320.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="206.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Circle fx:id="img" fill="DODGERBLUE" layoutX="102.0" layoutY="142.0" radius="75.0" stroke="BLACK" strokeType="INSIDE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Circle>
+            <Label layoutX="242.0" layoutY="75.0" prefHeight="20.0" prefWidth="67.0" text="Domaine :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ad0505" height="424.0" layoutX="215.0" stroke="BLACK" strokeType="INSIDE" width="3.0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#Postuler" prefHeight="19.0" prefWidth="148.0" style="-fx-background-color: #ad0505; -fx-background-radius: 15px;" text="Postuler" textFill="WHITE" />
+            <Label layoutX="244.0" layoutY="126.0" prefHeight="17.0" prefWidth="62.0" text="Objectif :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Text fx:id="lb_objectif" layoutX="320.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="276.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Label fx:id="lb_depo" layoutX="242.0" layoutY="164.0" prefHeight="28.0" prefWidth="162.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#ad0505" glyphName="CALENDAR" layoutX="404.0" layoutY="182.0" size="14.0" />
+            <Label fx:id="lb_expiration" layoutX="440.0" layoutY="162.0" prefHeight="30.0" prefWidth="140.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#ad0505" glyphName="CALENDAR" layoutX="588.0" layoutY="178.0" size="14.0" />
+            <Text layoutX="243.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience:" wrappingWidth="130.048828125">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="280.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimale">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="429.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximale">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="lb_salaire" layoutX="343.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="128.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Label fx:id="leb_min" layoutX="357.0" layoutY="236.0" prefHeight="30.0" prefWidth="57.0" text="Label" />
+            <Label fx:id="lb_max" layoutX="510.0" layoutY="238.0" prefHeight="26.0" prefWidth="56.0" text="Label" />
+            <Label layoutX="243.0" layoutY="321.0" prefHeight="22.0" prefWidth="94.0" text="Competences :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Text fx:id="lb_competence" layoutX="340.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="191.99999392032623">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="246.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="lb_description" layoutX="248.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="306.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="245.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire :" wrappingWidth="89.00000059604645">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
