@@ -276,20 +276,26 @@ public class FormationService implements iService_formation<Formation>{
     
     
 
-    public boolean ajouterRate(Formation v) {
+    public void ajouterRate(Formation v) {
         
-       
-            String sql1 = "insert into video(votes) values('" + v.getVotes() + "')";
+       String sql1 = "update video set votes='" 
+                    + v.getVotes() +"' where id="+v.getId();
+           
+     
             //String req2="insert into video(url,title,publish_date,description,domaine,id_cand_id) values((select id from user where id=?),?,(select id from video where id=?))";
             try {
+                 
+                 
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql1);
              
-                return true;
+                
+                
+                System.out.println(v.getId());
             } catch (SQLException ex) {
                 Logger.getLogger(FormationService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return false;
+
         }
 
     

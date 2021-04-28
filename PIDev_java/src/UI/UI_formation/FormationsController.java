@@ -26,6 +26,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -39,6 +40,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -49,6 +53,7 @@ import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 
 
 /**
@@ -261,8 +266,27 @@ public class FormationsController implements Initializable {
             });
             
            
-          
+            
            
+           Rating id_rating = new Rating();
+           Button id_button_rate = new Button("évaluer");
+           
+           id_rating.setRating(0);
+           id_button_rate.setTextFill(Color.web("#6e1010"));
+           id_button_rate.setBackground(new Background(new BackgroundFill(Color.web("#00E676"), CornerRadii.EMPTY, Insets.EMPTY)));
+           
+      id_button_rate.setOnAction(e-> {
+        
+        if(e.getSource()==id_button_rate)
+        {
+           
+            v.setVotes(Double.toString(id_rating.getRating()));            
+            new FormationService().ajouterRate(v);
+            
+        }
+        
+    });
+          
            
             VBox forma1=new VBox();
 //              final Pane sp = new Pane();
@@ -270,7 +294,7 @@ public class FormationsController implements Initializable {
 //                                + "-glyph-size:28px;"
 //                                + "-fx-fill:#00E676;"); 
             //forma1.getChildren().addAll(id,titre1,url1,description1,publish_date1,domaine1,btn1);
-            forma1.getChildren().addAll(id,titre1,url1,domaine1,description1);
+            forma1.getChildren().addAll(id,titre1,url1,domaine1,description1,id_rating,id_button_rate);
 
             forma1.setAlignment(Pos.CENTER);
             

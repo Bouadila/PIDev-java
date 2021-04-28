@@ -107,7 +107,7 @@ public class Formation {
     
     
     public String getVotes() {
-        return url;
+        return votes;
     }
 
     public void setVotes(String votes) {

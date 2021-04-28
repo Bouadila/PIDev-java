@@ -37,10 +37,7 @@ public class Video_detailController implements Initializable {
     private WebView webView_Forma;
     @FXML
     private FontAwesomeIconView id_back;
-    @FXML
-    private Rating id_rating;
-    @FXML
-    private Button id_button_rate;
+
 
     /**
      * Initializes the controller class.
@@ -91,18 +88,6 @@ public class Video_detailController implements Initializable {
         Window.setScene(new Scene(root));
     }
 
-    @FXML
-    private void btn_rate(ActionEvent event) {
-        
-        if(event.getSource()==id_button_rate)
-        {
-            Formation f = new Formation();
-            f.setVotes(Double.toString(id_rating.getRating()));
-            FormationService fv = new FormationService();
-            fv.ajouterRate(f);
-            
-        }
-        
-    }
+   
     
 }
