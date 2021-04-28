@@ -73,7 +73,7 @@ public class VoteService implements iService_votes <Votes>{
     public void Add(Formation v) throws SQLException {
 
         
-        String req = "insert into post_like (post_id) values((select id from video where id='"+v.getId()+"'))";
+        String req = "insert into post_like (post_id) values("+v.getId()+")";
         cnx = DataSource.getInstance().getCnx();
         //Statement st=cnx.createStatement();
        // rs= st.executeQuery(req);

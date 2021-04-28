@@ -151,6 +151,7 @@ public class FormationsController implements Initializable {
             
            
             id.setText(Integer.toString(v.getId()));
+            //System.out.println(v.getId());
             description1.setText(v.getDescription());
             titre1.setText(v.getTitle());
             url1.setText(v.getUrl());
@@ -158,12 +159,12 @@ public class FormationsController implements Initializable {
             // publish_date1.setText(formatter.format(formations.get(i).getPublish_date()));
             domaine1.setText(formations.get(i).getDomaine());
             
-            try {
-                
-                System.out.println(new VoteService().getVotes(v));
-            } catch (SQLException ex) {
-                Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                
+//                System.out.println(new VoteService().getVotes(v));
+//            } catch (SQLException ex) {
+//                Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             try {
                 votes.setText(Integer.toString(new VoteService().getVotes(v)));
             } catch (SQLException ex) {
@@ -195,13 +196,15 @@ public class FormationsController implements Initializable {
             
              
              
-             
+             int x = formations.get(i).getId();
               btnLiked.setOnMouseClicked(e -> {
 
+                  System.out.println(x);
                     VoteService vl = new VoteService();
-                    
+                    Formation f = new Formation();
+                    f.setId(x);
                 try {
-                    vl.Add(v);
+                    vl.Add(f);
                 } catch (SQLException ex) {
                     Logger.getLogger(FormationsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -215,9 +218,10 @@ public class FormationsController implements Initializable {
               
             btnUnliked.setOnMouseClicked(e-> {
 
-                    VoteService vu = new VoteService();
+                    Formation f = new Formation();
+                    f.setId(x);
                     
-                    vu.delete(v);
+                    new VoteService().delete(f);
                     btnUnliked.setVisible(false);
                     btnLiked.setVisible(true);
                     votes.setText(Integer.toString(Integer.parseInt(votes.getText()) - 1));
@@ -275,13 +279,20 @@ public class FormationsController implements Initializable {
            id_button_rate.setTextFill(Color.web("#6e1010"));
            id_button_rate.setBackground(new Background(new BackgroundFill(Color.web("#00E676"), CornerRadii.EMPTY, Insets.EMPTY)));
            
+           
+           
       id_button_rate.setOnAction(e-> {
         
         if(e.getSource()==id_button_rate)
         {
-           
-            v.setVotes(Double.toString(id_rating.getRating()));            
-            new FormationService().ajouterRate(v);
+            
+            Formation f = new Formation();
+             f.setVotes(Double.toString(id_rating.getRating()));
+            f.setId(x);
+                    
+            new FormationService().ajouterRate(f);
+             
+           // new FormationService().ajouterRate(v);
             
         }
         
