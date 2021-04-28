@@ -8,16 +8,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserDetaiAffichBacklController">
    <children>
       <Pane fx:id="pnlOverview" prefHeight="431.0" prefWidth="714.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="208.0" layoutY="15.0" prefHeight="35.0" prefWidth="288.0" style="-fx-background-color: white;" stylesheets="@../../../../../../../../wamp64/www/RUNTIME-TERROR-master/Desktop/src/GUI/style.css" text="Compte d'un utilisateur">
+            <Label layoutX="208.0" layoutY="15.0" prefHeight="35.0" prefWidth="288.0" style="-fx-background-color: white;" text="Compte d'un utilisateur">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.7666666666666667" startY="0.4714285714285714">
+                     <stops>
+                        <Stop color="#465275" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Label layoutX="374.0" layoutY="501.0" onMouseClicked="#GoToAllContact" />
             <Label layoutX="588.0" layoutY="501.0" onMouseClicked="#GoToAllComment" prefHeight="19.0" prefWidth="183.0" />
@@ -75,12 +85,12 @@
                </children>
             </VBox>
             <Label layoutX="503.0" layoutY="35.0" onDragDetected="#labelcompte" prefHeight="50.0" prefWidth="162.0" />
-            <Label fx:id="tfPrenom" layoutX="397.0" layoutY="135.0" prefHeight="27.0" prefWidth="272.0" text="Nom et Prénom :">
+            <Label fx:id="tfPrenom" layoutX="397.0" layoutY="135.0" prefHeight="27.0" prefWidth="307.0" text="Nom et Prénom :">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="146.0" fitWidth="174.0" layoutX="228.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="profilePic" fitHeight="160.0" fitWidth="183.0" layoutX="214.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../GUI/Icons/icons8_user_50px.png" />
                </image>
@@ -90,12 +100,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfGover" layoutX="399.0" layoutY="195.0" prefHeight="27.0" prefWidth="215.0" text="gover">
+            <Label fx:id="tfGover" layoutX="399.0" layoutY="195.0" prefHeight="27.0" prefWidth="307.0" text="gover">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfMail" layoutX="399.0" layoutY="167.0" prefHeight="27.0" prefWidth="260.0" text="mail">
+            <Label fx:id="tfMail" layoutX="399.0" layoutY="167.0" prefHeight="27.0" prefWidth="307.0" text="mail">
                <font>
                   <Font size="16.0" />
                </font>
@@ -105,12 +115,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfetat" layoutX="399.0" layoutY="301.0" prefHeight="27.0" prefWidth="272.0" text="etat du compte">
+            <Label fx:id="tfetat" layoutX="399.0" layoutY="301.0" prefHeight="27.0" prefWidth="299.0" text="etat du compte">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfNom" layoutX="398.0" layoutY="106.0" prefHeight="27.0" prefWidth="260.0" text="Nom et Prénom :">
+            <Label fx:id="tfNom" layoutX="398.0" layoutY="106.0" prefHeight="27.0" prefWidth="307.0" text="Nom et Prénom :">
                <font>
                   <Font size="16.0" />
                </font>

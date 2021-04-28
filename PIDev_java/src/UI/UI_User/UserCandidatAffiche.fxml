@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,6 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserCandidatAfficheController">
    <children>
@@ -20,9 +24,39 @@
          <children>
             <Pane layoutX="29.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #d7a1a8;">
                <children>
-                  <Button layoutX="404.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTochange" text="Modifier Compte" />
-                  <Button layoutX="514.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#logout" text="Déconnexion" />
-                  <Button layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTodesactiv" text="Désactiver Compte" />
+                  <Button layoutX="404.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTochange" text="Modifier Compte">
+                     <effect>
+                        <Lighting diffuseConstant="1.42" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="#f89a9a" />
+                           </light>
+                        </Lighting>
+                     </effect></Button>
+                  <Button layoutX="514.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#logout" text="Déconnexion">
+                     <effect>
+                        <Lighting diffuseConstant="1.44" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="#f89a9a" />
+                           </light>
+                        </Lighting>
+                     </effect></Button>
+                  <Button layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTodesactiv" text="Désactiver Compte">
+                     <effect>
+                        <Lighting diffuseConstant="1.49" specularConstant="0.0" surfaceScale="1.62">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="#f89a9a" />
+                           </light>
+                        </Lighting>
+                     </effect></Button>
                   <Label layoutX="85.0" layoutY="6.0" prefHeight="17.0" prefWidth="142.0" text="Bienvenu dans Recrutini..." />
                </children>
             </Pane>
@@ -42,23 +76,23 @@
                   <Circle fill="#1b5387a6" layoutX="55.0" layoutY="48.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </Pane>
-            <Label fx:id="tfNomPrenom" layoutX="300.0" layoutY="141.0" prefHeight="25.0" prefWidth="299.0" text="Nom et Prénom :">
+            <Label fx:id="tfNomPrenom" layoutX="300.0" layoutY="147.0" prefHeight="25.0" prefWidth="325.0" text="Nom et Prénom :">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <BorderPane layoutX="123.0" layoutY="130.0" />
-            <Label fx:id="tfmail" layoutX="300.0" layoutY="189.0" prefHeight="25.0" prefWidth="228.0" text="E-mail :">
+            <Label fx:id="tfmail" layoutX="300.0" layoutY="189.0" prefHeight="25.0" prefWidth="325.0" text="E-mail :">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfspecialite" layoutX="300.0" layoutY="236.0" prefHeight="25.0" prefWidth="228.0" text="Spécialité :">
+            <Label fx:id="tfspecialite" layoutX="299.0" layoutY="236.0" prefHeight="25.0" prefWidth="311.0" text="Spécialité :">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="tfgoverno" layoutX="300.0" layoutY="287.0" prefHeight="25.0" prefWidth="235.0" text="Governorat : ">
+            <Label fx:id="tfgoverno" layoutX="300.0" layoutY="287.0" prefHeight="25.0" prefWidth="303.0" text="Governorat : ">
                <font>
                   <Font size="16.0" />
                </font>
@@ -72,12 +106,21 @@
                   <ColorAdjust />
                </effect>
             </Label>
+            <Rating fx:id="rating" layoutX="330.0" layoutY="89.0" onMouseClicked="#gorating" rating="0.0">
+               <effect>
+                  <Lighting bumpInput="$null" diffuseConstant="2.0" specularConstant="0.81" specularExponent="26.05" surfaceScale="0.57">
+                     <light>
+                        <Light.Distant azimuth="360.0" color="#5e1e1ec9" elevation="86.86" />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Rating>
+            <ImageView fx:id="profilePic" fitHeight="163.0" fitWidth="162.0" layoutX="123.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="304.0" fitWidth="195.0" layoutX="100.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../GUI/Icons/icons8_user_50px.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

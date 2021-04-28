@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import utils.DataSource;
 
 /**
@@ -63,6 +69,7 @@ public class UserService implements IService<User> {
                 u.setGover(rs.getString("gover"));
                 u.setSpecial(rs.getString("special"));
                 u.setRoles(rs.getString("roles"));
+                u.setImg(rs.getString("img"));
                 Users.add(u);
             }
         
@@ -211,6 +218,7 @@ public class UserService implements IService<User> {
                 u.setGover(rs.getString("gover"));
                 u.setSpecial(rs.getString("special"));
                 u.setRoles(rs.getString("roles"));
+                u.setImg(rs.getString("img"));
                 return u;
             }
 
@@ -221,7 +229,86 @@ public class UserService implements IService<User> {
     return null;
     }
         
-  
+          public int TotalActiv() {
+       int nb=0;
+       String req = "SELECT count(id) from user where etat=0";
+       PreparedStatement preparedStatement;
+        try {
+            preparedStatement = con.prepareStatement(req);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            nb=resultSet.getInt(1);
+        } catch (SQLException ex) {
+                 Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  nb;
+    }
+           public int TotalRefused() {
+       int nb=0;
+       String req = "SELECT count(id) from user where etat=1";
+       PreparedStatement preparedStatement;
+        try {
+            preparedStatement = con.prepareStatement(req);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            nb=resultSet.getInt(1);
+        } catch (SQLException ex) {
+                      Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  nb;
+    }
+           
+         
+        
+//   public int readTraited() throws SQLException {
+//             int nb=0;
+//       String req = "SELECT count(id) from user where etat='1'";
+//       PreparedStatement preparedStatement;
+//        try {
+//            preparedStatement = con.prepareStatement(req);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            resultSet.next();
+//            nb=resultSet.getInt(1);
+//        } catch (SQLException ex) {
+//                      Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return  nb;
+//    }
+//   
+//    public List<reservation> readNottraited() throws SQLException {
+//        String req = "select * from reservation where etat ='non traite'";
+//        List<reservation> list = new ArrayList<>();
+// List<User>CLS= new ArrayList<User>();
+//        try {
+//            ste = con.createStatement();
+//            ResultSet rs = ste.executeQuery(req);
+//            while (rs.next()) {
+//   java.sql.Date sqlDate = java.sql.Date.valueOf(rs.getDate(6).toLocalDate());
+//       PreparedStatement pre_partenaire=con.prepareStatement("select * from utilisateurs where id=? ");
+//               pre_partenaire.setInt(1,rs.getInt(2));
+//               ResultSet Clients=pre_partenaire.executeQuery();
+//  while(Clients.next())
+//               {
+//                   int idc=Clients.getInt("id");
+//                   String username=Clients.getString("username");
+//                   String email=Clients.getString("email");
+//                   String role=Clients.getString("roles");
+//                   String nom=Clients.getString("nom");
+//                   String prenom=Clients.getString("prenom");
+//                   User Client= new User(idc,username,email,role,nom,prenom);
+//                   CLS.add(Client);
+//               }
+//              //  System.out.println("test");
+//       //CLS.forEach(System.out::println);
+//                list.add(new reservation(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),sqlDate, rs.getFloat(7), rs.getString(8), rs.getString(9), rs.getString(10),CLS.get(0)));
+//
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ServiceReservation.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return list;
+//    }
 }
     
     

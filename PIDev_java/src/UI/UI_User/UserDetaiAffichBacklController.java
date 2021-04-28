@@ -8,6 +8,7 @@ package UI.UI_User;
 import Entity.User;
 import Services.UserService;
 import Services.UserSession;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,15 +16,26 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import utils.DataSource;
 
 /**
@@ -59,33 +71,20 @@ public class UserDetaiAffichBacklController implements Initializable {
     private Label tfetat;
     @FXML
     private Label tfNom;
+    @FXML
+    private ImageView profilePic;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
     }    
         
      User u =new User();
     public void initData(User user) throws SQLException{
-//        this.lb_Post.setText(offre.getPost());
-//        this.lb_competence.setText(offre.getCompetences());
-//        this.lb_description.setText(offre.getDescription());
-//        this.lb_objectif.setText(offre.getObjectif());
-//        this.lb_domaine.setText(offre.getDomaine());
-//        this.lb_salaire.setText(offre.getSalaire()+"DT");
-//        this.lb_depo.setText(offre.getDateDepot().toString());
-//        this.lb_expiration.setText(offre.getDateExpiration().toString());
-//        this.leb_min.setText(String.valueOf(offre.getExperienceMin()));
-//        this.lb_max.setText(String.valueOf(offre.getExperienceMax()));
-//         Image image = new Image("/Images/9.jpg");
-//         this.logo.setImage(image);
-//        //lb_id.setText(offre.getDescription());
-//        o = new OffreService().getOne(offre.getId());
-//        System.out.println(o.toString());
-//    }
     
         this.tfNom.setText("Nom : " +user.getName());
         this.tfPrenom.setText("Prenom : " +user.getPrenom());
@@ -110,6 +109,15 @@ public class UserDetaiAffichBacklController implements Initializable {
                     this.tfetat.setText("Etat du compte : Désactiver" );
 
         }
+        Rectangle clip = new Rectangle( profilePic.getFitWidth(), profilePic.getFitHeight() );
+        clip.setArcWidth(200);
+        clip.setArcHeight(200);
+        profilePic.setClip(clip);
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = profilePic.snapshot(parameters, null);     
+         this.profilePic.setImage(new Image("/image/"+user.getImg()));
 
 //        this.lb_competence.setText(user.getCompetences());
 //        this.lb_description.setText(offre.getDescription());
@@ -139,11 +147,25 @@ public class UserDetaiAffichBacklController implements Initializable {
     }
 
     @FXML
-    private void CompteClicks(ActionEvent event) {
+    private void CompteClicks(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAfficheBack.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML
-    private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML

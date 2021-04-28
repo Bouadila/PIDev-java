@@ -102,8 +102,7 @@ catch (SQLException ex) {
          String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
         ResultSet rs0 = ps0.executeQuery();
-        if (rs0.next())
-        {
+        if (rs0.next()) {
             role = rs0.getString("roles");
         }
         
@@ -111,7 +110,6 @@ catch (SQLException ex) {
              Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserCandidatAffiche.fxml")));
                     stage.setScene(scene);
                     stage.show();
@@ -120,7 +118,6 @@ catch (SQLException ex) {
              Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAffiche.fxml")));
                     stage.setScene(scene);
                     stage.show();
@@ -175,35 +172,22 @@ catch (SQLException ex) {
             String d = rs0.getString("special");
             String e = rs0.getString("email");
             String f = rs0.getString("img");
-      Rectangle clip = new Rectangle(
-                profilePic.getFitWidth(), profilePic.getFitHeight()
-        );
+            Rectangle clip = new Rectangle( profilePic.getFitWidth(), profilePic.getFitHeight() );
         clip.setArcWidth(300);
-        clip.setArcHeight(300);
+        clip.setArcHeight(400);
         profilePic.setEffect(new DropShadow(20, Color.BLACK));
         profilePic.setClip(clip);
-
         // snapshot the rounded image.
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
-        WritableImage image = profilePic.snapshot(parameters, null);
-
-        //remove the rounding clip so that our effect can show through.
-        //profilePic.setClip(null);
-        // apply a shadow effect.
-//        System.out.println(user);
-
-           
+        WritableImage image = profilePic.snapshot(parameters, null);     
+                     profilePic.setImage(new Image("/image/"+f));
                      tfmail.setText("Email : "+e);
                      tfgoverno.setText("Governorat : "+c);
                      tfspecialite.setText("Specialité : "+d);
-//                     imgaffiche.setImage(""+f);
-
+//                   imgaffiche.setImage(""+f);
         }
-                     tfNomPrenom.setText(fullName);  
-               
-    
-    
+                     tfNomPrenom.setText(fullName);   
     }
 
     @FXML

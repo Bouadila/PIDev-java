@@ -222,7 +222,12 @@ String profilePic = lb_image.getText();
 
             alert.showAndWait();
         }
-       
+        if (imgp!=null) {
+            try {
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Desktop\\PIDev-java\\PIDev_java\\src\\image\\" + imgp));
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Documents\\pidev\\ProjPiDev\\public\\uploads\\image\\" + imgp));
+            } catch (IOException ex) {
+            }
         }
         String req1 = "SELECT email  FROM user Where email = '"+tfEmail.getText()+"'";
                PreparedStatement ps1 = con.prepareStatement(req1);
@@ -304,69 +309,12 @@ String profilePic = lb_image.getText();
            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
            message.setSubject(sub);    
            message.setText(msg);    
-           //send message  
-           Transport.send(message);    
-           System.out.println("message sent successfully");
-                 JOptionPane.showMessageDialog(null, "code envoyer a l'email");
-                   Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-                    stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserActiveCode.fxml")));
-                    stage.setScene(scene);
-                    stage.show();
-          } catch (MessagingException e) {
-                         System.out.println("message didn't sent successfully");    
-                         JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
-                         throw new RuntimeException(e);}                 
-        }
-                
-            }
-         if (leRole.equals("Employeur")){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            String req = "SELECT *  FROM user Where email = '"+tfEmail.getText()+"'";      
-            PreparedStatement ps = con.prepareStatement(req);       
-            ResultSet rs = ps.executeQuery();
-        if (!rs.next()) {
-            JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");      
-        } else {           
-            int k = rs.getInt("id");
-            setIdSession(k);
-            Random rand =new Random();
-            randomCodee=rand.nextInt(999999);
-            String host ="smtp.gmail.com" ;
-            String from ="pidevtestad@gmail.com" ;
-            String password ="pidevtestad123456" ;
-            String to =tfEmail.getText();
-            String sub ="Activer compte " ;
-            String msg ="Ton code est : " +randomCodee ;
-          Properties props = new Properties();    
-          props.put("mail.smtp.host", "smtp.gmail.com");    
-          props.put("mail.smtp.socketFactory.port", "465");    
-          props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");    
-          props.put("mail.smtp.auth", "true");    
-          props.put("mail.smtp.starttls.enable", "true");    
-          props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-          props.put("mail.smtp.port", "587");    
-          //get Session   
-           Session session = Session.getDefaultInstance(props,    
-           new javax.mail.Authenticator() {    
-           protected PasswordAuthentication getPasswordAuthentication() {    
-           return new PasswordAuthentication(from,password);  
-           }    
-          });  
-            System.out.println("message en cour successfully");    
-          //compose message    
-          try {    
-           MimeMessage message = new MimeMessage(session);    
-           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
-           message.setSubject(sub);    
-           message.setText(msg);  
            message.setContent("<!doctype html>\n"
                     + "<html>\n"
                     + "  <head>\n"
                     + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
                     + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n"
-                    + "    <title>Complaint</title>\n"
+                    + "    <title>Activez votre compte</title>\n"
                     + "    <style>\n"
                     + "\n"
                     + "      body {\n"
@@ -461,15 +409,15 @@ String profilePic = lb_image.getText();
                     + "                    <tr>\n"
                     + "                      <td>\n"
                     + "                          <p> <img src=\"https://i.ibb.co/tmMX6Hn/recruitini-logo.png?fbclid=IwAR2tFKmk1cpPbl36C3txf49oGSWoSIiWMUlvLUUOyzMhlEWH8a-00RXKtW8\" style=\"display: block;margin-left: auto;margin-right: auto; width: 50%\"> </p>\n"
-                    + "                        <span style=\"font-weight: bold\">Dear </span>\n"
+                    + "                        <span style=\"font-weight: bold\">Chèr(e) </span>\n"
                     + "                        <span style=\"font-weight: bold;color: red\">" + tfPrenom.getText() + " , </span>\n"
                     + "                         \n"
-                    + "                        <p>Thank you for taking the time to contact us to explain the issues that have occured recently .</p>\n"
-                    + "                        <p>Tunisia's Got Talent regret any inconvenience you have experienced , and our Customer Satisfaction Team is reviewing the information you sent us in order to solve this matter fairly.</p>\n"
+                    + "                        <p>Afin de pouvoir activer votre compte, nous devons valider votre adresse e-mail.</p>\n"
+                    + "                        <p> Récrire simplement le code envoyer.</p>\n"
                     + "                        "
                     + " <span style=\"font-weight: bold;color: red\">" + msg + "  </span>\n"
-                    + "<p>If you need further assistance , you may contact us : </p>\n"
-                    + "                           <a href=\"mailto:recrutini@gmail.com?subject=Compte%20from%20" + tfPrenom.getText() + "\">\n"
+                    + "<p>Pour plus d'information n'hésitez pas à nous contacter sur : </p>\n"
+                    + "                           <a href=\"mailto:recrutini@gmail.com?subject=Compte%20de%20" + tfPrenom.getText() + "\">\n"
                     + "                            <img src=\"https://upload.wikimedia.org/wikipedia/commons/archive/4/4e/20160129092800%21Gmail_Icon.png\" height=\"30\" width=\"30\" style=\"border: none;display: inline-block;color: white;\"></a>\n"
                     + "                          <a href=\"https://www.facebook.com/bureau.alphaservice/\" target=\"_blank\"> <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/900px-Facebook-icon-1.png\" height=\"30\" width=\"30\"> </a>\n"
                     + "                          \n"
@@ -497,13 +445,225 @@ String profilePic = lb_image.getText();
                     + "              <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
                     + "                <tr>\n"
                     + "                  <td class=\"content-block\">\n"
-                    + "                    <span class=\"apple-link\">2035 Sunset Lake, Residence El Amen,Ariana</span>\n"
+                    + "                    <span class=\"apple-link\">2202 Residence El Amen,Ariana</span>\n"
                     + "                   \n"
                     + "                  </td>\n"
                     + "                </tr>\n"
                     + "                <tr>\n"
                     + "                  <td class=\"content-block powered-by\">\n"
-                    + "                    Powered by <a href=\"http://htmlemail.io\">KingPins</a>.\n"
+                    + "                    Agence <a href=\"http://htmlemail.io\">Recrutini</a>.\n"
+                    + "                  </td>\n"
+                    + "                </tr>\n"
+                    + "              </table>\n"
+                    + "            </div>\n"
+                    + "\n"
+                    + "          </div>\n"
+                    + "        </td>\n"
+                    + "      </tr>\n"
+                    + "    </table>\n"
+                    + "  </body>\n"
+                    + "</html>", "text/html; charset=utf-8");
+      
+           //send message  
+           Transport.send(message);    
+           System.out.println("message sent successfully");
+                 JOptionPane.showMessageDialog(null, "code envoyer a l'email");
+                   Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserActiveCode.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+          } catch (MessagingException e) {
+                         System.out.println("message didn't sent successfully");    
+                         JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
+                         throw new RuntimeException(e);}                 
+        }
+                
+            }
+         if (leRole.equals("Employeur")){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            String req = "SELECT *  FROM user Where email = '"+tfEmail.getText()+"'";      
+            PreparedStatement ps = con.prepareStatement(req);       
+            ResultSet rs = ps.executeQuery();
+        if (!rs.next()) {
+            JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");      
+        } else {           
+            int k = rs.getInt("id");
+            setIdSession(k);
+            Random rand =new Random();
+            randomCodee=rand.nextInt(999999);
+            String host ="smtp.gmail.com" ;
+            String from ="pidevtestad@gmail.com" ;
+            String password ="pidevtestad123456" ;
+            String to =tfEmail.getText();
+            String sub ="Activer compte " ;
+            String msg ="Ton code est : " +randomCodee ;
+          Properties props = new Properties();    
+          props.put("mail.smtp.host", "smtp.gmail.com");    
+          props.put("mail.smtp.socketFactory.port", "465");    
+          props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");    
+          props.put("mail.smtp.auth", "true");    
+          props.put("mail.smtp.starttls.enable", "true");    
+          props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+          props.put("mail.smtp.port", "587");    
+          //get Session   
+           Session session = Session.getDefaultInstance(props,    
+           new javax.mail.Authenticator() {    
+           protected PasswordAuthentication getPasswordAuthentication() {    
+           return new PasswordAuthentication(from,password);  
+           }    
+          });  
+            System.out.println("message en cour successfully");    
+          //compose message    
+          try {    
+           MimeMessage message = new MimeMessage(session);    
+           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+           message.setSubject(sub);    
+           message.setText(msg);  
+           message.setContent("<!doctype html>\n"
+                    + "<html>\n"
+                    + "  <head>\n"
+                    + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
+                    + "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n"
+                    + "    <title>Activez votre compte</title>\n"
+                    + "    <style>\n"
+                    + "\n"
+                    + "      body {\n"
+                    + "        background-color: #f6f6f6;\n"
+                    + "        font-family: sans-serif;\n"
+                    + "        -webkit-font-smoothing: antialiased;\n"
+                    + "        font-size: 14px;\n"
+                    + "        line-height: 1.4;\n"
+                    + "        margin: 0;\n"
+                    + "        padding: 0;\n"
+                    + "        -ms-text-size-adjust: 100%;\n"
+                    + "        -webkit-text-size-adjust: 100%; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "      table {\n"
+                    + "        border-collapse: separate;\n"
+                    + "        mso-table-lspace: 0pt;\n"
+                    + "        mso-table-rspace: 0pt;\n"
+                    + "        width: 100%; }\n"
+                    + "        table td {\n"
+                    + "          font-family: sans-serif;\n"
+                    + "          font-size: 14px;\n"
+                    + "          vertical-align: top; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "\n"
+                    + "      .body {\n"
+                    + "        background-color: #f6f6f6;\n"
+                    + "        width: 100%; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "      .container {\n"
+                    + "        display: block;\n"
+                    + "        margin: 0 auto !important;\n"
+                    + "        /* makes it centered */\n"
+                    + "        max-width: 580px;\n"
+                    + "        padding: 10px;\n"
+                    + "        width: 580px; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "      .content {\n"
+                    + "        box-sizing: border-box;\n"
+                    + "        display: block;\n"
+                    + "        margin: 0 auto;\n"
+                    + "        max-width: 580px;\n"
+                    + "        padding: 10px; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "      .main {\n"
+                    + "        background: #ffffff;\n"
+                    + "        border-radius: 3px;\n"
+                    + "        width: 100%; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "      .wrapper {\n"
+                    + "        box-sizing: border-box;\n"
+                    + "        padding: 20px; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "      .footer {\n"
+                    + "        clear: both;\n"
+                    + "        margin-top: 10px;\n"
+                    + "        text-align: center;\n"
+                    + "        width: 100%; \n"
+                    + "      }\n"
+                    + "        .footer td,\n"
+                    + "        .footer p,\n"
+                    + "        .footer span,\n"
+                    + "        .footer a {\n"
+                    + "          color: #999999;\n"
+                    + "          font-size: 12px;\n"
+                    + "          text-align: center; \n"
+                    + "      }\n"
+                    + "\n"
+                    + "    </style>\n"
+                    + "  </head>\n"
+                    + "  <body class=\"\">\n"
+                    + "    <span class=\"preheader\"></span>\n"
+                    + "    <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"body\">\n"
+                    + "      <tr>\n"
+                    + "        <td class=\"container\">\n"
+                    + "          <div class=\"content\">\n"
+                    + "\n"
+                    + "\n"
+                    + "            <table role=\"presentation\" class=\"main\">\n"
+                    + "\n"
+                    + "              <tr>\n"
+                    + "                <td class=\"wrapper\">\n"
+                    + "                  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
+                    + "                    <tr>\n"
+                    + "                      <td>\n"
+                    + "                          <p> <img src=\"https://i.ibb.co/tmMX6Hn/recruitini-logo.png?fbclid=IwAR2tFKmk1cpPbl36C3txf49oGSWoSIiWMUlvLUUOyzMhlEWH8a-00RXKtW8\" style=\"display: block;margin-left: auto;margin-right: auto; width: 50%\"> </p>\n"
+                    + "                        <span style=\"font-weight: bold\">Chèr(e) </span>\n"
+                    + "                        <span style=\"font-weight: bold;color: red\">" + tfPrenom.getText() + " , </span>\n"
+                    + "                         \n"
+                    + "                        <p>Afin de pouvoir activer votre compte, nous devons valider votre adresse e-mail.</p>\n"
+                    + "                        <p> Récrire simplement le code envoyer.</p>\n"
+                    + "                        "
+                    + " <span style=\"font-weight: bold;color: red\">" + msg + "  </span>\n"
+                    + "<p>Pour plus d'information n'hésitez pas à nous contacter sur : </p>\n"
+                    + "                           <a href=\"mailto:recrutini@gmail.com?subject=Compte%20de%20" + tfPrenom.getText() + "\">\n"
+                    + "                            <img src=\"https://upload.wikimedia.org/wikipedia/commons/archive/4/4e/20160129092800%21Gmail_Icon.png\" height=\"30\" width=\"30\" style=\"border: none;display: inline-block;color: white;\"></a>\n"
+                    + "                          <a href=\"https://www.facebook.com/bureau.alphaservice/\" target=\"_blank\"> <img src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/900px-Facebook-icon-1.png\" height=\"30\" width=\"30\"> </a>\n"
+                    + "                          \n"
+                    + "                        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">\n"
+                    + "                          <tbody>\n"
+                    + "                            <tr>\n"
+                    + "                              <td align=\"left\">\n"
+                    + "                                <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
+                    + "                                  <tbody>\n"
+                    + "                                  </tbody>\n"
+                    + "                                </table>\n"
+                    + "                              </td>\n"
+                    + "                            </tr>\n"
+                    + "                          </tbody>\n"
+                    + "                        </table>\n"
+                    + "                      </td>\n"
+                    + "                    </tr>\n"
+                    + "                  </table>\n"
+                    + "                </td>\n"
+                    + "              </tr>\n"
+                    + "\n"
+                    + "            </table>\n"
+                    + "\n"
+                    + "            <div class=\"footer\">\n"
+                    + "              <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
+                    + "                <tr>\n"
+                    + "                  <td class=\"content-block\">\n"
+                    + "                    <span class=\"apple-link\">2202 Residence El Amen,Ariana</span>\n"
+                    + "                   \n"
+                    + "                  </td>\n"
+                    + "                </tr>\n"
+                    + "                <tr>\n"
+                    + "                  <td class=\"content-block powered-by\">\n"
+                    + "                    Agence <a href=\"http://htmlemail.io\">Recrutini</a>.\n"
                     + "                  </td>\n"
                     + "                </tr>\n"
                     + "              </table>\n"
@@ -523,11 +683,9 @@ String profilePic = lb_image.getText();
                    Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserActiveCode.fxml")));
                     stage.setScene(scene);
                     stage.show();
-
           } catch (MessagingException e) {
                          System.out.println("message didn't sent successfully");    
                  JOptionPane.showMessageDialog(null, "cette adress email n'existe pas");
@@ -559,12 +717,10 @@ String profilePic = lb_image.getText();
          Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
     }
-
 
     private Date tfDate(Timestamp time) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -595,7 +751,6 @@ String profilePic = lb_image.getText();
           Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
@@ -603,9 +758,7 @@ String profilePic = lb_image.getText();
 
     @FXML
     private void tfGover(MouseEvent event) {
-       
-
-    }
+        }
 
     @FXML
     private void tfSpecial(MouseEvent event) {
@@ -620,26 +773,18 @@ String profilePic = lb_image.getText();
 //  if(file != null){
 //    System.out.println(""+file.getAbsolutePath());
 //    image =new Image(file.getAbsoluteFile().toURI().toString());    
-//
-
-//    imageview.setPreserveRatio(true);
+//    imageview.setPreserveRatio(true);}
     FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
-
+ 
         final FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(imageFilter);
         Window stage = null;
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
- 
             imgp = file.getName();
             imguriUri = file.toURI();
             lb_image.setText(imgp);
-
         }
-  
-  
     }
-
-   
-  
+ 
 }

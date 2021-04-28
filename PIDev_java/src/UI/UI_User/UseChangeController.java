@@ -6,8 +6,14 @@
 package UI.UI_User;
 
 import Services.UserSession;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,15 +29,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import utils.DataSource;
 
@@ -65,8 +76,6 @@ public class UseChangeController implements Initializable {
     @FXML
     private ComboBox<String> nvSpecial;
     @FXML
-    private TextField nvImg;
-    @FXML
     private TextField nvNom;
     @FXML
     private TextField nvPrenom;
@@ -80,13 +89,17 @@ public class UseChangeController implements Initializable {
     private Label checknom;
     @FXML
     private Label checkprenom;
-
+  private AnchorPane anchorPane ;
+    private final Desktop desktop =Desktop.getDesktop();
+    private Image image ;
+    private String imgp;
+    private URI imguriUri;
+    private FileInputStream fis ;
     /**
      * Initializes the controller class.
      */
                Connection con = DataSource.getInstance().getCnx();
-//    @FXML
-//    private ComboBox<?> tfGover;
+
     @FXML
     private Hyperlink Accueil;
     @FXML
@@ -111,6 +124,10 @@ public class UseChangeController implements Initializable {
                     "Médecin");
     @FXML
     private PasswordField nvpwverif;
+    @FXML
+    private Button txtimgchose;
+    @FXML
+    private Label lb_image;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         boolean NRG = tfnvGover.getSelectionModel().isEmpty();
@@ -140,7 +157,7 @@ else{
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkemail.setTextFill(Color.GREEN);
-            checkemail.setText("Email changed successfully !");}
+            checkemail.setText("Changement d'Email avec succès !");}
     }
 
     @FXML
@@ -170,16 +187,16 @@ else{
             PreparedStatement ps = con.prepareStatement(req);
             ps.executeUpdate();     
             checkpw.setTextFill(Color.GREEN);
-            checkpw.setText("Password changed successfully !");    
+            checkpw.setText("Changement de mdp avec succès !");    
             }
             else{
                 checkpw.setTextFill(Color.RED);
-            checkpw.setText("verification est incorrect!\n ");}
+            checkpw.setText("Verification est incorrect!\n ");}
             }
         
         else {
            checkpw.setTextFill(Color.TOMATO);
-            checkpw.setText("Wrong password !");
+            checkpw.setText("Mot de passe incorrect !");
         } 
  
  }
@@ -193,7 +210,7 @@ else{
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkSpecial.setTextFill(Color.GREEN);
-       checkSpecial.setText("Specialité changed successfully !");}
+       checkSpecial.setText("Changement de Specialité avec succès !");}
     }
 
     @FXML
@@ -206,20 +223,28 @@ else{
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkGover.setTextFill(Color.GREEN);
-       checkGover.setText("governorat changed successfully !");}
+       checkGover.setText("Changement de governorat avec succès !");}
     }
 
     @FXML
     private void changeImg(MouseEvent event) throws SQLException {
-        if(nvImg.getText().equals("")){
+
+        if(lb_image.getText().equals("")){
             checkimg.setTextFill(Color.RED);
             checkimg.setText("Image est vide!\n ");}
         else{
-          String req2 ="UPDATE `user` SET `img` = '"+nvImg.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+            if (imgp!=null) {
+            try {
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Desktop\\PIDev-java\\PIDev_java\\src\\image\\" + imgp));
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Documents\\pidev\\ProjPiDev\\public\\uploads\\image\\" + imgp));
+            } catch (IOException ex) {
+            }
+        }
+          String req2 ="UPDATE `user` SET `img` = '"+lb_image.getText()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
        checkimg.setTextFill(Color.GREEN);
-       checkimg.setText("Image changed successfully !");}
+       checkimg.setText("Changement d'image avec succès !");}
     }
 
     @FXML
@@ -233,7 +258,7 @@ else{
         java.sql.PreparedStatement ps3 = con.prepareStatement(req2);
         ps3.executeUpdate();
         checknom.setTextFill(Color.GREEN);
-            checknom.setText("name changed successfully !");}
+            checknom.setText("Changement de nom avec succès !");}
     }
     
 
@@ -248,7 +273,7 @@ else{
         java.sql.PreparedStatement ps3 = con.prepareStatement(req2);
         ps3.executeUpdate();
         checkprenom.setTextFill(Color.GREEN);
-            checkprenom.setText("prenom changed successfully !");}
+            checkprenom.setText("Changement de prenom avec succès !");}
     }
     
     @FXML
@@ -365,15 +390,12 @@ else{
     @FXML
     private void goTodesactiv(MouseEvent event) throws SQLException, IOException {
            int etatDes= '1';
-
          String req2 ="UPDATE `user` SET `etat` = '"+'1'+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
-        java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
-       
-       ps2.executeUpdate();
-             Node node = (Node) event.getSource();
+        java.sql.PreparedStatement ps2 = con.prepareStatement(req2);      
+        ps2.executeUpdate();
+                    Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
@@ -387,8 +409,20 @@ else{
     private void nvSpecial(MouseEvent event) {
     }
 
-
-  
+    @FXML
+    private void imgchose(ActionEvent event) {
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+ 
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(imageFilter);
+        Window stage = null;
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            imgp = file.getName();
+            imguriUri = file.toURI();
+            lb_image.setText(imgp);
+        }
+    }
 
     
 }

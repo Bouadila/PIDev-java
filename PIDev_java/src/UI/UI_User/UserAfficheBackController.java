@@ -37,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -78,59 +79,37 @@ private final ImageView brandIcon = new ImageView();
     User useer = null ;
 
     private final Rectangle colorRect = new Rectangle(10, 10);
+    @FXML
+    private Label compte;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        try {
-//            // TODO
-//            fillGrid();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserAfficheController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//            nom.setCellValueFactory(new PropertyValueFactory<>("name"));
-//         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//         mail.setCellValueFactory(new PropertyValueFactory<>("email"));
-//         special.setCellValueFactory(new PropertyValueFactory<>("special"));
-//         gover.setCellValueFactory(new PropertyValueFactory<>("gover"));
-//         
-//         etat.setCellValueFactory(new PropertyValueFactory<>("etatecrit"));
-//         
-//         role.setCellValueFactory(new PropertyValueFactory<>("roles"));
-//
-//         UserService cs= new UserService();
-//         List<User> arrc=new ArrayList<>();
-//       
-//          try {
-//            arrc=cs.readAll();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UserAfficheBackController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//       ObservableList<User> ovbservableList= FXCollections.observableArrayList(arrc);
-//       tableview.setItems(ovbservableList);
-//       
-//       //Updatable
-//        tableview.setEditable(true);
-//    }
-//     public void fillGrid() throws SQLException{
-//        
-//        
+     
        
             for ( int i = 0; i < new UserService().getAllUser().size(); i++){
             User user = new UserService().getAllUser().get(i);
             int j=i+1;
-            Label lb_desc = new Label("l'email du compte num "+j+" :"+user.getEmail());
+            Label lb_desc = new Label("Compte num "+j+" :\n   "+user.getEmail());
 //            colorRect.setStroke(Color.BLACK); 
 //              descriptionLabel.setStyle("-fx-opacity: 0.75;"); 
 //              descriptionLabel.setGraphic(colorRect);
-lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1em; "); 
+lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1.5em; "); 
         GridPane.setConstraints(lb_desc, 1, 0); 
+       
+          ImageView imageView = new ImageView("/image/default (1).png");
+          Rectangle clip = new Rectangle(
+                imageView.getFitWidth(), imageView.getFitHeight()
+        );
+        clip.setArcWidth(10);
+        clip.setArcHeight(20);
+         
 //          ImageView imageVie = new ImageView("\GUI\Icons\icons8_user_50px.png");
           HBox hb = new HBox();
    
             //Label lb_id = new Label(String.valueOf(offre.getId()));
-            hb.getChildren().addAll(  lb_desc ,descriptionLabel);
+            hb.getChildren().addAll(  imageView,lb_desc ,descriptionLabel);
           UserList.getItems().add(hb);
             UserList.getItems().get(i).setOnMouseClicked(e ->{
                 System.out.println(user.getEmail());
@@ -151,42 +130,9 @@ lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1em; ");
                 }
                     stage.setScene(scene);
             });
-       
-            
-            
-            
+        
             }
-           
-//   ObservableList<User> listUser = (ObservableList<User>) new UserService().getAllUser();
-//
-//    FilteredList<User> filteredData = new FilteredList<>(listUser, b->true);
-//         rechercher.textProperty().addListener((observable, oldValue, newValue) -> {
-//             filteredData.setPredicate(useer -> {
-//         if(newValue == null || newValue.isEmpty() )
-//                 {
-//                       return true;
-//                 }
-//         
-//         String lowerCaseFilter = newValue.toLowerCase();
-//         
-//         if(useer.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1)
-//                 {
-//                     return true;
-//                 } 
-//         else if(useer.getName().toLowerCase().indexOf(lowerCaseFilter) != -1)
-//                 {
-//                     return true;
-//                 }
-//         else return false;
-//         
-//         });
-//         
-//          });           
-//
-//         SortedList<User> sortedData = new SortedList<>(filteredData);
-////         sortedData.comparatorProperty().bind(UserList.comparatorProperty());
-////         UserList.setItems(sortedData);
-//              
+                       
         
     }  
        
@@ -216,41 +162,8 @@ lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1em; ");
 
     @FXML
     private void labelcompte(MouseEvent event) throws SQLException {
-//          String fullName="";
-//         String email="";
-//         String specia="";
-//         String gover="";
-//
-//         
-//        String request0 ="SELECT * from `user`";
-//        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
-//        ResultSet rs0 = ps0.executeQuery();
-//
-//        if (rs0.next()) {
-//            String a = rs0.getString("name");
-//            String b = rs0.getString("prenom");
-//            fullName = "Nom et prénom : "+b+" "+a;
-//            String c = rs0.getString("gover");
-//            String d = rs0.getString("special");
-//            String e = rs0.getString("email");
-//            
-////                     tfmail.setText("email : "+e);
-////                     gover("gover : "+c);
-////                     tfspecialite.setText("special : "+d);
-//
-//        
-//                ArrayList<User> TabB = new ArrayList<>();
-//
-//          ObservableList ViewRec = FXCollections.observableArrayList(request0);
-//        tableview.setItems(ViewRec);
-//        nom.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//        mail.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        special.setCellValueFactory(new PropertyValueFactory<>("special"));
-//        this.role.setText(""+TabB.size());
-//        }
     }
-//    
+   
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
@@ -291,5 +204,20 @@ lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1em; ");
 
     @FXML
     private void rechercher(KeyEvent event) {
+      
+    }
+
+    @FXML
+    private void compte(MouseEvent event) throws IOException {
+             
+                   Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserStat.fxml")));
+                    stage.setScene(scene);
+                    stage.show();               
+         
+    
     }
 }
