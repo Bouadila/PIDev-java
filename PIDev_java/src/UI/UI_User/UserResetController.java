@@ -77,7 +77,14 @@ public class UserResetController implements Initializable {
     }    
 
     @FXML
-    private void Register(MouseEvent event) {
+    private void Register(MouseEvent event) throws IOException {
+           Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAdd.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
 
@@ -86,7 +93,14 @@ public class UserResetController implements Initializable {
     }
 
     @FXML
-    private void goToProfil(ActionEvent event) {
+    private void goToProfil(ActionEvent event) throws IOException, IOException {
+        Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAdd.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML
@@ -102,7 +116,14 @@ public class UserResetController implements Initializable {
     }
 
     @FXML
-    private void goToLogin(ActionEvent event) {
+    private void goToLogin(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML

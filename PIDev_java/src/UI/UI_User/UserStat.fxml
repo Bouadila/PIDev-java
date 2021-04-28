@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserStatController">
+   <children>
+      <Label layoutX="288.0" layoutY="14.0" text="Statistique des utilisateur" textFill="#237ab9">
+         <font>
+            <Font name="Candara Bold" size="27.0" />
+         </font></Label>
+      <Text fx:id="nb" fill="#151f45" layoutX="209.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="276.13671875">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <effect>
+            <Blend mode="RED" opacity="0.59">
+               <topInput>
+                  <Shadow />
+               </topInput>
+            </Blend>
+         </effect>
+      </Text>
+      <VBox fx:id="vbox" alignment="CENTER" layoutX="-6.0" layoutY="-10.0" prefHeight="473.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label style="-fx-background-color: #5a727e;" text="Admin" textFill="#2c2929">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="239.0" mnemonicParsing="false" onAction="#acceuilClicks" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: #5a727e;" text="Accueil" underline="true">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GUI/Icons/icons8_home_24px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="comptes" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CompteClicks" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Gestion des comptes" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GUI/Icons/icons8_male_user_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="logout" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: #5a727e;" text="Se deconnecter" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GUI/Icons/icons8_sign_out_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="180.0" layoutY="72.0" prefHeight="367.0" prefWidth="511.0">
+         <children>
+            <Pane fx:id="pane" prefHeight="337.0" prefWidth="295.0" />
+            <Pane fx:id="pane2" prefHeight="367.0" prefWidth="168.0" />
+         </children>
+      </HBox>
+      <Hyperlink fx:id="retour" layoutX="651.0" layoutY="47.0" text="Retour " />
+   </children>
+</AnchorPane>

@@ -7,6 +7,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
@@ -75,9 +78,20 @@
             <Pane layoutX="408.0" layoutY="279.0" prefHeight="66.0" prefWidth="302.0" style="-fx-background-color: #0000;">
                <children>
                   <Label layoutX="20.0" layoutY="6.0" text="Changer  Image" />
-                  <TextField fx:id="nvImg" layoutX="34.0" layoutY="28.0" promptText="Saisir votre Specialité" />
                   <Button layoutX="210.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#changeImg" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #9b2938;" text="OK" textFill="WHITE" />
                   <Label fx:id="checkimg" layoutX="20.0" layoutY="63.0" />
+                  <Button fx:id="txtimgchose" layoutX="151.0" layoutY="30.0" mnemonicParsing="false" onAction="#imgchose" text="Image">
+                     <effect>
+                        <Lighting diffuseConstant="1.65" specularConstant="0.0" surfaceScale="1.85">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant color="#f29e9e" />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Button>
                </children>
             </Pane>
             <Label layoutX="117.0" layoutY="65.0" prefHeight="26.0" prefWidth="245.0" text="Modifier Votre Compte" textAlignment="CENTER" textFill="#a61212f8">
@@ -90,9 +104,39 @@
       </AnchorPane>
       <Pane layoutX="110.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #d7a1a8;">
          <children>
-            <Button layoutX="404.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTochange" text="Modifier Compte" />
-            <Button layoutX="514.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#logout" text="Déconnexion" />
-            <Button layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTodesactiv" text="Désactiver Compte" />
+            <Button layoutX="404.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTochange" text="Modifier Compte">
+               <effect>
+                  <Lighting diffuseConstant="1.49" specularConstant="0.0" surfaceScale="1.62">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#f89a9a" />
+                     </light>
+                  </Lighting>
+               </effect></Button>
+            <Button layoutX="514.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#logout" text="Déconnexion">
+               <effect>
+                  <Lighting diffuseConstant="1.47" specularConstant="0.0" specularExponent="18.6" surfaceScale="1.62">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#f89a9a" />
+                     </light>
+                  </Lighting>
+               </effect></Button>
+            <Button layoutX="280.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#goTodesactiv" text="Désactiver Compte">
+               <effect>
+                  <Lighting diffuseConstant="1.44" specularConstant="0.0" specularExponent="16.28" surfaceScale="1.73">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#f89a9a" />
+                     </light>
+                  </Lighting>
+               </effect></Button>
             <Label layoutX="6.0" layoutY="6.0" prefHeight="17.0" prefWidth="142.0" text="Bienvenu dans Recrutini..." />
          </children>
       </Pane>
@@ -107,5 +151,10 @@
             <Hyperlink fx:id="quiz" layoutX="5.0" layoutY="166.0" onAction="#quiz" prefHeight="26.0" prefWidth="88.0" text="Quiz" textFill="WHITE" />
          </children>
       </Group>
+      <Label fx:id="lb_image" layoutX="432.0" layoutY="310.0" prefHeight="25.0" prefWidth="116.0" text=" Choisir une image">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

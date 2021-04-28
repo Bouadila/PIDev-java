@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserDetaiAffichBacklController">
+   <children>
+      <Pane fx:id="pnlOverview" prefHeight="431.0" prefWidth="714.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="208.0" layoutY="15.0" prefHeight="35.0" prefWidth="288.0" style="-fx-background-color: white;" text="Compte d'un utilisateur">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.7666666666666667" startY="0.4714285714285714">
+                     <stops>
+                        <Stop color="#465275" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="374.0" layoutY="501.0" onMouseClicked="#GoToAllContact" />
+            <Label layoutX="588.0" layoutY="501.0" onMouseClicked="#GoToAllComment" prefHeight="19.0" prefWidth="183.0" />
+            <VBox fx:id="vbox" alignment="CENTER" layoutX="-6.0" layoutY="-56.0" prefHeight="488.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
+               <children>
+                  <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="50.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label style="-fx-background-color: #5a727e;" text="Admin" textFill="#2c2929">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="239.0" mnemonicParsing="false" onAction="#acceuilClicks" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: #5a727e;" text="Accueil" underline="true">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_home_24px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="comptes" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CompteClicks" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Gestion des comptes" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_male_user_26px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="logout" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: #5a727e;" text="Se deconnecter" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../GUI/Icons/icons8_sign_out_26px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+            <Label layoutX="503.0" layoutY="35.0" onDragDetected="#labelcompte" prefHeight="50.0" prefWidth="162.0" />
+            <Label fx:id="tfPrenom" layoutX="397.0" layoutY="135.0" prefHeight="27.0" prefWidth="307.0" text="Nom et Prénom :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="profilePic" fitHeight="160.0" fitWidth="183.0" layoutX="214.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GUI/Icons/icons8_user_50px.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tfSpecial" layoutX="399.0" layoutY="230.0" prefHeight="27.0" prefWidth="260.0" text="special">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfGover" layoutX="399.0" layoutY="195.0" prefHeight="27.0" prefWidth="307.0" text="gover">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfMail" layoutX="399.0" layoutY="167.0" prefHeight="27.0" prefWidth="307.0" text="mail">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfrole" layoutX="399.0" layoutY="266.0" prefHeight="27.0" prefWidth="240.0" text="role">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfetat" layoutX="399.0" layoutY="301.0" prefHeight="27.0" prefWidth="299.0" text="etat du compte">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="tfNom" layoutX="398.0" layoutY="106.0" prefHeight="27.0" prefWidth="307.0" text="Nom et Prénom :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

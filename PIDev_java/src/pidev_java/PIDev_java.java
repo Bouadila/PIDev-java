@@ -25,10 +25,13 @@ public class PIDev_java extends Application {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Recruitini");
-        Parent root = FXMLLoader.load(getClass().getResource("/QuizUI/TakeQuiz.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/gui/AddQuiz.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/gui/ListQuiz.fxml"));
-        
+
+
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/Login.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserAfficheBack.fxml"));
+
+//                Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_User/UserStat.fxml"));
+
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

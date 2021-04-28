@@ -71,7 +71,7 @@ public class UserActiveCodeController implements Initializable {
     private void ActiveVerifier(javafx.scene.input.MouseEvent event) throws SQLException, IOException {
         if(txtcodeActive.getText().equals(""+randomCodee))
         {
-      String req2 ="UPDATE `user` SET `activation_token` = 'NULL' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+      String req2 ="UPDATE `user` SET `activation_token` = NULL WHERE `user`.`id` = "+UserSession.getIdSession()+";";
       java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
       ps2.executeUpdate();
       JOptionPane.showMessageDialog(null, "code correct , Votre compte est activé");
@@ -90,7 +90,14 @@ public class UserActiveCodeController implements Initializable {
     }
 
     @FXML
-    private void goToProfil(ActionEvent event) {
+    private void goToProfil(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAdd.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML
@@ -106,7 +113,14 @@ public class UserActiveCodeController implements Initializable {
     }
 
     @FXML
-    private void goToLogin(ActionEvent event) {
+    private void goToLogin(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML

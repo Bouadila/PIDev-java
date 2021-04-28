@@ -20,10 +20,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import utils.DataSource;
 
 /**
@@ -58,6 +66,10 @@ public class UserCandidatAfficheController implements Initializable {
      * Initializes the controller class.
      */
        Connection con = DataSource.getInstance().getCnx();
+    @FXML
+    private Rating rating;
+    @FXML
+    private ImageView profilePic;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -149,7 +161,8 @@ catch (SQLException ex) {
          String email="";
          String specia="";
          String gover="";
-
+int rat =0;
+    int total=0;
          
         String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
         java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
@@ -162,10 +175,25 @@ catch (SQLException ex) {
             String c = rs0.getString("gover");
             String d = rs0.getString("special");
             String e = rs0.getString("email");
+             String f = rs0.getString("color");
+            rat= rat+rs0.getInt("color");
+            String h = rs0.getString("img");
+            Rectangle clip = new Rectangle( profilePic.getFitWidth(), profilePic.getFitHeight() );
+        clip.setArcWidth(200);
+        clip.setArcHeight(200);
+        profilePic.setEffect(new DropShadow(20, Color.BLACK));
+        profilePic.setClip(clip);
+        // snapshot the rounded image.
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setFill(Color.TRANSPARENT);
+        WritableImage image = profilePic.snapshot(parameters, null);     
+                     profilePic.setImage(new Image("/image/"+h));
             
                      tfmail.setText("Email : "+e);
                      tfgoverno.setText("Governorat : "+c);
                      tfspecialite.setText("Specialité : "+d);
+//                     rating.setContextMenu(rat);
+//                 rating.set();
 
         }
                      tfNomPrenom.setText(fullName);  
@@ -198,6 +226,15 @@ catch (SQLException ex) {
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
+        
+    }
+
+    @FXML
+    private void gorating(MouseEvent event) throws SQLException {
+        System.out.println("rating :" +rating.getRating());
+       String req2 ="UPDATE `user` SET `color` = '"+rating.getRating()+"' WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+        java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
+        ps2.executeUpdate();
         
     }
     

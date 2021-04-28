@@ -113,7 +113,7 @@ public class LoginController implements Initializable {
             int k = rs.getInt("id");
             setIdSession(k);
             
-            if(token.equals("22"))     {   
+            if(token != null)     {   
                  check.setTextFill(Color.TOMATO);
             check.setText("ce compte est désactiver");
             }
