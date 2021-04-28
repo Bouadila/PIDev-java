@@ -9,8 +9,10 @@ import Entity.Candidature;
 import Services.CandidatureService;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.awt.Desktop;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -67,8 +69,6 @@ public class AfficherCandidatureController implements Initializable {
     @FXML
     private TableColumn<Candidature, String> tab_prenom;
     @FXML
-    private TableColumn<Candidature, String> tab_sexe;
-    @FXML
     private TableColumn<Candidature, String> tab_email;
     @FXML
     private TableColumn<Candidature, String> tab_date_naiss;
@@ -84,8 +84,6 @@ public class AfficherCandidatureController implements Initializable {
     private TableColumn<Candidature, String> tab_edit;
     @FXML
     private TableColumn<Candidature, String> tab_date_candidature;
-    @FXML
-    private Button btn_AjouterCandidature;
     
     String query = null;
     Connection cnx = null;
@@ -95,8 +93,6 @@ public class AfficherCandidatureController implements Initializable {
     Candidature candidature = null ;
     
     ObservableList<Candidature>  CandidatureList = FXCollections.observableArrayList();
-    @FXML
-    private Button btn_refreshCandidature;
     @FXML
     private TableColumn<Candidature, String> tab_id;
 
@@ -108,6 +104,10 @@ public class AfficherCandidatureController implements Initializable {
     private TextField searchField;
     @FXML
     private Button front;
+    @FXML
+    private TableColumn<Candidature, String> tab_rv;
+    
+    String path = ("D:\\GitHub\\PIDev\\ProjPiDev\\public\\uploads\\");
 
 
     /**
@@ -129,14 +129,13 @@ public class AfficherCandidatureController implements Initializable {
         tab_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tab_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         tab_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        tab_sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         tab_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         tab_date_naiss.setCellValueFactory(new PropertyValueFactory<>("date_naiss"));
         tab_num.setCellValueFactory(new PropertyValueFactory<>("num"));
         tab_status.setCellValueFactory(new PropertyValueFactory<>("status"));
         tab_diplome.setCellValueFactory(new PropertyValueFactory<>("diplome"));
-        tab_cv.setCellValueFactory(new PropertyValueFactory<>("cv"));
-       // tab_date_candidature.setCellValueFactory(new PropertyValueFactory<>("date_candidature"));
+        tab_dispo.setCellValueFactory(new PropertyValueFactory<>("dispo"));
+        tab_date_candidature.setCellValueFactory(new PropertyValueFactory<>("date_candidature"));
         
        
 
@@ -144,9 +143,7 @@ public class AfficherCandidatureController implements Initializable {
          TableCandidature.setItems(listCand);
          
          
-         btn_refreshCandidature.setOnAction(e->{
-            refreshTable();
-        });   
+  
 
         
          
@@ -193,6 +190,7 @@ public class AfficherCandidatureController implements Initializable {
                             System.out.println(c.getId());
                             sp.supprimerCandidature(c);
                             System.out.println("deleted");
+                            loadDate();
                             
                             
                           
@@ -219,10 +217,9 @@ public class AfficherCandidatureController implements Initializable {
                         mC.settxtfield_numedit(Integer.toString(c.getNum()));   
                         mC.setchoice_statusedit(c.getStatus()); 
                         mC.setchoice_diplomeedit(c.getDiplome());
-                        //mC.settxtfield_cvedit("Telecharger un CV");
-                        //mC.settxtfield_lettremotivdit("Telecharger une lettre");
-                        //mC.setdate_dispoedit(c.getDispo());
-                             
+                        
+                        mC.setCvpath(c.getCv());
+                        mC.setLmpath(c.getLettre_motiv());
                         System.out.println(c.getId());
 
                         Stage stage = new Stage();
@@ -277,15 +274,9 @@ public class AfficherCandidatureController implements Initializable {
                             
                             
                              Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
-
+                             
                             try {
-                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
-                        Parent rooter = loader.load();
-                        
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier évenement");
-                        stage.setScene(new Scene(rooter));
-                        stage.show();
+                                Desktop.getDesktop().open(new File(path+c.getLettre_motiv()));
                         } catch (IOException ex) {
                          System.out.println(ex.getMessage());
                         }  
@@ -333,17 +324,12 @@ public class AfficherCandidatureController implements Initializable {
                             
                              Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
 
-                            try {
-                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
-                        Parent rooter = loader.load();
-                        
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier évenement");
-                        stage.setScene(new Scene(rooter));
-                        stage.show();
-                        } catch (IOException ex) {
-                         System.out.println(ex.getMessage());
-                        }  
+                            try {  
+                                Desktop.getDesktop().open(new File(path+c.getCv()));
+                                
+                            } catch (IOException ex) {
+                                Logger.getLogger(AfficherCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         });
                         HBox managebtn2 = new HBox(showIcon);
                         managebtn2.setStyle("-fx-alignment:center");
@@ -358,11 +344,53 @@ public class AfficherCandidatureController implements Initializable {
 
             return cell;
         }; 
+        
+         Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> cellrv = (TableColumn<Candidature, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        FontAwesomeIconView rvIcon = new FontAwesomeIconView(FontAwesomeIcon.FILE);
+
+                        rvIcon.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                        );
+
+                        rvIcon.setOnMouseClicked(e -> {
+                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+
+                        });
+                        HBox managebtn3 = new HBox(rvIcon);
+                        managebtn3.setStyle("-fx-alignment:center");
+                        setGraphic(managebtn3);
+
+                        setText(null);
+
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
          
-         tab_cv.setCellFactory(cellcv);
-         tab_lettremotiv.setCellFactory(celllettremotiv);
-         tab_edit.setCellFactory(cellFoctory);
-         TableCandidature.setItems(listCand);
+        
+        tab_cv.setCellFactory(cellcv);
+        tab_lettremotiv.setCellFactory(celllettremotiv);
+        tab_rv.setCellFactory(cellrv);
+        tab_edit.setCellFactory(cellFoctory);
+        TableCandidature.setItems(listCand);
              
           FilteredList<Candidature> filteredData = new FilteredList<>(listCand, e -> true);
         searchField.setOnKeyReleased(e ->{
@@ -388,85 +416,17 @@ public class AfficherCandidatureController implements Initializable {
              
         
          }
-         
-
 
     @FXML
-    private void gotoAjouterCandidature(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_candidature/AjouterCandidature.fxml"));
-        Stage Window = (Stage) btn_AjouterCandidature.getScene().getWindow();
-        Window.setScene(new Scene(root));
-        
-        
+    private void rendezVous(javafx.scene.input.MouseEvent event) {
     }
-    
-//    void btn_refreshCandidature().setOnMouseClicked(e -> { 
-//        try {
-//           CandidatureList.clear();
-//            
-//            query = "SELECT * FROM candidature";
-//            preparedStatement = connection.prepareStatement(query);
-//            resultSet = preparedStatement.executeQuery();
-//            
-//            while (resultSet.next()){
-//                CandidatureList.add(new Candidature(
-//                        resultSet.getString("nom"),
-//                        resultSet.getString("prenom"),
-//                        resultSet.getString("sexe"),
-//                        resultSet.getString("email"),
-//                        resultSet.getDate("date_naiss"),                       
-//                        resultSet.getInt("num"),
-//                        resultSet.getString("status"),
-//                        resultSet.getString("diplome"),                       
-//                        resultSet.getString("cv"),
-//                        resultSet.getDate("date_candidature")
-//                ));
-//                TableCandidature.setItems(CandidatureList);
-//                
-//            }
-//            
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AfficherCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-
-  
 
     @FXML
-    private void refreshlist(ActionEvent event) {
-        
+    private void refreshData(javafx.scene.input.MouseEvent event) {
+        loadDate();
     }
-    
-    public void refreshTable(){
-        //CandidatureList.clear();
-         try{                
-                query = "select * from Candidature";
-                preparedStatement = connection.prepareStatement(query);
-                resultSet = preparedStatement.executeQuery();
-                
-                while (resultSet.next()){
 
-                CandidatureList.add(new Candidature(
-                        resultSet.getString("nom"),
-                        resultSet.getString("prenom"),
-                        resultSet.getString("sexe"),
-                        resultSet.getString("email"),
-                        resultSet.getDate("date_naiss"),                       
-                        resultSet.getInt("num"),
-                        resultSet.getString("status"),
-                        resultSet.getString("diplome"),                       
-                        resultSet.getString("cv"),
-                        resultSet.getDate("date_candidature")
-                    ));
-                    TableCandidature.setItems(CandidatureList);                    
-                }
-                preparedStatement.close();
-                resultSet.close();
-            }catch(SQLException e2){
-                System.err.println(e2);
-            }
-    }
+
     
     @FXML
     private void gotoFront(ActionEvent event) throws IOException {
@@ -475,10 +435,10 @@ public class AfficherCandidatureController implements Initializable {
         Window.setScene(new Scene(root));
     
     }
+         
+
+
     
-}
-
-
-   
-
-
+        
+    }
+    

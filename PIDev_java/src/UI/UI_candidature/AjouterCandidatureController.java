@@ -13,8 +13,15 @@ import Services.CandidatureService;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.sql.Date;
+import java.time.ZoneId;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,8 +43,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import javax.mail.*;
-import javax.mail.internet.*;
 
 /**
  * FXML Controller class
@@ -67,14 +72,16 @@ public class AjouterCandidatureController implements Initializable {
     private Button btn_uploadcv;
     @FXML
     private TextField txtfield_lettremotiv;
-    
-    private FileChooser fileChooser;
-    private Button browse;
-    private File file;
-    private final Desktop desktop = Desktop.getDesktop();
     @FXML
     private Button btn_lettremotiv;
-
+    
+    private FileChooser fileChooser;
+    private File file1;
+    private File file2;
+    private final Desktop desktop = Desktop.getDesktop();
+    FtpUpload ftp1 = new FtpUpload();
+    FtpUpload ftp2 = new FtpUpload();
+    String url1,url2,name1,name2;
 
     /**
      * Initializes the controller class.
@@ -85,32 +92,28 @@ public class AjouterCandidatureController implements Initializable {
         choice_status.setItems(status);
         choice_diplome.setItems(diplomes);
         
-        fileChooser = new FileChooser();
-
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("PDF Files", "*pdf")
-        );
-
-      
+              
 
         btn_uploadcv.setOnAction(e ->{
+            fileChooser = new FileChooser();
+
+            fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("PDF Files", "*pdf")
+            );
             Window stage = null;
-
+            String filename = "";
             //Single File Selection
+            
+            file1 = fileChooser.showOpenDialog(null);
 
-            file = fileChooser.showOpenDialog(stage);
 
-            if(file != null){
-
-                try {
-
-                    desktop.open(file);
-
-                } catch (IOException ex) {
-
-                    Logger.getLogger(AjouterCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
+            if(file1 != null){
+                //desktop.open(file);
+                
+                url1 = file1.getAbsolutePath().replace("\\", "\\\\");
+                name1 = file1.getName();
+                //ftp.Upload(url1,name1);
+                txtfield_cv.setText(file1.getName());
 
             }
 
@@ -120,22 +123,21 @@ public class AjouterCandidatureController implements Initializable {
         
         btn_lettremotiv.setOnAction(e ->{
             Window stage = null;
+            fileChooser = new FileChooser();
 
+            fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("PDF Files", "*pdf")
+            );
             //Single File Selection
 
-            file = fileChooser.showOpenDialog(stage);
+            file2 = fileChooser.showOpenDialog(null);
 
-            if(file != null){
+            if(file2 != null){
 
-                try {
-
-                    desktop.open(file);
-
-                } catch (IOException ex) {
-
-                    Logger.getLogger(AjouterCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
-
-                }
+                
+                url2 = file2.getAbsolutePath().replace("\\", "\\\\");
+                name2 = file2.getName();
+                txtfield_lettremotiv.setText(file2.getName());
 
             }
 
@@ -158,34 +160,49 @@ public class AjouterCandidatureController implements Initializable {
     void ajouterCandidature(ActionEvent event) {
         
         btn_ajouter.setOnAction(e->{
-        Candidature c = new Candidature();
-        //SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(System.currentTimeMillis());
-        c.setDate_candidature(date);
-        System.out.println(date);
-        //c.setCandidat(1);
-        c.setDate_naiss(date);
-        c.setNum(Integer.parseInt(txtfield_num.getText()));
-        c.setStatus(choice_status.getValue());
-        c.setDiplome(choice_diplome.getValue());
-        //c.setCv();
-        //c.setDispo();
-        //c.setLettre_motiv();
-        new CandidatureService().ajouterCandidature(c);
-            try {
-                sendMail("pidevtestad@gmail.com");
-            } catch (MessagingException ex) {
-                Logger.getLogger(AjouterCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
+            Candidature c = new Candidature();
+            c.setNom("Anas");
+            c.setPrenom("Bassoumi");
+            c.setEmail("anas.bassoumi@gmail.com");
+            String str="2015-03-31";
+            Date daten=Date.valueOf(str);
+            c.setDate_naiss(daten);
+            c.setNum(Integer.parseInt(txtfield_num.getText()));
+            c.setStatus(choice_status.getValue());
+            c.setDiplome(choice_diplome.getValue());
+            c.setCv(txtfield_cv.getText());
+            c.setDate_candidature(new Date(System.currentTimeMillis()));
+            
+            LocalDate date = date_dispo.valueProperty().get();
+            Date date2 = Date.valueOf(date);
+            c.setDispo(date2);
+            
+            c.setLettre_motiv(txtfield_lettremotiv.getText()); 
+            int cid = UserSession.getInstance().getLoggedUser().getId();
+                    //(49);
+            c.setCandidat_id(cid);
+            int oid = (7);
+            c.setOffre_id(oid);
+            if(file1 != null){
+                System.out.println("uploading url="+url1);
+                ftp1.Upload(url1,name1);
+                System.out.println("uploaded!!");
             }
-        
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Candidature");
-            alert.setHeaderText("Candidature ajouté !");
-            alert.setContentText("retour");
-
-            alert.showAndWait(); 
+            if(file2 != null){
+                System.out.println("uploading url="+url2);
+                ftp2.Upload(url2,name2);
+                System.out.println("uploaded!!");
+            }
+            
+            new CandidatureService().ajouterCandidature(c);
+            CandidatureService.notifsuccess("Candidature ajouté");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setTitle("Candidature");
+            alert.setHeaderText("Retour à la list?");
+            //alert.setContentText("retour");
+            alert.showAndWait();
             Stage stage = (Stage) btn_retour.getScene().getWindow();
-
+            
             //stage.close();
 
         });
@@ -193,42 +210,5 @@ public class AjouterCandidatureController implements Initializable {
     }
     
 
-    public void sendMail(String recepient) throws MessagingException {
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        
-        String myAccountEmail = "pidevtestad@gmail.com";
-        String password ="pidevtestad123456";
-        
-        Session session = Session.getInstance(properties, new Authenticator(){
-            
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(myAccountEmail, password);
-            }
-        });
-       
-        Message message = prepareMessage(session, myAccountEmail, recepient);
-        Transport.send(message);
-        System.out.println("Msg sent");
-    }
     
-    private Message prepareMessage(Session session, String myAccountEmail, String recepient){
-        
-        Message message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(myAccountEmail));
-            message.setSubject("Votre candidature a été ajouté");
-            message.setText("Votre candidature a été ajouté avec success");
-            
-        } catch (MessagingException e) {
-            Logger.getLogger(CandidatureService.class.getName()).log(Level.SEVERE, null, e);
-        }
-          return null;  
-    }
-
 }

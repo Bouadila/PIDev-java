@@ -13,7 +13,7 @@ package interfaces;
 import Entity.User;
 import java.util.List;
 import Entity.Candidature;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
@@ -21,7 +21,7 @@ public interface iService_candidature <c>{
     
    public boolean ajouterCandidature(Candidature c);  
    public ObservableList<c> GetAll();
-    public void modifierCandidature(int id, String nom, String prenom, String sexe, String email, Timestamp date_naiss, int num, String status, String diplome, String cv, Timestamp date_candidature, int offre, int candidat);
+    //public modifierCandidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, int offre, int candidat);
     public void supprimerCandidature(Candidature c);
    /* public ObservableList<formation v> getFormation();*/
    // public String getCandidatureById();

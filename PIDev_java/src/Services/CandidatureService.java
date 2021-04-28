@@ -10,7 +10,7 @@ package Services;
  * @author A.L.I.C.E
  */
 
-import Entity.User;
+
 import Entity.Candidature;
 import interfaces.iService_candidature;
 import utils.DataSource;
@@ -24,6 +24,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +39,8 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 public class CandidatureService implements iService_candidature<Candidature>{
 
@@ -76,7 +82,7 @@ public class CandidatureService implements iService_candidature<Candidature>{
 //            System.out.println("Formation exitst !");
 //            return false;
 //        } else {
-            String sql = "insert into candidature(num,status,diplome,date_candidature) values('" +c.getNum()+"','" + c.getStatus() + "','" + c.getDiplome() +"','"+c.getDate_candidature()+"')";
+            String sql = "insert into candidature(nom,prenom,email,date_naiss,num,status,diplome,cv,date_candidature,dispo,lettre_motiv,candidat_id,offre_id) values('" +c.getNom() + "','" + c.getPrenom() + "','" + c.getEmail()+ "','"+ c.getDate_naiss() +"','"+c.getNum()+"','" + c.getStatus() + "','" + c.getDiplome() +"','"+ c.getCv() + "','" + c.getDate_candidature()+ "','" + c.getDispo() + "','" + c.getLettre_motiv() + "','" + c.getCandidat_id()+ "','" + c.getOffre_id() + "')";
             try {
                 ste = cnx.createStatement();
                 ste.executeUpdate(sql);
@@ -85,6 +91,7 @@ public class CandidatureService implements iService_candidature<Candidature>{
             } catch (SQLException ex) {
                 Logger.getLogger(CandidatureService.class.getName()).log(Level.SEVERE, null, ex);
             }
+     //   }
      //   }
 
         return false;
@@ -106,13 +113,14 @@ public class CandidatureService implements iService_candidature<Candidature>{
                 c.setId(rs.getInt("id"));
                 c.setNom(rs.getString("nom"));
                 c.setPrenom(rs.getString("prenom"));
-                c.setSexe(rs.getString("sexe"));
                 c.setEmail(rs.getString("email"));
                 c.setDate_naiss(rs.getDate("date_naiss"));
                 c.setNum(rs.getInt("num"));
                 c.setStatus(rs.getString("status"));
                 c.setDiplome(rs.getString("diplome"));
                 c.setCv(rs.getString("cv"));
+                c.setLettre_motiv(rs.getString("lettre_motiv"));
+                c.setDispo(rs.getDate("dispo"));
                 c.setDate_candidature(rs.getDate("date_candidature"));
                 CandidatureList.add(c);
                
@@ -121,6 +129,55 @@ public class CandidatureService implements iService_candidature<Candidature>{
             Logger.getLogger(CandidatureService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return CandidatureList;
+    }
+    
+    public List<Candidature> getCandById() throws SQLException{
+        
+        List<Candidature> listCand = new ArrayList();
+        int candidat_id = 49;
+        String sql="SELECT * FROM candidature where candidat_id ="+candidat_id;
+        Statement st=cnx.createStatement();
+        ResultSet res= st.executeQuery(sql);
+        while (res.next())
+        {
+            int id = res.getInt("id");
+            int num = res.getInt("num");
+            String status = res.getString("status");
+            String diplome = res.getString("diplome");
+            String cv = res.getString("cv");
+            Date date_candidature = res.getDate("date_candidature");
+            Date dispo = res.getDate("dispo");
+            String lettre_motiv = res.getString("lettre_motiv");
+            int offre_id = res.getInt("offre_id");
+            candidat_id = res.getInt("candidat_id");
+            Candidature cand = new Candidature (id,num,status,diplome,cv,date_candidature,dispo,lettre_motiv,candidat_id,offre_id);
+            listCand.add(cand);
+        }
+            return listCand;
+    }
+    
+   
+    
+    public List<Candidature> getCand() throws SQLException{
+        
+        List<Candidature> listCand = new ArrayList();
+        String sql="SELECT * FROM candidature";
+        Statement st=cnx.createStatement();
+        ResultSet res= st.executeQuery(sql);
+        while (res.next())
+        {
+            int id = res.getInt("id");
+            int num = res.getInt("num");
+            String status = res.getString("status");
+            String diplome = res.getString("diplome");
+            String cv = res.getString("cv");
+            Date date_candidature = res.getDate("date_candidature");
+            Date dispo = res.getDate("dispo");
+            String lettre_motiv = res.getString("lettre_motiv");
+            Candidature cand = new Candidature (id,num,status,diplome,cv,date_candidature,dispo,lettre_motiv);
+            listCand.add(cand);
+        }
+            return listCand;
     }
 
     
@@ -157,6 +214,25 @@ public class CandidatureService implements iService_candidature<Candidature>{
             System.out.println(ex.getMessage());
         }
     }
+    
+    public static void notifsuccess(String message){
+        String title = "Congratulations";
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(javafx.util.Duration.seconds(3));
+    }
+    public static void notiferror(String message){
+        String title = "Failed";
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.ERROR);
+        tray.showAndDismiss(javafx.util.Duration.seconds(3));
+    }
+    
+
       
 //    public static sendMail(String recepient) {
 //        Properties properties = new Properties();
@@ -200,10 +276,8 @@ public class CandidatureService implements iService_candidature<Candidature>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void modifierCandidature(int id, String nom, String prenom, String sexe, String email, Timestamp date_naiss, int num, String status, String diplome, String cv, Timestamp date_candidature, int offre, int candidat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+
 
    
      

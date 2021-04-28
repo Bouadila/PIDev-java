@@ -7,11 +7,16 @@ package UI.UI_candidature;
 
 import Entity.Candidature;
 import Services.CandidatureService;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,8 +29,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -50,16 +58,33 @@ public class ModifierCandidatureController implements Initializable {
     public int formCand;
     @FXML
     private TextField txtfield_idedit;
-    @FXML
-    private DatePicker date_dispo;
-    @FXML
     private TextField txtfield_cvedit;
     @FXML
     private Button btn_cvedit;
-    @FXML
     private TextField txtfield_lettremotivedit;
     @FXML
     private Button btn_lettremotivedit;
+    @FXML
+    private Button btn_cvvoir;
+    @FXML
+    private Button btn_lettremotivvoir;
+    @FXML
+    private DatePicker date_dispoedit;
+    
+    private FileChooser fileChooser;
+    private File file1;
+    private File file2;
+    private final Desktop desktop = Desktop.getDesktop();
+    FtpUpload ftp1 = new FtpUpload();
+    FtpUpload ftp2 = new FtpUpload();
+    String url1,url2,name1,name2;
+   
+    
+    String cvpath,lmpath;
+    @FXML
+    private Label labelcv;
+    @FXML
+    private Label labellm;
 
     /**
      * Initializes the controller class.
@@ -69,9 +94,83 @@ public class ModifierCandidatureController implements Initializable {
         // TODO
         choice_statusedit.setItems(status);
         choice_diplomeedit.setItems(diplomes);
+        labelcv.setText(cvpath);
+        labellm.setText(lmpath);
+        System.out.println(cvpath);
+        
+        btn_cvedit.setOnAction(e ->{
+            fileChooser = new FileChooser();
+
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*pdf")
+            );
+            Window stage = null;
+            String filename = "";
+            //Single File Selection
+            
+            file1 = fileChooser.showOpenDialog(null);
+
+
+            if(file1 != null){
+                //desktop.open(file);
+                
+                url1 = file1.getAbsolutePath();
+                name1 = file1.getName();
+                //ftp.Upload(url1,name1);
+                txtfield_cvedit.setText(file1.getName());
+
+            }
+        });
+        
+        btn_cvvoir.setOnAction(e ->{
+            try {
+                Desktop.getDesktop().open(new File("Backlog.pdf"));
+            } catch (IOException ex) {
+                Logger.getLogger(ModifierCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            }
+        );
+        
+        btn_lettremotivedit.setOnAction(e ->{
+            Window stage = null;
+            fileChooser = new FileChooser();
+
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*pdf")
+            );
+            //Single File Selection
+
+            file2 = fileChooser.showOpenDialog(null);
+
+            if(file2 != null){
+
+                
+                url2 = file2.getAbsolutePath();
+                name2 = file2.getName();
+                txtfield_lettremotivedit.setText(file2.getName());
+
+            }
+
+        });
     }    
 
-    
+    public String getCvpath() {
+        return cvpath;
+    }
+
+    public void setCvpath(String cvpath) {
+        this.cvpath = cvpath;
+    }
+
+    public String getLmpath() {
+        return lmpath;
+    }
+
+    public void setLmpath(String lmpath) {
+        this.lmpath = lmpath;
+    }
+
     
      public int getFormCand() {
         return formCand;
@@ -113,12 +212,12 @@ public class ModifierCandidatureController implements Initializable {
         this.txtfield_idedit.setText(txtfield_idedit);
     }
 
-    public DatePicker getDate_dispo() {
-        return date_dispo;
+    public DatePicker getDate_dispoedit() {
+        return date_dispoedit;
     }
 
-    public void setDate_dispo(DatePicker date_dispo) {
-        this.date_dispo = date_dispo;
+    public void setDate_dispoedit(DatePicker date_dispo) {
+        this.date_dispoedit = date_dispo;
     }
 
     public TextField getTxtfield_cvedit() {
@@ -158,29 +257,31 @@ public class ModifierCandidatureController implements Initializable {
     private void modifierCandidature(ActionEvent event) {
         btn_modifier.setOnAction(e->{
         Candidature c = new Candidature();
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(System.currentTimeMillis());
-        c.setDate_candidature(date);
-        System.out.println(date);
-        //c.setCandidat(1);
         c.setId(Integer.parseInt(txtfield_idedit.getText()));
         c.setNum(Integer.parseInt(txtfield_numedit.getText()));
         c.setStatus(choice_statusedit.getValue());
         c.setDiplome(choice_diplomeedit.getValue());
-        //c.setDispo(date);
-        //c.setCv(txtfield_cvedit.getText());
-        //c.setLettre_motiv(txtfield_lettremotivedit.getText());
-
+        LocalDate date = date_dispoedit.valueProperty().get();
+        Date date2 = Date.valueOf(date);
+        c.setDispo(date2);
+        if(file1 != null){
+            System.out.println("uploading url="+url1);
+            ftp1.Upload(url1,name1);
+            System.out.println("uploaded!!");
+        }
+        if(file2 != null){
+            System.out.println("uploading url="+url2);
+            ftp2.Upload(url2,name2);
+            System.out.println("uploaded!!");
+        }
         new CandidatureService().modifierCandidature(c);
-        
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Candidature");
-            alert.setHeaderText("Candidature modifié !");
-            alert.setContentText("retour");
-
-            alert.showAndWait(); 
+        CandidatureService.notifsuccess("Candidature modifié");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setTitle("Candidature");
+            alert.setHeaderText("Retour à la list?");
+            //alert.setContentText("retour");
+            alert.showAndWait();
             Stage stage = (Stage) btn_retour.getScene().getWindow();
-            //stage.close();
         });
     }
 

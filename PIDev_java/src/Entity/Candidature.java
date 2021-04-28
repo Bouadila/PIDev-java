@@ -7,6 +7,9 @@ package Entity;
 
 import java.sql.Date;
 
+
+
+
 /**
  *
  * @author A.L.I.C.E
@@ -26,10 +29,12 @@ private String cv;
 private Date date_candidature;
 private Date dispo;
 private String lettre_motiv;
-private int offre;
-private int candidat;
+private int offre_id;
+private int candidat_id;
+private Offre offre;
+private User candidat;
 
-    public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, int offre, int candidat) {
+    public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, int offre_id, int candidat_id) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -41,11 +46,11 @@ private int candidat;
         this.diplome = diplome;
         this.cv = cv;
         this.date_candidature = date_candidature;
-        this.offre = offre;
-        this.candidat = candidat;
+        this.offre_id = offre_id;
+        this.candidat_id = candidat_id;
     }
 
-    public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv, int offre, int candidat) {
+    public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv, int offre_id, int candidat_id) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -59,8 +64,8 @@ private int candidat;
         this.date_candidature = date_candidature;
         this.dispo = dispo;
         this.lettre_motiv = lettre_motiv;
-        this.offre = offre;
-        this.candidat = candidat;
+        this.offre_id = offre_id;
+        this.candidat_id = candidat_id;
     }
 
     
@@ -80,6 +85,44 @@ private int candidat;
         this.cv = cv;
         this.date_candidature = date_candidature;
     }
+
+    public Candidature(int id, int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv) {
+        this.id = id;
+        this.num = num;
+        this.status = status;
+        this.diplome = diplome;
+        this.cv = cv;
+        this.date_candidature = date_candidature;
+        this.dispo = dispo;
+        this.lettre_motiv = lettre_motiv;
+    }
+
+    public Candidature(int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv, int offre_id, int candidat_id) {
+        this.num = num;
+        this.status = status;
+        this.diplome = diplome;
+        this.cv = cv;
+        this.date_candidature = date_candidature;
+        this.dispo = dispo;
+        this.lettre_motiv = lettre_motiv;
+        this.offre_id = offre_id;
+        this.candidat_id = candidat_id;
+    }
+
+    public Candidature(int id, int num, String status, String diplome, String cv, Date date_candidature, Date dispo, String lettre_motiv, int offre_id, int candidat_id) {
+        this.id = id;
+        this.num = num;
+        this.status = status;
+        this.diplome = diplome;
+        this.cv = cv;
+        this.date_candidature = date_candidature;
+        this.dispo = dispo;
+        this.lettre_motiv = lettre_motiv;
+        this.offre_id = offre_id;
+        this.candidat_id = candidat_id;
+    }
+
+
     
     
 
@@ -191,21 +234,41 @@ private int candidat;
     }
 
     
-    public int getOffre() {
+    public int getOffre_id() {
+        return offre_id;
+    }
+
+    public void setOffre_id(int offre_id) {
+        this.offre_id = offre_id;
+    }
+
+    public int getCandidat_id() {
+        return candidat_id;
+    }
+
+    public void setCandidat_id(int candidat_id) {
+        this.candidat_id = candidat_id;
+    }
+
+    public Offre getOffre() {
         return offre;
     }
 
-    public void setOffre(int offre) {
+    public void setOffre(Offre offre) {
         this.offre = offre;
     }
 
-    public int getCandidat() {
+    public User getCandidat() {
         return candidat;
     }
 
-    public void setCandidat(int candidat) {
+    public void setCandidat(User candidat) {
         this.candidat = candidat;
     }
+
+   
+    
+    
     
     @Override
     public String toString() {
@@ -223,5 +286,6 @@ private int candidat;
                 ", date de postulation=" + date_candidature + '\'' +
                 '}';
     }
+
     
 }
