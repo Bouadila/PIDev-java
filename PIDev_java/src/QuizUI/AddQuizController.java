@@ -177,7 +177,7 @@ public class AddQuizController implements Initializable {
 
     public void fillGrid() throws SQLException {
 
-        nb_reponse = 2;
+        nb_reponse = 3;
         grid.getChildren().clear();
         FontAwesomeIconView btn_add = new FontAwesomeIconView();
         btn_add.setOnMouseClicked(ev -> {
@@ -230,6 +230,15 @@ public class AddQuizController implements Initializable {
         lb_error.setTextFill(Color.web("#ff0000", 0.8));
         vb.getChildren().addAll(tf_reponse, lb_error);
         grid.addRow(1, radio, vb);
+        vb = new VBox();
+        RadioButton radio1 = new RadioButton();
+        radio1.setOnAction(e -> selectReponse(radio1));
+        tf_reponse = new TextField();
+        tf_reponse.setStyle("-fx-background-color: #a9a9a9 , white , white; -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;");
+        lb_error = new Label();
+        lb_error.setTextFill(Color.web("#ff0000", 0.8));
+        vb.getChildren().addAll(tf_reponse, lb_error);
+        grid.addRow(2, radio1, vb);
 
         nb_question++;
         alignGrid();
@@ -250,27 +259,48 @@ public class AddQuizController implements Initializable {
         return result;
     }
 
-    public boolean testInput() {
+       public boolean testInput() {
 
         boolean test = true;
         for (Node node : grid.getChildren()) {
             if (grid.getRowIndex(node) == 0 && grid.getColumnIndex(node) == 1) {
                 if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 8) {
-                    ((Label) ((VBox) node).getChildren().get(1)).setText("le question doit etre > 8 char");
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("la question doit etre > 8 char");
                     test = false;
                 } else {
-                    ((Label) ((VBox) node).getChildren().get(1)).setVisible(false);
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("");
                 }
             } else if (grid.getColumnIndex(node) == 1) {
                 if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 1) {
-                    ((Label) ((VBox) node).getChildren().get(1)).setText("le reponse doit etre > 1 char");
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("la reponse doit etre > 1 char");
+                    ((Label) ((VBox) node).getChildren().get(1)).setVisible(true);
                     test = false;
                 } else {
                     ((Label) ((VBox) node).getChildren().get(1)).setVisible(false);
                 }
             }
         }
-        return test;
+        boolean test_radio = false;
+        
+        for (Node node : grid.getChildren()) {
+            if (node instanceof RadioButton) {
+                if( ((RadioButton) node).isSelected())
+                    test_radio = true;
+            }
+        }
+        
+        if(test_radio == false){
+           Label lb = ((Label) ((VBox) getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(1));
+           if(lb.getText().length() == 0){
+               lb.setText("choisissez la reponse correct");
+               lb.setVisible(true);
+           }
+           else{
+               lb.setText(lb.getText()+"\n choisissez la reponse correct");
+           }
+        }
+        
+        return test && test_radio;
     }
 
     public void alignGrid() {

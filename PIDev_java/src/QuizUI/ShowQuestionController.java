@@ -27,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -47,7 +48,7 @@ import javafx.stage.Stage;
  */
 public class ShowQuestionController implements Initializable {
 
-    private int nb = 2;
+    private int nb = 3;
 
     @FXML
     private GridPane grid;
@@ -113,8 +114,21 @@ grid.addRow(0, lb_question, vb, btn_add);
                 radio.setSelected(true);
             }
             grid.addRow(1, radio, vb, new Label());
+            
+             vb = new VBox();
+            RadioButton rd = new RadioButton();
+            rd.setOnAction(e -> selectReponse(rd));
+            error = new Label();
+            error.setTextFill(Color.web("#ff0000", 0.8));
+            vb.getChildren().addAll(new TextField(listReponse.get(1).getContenu_rep()), error);
+            
+            
+            if (listReponse.get(1).getId() == question.getRep_just_id()) {
+                rd.setSelected(true);
+            }
+            grid.addRow(2, rd, vb, new Label());
 
-            for (int i = 1; i < listReponse.size(); i++) {
+            for (int i = 2; i < listReponse.size(); i++) {
                 TextField tf_reponse = new TextField(listReponse.get(i).getContenu_rep());
                 error = new Label();
                 error.setTextFill(Color.web("#ff0000", 0.8));
@@ -227,7 +241,7 @@ grid.addRow(0, lb_question, vb, btn_add);
                 }
             }
             Node node1 = (Node) e.getSource();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuiz.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuiz.fxml"));
             Stage stage = (Stage) node1.getScene().getWindow();
 
             Scene scene = null;
@@ -267,14 +281,14 @@ grid.addRow(0, lb_question, vb, btn_add);
         for (Node node : grid.getChildren()) {
             if (grid.getRowIndex(node) == 0 && grid.getColumnIndex(node) == 1) {
                 if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 8) {
-                    ((Label) ((VBox) node).getChildren().get(1)).setText("le question doit etre > 8 char");
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("la question doit etre > 8 char");
                     test = false;
                 } else {
-                    ((Label) ((VBox) node).getChildren().get(1)).setVisible(false);
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("");
                 }
             } else if (grid.getColumnIndex(node) == 1) {
                 if (((TextField) ((VBox) node).getChildren().get(0)).getText().length() < 1) {
-                    ((Label) ((VBox) node).getChildren().get(1)).setText("le reponse doit etre > 1 char");
+                    ((Label) ((VBox) node).getChildren().get(1)).setText("la reponse doit etre > 1 char");
                     ((Label) ((VBox) node).getChildren().get(1)).setVisible(true);
                     test = false;
                 } else {
@@ -282,7 +296,27 @@ grid.addRow(0, lb_question, vb, btn_add);
                 }
             }
         }
-        return test;
+        boolean test_radio = false;
+        
+        for (Node node : grid.getChildren()) {
+            if (node instanceof RadioButton) {
+                if( ((RadioButton) node).isSelected())
+                    test_radio = true;
+            }
+        }
+        
+        if(test_radio == false){
+           Label lb = ((Label) ((VBox) getNodeByRowColumnIndex(0, 1, grid)).getChildren().get(1));
+           if(lb.getText().length() == 0){
+               lb.setText("choisissez la reponse correct");
+               lb.setVisible(true);
+           }
+           else{
+               lb.setText(lb.getText()+"\n choisissez la reponse correct");
+           }
+        }
+        
+        return test && test_radio;
     }
 
     public void alignGrid() {

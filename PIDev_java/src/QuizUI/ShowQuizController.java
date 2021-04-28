@@ -97,7 +97,7 @@ public class ShowQuizController implements Initializable {
         btn_add.setStyle("-fx-font-family: FontAwesome; -fx-font-size: 25.0; -fx-fill: #00af00;");
         btn_add.setOnMouseClicked(e -> {
             Node node = (Node) e.getSource();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuestion.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuestion.fxml"));
             Stage stage = (Stage) node.getScene().getWindow();
 
             Scene scene = null;
@@ -168,7 +168,7 @@ public class ShowQuizController implements Initializable {
         }
                     list.setOnMouseClicked(e -> {
                 Node node = (Node) e.getSource();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ShowQuestion.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuestion.fxml"));
                 Stage stage = (Stage) node.getScene().getWindow();
                 Scene scene = null;
                 try {
@@ -196,7 +196,7 @@ public class ShowQuizController implements Initializable {
             quizService.updateQuiz(quiz);
 
             Node node = (Node) e.getSource();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/QuizList.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/QuizList.fxml"));
             Stage stage = (Stage) node.getScene().getWindow();
 
             Scene scene = null;
