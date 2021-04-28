@@ -92,8 +92,8 @@ public class RendezVousService {
                 rdv.setId(rs.getInt("id"));
                 rdv.setIdCandidature(rs.getInt("candidature_id"));
                 rdv.setTitre(rs.getString("titre"));
-                rdv.setStart(rs.getDate("start"));
-                rdv.setEnd(rs.getDate("end"));
+                rdv.setStart(rs.getTimestamp("start"));
+                rdv.setEnd(rs.getTimestamp("end"));
                 rdv.setDescription(rs.getString("description"));
                 rdv.setAllDay(rs.getBoolean("all_day"));
                 rdv.setBackgroundColor(rs.getString("background_color"));
@@ -120,7 +120,7 @@ public class RendezVousService {
                 rdv.setId(rs.getInt("id"));
                 rdv.setIdCandidature(rs.getInt("candidature_id"));
                 rdv.setTitre(rs.getString("titre"));
-                rdv.setStart(rs.getDate("start"));
+                rdv.setStart(rs.getTimestamp("start"));
                 rdv.setEnd(rs.getDate("end"));
                 rdv.setDescription(rs.getString("description"));
                 rdv.setAllDay(rs.getBoolean("all_day"));

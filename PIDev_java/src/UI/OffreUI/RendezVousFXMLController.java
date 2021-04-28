@@ -97,6 +97,7 @@ public class RendezVousFXMLController implements Initializable {
          for ( int i = 0; i < new RendezVousService().getAll().size(); i++){
             RendezVous rdv = new RendezVousService().getAll().get(i);
             Entry<String> destist = new Entry<>(rdv.getTitre());
+             System.out.println(rdv.getStart());
             LocalDate date = LocalDate.of(2021, rdv.getStart().getMonth(), rdv.getStart().getDate());
             LocalTime time = LocalTime.of(rdv.getStart().getHours(), rdv.getStart().getMinutes());    
             destist.changeStartDate(date);
