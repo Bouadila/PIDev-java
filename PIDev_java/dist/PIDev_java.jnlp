@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PIDev_java.jar" size="14885528" download="eager" />
+    <jar href="PIDev_java.jar" size="14885836" download="eager" />
     <jar href="lib\GMapsFX-8.0.0.jar" size="3893601" download="eager" />
     <jar href="lib\activation.jar" size="124332" download="eager" />
     <jar href="lib\calendarfx-recurrence-8.4.1.jar" size="159323" download="eager" />

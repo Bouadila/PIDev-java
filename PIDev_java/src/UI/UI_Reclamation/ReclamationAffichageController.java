@@ -7,6 +7,7 @@ package UI.UI_Reclamation;
 
 import Entity.Reclamation;
 import Services.ReclamationService;
+import Services.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -37,7 +38,7 @@ public class ReclamationAffichageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ReclamationService rs = new ReclamationService();
-        List<Reclamation> lr = rs.Lister();
+        List<Reclamation> lr = rs.Lister(UserSession.getIdSession());
         
         for(Reclamation rec: lr){
             VBox vb = new VBox();

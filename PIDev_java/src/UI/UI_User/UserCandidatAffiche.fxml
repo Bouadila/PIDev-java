@@ -120,7 +120,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Annonce" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToFormation" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Formation" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="Berlin Sans FB" size="13.0" />
                </font>
@@ -141,6 +141,17 @@
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
                </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#Reclamation" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Reclamation" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Button>
             <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="A porpos" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                <graphic>

@@ -7,6 +7,7 @@ package UI.UI_Reclamation;
 
 import Entity.Reclamation;
 import Services.ReclamationService;
+import Services.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -54,7 +55,7 @@ public class ReclamationAjoutController implements Initializable {
         
         
         ReclamationService rs = new ReclamationService();
-        Reclamation Rc=new Reclamation(tfTitle.getText(),"Reclamation",date,tfDesc.getText(),"Non approuvé",rs.getEmail(61));
+        Reclamation Rc=new Reclamation(tfTitle.getText(),"Reclamation",date,tfDesc.getText(),"Non approuvé",rs.getEmail(UserSession.getIdSession()));
         rs.Ajouter(Rc);
         
         Node node = (Node) event.getSource();

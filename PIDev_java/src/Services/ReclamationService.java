@@ -52,8 +52,7 @@ public class ReclamationService implements iServiceReclamation<Reclamation>{
                 preparedStmt.setString(4,e.getDescRec());
 		preparedStmt.setString(5,e.getStatus());
 		preparedStmt.setString(6,e.getEmail());
-                //UserSession.getIdSession()
-                preparedStmt.setInt(7,61);
+                preparedStmt.setInt(7,UserSession.getIdSession());
               
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");

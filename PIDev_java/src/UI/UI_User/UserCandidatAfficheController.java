@@ -219,5 +219,25 @@ int rat =0;
     @FXML
     private void rendezVous(MouseEvent event) {
     }
+
+    @FXML
+    private void goToFormation(ActionEvent event) {
+    }
+
+    @FXML
+    private void Reclamation(MouseEvent event) {
+        Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/ReclamationAjout.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
+    }
     
 }
