@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="293.0" prefWidth="336.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_candidature.ModifierCandidatureController">
+    <stylesheets>
+        <URL value="@modifiercandidature.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="478.0" prefWidth="530.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@ajoutercandidature.css" />
+         </stylesheets>
+         <children>
+            <Label layoutX="98.0" layoutY="-4.0" prefHeight="58.0" prefWidth="312.0" text="Modifier candidature" textAlignment="RIGHT">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_modifier" layoutX="367.0" layoutY="395.0" mnemonicParsing="false" onAction="#modifierCandidature" prefHeight="44.0" prefWidth="109.0" text="Modifier">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_retour" layoutX="240.0" layoutY="395.0" mnemonicParsing="false" onAction="#gotoAfficherCandidature" prefHeight="44.0" prefWidth="109.0" text="Retour">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="txtfield_idedit" visible="false" />
+            <HBox layoutX="32.0" layoutY="58.0" prefHeight="337.0" prefWidth="444.0">
+               <children>
+                  <VBox prefHeight="440.0" prefWidth="169.0" spacing="30.0">
+                     <children>
+                        <Label text="Numero">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label text="Status">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label text="Diplome">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="122.0" text="Disponibilité">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="178.0" text="Télécharger CV">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="234.0" text="Lettre de motivation">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="490.0" prefWidth="292.0" spacing="30.0">
+                     <children>
+                        <TextField fx:id="txtfield_numedit" />
+                        <ChoiceBox fx:id="choice_statusedit" prefHeight="25.0" prefWidth="292.0" />
+                        <ChoiceBox fx:id="choice_diplomeedit" prefHeight="25.0" prefWidth="293.0" />
+                        <DatePicker fx:id="date_dispoedit" prefHeight="25.0" prefWidth="293.0" />
+                        <HBox prefHeight="28.0" prefWidth="284.0">
+                           <children>
+                              <HBox prefHeight="24.0" prefWidth="284.0">
+                                 <children>
+                                    <Label fx:id="labelcv" prefHeight="17.0" prefWidth="118.0" />
+                                    <Button fx:id="btn_cvvoir" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="voir" />
+                                    <Button fx:id="btn_cvedit" layoutX="217.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="uplaod" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="27.0" prefWidth="284.0">
+                           <children>
+                              <Label fx:id="labellm" prefHeight="17.0" prefWidth="117.0" />
+                              <Button fx:id="btn_lettremotivvoir" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="voir" />
+                              <Button fx:id="btn_lettremotivedit" layoutX="215.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="upload" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

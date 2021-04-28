@@ -30,12 +30,14 @@ public class ListReponseService {
      public int addListAndGetItsId(List_reponses_condidat listReponse) throws SQLException{
         
         String sql="INSERT INTO list_reponses_condidat (quiz_id, candidature_id, score) "
-                + "VALUES ( ?, null,?)";
+                + "VALUES ( ?, ?,?)";
             
         String generatedColumns[] = { "ID" };
         PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
         statement.setInt(1, listReponse.getQuiz_id());
-        statement.setInt(2, listReponse.getScore());
+        statement.setInt(3, listReponse.getScore());
+        statement.setInt(2, listReponse.getCondidtaure_id());
+
 //        statement.setInt(2, listReponse.getCondidtaure_id());
         statement.executeUpdate();
          try (ResultSet generatedKeys = statement.getGeneratedKeys()) {

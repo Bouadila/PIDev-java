@@ -99,6 +99,7 @@ public class QuizService {
         Quiz quiz = null;
         if (res.next())
         {
+            
             String nom_quiz = res.getString("nom_quiz");
             int nomb_question = res.getInt("nomb_question");
             quiz = new Quiz (id,nom_quiz, nomb_question);

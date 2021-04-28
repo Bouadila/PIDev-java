@@ -7,6 +7,7 @@ package UI.UI_Reclamation;
 
 import Services.ClientService;
 import Services.ServerService;
+import Services.UserSession;
 import interfaces.NetworkConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,25 +35,32 @@ public class ChatController implements Initializable {
     @FXML
     private Button btnSend;
     
-    private boolean isServer = true;
-    private NetworkConnection connection = isServer ? createServer() : createClient();
+    private boolean isServer ;
+    private NetworkConnection connection;
 
-
+    public boolean isServer(){
+        return UserSession.getIdSession() == 52;
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        isServer = isServer();
+        connection = isServer ? createServer() : createClient();
         try {
             connection.startConnection();
         } catch (Exception ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }    
 
     @FXML
     private void handleButtonSend(ActionEvent event) {
-        String message = isServer ? "Server : " : "Client : ";
+        String message = isServer ? "Admin : " : "Client : ";
         message += tfInput.getText();
         tfInput.clear();
         

@@ -83,6 +83,8 @@ private final ImageView brandIcon = new ImageView();
     private Label compte;
     @FXML
     private Button comptes1;
+    @FXML
+    private Button comptes2;
     /**
      * Initializes the controller class.
      */
@@ -233,6 +235,23 @@ lb_desc.setStyle("-fx-font-weight: bold; -fx-font-size: 1.5em; ");
                     Scene scene = null;
         try {
             scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_formation/ListViewFormBack.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
+    }
+
+    @FXML
+    private void goToReclamation(ActionEvent event) {
+        
+           Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichageAdmin.fxml")));
         } catch (IOException ex) {
             Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
         }

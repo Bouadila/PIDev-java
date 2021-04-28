@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,6 +9,11 @@ package Entity;
 /**
  *
  * @author brahm
+ /**
+ *
+ * @author brahm
+ * @author A.L.I.C.E
+
  */
 public class Contrat {
     private int id;

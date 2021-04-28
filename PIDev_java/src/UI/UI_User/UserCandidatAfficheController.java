@@ -6,6 +6,7 @@
 package UI.UI_User;
 
 import Services.UserSession;
+import UI.OffreUI.OffreFXMLController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -214,6 +215,17 @@ int rat =0;
 
     @FXML
     private void offre(MouseEvent event) {
+        
+         Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreCandidatFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
     }
 
     @FXML

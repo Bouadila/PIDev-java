@@ -6,17 +6,22 @@
 package UI.OffreUI;
 
 import Entity.Offre;
-import Services.OffreDao.OffreService;
+import UI.UI_candidature.AjouterCandidatureController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -48,29 +53,34 @@ public class DetailOffreCandidatController implements Initializable {
     @FXML
     private Text lb_description;
 
+    private Offre offre;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-public void initData(Offre offre){
+    }
+
+    public void initData(Offre offre) {
+        this.offre = offre;
         this.lb_Post.setText(offre.getPost());
         this.lb_competence.setText(offre.getCompetences());
         this.lb_description.setText(offre.getDescription());
         this.lb_objectif.setText(offre.getObjectif());
         this.lb_domaine.setText(offre.getDomaine());
-        this.lb_salaire.setText(offre.getSalaire()+"DT");
+        this.lb_salaire.setText(offre.getSalaire() + "DT");
         this.lb_depo.setText(offre.getDateDepot().toString());
         this.lb_expiration.setText(offre.getDateExpiration().toString());
         this.leb_min.setText(String.valueOf(offre.getExperienceMin()));
         this.lb_max.setText(String.valueOf(offre.getExperienceMax()));
-         Image image = new Image("/Images/Offre-emploi.jpg");
-         this.img.setFill(new ImagePattern(image));
+        Image image = new Image("/Images/Offre-emploi.jpg");
+        this.img.setFill(new ImagePattern(image));
         //lb_id.setText(offre.getDescription());
-        
+
     }
+
     @FXML
     private void offre(MouseEvent event) {
     }
@@ -80,7 +90,16 @@ public void initData(Offre offre){
     }
 
     @FXML
-    private void Postuler(MouseEvent event) {
+    private void Postuler(MouseEvent event) throws IOException {
+
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_candidature/AjouterCandidature.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        Scene scene = new Scene(loader.load());
+        AjouterCandidatureController conController = loader.getController();
+        conController.loadData(offre);
+        stage.setScene(scene);
     }
-    
+
 }

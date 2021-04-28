@@ -155,6 +155,7 @@ public class OffreService {
                 o.setDescription(rs.getString("offre.description"));
                 o.setDomaine(rs.getString("offre.domaine"));
                 o.setSalaire(rs.getInt("offre.salaire"));
+                o.setQuiz(rs.getInt("offre.quiz_id"));
                 o.setNombrePlace(rs.getInt("offre.nombre_place"));
                 o.setDateDepot(rs.getDate("offre.date_depo"));
                 o.setDateExpiration(rs.getDate("offre.date_expiration"));

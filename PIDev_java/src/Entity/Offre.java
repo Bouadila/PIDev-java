@@ -29,6 +29,7 @@ public class Offre {
  private boolean flagSupprimer;
  private boolean flagExpirer;
  private int Quiz;
+
  LocalDate localDate = LocalDate.now();
 
     public Offre() {
@@ -170,6 +171,7 @@ public class Offre {
         this.flagExpirer = flagExpirer;
     }
 
+
     public int getQuiz() {
         return Quiz;
     }
@@ -182,5 +184,6 @@ public class Offre {
     public String toString() {
         return "Offre{" + "id=" + id + ", post=" + post + ", objectif=" + objectif + ", competences=" + competences + ", description=" + description + ", domaine=" + domaine + ", contrat=" + contrat + ", salaire=" + salaire + ", nombrePlace=" + nombrePlace + ", dateDepot=" + dateDepot + ", dateExpiration=" + dateExpiration + ", experienceMin=" + experienceMin + ", experienceMax=" + experienceMax + ", flagSupprimer=" + flagSupprimer + ", flagExpirer=" + flagExpirer + '}';
     }
+
  
 }

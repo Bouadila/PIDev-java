@@ -105,7 +105,7 @@ public class AddQuizController implements Initializable {
         lb_error_ques.setTextFill(Color.web("#ff0000", 0.8));
         lb_error.setTextFill(Color.web("#ff0000", 0.8));
         main_pane.setStyle("-fx-background-color: #0000;");
-        lb_text.setText("Titre De Quiz");
+        lb_text.setText("Titre de Quizz");
         lb_text.setStyle("-fx-font: normal bold 15px 'serif'");
         grid.setAlignment(Pos.TOP_CENTER);
         btn_next.setStyle("-fx-background-color: #ad0505; -fx-text-fill: white;");
