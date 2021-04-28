@@ -199,7 +199,7 @@ public class UserAddController implements Initializable{
 //        fis = new FileInputStream(file) ;
 //        String img = tfImg.getText();
 String profilePic = lb_image.getText();
-
+//        System.out.println(profilePic);
         String password8 = BCrypt.hashpw(tfPassword.getText(),BCrypt.gensalt(13));
         password8 = password8.replaceFirst("2a", "2y") ;
              
@@ -214,8 +214,8 @@ String profilePic = lb_image.getText();
         }
         if (imgp!=null) {
             try {
-                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Desktop\\PIDev-java\\PIDev_java\\src\\image\\" + imgp));
-                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\USER\\Documents\\pidev\\ProjPiDev\\public\\uploads\\image\\" + imgp));
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\Bou3dila\\Documents\\Esprit\\PIDev-java\\PIDev_java\\src\\image\\" + imgp));
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\Bou3dila\\Documents\\Esprit\\ProjPiDev\\ProjPiDev\\public\\uploads\\image\\" + imgp));
             } catch (IOException ex) {
             }
         }
@@ -244,7 +244,7 @@ String profilePic = lb_image.getText();
       
       }   
       else if (leRole=="Candidat") 
-            { String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`, `activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Candidat\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+imageview.getImage()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
+            { String req ="INSERT INTO `user` (`email`, `password`, `name`, `roles`, `prenom`, `gover`, `img`, `special`, `activation_token`, `etat`) VALUES ( '"+tfEmail.getText()+"','"+password8+"','"+tfNom.getText()+"','[\"Candidat\"]','"+tfPrenom.getText()+"','"+tfGover.getValue()+"','"+lb_image.getText()+"','"+tfSpecial.getValue()+"','22' ,'"+etat+"');";
  PreparedStatement  ps = con.prepareStatement(req);
         ps.executeUpdate();
       }

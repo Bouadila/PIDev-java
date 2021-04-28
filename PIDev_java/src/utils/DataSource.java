@@ -24,7 +24,6 @@ public class DataSource {
     private String pwd="";
     
     private Connection cnx;
-    
     private static DataSource instance; 
     
     private DataSource(){
