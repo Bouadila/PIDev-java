@@ -100,11 +100,9 @@ public class UserAddController implements Initializable{
     private ToggleGroup Roles;
  
     @FXML
-    private Hyperlink Accueil;
+    private Button profil;
     @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink login1;
+    private Button login1;
     @FXML
     private ComboBox<String> tfSpecial;
     static int randomCodee;
@@ -128,14 +126,6 @@ public class UserAddController implements Initializable{
     private RadioButton roleCandidat;
     @FXML
     private RadioButton roleEmployeur;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink quiz;
            ObservableList<String> list_gov
             = FXCollections.observableArrayList(
                     "Ariena",
@@ -697,9 +687,6 @@ String profilePic = lb_image.getText();
   }
 
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException {
@@ -730,21 +717,6 @@ String profilePic = lb_image.getText();
     private void register(MouseEvent event) throws IOException {
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
-
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin2(MouseEvent event) throws IOException {
@@ -785,6 +757,15 @@ String profilePic = lb_image.getText();
             imguriUri = file.toURI();
             lb_image.setText(imgp);
         }
+    }
+    
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
  
 }

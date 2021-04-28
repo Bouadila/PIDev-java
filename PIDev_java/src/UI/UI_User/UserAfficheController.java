@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -42,17 +43,7 @@ import utils.DataSource;
 public class UserAfficheController implements Initializable {
 
     @FXML
-    private Hyperlink Accueil;
-    @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink quiz;
+    private Button profil;
     @FXML
     private Label tfNomPrenom;
     @FXML
@@ -96,7 +87,6 @@ catch (SQLException ex) {
     
     
 
-    @FXML
     private void goToAcceuil(ActionEvent event) throws SQLException ,IOException {
         String role="";
          String request0 ="SELECT * from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
@@ -135,24 +125,7 @@ catch (SQLException ex) {
                     stage.show();
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
 
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
-
-
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
-
-    @FXML
     private void setLabelProfileUser() throws SQLException {
        String fullName="";
          String email="";
@@ -217,6 +190,15 @@ catch (SQLException ex) {
                     stage.show();
         
     }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
+    }
+
     
    
     

@@ -31,19 +31,9 @@ import utils.DataSource;
 public class UserReactiveController implements Initializable {
 
     @FXML
-    private Hyperlink Accueil;
+    private Button profil;
     @FXML
-    private Hyperlink profil;
-    @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
+    private Button login1;
     @FXML
     private Button OUI;
     @FXML
@@ -58,9 +48,6 @@ public class UserReactiveController implements Initializable {
     }    
             Connection con = DataSource.getInstance().getCnx();
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException {
@@ -73,17 +60,6 @@ public class UserReactiveController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin(ActionEvent event) throws IOException {
@@ -96,9 +72,6 @@ public class UserReactiveController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
 
     @FXML
     private void OUI(MouseEvent event) throws SQLException, IOException {
@@ -126,6 +99,14 @@ public class UserReactiveController implements Initializable {
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
                     stage.setScene(scene);
                     stage.show();
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
     
 }

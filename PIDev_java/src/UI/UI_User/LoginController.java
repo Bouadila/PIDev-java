@@ -56,21 +56,11 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pw;
     @FXML
-    private Hyperlink offre;
-    @FXML
-    private Hyperlink demande;
-    @FXML
-    private Hyperlink annonce;
-    @FXML
-    private Hyperlink login1;
-    @FXML
-    private Hyperlink quiz;
+    private Button login1;
     @FXML
     private Label inscrireUser;
     @FXML
-    private Hyperlink Accueil;
-    @FXML
-    private Hyperlink profil;
+    private Button profil;
     @FXML
     private Label oublierPwd;
     Connection con = DataSource.getInstance().getCnx();
@@ -180,9 +170,6 @@ public class LoginController implements Initializable {
     }
     
 
-    @FXML
-    private void goToAcceuil(ActionEvent event) {
-    }
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException {
@@ -196,17 +183,6 @@ public class LoginController implements Initializable {
                 
     }
 
-    @FXML
-    private void goTooffre(ActionEvent event) {
-    }
-
-    @FXML
-    private void goTodemande(ActionEvent event) {
-    }
-
-    @FXML
-    private void goToannoce(ActionEvent event) {
-    }
 
     @FXML
     private void goToLogin(ActionEvent event) throws IOException {
@@ -220,9 +196,6 @@ public class LoginController implements Initializable {
     }
 
 
-    @FXML
-    private void quiz(ActionEvent event) {
-    }
 
     @FXML
     private void forgetPwd(MouseEvent event) throws IOException {
@@ -233,6 +206,14 @@ public class LoginController implements Initializable {
                     Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserResetPwd.fxml")));
                     stage.setScene(scene);
                     stage.show();
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
     }
 
    

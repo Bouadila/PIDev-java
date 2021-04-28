@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
@@ -15,71 +15,158 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="417.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_User.UserAddController">
    <children>
-      <TextField fx:id="tfNom" layoutX="176.0" layoutY="77.0" promptText="Nom" />
-      <Label layoutX="177.0" layoutY="60.0" text="Nom" />
-      <Label layoutX="175.0" layoutY="117.0" text="Prenom" />
-      <TextField fx:id="tfPrenom" layoutX="177.0" layoutY="136.0" promptText="Prénom" />
-      <Label layoutX="176.0" layoutY="176.0" text="Email :" />
-      <TextField fx:id="tfEmail" layoutX="174.0" layoutY="196.0" promptText="Email" />
-      <Label layoutX="177.0" layoutY="235.0" prefHeight="17.0" prefWidth="88.0" text="Mot de passe :" />
-      <PasswordField fx:id="tfPassword" layoutX="175.0" layoutY="255.0" promptText="Mot de passe" />
-      <Label layoutX="177.0" layoutY="296.0" text="Image :" />
+      <TextField fx:id="tfNom" layoutX="197.0" layoutY="80.0" promptText="Nom" />
+      <Label layoutX="186.0" layoutY="60.0" text="Nom" />
+      <Label layoutX="188.0" layoutY="117.0" text="Prenom" />
+      <TextField fx:id="tfPrenom" layoutX="199.0" layoutY="136.0" promptText="Prénom" />
+      <Label layoutX="187.0" layoutY="176.0" text="Email :" />
+      <TextField fx:id="tfEmail" layoutX="199.0" layoutY="196.0" promptText="Email" />
+      <Label layoutX="187.0" layoutY="235.0" prefHeight="17.0" prefWidth="88.0" text="Mot de passe :" />
+      <PasswordField fx:id="tfPassword" layoutX="200.0" layoutY="255.0" promptText="Mot de passe" />
+      <Label layoutX="186.0" layoutY="296.0" text="Image :" />
       <Label layoutX="451.0" layoutY="205.0" prefHeight="17.0" prefWidth="35.0" text="Role :" />
-      <Label fx:id="login" alignment="CENTER" layoutX="395.0" layoutY="326.0" onMouseClicked="#goToLogin2" prefHeight="17.0" prefWidth="275.0" style="-fx-background-color: #0000;" text="Vous avez déja un compte? Connectez-vous?" textFill="#792424" />
+      <Label fx:id="login" alignment="CENTER" layoutX="395.0" layoutY="326.0" onMouseClicked="#goToLogin2" prefHeight="17.0" prefWidth="275.0" style="-fx-background-color: #0000;" text="Vous avez déja un compte? Connectez-vous?" textFill="#861313" />
       <RadioButton fx:id="roleCandidat" layoutX="460.0" layoutY="227.0" mnemonicParsing="false" text="Candidat">
          <toggleGroup>
             <ToggleGroup fx:id="Roles" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="roleEmployeur" layoutX="539.0" layoutY="228.0" mnemonicParsing="false" text="Employeur" toggleGroup="$Roles" />
-      <Button alignment="CENTER" layoutX="446.0" layoutY="278.0" mnemonicParsing="false" onAction="#inscrireUser" onMouseClicked="#register" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #9b2938;" text="S'inscrire" textFill="#f8f3f3" />
+      <Button alignment="CENTER" layoutX="446.0" layoutY="278.0" mnemonicParsing="false" onAction="#inscrireUser" onMouseClicked="#register" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #cc0000;" text="S'inscrire" textFill="#f8f3f3" />
       <Text layoutX="446.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Governorat :" />
-      <Pane layoutY="-1.0" prefHeight="417.0" prefWidth="110.0" style="-fx-background-color: #9b2938;">
-         <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recrutini  " textAlignment="RIGHT" wrappingWidth="67.5911425203085" />
-            <Circle fill="#265e94" layoutX="55.0" layoutY="48.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
-         </children>
-      </Pane>
-      <Label layoutX="292.0" layoutY="-1.0" prefHeight="74.0" prefWidth="263.0" text="S'inscrire">
-         <font>
-            <Font name="System Bold" size="51.0" />
-         </font>
-      </Label>
       <Text layoutX="446.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialité :" />
-      <Group layoutX="10.0" layoutY="136.0">
-         <children>
-            <Hyperlink fx:id="Accueil" onAction="#goToAcceuil" prefHeight="26.0" prefWidth="88.0" text="Accueil" textFill="WHITE" />
-            <Hyperlink fx:id="profil" layoutY="35.0" onAction="#goToProfil" prefHeight="26.0" prefWidth="88.0" text="Compte" textFill="WHITE" />
-            <Hyperlink fx:id="offre" layoutX="1.0" layoutY="66.0" onAction="#goTooffre" prefHeight="26.0" prefWidth="88.0" text="Offre" textFill="WHITE" />
-            <Hyperlink fx:id="demande" layoutX="2.0" layoutY="100.0" onAction="#goTodemande" prefHeight="26.0" prefWidth="88.0" text="Demande" textFill="WHITE" />
-            <Hyperlink fx:id="annonce" layoutX="3.0" layoutY="132.0" onAction="#goToannoce" prefHeight="26.0" prefWidth="88.0" text="Annonce" textFill="WHITE" />
-            <Hyperlink fx:id="login1" layoutX="5.0" layoutY="201.0" onAction="#goToLogin" prefHeight="26.0" prefWidth="88.0" text="Login" textFill="WHITE" />
-            <Hyperlink fx:id="quiz" layoutX="5.0" layoutY="166.0" onAction="#quiz" prefHeight="26.0" prefWidth="88.0" text="Quiz" textFill="WHITE" />
-         </children>
-      </Group>
       <ComboBox fx:id="tfGover" layoutX="436.0" layoutY="105.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Governorat" />
       <ComboBox fx:id="tfSpecial" layoutX="437.0" layoutY="164.0" onMouseClicked="#tfSpecial" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Specialité" />
-      <Button fx:id="txtimgchose" layoutX="277.0" layoutY="343.0" mnemonicParsing="false" onAction="#imgchose" text="Image">
+      <ImageView fx:id="imageview" fitHeight="41.0" fitWidth="66.0" layoutX="441.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lb_image" layoutX="195.0" layoutY="314.0" prefHeight="25.0" prefWidth="149.0" text="       Choisir une image">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Button fx:id="txtimgchose" layoutX="299.0" layoutY="341.0" mnemonicParsing="false" onAction="#imgchose" text="Image">
          <effect>
-            <Lighting diffuseConstant="1.65" specularConstant="0.0" surfaceScale="1.85">
+            <Lighting diffuseConstant="1.51" specularConstant="0.0" specularExponent="22.33" surfaceScale="6.04">
                <bumpInput>
                   <Shadow />
                </bumpInput>
                <light>
-                  <Light.Distant color="#f29e9e" />
+                  <Light.Distant azimuth="32.45" color="#ee4545b8" elevation="104.65" />
                </light>
             </Lighting>
-         </effect></Button>
-      <ImageView fx:id="imageview" fitHeight="41.0" fitWidth="66.0" layoutX="441.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lb_image" layoutX="177.0" layoutY="314.0" prefHeight="25.0" prefWidth="149.0" text="       Choisir une image">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
+         </effect>
+      </Button>
+      <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="445.0" prefWidth="179.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Pane prefHeight="94.0" prefWidth="183.0">
+               <children>
+                  <Label layoutX="75.0" prefHeight="70.0" prefWidth="140.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="67.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Home" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" text="" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="RendezVous" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Annonce" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="14.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="login1" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToLogin" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Connexion" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TASKS" size="14.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="profil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToProfil" opacity="0.7" prefHeight="41.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Inscreption" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="A porpos" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="176.0" layoutY="-2.0" prefHeight="49.0" prefWidth="524.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Label layoutX="35.0" layoutY="1.0" prefHeight="50.0" prefWidth="162.0" text="S'inscrire" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
