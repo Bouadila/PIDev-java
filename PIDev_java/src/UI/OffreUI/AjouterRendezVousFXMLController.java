@@ -16,6 +16,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -31,8 +32,6 @@ import javafx.scene.layout.VBox;
  */
 public class AjouterRendezVousFXMLController implements Initializable {
 
-    @FXML
-    private VBox calender;
     @FXML
     private TextField tfTitre;
     @FXML
@@ -61,7 +60,7 @@ public class AjouterRendezVousFXMLController implements Initializable {
 //        LocalDateTime ldt = LocalDateTime.ofInstant(in.toInstant(), ZoneId.systemDefault());
 //        Date out = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
 //        System.out.println(out.toString());
-//        //System.out.println(this.tfTimeStart.getValue());
+//        System.out.println(this.tfTimeStart.getValue());
         String titre = this.tfTitre.getText();
         String description = this.tfDescription.getText();
         String room = this.tfRoom.getText();
@@ -73,9 +72,9 @@ public class AjouterRendezVousFXMLController implements Initializable {
         LocalDateTime localDateTimeEnd = dateRendezVous.atTime(end);
         //Date dateStart = Date.from(localDateTimeStart.atZone(ZoneId.systemDefault()).toInstant());
         Date dateStart = new Date(localDateTimeStart.getYear(),localDateTimeStart.getMonthValue(),localDateTimeStart.getDayOfMonth(),localDateTimeStart.getHour(),localDateTimeStart.getMinute(),localDateTimeStart.getSecond());
-//        dateStart.setMinutes(localDateTimeStart.getMinute());
-//        dateStart.setHours(localDateTimeStart.getHour());
-dateStart.setYear(2021);
+//      dateStart.setMinutes(localDateTimeStart.getMinute());
+//      dateStart.setHours(localDateTimeStart.getHour());
+        dateStart.setYear(2021);
         System.out.println(dateStart.getYear());
         System.out.println(dateStart);
         Date dateEnd = new Date(localDateTimeEnd.getYear(),localDateTimeEnd.getMonthValue(),localDateTimeEnd.getDayOfMonth(),localDateTimeEnd.getHour(),localDateTimeEnd.getMinute(),localDateTimeEnd.getSecond());
@@ -93,5 +92,6 @@ dateStart.setYear(2021);
 //        System.out.println(dateEnd);
         
     }
+
     
 }

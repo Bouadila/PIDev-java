@@ -26,6 +26,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -37,7 +39,7 @@ import javafx.stage.Stage;
 public class DetailOffreController implements Initializable {
 
     @FXML
-    private Text lb_Post;
+    private Label lb_Post;
     @FXML
     private Text lb_objectif;
     @FXML
@@ -57,8 +59,9 @@ public class DetailOffreController implements Initializable {
     private Label leb_min;
     @FXML
     private Label lb_max;
+    //private ImageView logo;
     @FXML
-    private ImageView logo;
+    private Circle img;
 
     /**
      * Initializes the controller class.
@@ -80,8 +83,8 @@ public class DetailOffreController implements Initializable {
         this.lb_expiration.setText(offre.getDateExpiration().toString());
         this.leb_min.setText(String.valueOf(offre.getExperienceMin()));
         this.lb_max.setText(String.valueOf(offre.getExperienceMax()));
-         Image image = new Image("/Images/9.jpg");
-         this.logo.setImage(image);
+         Image image = new Image("/Images/Offre-emploi.jpg");
+         this.img.setFill(new ImagePattern(image));
         //lb_id.setText(offre.getDescription());
         o = new OffreService().getOne(offre.getId());
         System.out.println(o.toString());
@@ -133,6 +136,35 @@ public class DetailOffreController implements Initializable {
     private void backToListe(MouseEvent event) {
         Node node = (Node) event.getSource();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+    }
+
+    @FXML
+    private void offre(MouseEvent event) {
+         Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+            
+    }
+
+    @FXML
+    private void rendezVous(MouseEvent event) {
+        Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
                 Stage stage = (Stage) node.getScene().getWindow();
                 Scene scene = null;  
                 try {

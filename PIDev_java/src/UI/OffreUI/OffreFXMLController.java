@@ -98,7 +98,6 @@ public class OffreFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void addOffre(MouseEvent event) {
          try {
             Parent parent = FXMLLoader.load(getClass().getResource("/UI/OffreUI/AjouterOffreFXML.fxml"));
@@ -122,7 +121,6 @@ public class OffreFXMLController implements Initializable {
 //                stage.setScene(scene);
     }
 
-    @FXML
     private void refreshData(MouseEvent event) {
         offreListe.getItems().clear();
         for ( int i = 0; i < new OffreService().getAll().size(); i++){
@@ -139,9 +137,9 @@ public class OffreFXMLController implements Initializable {
 //            imageView.setFitWidth(100);
 //            imageView.setPreserveRatio(true);
             Circle circle = new Circle();
-            circle.setCenterX(100.0f);
-            circle.setCenterY(100.0f);
-            circle.setRadius(70.0f);
+            circle.setCenterX(50.0f);
+            circle.setCenterY(50.0f);
+            circle.setRadius(25.0f);
             Image im = new Image("/Images/Offre-emploi.jpg");
             circle.setFill(new ImagePattern(im));
             //Label lb_id = new Label(String.valueOf(offre.getId()));
