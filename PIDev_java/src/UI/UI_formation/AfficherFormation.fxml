@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="643.0" prefWidth="897.0" style="-fx-background-color: #f7f3e9;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.AfficherFormationController">
+    <stylesheets>
+        <URL value="@afficherformation.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="265.0" layoutY="81.0" opacity="0.89" prefHeight="93.0" prefWidth="632.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <TextField fx:id="tfSearchForma" layoutX="388.0" layoutY="32.0" prefHeight="26.0" prefWidth="200.0" promptText="Recherche" />
+            <FontAwesomeIconView fill="#fffefe" glyphName="SEARCH" layoutX="594.0" layoutY="50.0" wrappingWidth="24.6328125" />
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="-5.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <FontAwesomeIconView fill="#2196f3" glyphName="PLUS_SQUARE" onMouseClicked="#btn_gotoAjouterForma" size="45" text="" wrappingWidth="13.911458015441895" />
+                  <FontAwesomeIconView fill="#00f676" glyphName="REFRESH" layoutX="10.0" layoutY="76.0" onMouseClicked="#btn_Refresh_Forma" size="45" wrappingWidth="11.911458015441895" />
+                  <FontAwesomeIconView fill="#455a64" glyphName="PRINT" onMouseClicked="#btn_print_formation" size="45" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <AnchorPane layoutY="-2.0" prefHeight="650.0" prefWidth="267.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <VBox layoutY="185.0" prefHeight="465.0" prefWidth="267.0" spacing="15.0">
+               <children>
+                  <Button fx:id="btn_gotoFormations" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btn_gotoFormations" prefHeight="68.0" prefWidth="266.0" style="-fx-background-color: #ad0505;" text="Formation" textFill="#e40e0e" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_gotoModifForm" mnemonicParsing="false" onAction="#btn_gotoModifierForma" prefHeight="71.0" prefWidth="280.0" style="-fx-background-color: #a3d2ca;" text="Modifier" textFill="#e40e0e" visible="false">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Pane layoutX="14.0" layoutY="27.0" prefHeight="120.0" prefWidth="253.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="10.0" prefHeight="60.0" prefWidth="111.0" text="Recruitini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+         </children></AnchorPane>
+      <TableView fx:id="TableFormation" layoutX="269.0" layoutY="173.0" prefHeight="474.0" prefWidth="625.0">
+        <columns>
+          <TableColumn fx:id="Tab_titre_id" prefWidth="62.4000244140625" style="-fx-alignment: center;" text="Titre" />
+          <TableColumn fx:id="tab_url_id" prefWidth="88.0" style="-fx-alignment: center;" text="URL" />
+            <TableColumn fx:id="tab_desc_id" prefWidth="124.7999267578125" style="-fx-alignment: center;" text="Description" />
+            <TableColumn fx:id="tab_domaine_id" prefWidth="78.4000244140625" style="-fx-alignment: center;" text="Domaine" />
+            <TableColumn fx:id="tab_gestion_id" prefWidth="77.59991455078125" style="-fx-alignment: center;" text="Gestion" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" layoutX="859.0" layoutY="36.599998474121094">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </HBox>
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="865.0" layoutY="37.0" onMouseClicked="#btn_X_close" size="30" />
+      <Label layoutX="486.0" layoutY="16.0" prefHeight="26.0" prefWidth="219.0" text="Vos formations">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

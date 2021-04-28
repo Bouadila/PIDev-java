@@ -7,6 +7,8 @@ package Services;
 
 import Entity.User;
 import Entity.Formation;
+import Entity.Votes;
+import interfaces.iService_votes;
 import utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,80 +17,42 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author User
  */
 
-/*
 
-public class VoteService {
 
-    private Connection connection;
+public class VoteService implements iService_votes <Votes>{
+
+    private Connection cnx;
     private Statement ste;
     private PreparedStatement pst;
     private ResultSet rs;
-
-    public VoteService() {
-        connection = DataSource.getInstance().getCnx();
-    }
-
-    public void Add(User u, formation v) {
-
-        String req = "insert into post_like values((select id from video where id=?),(select id from user where id=?))";
+    
+    
+    
+    
+    
+    public int getVotes(Formation v) throws SQLException {
+        int i = 0;
+        cnx = DataSource.getInstance().getCnx();
+        String req = "select Count(post_id) as x from post_like where post_id="+v.getId();
+        Statement st=cnx.createStatement();
+        rs= st.executeQuery(req);
+        if(rs.next()){
+            return rs.getInt("x");
+        }
         try {
             
-            pst = connection.prepareStatement(req);
-
-            pst.setInt(1, v.getId());
-            pst.setInt(2, u.getId());
+            pst=cnx.prepareStatement(req);
+            pst.setInt(1,v.getId());
             pst.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void delete(formation v, User u) {
-        String req = "delete from post_like where video_id=? and user_id=?";
-        try {
-            pst = connection.prepareStatement(req);
-            pst.setInt(1, v.getId());
-            pst.setInt(2, u.getId());
-
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public Boolean find(formation v, User u) {
-        String req = "select * from post_like where video_id=? and user_id=?";
-        try {
-            pst = connection.prepareStatement(req);
-            pst.setInt(1, v.getId());
-            pst.setInt(2, u.getId());
-
-            rs = pst.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-   
- 
-    public int getVotes(formation v) {
-        int i = 0;
-        String req = "select Count(video_id) from post_like where video_id=?";
-        try {
-            pst = connection.prepareStatement(req);
-            pst.setInt(1, v.getId());
-            rs = pst.executeQuery();
+            
             if (rs.next()) {
                 i = rs.getInt(1);
             }
@@ -98,74 +62,104 @@ public class VoteService {
         }
         return i;
     }
-    public List<formation> OrderedByVotes() {
-        String req = "SELECT  * FROM post_like v "
-                + "inner join video  on(video.id=v.video_id) "
-                + "inner join user on(video.owner=user.id)"
-                + " GROUP by v.video_id "
-                + "ORDER by count(v.video_id)"
-                + " DESC ";
-        List<formation> l = new ArrayList<>();
+    
+    
+    
+    
+    
+    
+  
+    
+    public void Add(Formation v) throws SQLException {
+
+        
+        String req = "insert into post_like (post_id) values("+v.getId()+")";
+        cnx = DataSource.getInstance().getCnx();
+        //Statement st=cnx.createStatement();
+       // rs= st.executeQuery(req);
         try {
-           ste = connection.createStatement();
-            rs = ste.executeQuery(req);
-            while (rs.next()) {
-                l.add(new formation(rs.getInt("video.id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
-                        new User(rs.getInt("user.id"),
-                                rs.getString("username"),
-                                rs.getString("email"),
-                                rs.getString("password"),
-                                rs.getString("sexe"),
-                                rs.getString("adresse"),
-                                rs.getString("name"),
-                                rs.getString("first_name"),
-                                rs.getString("telephone_number"),
-                                rs.getString("bio"),
-                                rs.getString("roles"),
-                                rs.getDate("birthday"),
-                                rs.getString("profile_pic"))));
+
+ 
+            pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+            
+           
+
+
+       } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return l;
     }
-    public List<formation> OrderedByNewest() {
-        String req = "SELECT  * FROM video "
-                 
-                + "inner join user on(video.owner=user.id)"
-                
-                + "order by video.publish_date"
-                + " DESC ";
-        List<formation> l = new ArrayList<>();
-        try {
-           ste = connection.createStatement();
-            rs = ste.executeQuery(req);
-            while (rs.next()) {
-                l.add(new formation(rs.getInt("id"), rs.getString("url"), rs.getString("title"), rs.getTimestamp("publish_date"),
-                       new User(rs.getInt("user.id"),
-                                rs.getString("username"),
-                                rs.getString("email"),
-                                rs.getString("password"),
-                                rs.getString("sexe"),
-                                rs.getString("adresse"),
-                                rs.getString("name"),
-                                rs.getString("first_name"),
-                                rs.getString("telephone_number"),
-                                rs.getString("bio"),
-                                rs.getString("roles"),
-                                rs.getDate("birthday"),
-                                rs.getString("profile_pic")))); 
-            }
 
+    
+     
+            
+    
+    public void delete(Formation v) {
+        String req = "delete from post_like where post_id=?";
+        cnx = DataSource.getInstance().getCnx();
+        try {
+            pst=cnx.prepareStatement(req);
+            pst.setInt(1,v.getId());
+            pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return l;
+    }
+
+    
+    
+  /*  public Boolean find(Formation v, User u) {
+        String req = "select * from votes where video_id=? and user_id=?";
+        try {
+            System.out.println(v.getId());
+            System.out.println(u.getId());
+            System.out.println(connection);
+            
+            
+            ste = cnx.createStatement();
+            ste.executeUpdate(req);
+           
+
+            pst.setInt(1, v.getId());
+            pst.setInt(2, u.getId());
+
+
+            pst.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }*/
+    
+    
+    
+    
+    @Override
+    public void add(Votes vo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Votes vo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getVotes(Votes vo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean find(Votes vo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    
+    
 }
-*/
+

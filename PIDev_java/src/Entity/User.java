@@ -49,6 +49,7 @@ public class User {
     }
 
     
+
     private Date date_naiss;
 
     public User(String email, String password, String name, String prenom, String gover, String img, String special, String nom_entre, String activation_token, String reset_token, int etat, String color, String roles, Date date_naiss) {
@@ -233,5 +234,5 @@ public class User {
             
             
             
-            
+
 }

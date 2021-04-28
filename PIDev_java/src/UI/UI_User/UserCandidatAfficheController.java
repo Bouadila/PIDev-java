@@ -222,6 +222,18 @@ int rat =0;
 
     @FXML
     private void goToFormation(ActionEvent event) {
+    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
     }
 
     @FXML

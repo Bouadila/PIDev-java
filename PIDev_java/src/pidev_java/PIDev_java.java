@@ -5,6 +5,7 @@
  */
 package PIDev_java;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +19,13 @@ import javafx.stage.StageStyle;
  */
 public class PIDev_java extends Application {
     
-    
+
+
     
     
     @Override
     public void start(Stage stage) throws Exception {
+
 
 
 
@@ -36,16 +39,17 @@ public class PIDev_java extends Application {
   //      Parent root = FXMLLoader.load(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
 
 
-        //Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichageAdmin.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AfficherFormation.fxml"));
         
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        
+       // stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
         
     }
-    
-    
+
          /**
      * @param args the command line arguments
      */
@@ -54,5 +58,6 @@ public class PIDev_java extends Application {
         
     }
     
+
    
 }
