@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
@@ -33,6 +35,14 @@ public class ReclamationAffichageAdminController implements Initializable {
 
     @FXML
     private ListView<VBox> lvRec;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Button acceuil;
+    @FXML
+    private Button comptes;
+    @FXML
+    private Button logout;
 
     /**
      * Initializes the controller class.
@@ -69,4 +79,16 @@ public class ReclamationAffichageAdminController implements Initializable {
     }    );
     
 }
+
+    @FXML
+    private void acceuilClicks(ActionEvent event) {
+    }
+
+    @FXML
+    private void CompteClicks(ActionEvent event) {
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+    }
 }
