@@ -73,7 +73,7 @@ public class ReclamationService implements iServiceReclamation<Reclamation>{
     @Override
     public void Modifier(Reclamation e) {
         try {
-            PreparedStatement preparedStmt = con.prepareStatement("update reclamation set title=? ,type=? ,description_reclamation=? where id=?");
+            PreparedStatement preparedStmt = con.prepareStatement("update reclamation set title=? ,type=? ,description_reclamation=?, status='Apprové' where id=?");
 	    preparedStmt.setString(1,e.getTitle());
 	   preparedStmt.setString(2,e.getType());
 	   preparedStmt.setString(3,e.getDescRec());

@@ -35,6 +35,8 @@ public class ReclamationAjoutController implements Initializable {
     private TextField tfDesc;
     @FXML
     private Button btnInsert;
+    @FXML
+    private Button btnSee;
 
     /**
      * Initializes the controller class.
@@ -55,6 +57,18 @@ public class ReclamationAjoutController implements Initializable {
         Reclamation Rc=new Reclamation(tfTitle.getText(),"Reclamation",date,tfDesc.getText(),"Non approuvé",rs.getEmail(1));
         rs.Ajouter(Rc);
         
+        Node node = (Node) event.getSource();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichage.fxml"));
+                    Stage stage = (Stage) node.getScene().getWindow();
+
+                    Scene scene = new Scene(loader.load());
+                    ReclamationAffichageController ReclamationAffController = loader.getController();
+                    
+                    stage.setScene(scene);
+    }
+
+    @FXML
+    private void handleButtonSee(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichage.fxml"));
                     Stage stage = (Stage) node.getScene().getWindow();

@@ -8,25 +8,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_Reclamation.ReclamationAffichageController">
         <children>
-        <VBox layoutX="15.0" layoutY="41.0" prefHeight="269.0" prefWidth="251.0" spacing="15.0">
-            <children>
-                <Label text="Titre" />
-                <TextField fx:id="tfTitle" prefHeight="25.0" prefWidth="138.0" />
-                <Label text="Type" />
-                <TextField fx:id="tfType" prefHeight="25.0" prefWidth="262.0" />
-                <Label text="Description" />
-                <TextField fx:id="tfDesc" prefHeight="97.0" prefWidth="262.0" />
-            </children>
-        </VBox>
-        <TableView fx:id="tvRec" layoutX="277.0" layoutY="41.0" prefHeight="319.0" prefWidth="500.0">
-            <columns>
-                <TableColumn fx:id="colTitle" prefWidth="87.0" text="Titre" />
-                <TableColumn fx:id="colDes" prefWidth="210.0" text="Description" />
-                <TableColumn fx:id="colType" prefWidth="51.0" text="Type" />
-                <TableColumn fx:id="colStatus" prefWidth="47.0" text="Etat" />
-                <TableColumn fx:id="colDate" prefWidth="107.0" text="Date" />
-            </columns>
-        </TableView>
-        <Button fx:id="btnDelete" layoutX="153.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleButtonDelete" prefHeight="25.0" prefWidth="76.0" text="Supprimer" />
-    </children>
+            <ListView fx:id="lvRec" layoutX="13.0" layoutY="17.0" prefHeight="366.0" prefWidth="574.0" />
+        </children>
 </AnchorPane>

@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +32,7 @@ import javafx.stage.Stage;
 public class ReclamationAffichageAdminController implements Initializable {
 
     @FXML
-    private ListView<Label> lvRec;
+    private ListView<VBox> lvRec;
 
     /**
      * Initializes the controller class.
@@ -42,10 +43,9 @@ public class ReclamationAffichageAdminController implements Initializable {
         List<Reclamation> lr = rs.Lister();
         
         for(Reclamation rec: lr){
-            
-            lvRec.getItems().add(new Label(rec.getTitle()));
-            lvRec.getItems().add(new Label(rec.getDescRec()));
-            lvRec.getItems().add(new Label(rec.getStatus()));
+            VBox vb = new VBox();
+            vb.getChildren().addAll(new Label(rec.getTitle()),new Label(rec.getTitle()),new Label(rec.getStatus()));
+            lvRec.getItems().add(vb);
         }
         
         lvRec.setOnMouseClicked(e -> {

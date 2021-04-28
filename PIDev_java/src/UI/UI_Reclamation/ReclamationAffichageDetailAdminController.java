@@ -52,6 +52,9 @@ public class ReclamationAffichageDetailAdminController implements Initializable 
     @FXML
     private Button btnBack;
     
+    private ReclamationService rs = new ReclamationService();
+    private Reclamation rec;
+    
 
     /**
      * Initializes the controller class.
@@ -63,6 +66,7 @@ public class ReclamationAffichageDetailAdminController implements Initializable 
     
     public void loadData( Reclamation rec){
 
+        this.rec = rec;
         taTitle.setText(rec.getTitle());
         
         taStatus.setText(rec.getStatus());
@@ -76,13 +80,15 @@ public class ReclamationAffichageDetailAdminController implements Initializable 
 
     @FXML
     private void handleButtonApprove(ActionEvent event) {
-           
+           rs.Modifier(rec);
+           rec.setStatus("Apprové");
+           taStatus.setText(rec.getStatus());
     }
 
     @FXML
     private void handleButtonDelete(ActionEvent event) throws IOException {
         
-        
+        rs.Supprimer(rec);
         Node node = (Node) event.getSource();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichageAdmin.fxml"));
                     Stage stage = (Stage) node.getScene().getWindow();

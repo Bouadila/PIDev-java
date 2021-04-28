@@ -5,6 +5,8 @@
  */
 package UI.UI_Reclamation;
 
+import Entity.Reclamation;
+import Services.ReclamationService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +43,9 @@ public class ReclamationAffichageDetailController implements Initializable {
     private Button btnChat;
     @FXML
     private Button btnBack;
+    
+    private ReclamationService rs = new ReclamationService();
+    private Reclamation rec;
 
     /**
      * Initializes the controller class.
@@ -49,9 +54,30 @@ public class ReclamationAffichageDetailController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    public void loadData( Reclamation rec){
 
+        this.rec = rec;
+        taTitle.setText(rec.getTitle());
+        
+        taStatus.setText(rec.getStatus());
+        
+        taEmail.setText(rec.getEmail());
+
+        taDate.setText(rec.getDateRec());
+        
+        taDes.setText(rec.getDescRec());
+    }
     @FXML
-    private void handleButtonDelete(ActionEvent event) {
+    private void handleButtonDelete(ActionEvent event) throws IOException {
+        rs.Supprimer(rec);
+        Node node = (Node) event.getSource();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichage.fxml"));
+                    Stage stage = (Stage) node.getScene().getWindow();
+
+                    Scene scene = new Scene(loader.load());
+                    ReclamationAffichageController ReclamationListController = loader.getController();
+                    
+                    stage.setScene(scene);
     }
 
     @FXML
@@ -78,7 +104,7 @@ public class ReclamationAffichageDetailController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow();
 
                     Scene scene = new Scene(loader.load());
-                    ReclamationAffichageAdminController ReclamationListController = loader.getController();
+                    ReclamationAffichageController ReclamationListController = loader.getController();
                     
                     stage.setScene(scene);   
     }

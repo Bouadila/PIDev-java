@@ -68,5 +68,34 @@ public class Reclamation {
     public String getEmail() {
         return email;
     }
-    
+    /*-------------------------SETTER-------------------------*/
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDateRec(String dateRec) {
+        this.dateRec = dateRec;
+    }
+
+    public void setDescRec(String descRec) {
+        this.descRec = descRec;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
