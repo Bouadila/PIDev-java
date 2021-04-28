@@ -26,7 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import  javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -41,9 +41,10 @@ import javafx.stage.Stage;
  */
 public class OffreFXMLController implements Initializable {
 
-    @FXML
     private ListView<HBox> offreListe;
     private FontAwesomeIconView btnNewOffre;
+    @FXML
+    private ListView<?> listOffre;
 
     /**
      * Initializes the controller class.
@@ -190,6 +191,10 @@ public class OffreFXMLController implements Initializable {
                     Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                  stage.setScene(scene);
+    }
+
+    @FXML
+    private void home(MouseEvent event) {
     }
 
     

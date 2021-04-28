@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author User
  */
 public class DataSource {
-    private String url="jdbc:mysql://127.0.0.1:3306/pidev";
+    private String url="jdbc:mysql://127.0.0.1:3306/db_recruitini";
     private String login="root";
     private String pwd="";
     
