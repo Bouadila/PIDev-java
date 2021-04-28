@@ -229,6 +229,20 @@ public class LoginController implements Initializable {
     private void rendezVous(MouseEvent event) {
     }
 
+    @FXML
+    private void apropos(MouseEvent event) {
+        Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/AboutUs.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+    }
+
    
 
    

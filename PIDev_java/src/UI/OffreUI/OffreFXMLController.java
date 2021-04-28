@@ -56,7 +56,7 @@ public class OffreFXMLController implements Initializable {
         // TODO
         loadDate();
         //addOffre();
-        System.out.println(UserSession.getIdSession());
+       
     }    
     //
 
