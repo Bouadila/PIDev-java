@@ -82,7 +82,7 @@ dateStart.setYear(2021);
         //Date dateEnd = Date.from(localDateTimeEnd.atZone(ZoneId.systemDefault()).toInstant());
         RendezVous rdv = new RendezVous(titre, dateStart, dateEnd, description, room);
         RendezVousService rdvs = new RendezVousService();
-        //rdvs.add(rdv);
+        rdvs.add(rdv);
         this.tfTitre.setText(null);
         this.tfDescription.setText(null);
         this.tfRoom.setText(null);

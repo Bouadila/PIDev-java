@@ -31,7 +31,7 @@ public class RendezVousService {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-            ps.setInt(1, 3);
+            ps.setInt(1, 9);
             ps.setString(2, entity.getTitre());
             ps.setTimestamp(3, new java.sql.Timestamp(entity.getStart().getTime()));
             ps.setTimestamp(4, new java.sql.Timestamp(entity.getEnd().getTime()));
@@ -43,6 +43,7 @@ public class RendezVousService {
             ps.setBoolean(10, entity.isAccepte());
             ps.setString(11, entity.getRoom());
             int i = ps.executeUpdate();
+            System.out.println("add rdv");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
