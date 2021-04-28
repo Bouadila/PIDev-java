@@ -181,4 +181,9 @@ public class AjouterOffreFXMLController implements Initializable {
         this.tfMaxVal.setValueFactory(valMaxFactory);     
         this.tfMaxVal.setEditable(true);
     
-}}
+}
+
+    @FXML
+    private void tfGover(MouseEvent event) {
+    }
+}

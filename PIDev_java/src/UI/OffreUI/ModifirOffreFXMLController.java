@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -190,6 +191,14 @@ public class ModifirOffreFXMLController implements Initializable {
 //            
             
         }
+    }
+
+    @FXML
+    private void inscrireUser(ActionEvent event) {
+    }
+
+    @FXML
+    private void tfGover(MouseEvent event) {
     }
    
 }

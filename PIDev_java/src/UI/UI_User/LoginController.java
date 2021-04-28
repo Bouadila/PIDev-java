@@ -186,7 +186,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void goToProfil(ActionEvent event) throws IOException {
- Node node = (Node) event.getSource();
+    Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
 

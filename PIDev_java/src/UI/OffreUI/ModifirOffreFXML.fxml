@@ -1,149 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.GridCell?>
 
-<AnchorPane id="AnchorPane" prefHeight="407.0" prefWidth="664.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.ModifirOffreFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.OffreUI.ModifirOffreFXMLController">
    <children>
-      <Pane prefHeight="62.0" prefWidth="664.0" style="-fx-background-color: #ad0505;">
+      <TextField fx:id="tfPost" layoutX="187.0" layoutY="87.0" prefHeight="25.0" prefWidth="162.0" promptText="Post" />
+      <Label layoutX="187.0" layoutY="70.0" text="Post" />
+      <Label layoutX="185.0" layoutY="127.0" prefHeight="17.0" prefWidth="49.0" text="Objectif" />
+      <TextField fx:id="tfObjectif" layoutX="187.0" layoutY="146.0" prefHeight="25.0" prefWidth="162.0" promptText="Objectif" />
+      <Label layoutX="186.0" layoutY="186.0" text="Competence" />
+      <TextField fx:id="tfCompetence" layoutX="184.0" layoutY="206.0" prefHeight="25.0" prefWidth="162.0" promptText="Competence" />
+      <Label layoutX="187.0" layoutY="245.0" prefHeight="17.0" prefWidth="88.0" text="Domaine" />
+      <Label layoutX="187.0" layoutY="306.0" prefHeight="17.0" prefWidth="66.0" text="Description" />
+      <Label layoutX="453.0" layoutY="184.0" prefHeight="17.0" prefWidth="88.0" text="Date Expiration" />
+      <Button alignment="CENTER" layoutX="476.0" layoutY="393.0" mnemonicParsing="false" onAction="#inscrireUser" onMouseClicked="#UpdateOffre" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #ad0505; -fx-border-radius: 15px;" text="Modifir" textFill="#f8f3f3" />
+      <Text layoutX="450.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type Contrat" />
+      <Text layoutX="450.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire" />
+      <ComboBox fx:id="cbContrat" layoutX="452.0" layoutY="87.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Le Type De Contrat" />
+      <Pane prefHeight="61.0" prefWidth="787.0" style="-fx-background-color: #ad0505;">
          <children>
-            <Label layoutY="4.0" prefHeight="70.0" prefWidth="161.0" text="Modifir Offre" textFill="WHITE">
+            <Label layoutX="81.0" layoutY="6.0" prefHeight="50.0" prefWidth="162.0" text="Modifir Offre" textFill="WHITE">
                <font>
-                  <Font size="26.0" />
+                  <Font name="Arial Italic" size="24.0" />
                </font>
             </Label>
+            <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutX="6.0" layoutY="52.0" size="60" text="" wrappingWidth="55.57142639160156" />
          </children>
       </Pane>
-      <VBox layoutY="78.0" prefHeight="268.0" prefWidth="336.0">
-         <children>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Post" />
-                  <TextField fx:id="tfPost" prefHeight="18.0" prefWidth="229.0">
-                     <HBox.margin>
-                        <Insets left="30.0" right="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Objectif" />
-                  <TextField fx:id="tfObjectif" prefHeight="26.0" prefWidth="229.0">
-                     <HBox.margin>
-                        <Insets left="30.0" right="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="302.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Competence" />
-                  <TextField fx:id="tfCompetence" prefHeight="26.0" prefWidth="229.0">
-                     <HBox.margin>
-                        <Insets left="30.0" right="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Domaine" />
-                  <ComboBox fx:id="cbDomaine" prefHeight="28.0" prefWidth="229.0">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="30.0" />
-                     </HBox.margin>
-                  </ComboBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="78.0" prefWidth="296.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-                  <TextArea fx:id="tfDescription" prefHeight="68.0" prefWidth="200.0" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox layoutX="355.0" layoutY="78.0" prefHeight="268.0" prefWidth="309.0">
-         <children>
-            <HBox prefHeight="0.0" prefWidth="296.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type Contrat" />
-                  <ComboBox fx:id="cbContrat" prefHeight="28.0" prefWidth="189.0">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" />
-                     </HBox.margin>
-                  </ComboBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire" />
-                  <Spinner fx:id="tfSalaire">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="50.0" />
-                     </HBox.margin>
-                  </Spinner>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Expiration" />
-                  <DatePicker fx:id="datePickerExpiration">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" />
-                     </HBox.margin>
-                  </DatePicker>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Place" />
-                  <Spinner fx:id="tfPlace">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="50.0" />
-                     </HBox.margin>
-                  </Spinner>
-               </children>
-            </HBox>
-            <HBox prefHeight="47.0" prefWidth="321.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Experience Minimale" />
-                  <Spinner fx:id="tfMinVal" prefHeight="26.0" prefWidth="127.0">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="40.0" />
-                     </HBox.margin>
-                  </Spinner>
-               </children>
-            </HBox>
-            <HBox prefHeight="17.0" prefWidth="309.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Experience Maximale" />
-                  <Spinner fx:id="tfMaxVal" prefHeight="26.0" prefWidth="139.0">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" />
-                     </HBox.margin>
-                  </Spinner>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="375.0" prefHeight="62.0" prefWidth="654.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#UpdateOffre" prefHeight="32.0" prefWidth="199.0" style="-fx-background-color: #ad0505;" text="Modifir" textFill="WHITE" />
-         </children>
-      </HBox>
+      <ComboBox fx:id="cbDomaine" layoutX="187.0" layoutY="274.0" onMouseClicked="#tfGover" prefHeight="25.0" prefWidth="162.0" promptText="Choisir Votre Domaine" />
+      <TextArea fx:id="tfDescription" layoutX="187.0" layoutY="337.0" prefHeight="68.0" prefWidth="162.0" promptText="Description" />
+      <Spinner fx:id="tfSalaire" layoutX="452.0" layoutY="146.0" />
+      <JFXDatePicker fx:id="datePickerExpiration" defaultColor="#ad0505" layoutX="455.0" layoutY="204.0" prefHeight="25.0" prefWidth="149.0" />
+      <Text layoutX="456.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Place" />
+      <Spinner fx:id="tfPlace" layoutX="457.0" layoutY="274.0" prefHeight="25.0" prefWidth="149.0" />
+      <Text layoutX="453.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience " />
+      <Spinner fx:id="tfMinVal" layoutX="489.0" layoutY="345.0" prefHeight="26.0" prefWidth="49.0" />
+      <Spinner fx:id="tfMaxVal" layoutX="577.0" layoutY="345.0" prefHeight="26.0" prefWidth="49.0" />
+      <Text layoutX="455.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" wrappingWidth="23.000009909272194" />
+      <Text layoutX="550.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" wrappingWidth="23.000009909272194" />
+      <GridCell />
    </children>
 </AnchorPane>

@@ -18,14 +18,20 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -54,11 +60,25 @@ public class OffreFXMLController implements Initializable {
    
          for ( int i = 0; i < new OffreService().getAll().size(); i++){
             Offre offre = new OffreService().getAll().get(i);
-            Label lb_desc = new Label(offre.getPost());
+            Label lb_post = new Label(offre.getPost());
+            lb_post .setStyle("-fx-font: normal bold 15px 'serif'");
+            Text lb_desc = new Text(offre.getDescription());
+            VBox vBox = new VBox(lb_post, lb_desc);
+            lb_post.setMaxWidth(Double.MAX_VALUE);
+            lb_post.setAlignment(Pos.CENTER);
             HBox hb = new HBox();
-            ImageView imageView = new ImageView("/Images/9.jpg");
+//            ImageView imageView = new ImageView("/Images/Nous-recrutons.jpg");
+//            imageView.setFitHeight(100);
+//            imageView.setFitWidth(100);
+//            imageView.setPreserveRatio(true);
+            Circle circle = new Circle();
+            circle.setCenterX(100.0f);
+            circle.setCenterY(100.0f);
+            circle.setRadius(70.0f);
+            Image im = new Image("/Images/Offre-emploi.jpg");
+            circle.setFill(new ImagePattern(im));
             //Label lb_id = new Label(String.valueOf(offre.getId()));
-            hb.getChildren().addAll(imageView, lb_desc);
+            hb.getChildren().addAll(circle,vBox);
             offreListe.getItems().add(hb);
             offreListe.getItems().get(i).setOnMouseClicked(e ->{
                 System.out.println(offre.getId());
@@ -107,11 +127,25 @@ public class OffreFXMLController implements Initializable {
         offreListe.getItems().clear();
         for ( int i = 0; i < new OffreService().getAll().size(); i++){
             Offre offre = new OffreService().getAll().get(i);
-            Label lb_desc = new Label(offre.getPost());
+            Label lb_post = new Label(offre.getPost());
+            lb_post .setStyle("-fx-font: normal bold 15px 'serif'");
+            Text lb_desc = new Text(offre.getDescription());
+            VBox vBox = new VBox(lb_post, lb_desc);
+            lb_post.setMaxWidth(Double.MAX_VALUE);
+            lb_post.setAlignment(Pos.CENTER);
             HBox hb = new HBox();
-            ImageView imageView = new ImageView("/Images/9.jpg");
+//            ImageView imageView = new ImageView("/Images/Nous-recrutons.jpg");
+//            imageView.setFitHeight(100);
+//            imageView.setFitWidth(100);
+//            imageView.setPreserveRatio(true);
+            Circle circle = new Circle();
+            circle.setCenterX(100.0f);
+            circle.setCenterY(100.0f);
+            circle.setRadius(70.0f);
+            Image im = new Image("/Images/Offre-emploi.jpg");
+            circle.setFill(new ImagePattern(im));
             //Label lb_id = new Label(String.valueOf(offre.getId()));
-            hb.getChildren().addAll(imageView, lb_desc);
+            hb.getChildren().addAll(circle,vBox);
             offreListe.getItems().add(hb);
             offreListe.getItems().get(i).setOnMouseClicked(e ->{
                 System.out.println(offre.getId());
@@ -149,7 +183,7 @@ public class OffreFXMLController implements Initializable {
     @FXML
     private void rendezVous(MouseEvent event) {
         Node node = (Node) event.getSource();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/AjouterRendezVousFXML.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
                 Stage stage = (Stage) node.getScene().getWindow();
                 Scene scene = null;  
                 try {

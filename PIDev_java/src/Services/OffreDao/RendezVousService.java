@@ -31,10 +31,10 @@ public class RendezVousService {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-            ps.setInt(1, 2);
+            ps.setInt(1, 3);
             ps.setString(2, entity.getTitre());
-            ps.setDate(3, new java.sql.Date(entity.getStart().getTime()));
-            ps.setDate(4, new java.sql.Date(entity.getEnd().getTime()));
+            ps.setTimestamp(3, new java.sql.Timestamp(entity.getStart().getTime()));
+            ps.setTimestamp(4, new java.sql.Timestamp(entity.getEnd().getTime()));
             ps.setString(5,entity.getDescription());
             ps.setBoolean(6, entity.isAllDay());
             ps.setString(7, entity.getBackgroundColor());
@@ -92,8 +92,8 @@ public class RendezVousService {
                 rdv.setId(rs.getInt("id"));
                 rdv.setIdCandidature(rs.getInt("candidature_id"));
                 rdv.setTitre(rs.getString("titre"));
-                rdv.setStart(rs.getDate("start"));
-                rdv.setEnd(rs.getDate("end"));
+                rdv.setStart(rs.getTimestamp("start"));
+                rdv.setEnd(rs.getTimestamp("end"));
                 rdv.setDescription(rs.getString("description"));
                 rdv.setAllDay(rs.getBoolean("all_day"));
                 rdv.setBackgroundColor(rs.getString("background_color"));
@@ -120,7 +120,7 @@ public class RendezVousService {
                 rdv.setId(rs.getInt("id"));
                 rdv.setIdCandidature(rs.getInt("candidature_id"));
                 rdv.setTitre(rs.getString("titre"));
-                rdv.setStart(rs.getDate("start"));
+                rdv.setStart(rs.getTimestamp("start"));
                 rdv.setEnd(rs.getDate("end"));
                 rdv.setDescription(rs.getString("description"));
                 rdv.setAllDay(rs.getBoolean("all_day"));
