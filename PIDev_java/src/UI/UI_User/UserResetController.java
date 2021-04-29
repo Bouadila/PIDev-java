@@ -46,10 +46,6 @@ public class UserResetController implements Initializable {
     @FXML
     private Button log1;
     @FXML
-    private Button profil;
-    @FXML
-    private Button login1;
-    @FXML
     private TextField txtnvpwd;
     @FXML
     private TextField txtverifpwd;
@@ -79,7 +75,6 @@ public class UserResetController implements Initializable {
 
 
 
-    @FXML
     private void goToProfil(ActionEvent event) throws IOException, IOException {
         Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -91,7 +86,6 @@ public class UserResetController implements Initializable {
     }
 
 
-    @FXML
     private void goToLogin(ActionEvent event) throws IOException {
           Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -125,11 +119,4 @@ public class UserResetController implements Initializable {
         }       
     }
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
-
-    @FXML
-    private void rendezVous(MouseEvent event) {
-    }
 }

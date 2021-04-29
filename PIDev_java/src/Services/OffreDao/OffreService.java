@@ -198,6 +198,7 @@ public class OffreService {
                 o.setExperienceMax(rs.getInt("offre.experience_max"));
                 o.setFlagExpirer(rs.getBoolean("offre.flag_expirer"));
                 o.setFlagSupprimer(rs.getBoolean("offre.flag_supprimer"));
+                o.setQuiz(rs.getInt("offre.quiz_id"));
                 c.setId(rs.getInt("contrat.id"));
                 c.setDescription(rs.getString("contrat.description"));
                 c.setType(rs.getString("contrat.type"));

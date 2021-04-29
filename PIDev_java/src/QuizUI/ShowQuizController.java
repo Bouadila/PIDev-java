@@ -11,6 +11,7 @@ import Entity.Reponse;
 import Services.QuestionService;
 import Services.QuizService;
 import Services.ReponseService;
+import Services.UserSession;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -50,24 +51,22 @@ public class ShowQuizController implements Initializable {
 
 //    @FXML
 //    private GridPane grid;
-
     @FXML
     private Button btn_terminer;
 
     private Quiz quiz;
-    
+
     @FXML
     TextField tf_quiz;
-    
+
     @FXML
     Label lb_quiz;
-    
+
     @FXML
     private ListView list;
-    
+
     @FXML
     private HBox hbox;
-
 
     private QuestionService questionService = new QuestionService();
     private QuizService quizService = new QuizService();
@@ -87,7 +86,7 @@ public class ShowQuizController implements Initializable {
     }
 
     public void initData(Quiz quiz) throws SQLException {
-        
+
 //        grid.setStyle("-fx-background-color: #0000;");
         this.quiz = quiz;
         lb_quiz.setText("Titre de quiz");
@@ -116,20 +115,21 @@ public class ShowQuizController implements Initializable {
             stage.setScene(scene);
 
         });
-        if(hbox.getChildren().size() <3)
-            hbox.getChildren().add( btn_add);
+        if (hbox.getChildren().size() < 3) {
+            hbox.getChildren().add(btn_add);
+        }
         List<Question> list_question = questionService.getQuestionByQuiz(quiz);
 
         for (int i = 0; i < list_question.size(); i++) {
 
-            
             Label lb_question = new Label(list_question.get(i).getContenu_ques());
             VBox vb = new VBox();
             List<Reponse> reponseList = reponseService.getReponseByQuestion(list_question.get(i));
             for (Reponse reponse : reponseList) {
                 Label lb_reponse = new Label(reponse.getContenu_rep());
-                if(reponse.getId() == list_question.get(i).getRep_just_id())
+                if (reponse.getId() == list_question.get(i).getRep_just_id()) {
                     lb_reponse.setTextFill(Color.web("green", 0.8));
+                }
                 vb.getChildren().add(lb_reponse);
             }
 
@@ -162,30 +162,29 @@ public class ShowQuizController implements Initializable {
             hb.getChildren().addAll(lb_question, vb, btn_remove);
             list.getItems().add(hb);
 //            grid.addRow(i, lb_question, vb, btn_remove);
-            
-//            grid.setValignment(grid.getChildren().get(i), VPos.TOP);
 
+//            grid.setValignment(grid.getChildren().get(i), VPos.TOP);
         }
-                    list.setOnMouseClicked(e -> {
-                Node node = (Node) e.getSource();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuestion.fxml"));
-                Stage stage = (Stage) node.getScene().getWindow();
-                Scene scene = null;
-                try {
-                    scene = new Scene(loader.load());
-                } catch (IOException ex) {
-                    Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                ShowQuestionController quizController = loader.getController();
-                try {
-                    
-                    quizController.initData(list_question.get(list.getSelectionModel().getSelectedIndex()));
-                } catch (Exception ex) {
-                    
-                }
-                stage.setScene(scene);
-            });
-        
+        list.setOnMouseClicked(e -> {
+            Node node = (Node) e.getSource();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuestion.fxml"));
+            Stage stage = (Stage) node.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene(loader.load());
+            } catch (IOException ex) {
+                Logger.getLogger(ShowQuizController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ShowQuestionController quizController = loader.getController();
+            try {
+
+                quizController.initData(list_question.get(list.getSelectionModel().getSelectedIndex()));
+            } catch (Exception ex) {
+
+            }
+            stage.setScene(scene);
+        });
+
     }
 
     @FXML
@@ -196,7 +195,12 @@ public class ShowQuizController implements Initializable {
             quizService.updateQuiz(quiz);
 
             Node node = (Node) e.getSource();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/QuizList.fxml"));
+            FXMLLoader loader = null;
+            if (UserSession.getIdSession() == 52) {
+                loader = new FXMLLoader(getClass().getResource("/UI/UI_User/UserAfficheBack.fxml"));
+            } else {
+                loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+            }
             Stage stage = (Stage) node.getScene().getWindow();
 
             Scene scene = null;

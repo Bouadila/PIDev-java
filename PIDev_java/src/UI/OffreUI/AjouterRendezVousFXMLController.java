@@ -5,6 +5,7 @@
  */
 package UI.OffreUI;
 
+import Entity.Candidature;
 import Entity.RendezVous;
 import Services.OffreDao.RendezVousService;
 import com.jfoenix.controls.JFXDatePicker;
@@ -19,11 +20,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -44,7 +47,7 @@ public class AjouterRendezVousFXMLController implements Initializable {
     private JFXTimePicker tfTimeStart;
     @FXML
     private JFXTimePicker tfTimeEnd;
-
+    private Candidature candidature;
 
     /**
      * Initializes the controller class.
@@ -81,7 +84,7 @@ public class AjouterRendezVousFXMLController implements Initializable {
         //Date dateEnd = Date.from(localDateTimeEnd.atZone(ZoneId.systemDefault()).toInstant());
         RendezVous rdv = new RendezVous(titre, dateStart, dateEnd, description, room);
         RendezVousService rdvs = new RendezVousService();
-        rdvs.add(rdv);
+        rdvs.add(rdv,candidature.getId());
         this.tfTitre.setText(null);
         this.tfDescription.setText(null);
         this.tfRoom.setText(null);
@@ -90,7 +93,14 @@ public class AjouterRendezVousFXMLController implements Initializable {
         this.tfTimeEnd.getEditor().clear();
 //        System.out.println(dateStart);
 //        System.out.println(dateEnd);
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.close();
         
+    }
+
+    public void initData(Candidature c) {
+        candidature = c;
     }
 
     

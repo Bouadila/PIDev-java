@@ -23,7 +23,7 @@ import utils.DataSource;
  */
 public class RendezVousService {
     Connection cnx = DataSource.getInstance().getCnx();
-    public void add(RendezVous entity) {
+    public void add(RendezVous entity,int id_candidature) {
         String req ="INSERT INTO `rendezvous`( `candidature_id`, `titre`, `start`, "
                 + "`end`, `description`, `all_day`, `background_color`, `border_color`,"
                 + " `text_color`, `accepte`, `room`)"
@@ -31,7 +31,7 @@ public class RendezVousService {
         PreparedStatement ps;
         try {
             ps = cnx.prepareStatement(req);
-            ps.setInt(1, 9);
+            ps.setInt(1, id_candidature);
             ps.setString(2, entity.getTitre());
             ps.setTimestamp(3, new java.sql.Timestamp(entity.getStart().getTime()));
             ps.setTimestamp(4, new java.sql.Timestamp(entity.getEnd().getTime()));

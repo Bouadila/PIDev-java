@@ -7,19 +7,29 @@ package UI.OffreUI;
 
 import Entity.Contrat;
 import Entity.Offre;
+import QuizUI.AddQuizController;
+import QuizUI.ShowQuizController;
 import Services.OffreDao.ContratService;
 import Services.OffreDao.OffreService;
+import Services.QuizService;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
@@ -141,11 +151,12 @@ public class ModifirOffreFXMLController implements Initializable {
         //System.out.println(o.getDateExpiration());
         LocalDate datelocal = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
         this.datePickerExpiration.setValue(datelocal);
-        of.setId(o.getId());
+        of = o;
+        System.out.println(o.getQuiz());
         
     }
     @FXML
-    private void UpdateOffre(MouseEvent event) {
+    private void UpdateOffre(MouseEvent event) throws SQLException {
         String post = this.tfPost.getText();
         String objectif = this.tfObjectif.getText();
         String competence = this.tfCompetence.getText();
@@ -172,9 +183,32 @@ public class ModifirOffreFXMLController implements Initializable {
             offre.setId(of.getId());
             OffreService os = new OffreService();
             os.edite(offre, c);
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
+            if(of.getQuiz()>0){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Voulez vous ajouter un quizz ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                try {
+                    //do stuff
+                    Node node = (Node) event.getSource();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/ShowQuiz.fxml"));
+                    Stage stage = (Stage) node.getScene().getWindow();
+
+                    Scene scene = new Scene(loader.load());
+                    ShowQuizController addQuiz = loader.getController();
+                    
+                    addQuiz.initData(new QuizService().getQuiz(of.getQuiz()));
+                    
+                    
+                    stage.setScene(scene);
+                } catch (IOException ex) {
+                    Logger.getLogger(AjouterOffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            }
+//            Node node = (Node) event.getSource();
+//            Stage stage = (Stage) node.getScene().getWindow();
+//            stage.close();
            // System.out.println("offre modifir");
 //            Node node = (Node) event.getSource();
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/DetailOffre.fxml"));

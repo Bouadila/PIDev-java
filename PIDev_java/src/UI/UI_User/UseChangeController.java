@@ -6,6 +6,7 @@
 package UI.UI_User;
 
 import Services.UserSession;
+import UI.OffreUI.OffreFXMLController;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +21,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,8 +66,6 @@ public class UseChangeController implements Initializable {
     private PasswordField nvpw;
     @FXML
     private Label checkpw;
-    @FXML
-    private Button login1;
     @FXML
     private ComboBox<String> nvSpecial;
     @FXML
@@ -328,7 +329,6 @@ else{
     }
 
 
-    @FXML
     private void goToLogin(ActionEvent event) throws IOException {
           Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -399,13 +399,102 @@ else{
         }
     }
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
+  
 
-    @FXML
+     @FXML
     private void rendezVous(MouseEvent event) {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
     }
 
+    @FXML
+    private void offre(ActionEvent event) throws SQLException, IOException {
+        
+       String role = "";
+        String request0 = "SELECT * from `user` WHERE `user`.`id` = " + UserSession.getIdSession() + ";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+        if (rs0.next()) {
+            role = rs0.getString("roles");
+        }
+
+        if (role.equals("[\"Candidat\"]")) {
+                    Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreCandidatFXML.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+        }
+        if (role.equals("[\"Employeur\"]")) {
+            Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+        }
+    }
+
+    
+
+    @FXML
+    private void reclamation(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichage.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+    }
+
+    @FXML
+    private void apropos(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/AboutUs.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+    }
+
+    @FXML
+    private void formation(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_formation/Formations.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+
+    }
     
 }

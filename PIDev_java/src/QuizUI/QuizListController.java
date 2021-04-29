@@ -7,6 +7,7 @@ package QuizUI;
 
 import Entity.Quiz;
 import Services.QuizService;
+import UI.UI_User.UserCandidatAfficheController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,12 +27,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -47,6 +53,20 @@ public class QuizListController implements Initializable {
     private AnchorPane main_pane;
 
     private QuizService serviceQuiz = new QuizService();
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Button acceuil;
+    @FXML
+    private Button comptes;
+    @FXML
+    private Button comptes1;
+    @FXML
+    private Button comptes2;
+    @FXML
+    private Button comptes11;
+    @FXML
+    private Button logout;
 
     /**
      * Initializes the controller class.
@@ -115,6 +135,94 @@ public class QuizListController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void acceuilClicks(ActionEvent event) {
+    }
+
+    @FXML
+    private void CompteClicks(ActionEvent event) {
+    }
+
+   
+
+   
+
+   
+
+    @FXML
+    private void logout(ActionEvent event) {
+    }
+    
+     @FXML
+    private void rechercher(KeyEvent event) {
+      
+    }
+
+    @FXML
+    private void compte(MouseEvent event) throws IOException {
+             
+                   Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserStat.fxml")));
+                    stage.setScene(scene);
+                    stage.show();               
+         
+    
+    }
+
+    @FXML
+    private void gotToFormation(ActionEvent event) {
+        
+         Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_formation/ListViewFormBack.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
+    }
+
+    @FXML
+    private void goToReclamation(ActionEvent event) {
+        
+           Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichageAdmin.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
+    }
+
+    @FXML
+    private void goToQuiz(ActionEvent event) {
+        
+         Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = null;
+        try {
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/QuizUI/QuizList.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(UserCandidatAfficheController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    stage.setScene(scene);
+                    stage.show();
     }
 
 }

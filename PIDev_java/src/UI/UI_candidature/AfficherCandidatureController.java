@@ -7,6 +7,10 @@ package UI.UI_candidature;
 
 import Entity.Candidature;
 import Services.CandidatureService;
+import Services.UserSession;
+import UI.OffreUI.AjouterRendezVousFXMLController;
+import UI.OffreUI.DetailOffreController;
+import UI.OffreUI.OffreFXMLController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.awt.Desktop;
@@ -80,7 +84,6 @@ public class AfficherCandidatureController implements Initializable {
     private TableColumn<Candidature, String> tab_diplome;
     @FXML
     private TableColumn<Candidature, String> tab_cv;
-    @FXML
     private TableColumn<Candidature, String> tab_edit;
     @FXML
     private TableColumn<Candidature, String> tab_date_candidature;
@@ -102,12 +105,13 @@ public class AfficherCandidatureController implements Initializable {
     private TableColumn<Candidature, String> tab_dispo;
     @FXML
     private TextField searchField;
-    @FXML
     private Button front;
     @FXML
     private TableColumn<Candidature, String> tab_rv;
     
     String path = ("C:\\Users\\Bou3dila\\Documents\\Esprit\\ProjPiDev\\ProjPiDev\\public\\uploads\\");
+    @FXML
+    private Button profil;
 
 
     /**
@@ -151,102 +155,102 @@ public class AfficherCandidatureController implements Initializable {
          
          
          
-         //add cell of button edit 
-         Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> cellFoctory = (TableColumn<Candidature, String> param) -> {
-            // make cell containing buttons
-            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
-
-                    } else {
-
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
-
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                        );
-                        
-                        
-                        deleteIcon.setOnMouseClicked(e -> {
-                            
-                            Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
-                             
-                           // TableFormation.getItems().remove(TableFormation.getSelectionModel().getSelectedItem());
-
-                            CandidatureService sp = new CandidatureService();
-                            System.out.println(c.getId());
-                            sp.supprimerCandidature(c);
-                            System.out.println("deleted");
-                            loadDate();
-                            
-                            
-                          
-                            
-                        });
-                        
-                        
-                        
-                        
-                        
-                        editIcon.setOnMouseClicked(e -> {
-                            
-                            
-                            
-                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
-
-                            try {
-                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
-                        Parent rooter = loader.load();
-                        ModifierCandidatureController mC = loader.getController();
-
-                        mC.settxtfield_idedit(Integer.toString(c.getId())); //A3mel TextField hidden ( fi properties visibility)
-
-                        mC.settxtfield_numedit(Integer.toString(c.getNum()));   
-                        mC.setchoice_statusedit(c.getStatus()); 
-                        mC.setchoice_diplomeedit(c.getDiplome());
-                        
-                        mC.setCvpath(c.getCv());
-                        mC.setLmpath(c.getLettre_motiv());
-                        System.out.println(c.getId());
-
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier évenement");
-                        stage.setScene(new Scene(rooter));
-                        stage.show();
-                        } catch (IOException ex) {
-                         System.out.println(ex.getMessage());
-
-                        }  
-
-                        });
-
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
-                        managebtn.setStyle("-fx-alignment:center");
-                        setGraphic(managebtn);
-
-                        setText(null);
-
-
-                    }
-                }
-
-            };
-
-            return cell;
-        };
+//         //add cell of button edit 
+//         Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> cellFoctory = (TableColumn<Candidature, String> param) -> {
+//            // make cell containing buttons
+//            final TableCell<Candidature, String> cell = new TableCell<Candidature, String>() {
+//                @Override
+//                public void updateItem(String item, boolean empty) {
+//                    super.updateItem(item, empty);
+//                    //that cell created only on non-empty rows
+//                    if (empty) {
+//                        setGraphic(null);
+//                        setText(null);
+//
+//                    } else {
+//
+//                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
+//                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+//
+//                        deleteIcon.setStyle(
+//                                " -fx-cursor: hand ;"
+//                                + "-glyph-size:28px;"
+//                                + "-fx-fill:#ff1744;"
+//                        );
+//                        editIcon.setStyle(
+//                                " -fx-cursor: hand ;"
+//                                + "-glyph-size:28px;"
+//                                + "-fx-fill:#00E676;"
+//                        );
+//                        
+//                        
+//                        deleteIcon.setOnMouseClicked(e -> {
+//                            
+//                            Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+//                             
+//                           // TableFormation.getItems().remove(TableFormation.getSelectionModel().getSelectedItem());
+//
+//                            CandidatureService sp = new CandidatureService();
+//                            System.out.println(c.getId());
+//                            sp.supprimerCandidature(c);
+//                            System.out.println("deleted");
+//                            loadDate();
+//                            
+//                            
+//                          
+//                            
+//                        });
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        editIcon.setOnMouseClicked(e -> {
+//                            
+//                            
+//                            
+//                             Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+//
+//                            try {
+//                                FXMLLoader loader= new FXMLLoader(getClass().getResource("/UI/UI_candidature/ModifierCandidature.fxml"));
+//                        Parent rooter = loader.load();
+//                        ModifierCandidatureController mC = loader.getController();
+//
+//                        mC.settxtfield_idedit(Integer.toString(c.getId())); //A3mel TextField hidden ( fi properties visibility)
+//
+//                        mC.settxtfield_numedit(Integer.toString(c.getNum()));   
+//                        mC.setchoice_statusedit(c.getStatus()); 
+//                        mC.setchoice_diplomeedit(c.getDiplome());
+//                        
+//                        mC.setCvpath(c.getCv());
+//                        mC.setLmpath(c.getLettre_motiv());
+//                        System.out.println(c.getId());
+//
+//                        Stage stage = new Stage();
+//                        stage.setTitle("Modifier évenement");
+//                        stage.setScene(new Scene(rooter));
+//                        stage.show();
+//                        } catch (IOException ex) {
+//                         System.out.println(ex.getMessage());
+//
+//                        }  
+//
+//                        });
+//
+//                        HBox managebtn = new HBox(editIcon, deleteIcon);
+//                        managebtn.setStyle("-fx-alignment:center");
+//                        setGraphic(managebtn);
+//
+//                        setText(null);
+//
+//
+//                    }
+//                }
+//
+//            };
+//
+//            return cell;
+//        };
          
          Callback<TableColumn<Candidature, String>, TableCell<Candidature, String>> celllettremotiv = (TableColumn<Candidature, String> param) -> {
             // make cell containing buttons
@@ -368,6 +372,18 @@ public class AfficherCandidatureController implements Initializable {
 
                         rvIcon.setOnMouseClicked(e -> {
                              Candidature c = TableCandidature.getSelectionModel().getSelectedItem();
+                              Node node = (Node) e.getSource();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/AjouterRendezVousFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    AjouterRendezVousFXMLController AjouterRendezVousFXML = loader.getController();
+                    AjouterRendezVousFXML.initData(c);
+                    stage.setScene(scene);
 
                         });
                         HBox managebtn3 = new HBox(rvIcon);
@@ -389,7 +405,7 @@ public class AfficherCandidatureController implements Initializable {
         tab_cv.setCellFactory(cellcv);
         tab_lettremotiv.setCellFactory(celllettremotiv);
         tab_rv.setCellFactory(cellrv);
-        tab_edit.setCellFactory(cellFoctory);
+        //tab_edit.setCellFactory(cellFoctory);
         TableCandidature.setItems(listCand);
              
           FilteredList<Candidature> filteredData = new FilteredList<>(listCand, e -> true);
@@ -417,23 +433,173 @@ public class AfficherCandidatureController implements Initializable {
         
          }
 
-    @FXML
+   @FXML
     private void rendezVous(javafx.scene.input.MouseEvent event) {
+        Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+    }
+
+//     @FXML
+//    private void offre(MouseEvent event) {
+//        Node node = (Node) event.getSource();
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+//                Stage stage = (Stage) node.getScene().getWindow();
+//                Scene scene = null;  
+//                try {
+//                    scene = new Scene(loader.load());
+//                } catch (IOException ex) {
+//                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                 stage.setScene(scene);
+//    }
+
+    @FXML
+    private void reclamation(ActionEvent event) {
+        Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_Reclamation/ReclamationAffichage.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
     }
 
     @FXML
-    private void refreshData(javafx.scene.input.MouseEvent event) {
-        loadDate();
+    private void apropos(ActionEvent event) {
+        Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizUI/AboutUs.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
     }
 
+    @FXML
+    private void formation(ActionEvent event) {
+         Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/UI_formation/Formations.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+        
+    }
+           Connection con = utils.DataSource.getInstance().getCnx();
+
+      @FXML
+    private void goToProfil(ActionEvent event) throws IOException, SQLException {
+         String role="";
+         String request0 ="SELECT *,SUBSTR(roles,3,5) as rol from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+        if (rs0.next())
+        {
+            role = rs0.getString("rol");
+        }
+        
+        if (role.equals("Candi")){
+             Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_User/UserCandidatAffiche.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+        }
+        if (role.equals("Emplo")){
+             Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/UI/UI_User/UserAffiche.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+        }
+    }
+    
+
+    @FXML
+    private void offre(ActionEvent event) throws SQLException {
+        String role = "";
+        String request0 = "SELECT * from `user` WHERE `user`.`id` = " + UserSession.getIdSession() + ";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+        if (rs0.next()) {
+            role = rs0.getString("roles");
+        }
+
+        if (role.equals("[\"Candidat\"]")) {
+                    Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreCandidatFXML.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+        }
+        if (role.equals("[\"Employeur\"]")) {
+            Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+        }
+    }
+    
 
     
-    @FXML
     private void gotoFront(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_candidature/CandidatureListView.fxml"));
         Stage Window = (Stage) front.getScene().getWindow();
         Window.setScene(new Scene(root));
     
+    }
+
+    @FXML
+    private void goToCalendar(javafx.scene.input.MouseEvent event) {
+         Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/RendezVousFXML.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+    }
+
+    @FXML
+    private void refreshData(javafx.scene.input.MouseEvent event) {
+        
+        loadDate();
     }
          
 

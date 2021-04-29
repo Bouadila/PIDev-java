@@ -60,10 +60,6 @@ public class UserResetPwdController implements Initializable {
     private TextField txtcode;
     @FXML
     private Button log1;
-    @FXML
-    private Button profil;
-    @FXML
-    private Button login1;
     Connection con = DataSource.getInstance().getCnx();
 
     int randomCode;
@@ -89,7 +85,6 @@ public class UserResetPwdController implements Initializable {
 
 
 
-    @FXML
     private void goToProfil(ActionEvent event) throws IOException{
            Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -101,9 +96,6 @@ public class UserResetPwdController implements Initializable {
     }
 
 
-    @FXML
-    private void goToLogin(ActionEvent event) {
-    }
 
 
 
@@ -349,13 +341,6 @@ props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
     }
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
-
-    @FXML
-    private void rendezVous(MouseEvent event) {
-    }
     
     
 }

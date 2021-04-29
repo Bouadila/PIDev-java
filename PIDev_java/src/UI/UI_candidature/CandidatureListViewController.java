@@ -7,6 +7,8 @@ package UI.UI_candidature;
 
 import Entity.Candidature;
 import Services.CandidatureService;
+import Services.UserSession;
+import UI.OffreUI.OffreFXMLController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -42,6 +44,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utils.DataSource;
 
 /**
  * FXML Controller class
@@ -72,6 +75,8 @@ public class CandidatureListViewController implements Initializable {
     private Button back;
     
     private CandidatureService ServiceCandidature = new CandidatureService();
+    @FXML
+    private Button goToOffres;
 
 
     /**
@@ -94,7 +99,7 @@ public class CandidatureListViewController implements Initializable {
         listCand = ServiceCandidature.getCandById();
                
         for(int i = 0; i < listCand.size(); i++){
-            Label lb_offre_id = new Label("id: "+Integer.toString(listCand.get(i).getOffre_id()));
+            Label lb_offre_id = new Label("Offre test "+Integer.toString(listCand.get(i).getOffre_id()));
 //            Label lb_num = new Label("Numéro: "+Integer.toString(listCand.get(i).getNum()));
 //            Label lb_dip = new Label("Diplome: "+listCand.get(i).getDiplome());
 //            Label lb_stat = new Label("Status: "+listCand.get(i).getStatus());
@@ -169,20 +174,48 @@ public class CandidatureListViewController implements Initializable {
     
     }
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
 
     @FXML
-    private void rendezVous(MouseEvent event) {
+    private void refreshData(MouseEvent event) throws SQLException {
+        fillGrid();
+        
     }
+    Connection con = DataSource.getInstance().getCnx();
 
     @FXML
-    private void refreshData(MouseEvent event) {
-    }
+    private void goToOffres(ActionEvent event) throws SQLException {
+        String role = "";
+        String request0 = "SELECT * from `user` WHERE `user`.`id` = " + UserSession.getIdSession() + ";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+        if (rs0.next()) {
+            role = rs0.getString("roles");
+        }
 
-    @FXML
-    private void addOffre(MouseEvent event) {
+        if (role.equals("[\"Candidat\"]")) {
+                    Node node = (Node) event.getSource();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreCandidatFXML.fxml"));
+        Stage stage = (Stage) node.getScene().getWindow();
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setScene(scene);
+        }
+        if (role.equals("[\"Employeur\"]")) {
+            Node node = (Node) event.getSource();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/OffreUI/OffreFXML.fxml"));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = null;  
+                try {
+                    scene = new Scene(loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(OffreFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 stage.setScene(scene);
+        }
     }
 
 }

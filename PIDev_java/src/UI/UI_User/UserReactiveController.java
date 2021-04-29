@@ -31,10 +31,6 @@ import utils.DataSource;
 public class UserReactiveController implements Initializable {
 
     @FXML
-    private Button profil;
-    @FXML
-    private Button login1;
-    @FXML
     private Button OUI;
     @FXML
     private Button NON;
@@ -49,7 +45,6 @@ public class UserReactiveController implements Initializable {
             Connection con = DataSource.getInstance().getCnx();
 
 
-    @FXML
     private void goToProfil(ActionEvent event) throws IOException {
           Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -61,7 +56,6 @@ public class UserReactiveController implements Initializable {
     }
 
 
-    @FXML
     private void goToLogin(ActionEvent event) throws IOException {
            Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -101,12 +95,5 @@ public class UserReactiveController implements Initializable {
                     stage.show();
     }
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
-
-    @FXML
-    private void rendezVous(MouseEvent event) {
-    }
     
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="893.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.UI_formation.Video_detailController">
+    <stylesheets>
+        <URL value="@video_detail.css" />
+    </stylesheets>
+   <children>
+      <WebView fx:id="webView_Forma" layoutX="14.0" layoutY="140.0" prefHeight="491.0" prefWidth="875.0" />
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="850.0" layoutY="32.0" onMouseClicked="#btn_close" size="30" wrappingWidth="12.428571701049805" />
+      <FontAwesomeIconView fx:id="id_back" glyphName="ARROW_CIRCLE_LEFT" layoutX="802.0" layoutY="33.0" onMouseClicked="#btn_back_list" size="30" />
+      <Pane layoutY="54.0" opacity="0.89" prefHeight="89.0" prefWidth="898.0" style="-fx-background-color: #ad0505;" />
+   </children>
+</AnchorPane>

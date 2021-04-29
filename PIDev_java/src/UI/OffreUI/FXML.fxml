@@ -18,94 +18,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="846.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox layoutY="-4.0" prefHeight="481.0" prefWidth="192.0" style="-fx-background-color: #ad0505;">
-         <children>
-            <Pane prefHeight="94.0" prefWidth="181.0">
-               <children>
-                  <Label layoutX="75.0" prefHeight="70.0" prefWidth="140.0" text="Recrutini" textFill="WHITE">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="56.0" size="60" text="" wrappingWidth="55.57142639160156" />
-               </children>
-            </Pane>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Home" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" text="" />
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
-               </graphic>
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="RendezVous" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
-               </graphic>
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Annonce" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="14.0" />
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Connexion" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="TASKS" size="14.0" />
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="41.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Inscreption" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font name="Berlin Sans FB" size="13.0" />
-               </font>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
-               </graphic>
-            </Button>
-         </children>
-      </VBox>
       <HBox layoutX="10.0" layoutY="10.0" prefHeight="47.0" prefWidth="321.0" />
       <Pane layoutX="200.0" layoutY="28.0" prefHeight="431.0" prefWidth="633.0" style="-fx-background-color: #fcf2f2; -fx-background-radius: 40px;">
          <effect>
@@ -211,5 +123,104 @@
             </Text>
          </children>
       </Pane>
+      <VBox layoutX="-8.0" layoutY="-1.0" prefHeight="468.0" prefWidth="179.0" style="-fx-background-color: #ad0505;">
+         <children>
+            <Pane prefHeight="94.0" prefWidth="183.0">
+               <children>
+                  <Label layoutX="75.0" prefHeight="70.0" prefWidth="140.0" text="Recrutini" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="47.0" prefHeight="19.0" prefWidth="89.0" text="Agence D'emploi" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutY="67.0" size="60" text="" wrappingWidth="55.57142639160156" />
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" opacity="0.7" prefHeight="45.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Home" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#offre" onMouseClicked="#offre" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Offre D'emploi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BRIEFCASE" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Rendez-Vous" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#reclamation" opacity="0.7" prefHeight="47.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Réclamation" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="14.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="profil" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#goToProfil" opacity="0.7" prefHeight="41.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Compte" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="14.0" />
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#formation" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="Formation" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#apropos" onMouseClicked="#rendezVous" opacity="0.7" prefHeight="49.0" prefWidth="181.0" style="-fx-background-color: #ad0505;" text="A porpos" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="14.0" />
+               </graphic>
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

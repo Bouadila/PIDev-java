@@ -100,10 +100,6 @@ public class UserAddController implements Initializable{
     private ToggleGroup Roles;
  
     @FXML
-    private Button profil;
-    @FXML
-    private Button login1;
-    @FXML
     private ComboBox<String> tfSpecial;
     static int randomCodee;
     private FileChooser fileChooser ;
@@ -689,17 +685,37 @@ String profilePic = lb_image.getText();
 
 
     @FXML
-    private void goToProfil(ActionEvent event) throws IOException {
-         Node node = (Node) event.getSource();
+    private void goToProfil(ActionEvent event) throws IOException, SQLException {
+         String role="";
+         String request0 ="SELECT *,SUBSTR(roles,3,5) as rol from `user` WHERE `user`.`id` = "+UserSession.getIdSession()+";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+        if (rs0.next())
+        {
+            role = rs0.getString("rol");
+        }
+        
+        if (role.equals("Candi")){
+             Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAdd.fxml")));
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserCandidatAffiche.fxml")));
                     stage.setScene(scene);
                     stage.show();
+        }
+        if (role.equals("Emplo")){
+             Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UserAffiche.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+        }
     }
 
 
-    @FXML
     private void goToLogin(ActionEvent event) throws IOException {
          Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -760,12 +776,5 @@ String profilePic = lb_image.getText();
     }
     
 
-    @FXML
-    private void offre(MouseEvent event) {
-    }
-
-    @FXML
-    private void rendezVous(MouseEvent event) {
-    }
  
 }

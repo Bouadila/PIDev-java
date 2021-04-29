@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QuizUI.QuizListController">
+<AnchorPane fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="QuizUI.QuizListController">
    <children>
-      <ScrollPane layoutX="41.0" layoutY="40.0" prefHeight="320.0" prefWidth="517.0">
+      <ScrollPane layoutX="213.0" layoutY="58.0" prefHeight="336.0" prefWidth="443.0">
          <content>
-            <GridPane fx:id="grid" alignment="CENTER" prefHeight="318.0" prefWidth="514.0">
+            <GridPane fx:id="grid" alignment="CENTER" prefHeight="318.0" prefWidth="402.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,5 +29,94 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <VBox fx:id="vbox" alignment="CENTER" layoutX="-3.0" layoutY="-23.0" prefHeight="473.0" prefWidth="206.0" style="-fx-background-color: #5a727e;">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../GUI/Icons/icons8_user_50px.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label style="-fx-background-color: #5a727e;" text="Admin" textFill="#2c2929">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="acceuil" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="239.0" mnemonicParsing="false" onAction="#acceuilClicks" prefHeight="42.0" prefWidth="208.0" style="-fx-background-color: #5a727e;" text="Accueil" underline="true">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_home_24px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="comptes" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#CompteClicks" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Gestion des comptes" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_male_user_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="comptes1" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="308.0" mnemonicParsing="false" onAction="#gotToFormation" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Formation" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_male_user_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="comptes2" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="287.0" mnemonicParsing="false" onAction="#goToReclamation" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Reclamation" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_male_user_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="comptes11" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="308.0" mnemonicParsing="false" onAction="#goToQuiz" prefHeight="42.0" prefWidth="218.0" style="-fx-background-color: #5a727e;" styleClass="colo" text="Quizes" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_male_user_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="logout" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="327.0" style="-fx-background-color: #5a727e;" text="Se deconnecter" underline="true">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../GUI/Icons/icons8_sign_out_26px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
