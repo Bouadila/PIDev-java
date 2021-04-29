@@ -196,10 +196,9 @@ public class AjouterCandidatureController implements Initializable {
             int cid = UserSession.getIdSession();
                     //(49);
             c.setCandidat_id(cid);
-            int oid = (7);
+            int oid = (offre.getId());
             c.setOffre_id(oid);
             if(file1 != null){
-                System.out.println("uploading url="+url1);
                 ftp1.Upload(url1,name1);
                 System.out.println("uploaded!!");
             }
@@ -235,7 +234,7 @@ public class AjouterCandidatureController implements Initializable {
                     Logger.getLogger(AjouterCandidatureController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     TakeQuizController addQuiz = loader.getController();
-                    addQuiz.loadData(offre.getQuiz(), offre.getId());
+                    addQuiz.loadData(offre.getQuiz(), c.getId());
                     
                     
                     stage.setScene(scene);

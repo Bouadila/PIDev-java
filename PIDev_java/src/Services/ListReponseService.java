@@ -71,7 +71,7 @@ public class ListReponseService {
     public void updateList_reponses_condidat ( List_reponses_condidat listReponse ){
         String sql;
         if(listReponse.getCondidtaure_id() != 0){
-        sql="UPDATE list_reponses_condidat SET  quiz_id="+listReponse.getQuiz_id()+", condidature_id ="+listReponse.getCondidtaure_id()+", score="+listReponse.getScore()+" WHERE id="+listReponse.getId();
+        sql="UPDATE list_reponses_condidat SET  quiz_id="+listReponse.getQuiz_id()+", candidature_id ="+listReponse.getCondidtaure_id()+", score="+listReponse.getScore()+" WHERE id="+listReponse.getId();
         }
         else
          sql="UPDATE list_reponses_condidat SET  quiz_id="+listReponse.getQuiz_id()+", score="+listReponse.getScore()+" WHERE id="+listReponse.getId();

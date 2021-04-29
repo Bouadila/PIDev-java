@@ -99,9 +99,9 @@ public class TakeQuizController implements Initializable {
 
         list = new List_reponses_condidat(quizId, conId, 0);
         try {
+            System.out.println(list.getCondidtaure_id());
             listId = listService.addListAndGetItsId(list);
             list.setId(listId);
-            list.setCondidtaure_id(conId);
         } catch (SQLException ex) {
             Logger.getLogger(TakeQuizController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -138,7 +138,7 @@ public class TakeQuizController implements Initializable {
     @FXML
     public void nextQuestion(ActionEvent event) {
 
-        System.out.println(((Label) getNodeByRowColumnIndex(getSelectedIndex(), 1, grid)).getText());
+//        System.out.println(((Label) getNodeByRowColumnIndex(getSelectedIndex(), 1, grid)).getText());
         int id_reponse = Integer.parseInt(((Label) getNodeByRowColumnIndex(getSelectedIndex(), 1, grid)).getText());
         if (id_reponse == questions.get(Integer.parseInt(tf_nbQuestion.getText())).getRep_just_id()) {
             score += 1;
