@@ -107,7 +107,7 @@ public class AfficherCandidatureController implements Initializable {
     @FXML
     private TableColumn<Candidature, String> tab_rv;
     
-    String path = ("D:\\GitHub\\PIDev\\ProjPiDev\\public\\uploads\\");
+    String path = ("D:\\GitHub\\PIDev\\ProjPiDev\\public\\uploads\\images\\");
 
 
     /**
