@@ -177,7 +177,6 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button fx:id="front" layoutX="208.0" layoutY="569.0" mnemonicParsing="false" onAction="#gotoFront" prefHeight="25.0" prefWidth="111.0" text="front" />
          </children>
       </AnchorPane>
 

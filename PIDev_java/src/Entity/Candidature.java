@@ -31,8 +31,7 @@ private Date dispo;
 private String lettre_motiv;
 private int offre_id;
 private int candidat_id;
-private Offre offre;
-private User candidat;
+
 
     public Candidature(int id, String nom, String prenom, String sexe, String email, Date date_naiss, int num, String status, String diplome, String cv, Date date_candidature, int offre_id, int candidat_id) {
         this.id = id;
@@ -250,21 +249,6 @@ private User candidat;
         this.candidat_id = candidat_id;
     }
 
-    public Offre getOffre() {
-        return offre;
-    }
-
-    public void setOffre(Offre offre) {
-        this.offre = offre;
-    }
-
-    public User getCandidat() {
-        return candidat;
-    }
-
-    public void setCandidat(User candidat) {
-        this.candidat = candidat;
-    }
 
    
     

@@ -134,6 +134,7 @@ public class CandidatureService implements iService_candidature<Candidature>{
     public List<Candidature> getCandById() throws SQLException{
         
         List<Candidature> listCand = new ArrayList();
+        //int candidat_id = UserSession.getInstance().getLoggedUser().getId();
         int candidat_id = 49;
         String sql="SELECT * FROM candidature where candidat_id ="+candidat_id;
         Statement st=cnx.createStatement();

@@ -178,8 +178,8 @@ public class AjouterCandidatureController implements Initializable {
             c.setDispo(date2);
             
             c.setLettre_motiv(txtfield_lettremotiv.getText()); 
-            int cid = UserSession.getInstance().getLoggedUser().getId();
-                    //(49);
+            int cid = //UserSession.getInstance().getLoggedUser().getId();
+                    (49);
             c.setCandidat_id(cid);
             int oid = (7);
             c.setOffre_id(oid);
