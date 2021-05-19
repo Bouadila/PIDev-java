@@ -142,6 +142,7 @@ public class AddQuizController implements Initializable {
                 finish.setOnAction(e -> {
                     try {
                         nextQuestion(e);
+                        System.exit(0);
                     } catch (SQLException ex) {
                         Logger.getLogger(AddQuizController.class.getName()).log(Level.SEVERE, null, ex);
                     }

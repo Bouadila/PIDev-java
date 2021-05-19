@@ -210,7 +210,7 @@ String profilePic = lb_image.getText();
         }
         if (imgp!=null) {
             try {
-                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\Bou3dila\\Documents\\Esprit\\PIDev-java\\PIDev_java\\src\\image\\" + imgp));
+                Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\brahm\\Desktop\\3A27\\Semestre2\\PIDev-java\\PIDev-java\\PIDev_java\\src\\image" + imgp));
                 Files.copy(Paths.get(imguriUri), Paths.get("C:\\Users\\Bou3dila\\Documents\\Esprit\\ProjPiDev\\ProjPiDev\\public\\uploads\\image\\" + imgp));
             } catch (IOException ex) {
             }

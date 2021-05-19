@@ -173,8 +173,9 @@ catch (SQLException ex) {
         // snapshot the rounded image.
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
-        WritableImage image = profilePic.snapshot(parameters, null);     
-                     profilePic.setImage(new Image("/image/"+f));
+        WritableImage image = profilePic.snapshot(parameters, null); 
+            System.out.println(f);
+                     profilePic.setImage(new Image("/image/04add9fdfab4decadfb2f0c51a2ac134.png"));
                      tfmail.setText("Email : "+e);
                      tfgoverno.setText("Governorat : "+c);
                      tfspecialite.setText("Specialité : "+d);

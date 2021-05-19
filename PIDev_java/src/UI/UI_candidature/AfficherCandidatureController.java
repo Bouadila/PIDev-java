@@ -109,7 +109,7 @@ public class AfficherCandidatureController implements Initializable {
     @FXML
     private TableColumn<Candidature, String> tab_rv;
     
-    String path = ("C:\\Users\\Bou3dila\\Documents\\Esprit\\ProjPiDev\\ProjPiDev\\public\\uploads\\");
+    String path = ("C:\\Users\\brahm\\Desktop\\3A27\\Semestre2\\PIDev\\ProjPiDev\\public\\uploads\\image\\");
     @FXML
     private Button profil;
 

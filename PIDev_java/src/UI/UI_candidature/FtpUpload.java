@@ -19,7 +19,7 @@ import org.apache.commons.net.ftp.FTPClient;
  * @author A.L.I.C.E
  */
 public class FtpUpload {
-    	String server = "172.20.10.12";
+    	String server = "192.168.1.2";
         int port = 21;
         String user = "user";
         String pass = "123456789";

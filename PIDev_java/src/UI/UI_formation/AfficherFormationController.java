@@ -513,11 +513,11 @@ public class AfficherFormationController implements Initializable {
     @FXML
     private void btn_gotoAjouterForma(javafx.scene.input.MouseEvent event) throws IOException {
         
-         try {
+        try {
  
             
             Parent root = FXMLLoader.load(getClass().getResource("/UI/UI_formation/AjouterFormation.fxml"));
-        Stage Window = (Stage) btn_gotoModifForm.getScene().getWindow();
+        Stage Window = (Stage) ((Node) event.getTarget()).getScene().getWindow();
         Window.setScene(new Scene(root));
         
 
